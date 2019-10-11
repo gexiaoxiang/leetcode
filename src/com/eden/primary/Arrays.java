@@ -1,6 +1,7 @@
 package com.eden.primary;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -111,16 +112,90 @@ public class Arrays {
      **/
     public static int[] twoSum(int[] nums, int target) {
         int[] re = new int[2];
-        for (int i =0; i<nums.length;i++){
-            for(int j =i+1 ;j<=nums.length-1;j++){
-               if(nums[i]+nums[j]==target){
-                   re[0]=i;
-                   re[1]=j;
-                   return re;
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j <= nums.length - 1; j++) {
+                if (nums[i] + nums[j] == target) {
+                    re[0] = i;
+                    re[1] = j;
+                    return re;
+                }
             }
-        }}
+        }
 
         return re;
+    }
+
+    /**
+     * @Description: 判断一个 9x9 的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。
+     * <p>
+     * 数字 1-9 在每一行只能出现一次。
+     * 数字 1-9 在每一列只能出现一次。
+     * 数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。
+     * @Param: [board]
+     * @Return: boolean
+     * @Author: gexx
+     * @Date: 2019/10/11
+     **/
+    public static boolean isValidSudoku(char[][] board) {
+        //验证每一行
+        int length = board.length;
+        for (int i = 0; i < length; i++) {
+            char[] chars = board[i];
+            List chars1 = new ArrayList();
+            for (int a = 0; a < chars.length; a++) {
+                if ('.' == chars[a]) {
+                } else {
+                    chars1.add(chars[a]);
+                }
+            }
+            int chars1Size = chars1.size();
+            HashMap map = new HashMap<>();
+            for (int j = 0; j < chars1.size(); j++) {
+                char o = (char) chars1.get(j);
+                map.put(o, "");
+            }
+            if (map.size() != chars1Size) {
+                return false;
+            }
+        }
+
+
+        for (int i = 0; i < 9; i++) {
+            int[] row = new int[9];
+            int[] col = new int[9];
+            int[] cube = new int[9];
+
+            for (int j = 0; j < 9; j++) {
+                if (board[i][j] != '.') {
+                    if (row[board[i][j] - '1'] == 1) {
+                        return false;
+                    } else {
+                        row[board[i][j] - '1'] = 1;
+                    }
+                }
+
+                if (board[j][i] != '.') {
+                    if (col[board[j][i] - '1'] == 1) {
+                        return false;
+                    } else {
+                        col[board[j][i] - '1'] = 1;
+                    }
+                }
+                // 每一宫内行列的变化
+                int cubeX = 3 * (i / 3) + j / 3;
+                int cubeY = 3 * (i % 3) + j % 3;
+                if (board[cubeX][cubeY] != '.') {
+                    if (cube[board[cubeX][cubeY] - '1'] == 1) {
+                        return false;
+                    } else {
+                        cube[board[cubeX][cubeY] - '1'] = 1;
+                    }
+                }
+            }
+
+        }
+        return true;
+
     }
 
     public static void main(String[] args) {
@@ -142,5 +217,21 @@ public class Arrays {
 
         int[] ints = twoSum(nums4, target);
         System.out.println(java.util.Arrays.toString(ints));
+        //有效数独
+        char[][] board = {
+                {'5', '3', '.', '.', '7', '.', '.', '.', '.'},
+                {'6', '.', '.', '1', '9', '5', '.', '.', '.'},
+                {'.', '9', '8', '.', '.', '.', '.', '6', '.'},
+                {'8', '.', '.', '.', '6', '.', '.', '.', '3'},
+                {'4', '.', '.', '8', '.', '3', '.', '.', '1'},
+                {'7', '.', '.', '.', '2', '.', '.', '.', '6'},
+                {'.', '6', '.', '.', '.', '.', '2', '8', '.'},
+                {'.', '.', '.', '4', '1', '9', '.', '.', '5'},
+                {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
+        };
+        System.out.println(isValidSudoku(board));
+        ;
     }
+
+
 }
