@@ -198,6 +198,41 @@ public class Arrays {
 
     }
 
+    /**
+     * @Description: 给定一个 n × n 的二维矩阵表示一个图像。
+     * 将图像顺时针旋转 90 度。
+     * 说明：
+     * 你必须在原地旋转图像，这意味着你需要直接修改输入的二维矩阵。请不要使用另一个矩阵来旋转图像。
+     * @Param: [matrix]
+     * @Return: void
+     * @Author: gexx
+     * @Date: 2019/10/12
+     **/
+    public static void rotate(int[][] matrix) {
+
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return;
+        }
+        int col = matrix.length - 1;
+        for (int j = 0; j < matrix.length / 2; j++, col--) {
+            int r = col;//记录最后
+            int c = 0;//记录开始
+            for (int i = j; i < col; i++) {
+                swap(matrix, i, j, r, i);
+                swap(matrix, r, i, r - c, r);
+                swap(matrix, r - c, r, j, r - c);
+                c++;
+            }
+        }
+    }
+
+    private static void swap(int[][] matrix, int i1, int j1, int i2, int j2) {
+        int temp = matrix[i1][j1];
+        matrix[i1][j1] = matrix[i2][j2];
+        matrix[i2][j2] = temp;
+    }
+
+
     public static void main(String[] args) {
 
         //交集
@@ -214,7 +249,6 @@ public class Arrays {
         //两数之和
         int[] nums4 = {3, 2, 4};
         int target = 6;
-
         int[] ints = twoSum(nums4, target);
         System.out.println(java.util.Arrays.toString(ints));
         //有效数独
@@ -230,7 +264,15 @@ public class Arrays {
                 {'.', '.', '.', '.', '8', '.', '.', '7', '9'}
         };
         System.out.println(isValidSudoku(board));
-        ;
+        //旋转图像
+        int[][] matrix =
+                {
+                        {5, 1, 9, 11},
+                        {2, 4, 8, 10},
+                        {13, 3, 6, 7},
+                        {15, 14, 12, 16}
+                };
+        rotate(matrix);
     }
 
 
