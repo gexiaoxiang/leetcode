@@ -1,5 +1,11 @@
 package com.eden.primary;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
+
 /**
  * @Description: 字符串相关算法
  * @Author gexx
@@ -60,6 +66,31 @@ public class Strings {
         return re;
     }
 
+    /**
+     * @Description: 字符串中的第一个唯一字符
+     * 给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。
+     * 您可以假定该字符串只包含小写字母
+     * @Param: [s]
+     * @Return: int
+     * @Author: gexx
+     * @Date: 2019/10/16
+     **/
+    public static int firstUniqChar(String s) {
+
+        if(null==s||0==s.length()) return -1;
+        int [] a=new int[26];
+        char[] ss = s.toCharArray();
+        for (int i = 0; i < ss.length; i++) {
+            a[ss[i]-'a']++;
+        }
+        for (int i = 0; i < ss.length; i++) {
+            if(a[ss[i]-'a']==1){
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         //反转字符串
         char[] s = {'h', 'e', 'l', 'l', 'o'};
@@ -69,6 +100,11 @@ public class Strings {
         int x = 123;
         int reverse = reverse(x);
         System.out.println(reverse);
+        //字符串中的第一个唯一字符
+        String ss = "loveleetcode";
+        System.out.println(firstUniqChar(ss));
+
+
     }
 
 }
