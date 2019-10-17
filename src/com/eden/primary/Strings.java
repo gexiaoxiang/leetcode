@@ -77,18 +77,43 @@ public class Strings {
      **/
     public static int firstUniqChar(String s) {
 
-        if(null==s||0==s.length()) return -1;
-        int [] a=new int[26];
+        if (null == s || 0 == s.length()) return -1;
+        int[] a = new int[26];
         char[] ss = s.toCharArray();
         for (int i = 0; i < ss.length; i++) {
-            a[ss[i]-'a']++;
+            a[ss[i] - 'a']++;
         }
         for (int i = 0; i < ss.length; i++) {
-            if(a[ss[i]-'a']==1){
+            if (a[ss[i] - 'a'] == 1) {
                 return i;
             }
         }
         return -1;
+    }
+
+    /**
+     * @Description: 有效的字母异位词
+     * 给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。
+     * @Param: [s, t]
+     * @Return: boolean
+     * @Author: gexx
+     * @Date: 2019/10/17
+     **/
+    public static boolean isAnagram(String s, String t) {
+        String[] splitS = s.split("");
+        String[] splitT = t.split("");
+        if (splitS.length != splitT.length) {
+            return false;
+        }
+        Arrays.sort(splitS);
+        Arrays.sort(splitT);
+        for (int i = 0; i < splitS.length; i++) {
+            if (!splitS[i].equals(splitT[i])) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static void main(String[] args) {
@@ -103,7 +128,10 @@ public class Strings {
         //字符串中的第一个唯一字符
         String ss = "loveleetcode";
         System.out.println(firstUniqChar(ss));
-
+//有效的字母异位词
+        String s1="aba";
+        String t1="aab";
+        System.out.println(isAnagram(s1,t1));
 
     }
 
