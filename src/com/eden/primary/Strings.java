@@ -116,23 +116,47 @@ public class Strings {
         return true;
     }
 
+    /**
+     * @Description: 验证回文字符串
+     * 给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写
+     * @Param: [s]
+     * @Return: boolean
+     * @Author: gexx
+     * @Date: 2019/10/18
+     **/
+    public static boolean isPalindrome(String s) {
+        if (s == null) return true;
+        s = s.toLowerCase();
+        int l = s.length();
+        StringBuilder str = new StringBuilder(l);
+        for (char c : s.toCharArray()) {
+            if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z')) {
+                str.append(c);
+            }
+        }
+        return str.toString().equals(str.reverse().toString());
+    }
+
     public static void main(String[] args) {
         //反转字符串
         char[] s = {'h', 'e', 'l', 'l', 'o'};
         reverseString(s);
         //整数反转
-//        int x=9646324351;
+        //int x=9646324351;
         int x = 123;
         int reverse = reverse(x);
         System.out.println(reverse);
         //字符串中的第一个唯一字符
         String ss = "loveleetcode";
         System.out.println(firstUniqChar(ss));
-//有效的字母异位词
-        String s1="aba";
-        String t1="aab";
-        System.out.println(isAnagram(s1,t1));
-
+        //有效的字母异位词
+        String s1 = "aba";
+        String t1 = "aab";
+        System.out.println(isAnagram(s1, t1));
+        //验证回文字符串
+        String palindromeStr = "A man, a plan, a canal: Panama";
+//        String palindromeStr = "race a car";
+        System.out.println(isPalindrome(palindromeStr));
     }
 
 }
