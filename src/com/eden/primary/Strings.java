@@ -186,6 +186,19 @@ public class Strings {
 
     }
 
+    /**
+     * @Description: 实现 strStr()
+     * 给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。
+     * @Param: [haystack, needle]
+     * @Return: int
+     * @Author: gexx
+     * @Date: 2019/10/22
+     **/
+    public static int strStr(String haystack, String needle) {
+        return haystack.indexOf(needle);
+
+    }
+
     public static void main(String[] args) {
         //反转字符串
         char[] s = {'h', 'e', 'l', 'l', 'o'};
@@ -209,7 +222,8 @@ public class Strings {
         //字符串转换整数
         String myAtoi = "";
         System.out.println(myAtoi(myAtoi));
-
+// 实现 strStr()
+      String  haystack = "hello", needle = "ll";
+        System.out.println(strStr(haystack,needle));
     }
-
 }
