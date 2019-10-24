@@ -233,6 +233,34 @@ public class Strings {
         return ans.toString();
     }
 
+    /**
+     * @Description: 最长公共前缀
+     * 编写一个函数来查找字符串数组中的最长公共前缀。
+     * 如果不存在公共前缀，返回空字符串 ""
+     * @Param:
+     * @Return:
+     * @Author: gexx
+     * @Date: 2019/10/24
+     **/
+    public static String longestCommonPrefix(String[] strs) {
+            int index = 0;
+            if (strs.length == 0) {
+                return "";
+            }
+            for (int i = 0; i < strs[0].length(); i++) {
+                char current = strs[0].charAt(index);
+                for (String str : strs) {
+                    if (str.length() == i || current != str.charAt(index)) {
+                        return str.substring(0, index);
+                    }
+                }
+                index++;
+            }
+
+            return strs[0].substring(0, index);
+        }
+
+
     public static void main(String[] args) {
         //反转字符串
         char[] s = {'h', 'e', 'l', 'l', 'o'};
@@ -260,7 +288,10 @@ public class Strings {
         String haystack = "hello", needle = "ll";
         System.out.println(strStr(haystack, needle));
 
-        int n=2;
+        int n = 2;
         countAndSay(n);
+
+        String[] stes= {"flower","flow","flight"};
+        longestCommonPrefix(stes);
     }
 }
