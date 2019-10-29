@@ -59,5 +59,31 @@ public class Linkeds {
 
     }
 
+    /**
+     * @Description: 反转链表
+     * @Param: [head]
+     * @Return: com.eden.primary.Linkeds.ListNode
+     * @Author: gexx
+     * @Date: 2019/10/29
+     **/
+    public static ListNode reverseList(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        while (null != head.next) {
+            ListNode pre = null, cur = head, next = null;
+            while (cur != null) {
+                next = cur.next;
+                cur.next = pre;
+                pre = cur;
+                cur = next;
+            }
+            return pre;
+
+        }
+
+
+        return head;
+    }
 
 }
