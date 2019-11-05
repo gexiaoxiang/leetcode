@@ -111,4 +111,35 @@ public class Linkeds {
         lastNode.next = l1 != null ? l1 : l2;
         return dummyHead.next;
     }
+
+    /**
+     * @Description: 回文链表
+     * @Param: [head]
+     * @Return: boolean
+     * @Author: gexx
+     * @Date: 2019/11/5
+     **/
+    public boolean isPalindrome(ListNode head) {
+        while (head != null) {
+            //只有一个节点的时候，直接返回，它本身就是回文链表
+            if (head.next == null) {
+                return true;
+            }
+            ListNode end = head;
+            ListNode tmp = null;
+            while (end.next != null) {
+                tmp = end;
+                end = end.next;
+            }
+            if (end.val == head.val) {
+                tmp.next = null;
+                head = head.next;
+            } else {
+                return false;
+            }
+        }
+        return true;
+
+
+    }
 }
