@@ -142,4 +142,30 @@ public class Linkeds {
 
 
     }
+
+    /**
+     * @Description: 环形链表
+     * @Param: [head]
+     * @Return: boolean
+     * @Author: gexx
+     * @Date: 2019/11/7
+     **/
+    public boolean hasCycle(ListNode head) {
+
+
+        if (head == null || head.next == null)
+            return false;
+        ListNode slow = head;
+        ListNode quick = head.next;
+        while (slow != quick) {
+            if (quick == null || quick.next == null) {
+                return false;
+            } else {
+                slow = slow.next;
+                quick = quick.next.next;
+            }
+        }
+        return true;
+
+    }
 }
