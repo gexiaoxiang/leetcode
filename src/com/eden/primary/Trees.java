@@ -133,7 +133,7 @@ public class Trees {
     /**
      * @Description: 二叉树的层次遍历
      * @Param: [root]
-     * @Return: List<List < Integer>>
+     * @Return: List<List   <   Integer>>
      * @Author: gexx
      * @Date: 2019/11/8
      **/
@@ -143,6 +143,7 @@ public class Trees {
         helper(root, 0);
         return levels;
     }
+
     List<List<Integer>> levels = new ArrayList<List<Integer>>();
 
     public void helper(TreeNode node, int level) {
@@ -160,4 +161,24 @@ public class Trees {
             helper(node.right, level + 1);
     }
 
+    /**
+     * @Description: 将有序数组转换为二叉搜索树
+     * @Param: [nums]
+     * @Return: com.eden.primary.Trees.TreeNode
+     * @Author: gexx
+     * @Date: 2019/11/8
+     **/
+    public TreeNode sortedArrayToBST(int[] nums) {
+        return sortedArrayToBST(nums, 0, nums.length - 1);
+
+    }
+
+    public TreeNode sortedArrayToBST(int[] nums, int left, int right) {
+        if (left > right) return null;                                        //边界条件，注意是left>right
+        int mid = (left + right) / 2;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = sortedArrayToBST(nums, left, mid - 1);        //递归向左探索，范围变成left~mid-1;
+        root.right = sortedArrayToBST(nums, mid + 1, right);
+        return root;
+    }
 }
