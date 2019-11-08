@@ -88,4 +88,45 @@ public class Trees {
 
 
     }
+
+    /**
+     * @Description: 对称二叉树
+     * @Param: [root]
+     * @Return: boolean
+     * @Author: gexx
+     * @Date: 2019/11/8
+     **/
+    public boolean isSymmetric(TreeNode root) {
+
+        if (root == null) {
+            return true;
+        }
+
+        return judge(root.left, root.right);
+    }
+
+    boolean judge(TreeNode left, TreeNode right) {
+        // 左子树和右子树都是空
+        if (left == null && right == null) {
+            return true;
+        }
+        // 左子树空，右子树非空
+        if (left == null && right != null) {
+            return false;
+        }
+        // 右子树空，左子树非空
+        if (right == null && left != null) {
+            return false;
+        }
+        // 左右字子树不相等
+        if (left.val != right.val) {
+            return false;
+        }
+        // 左右子树值相等，则判断其下层节点
+        if (left.val == right.val) {
+            return judge(left.left, right.right) && judge(left.right, right.left);
+        }
+        return true;
+    }
+
 }
