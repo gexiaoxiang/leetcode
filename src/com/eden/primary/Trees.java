@@ -1,6 +1,6 @@
 package com.eden.primary;
 
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * @Description: 树
@@ -106,6 +106,7 @@ public class Trees {
     }
 
     boolean judge(TreeNode left, TreeNode right) {
+
         // 左子树和右子树都是空
         if (left == null && right == null) {
             return true;
@@ -127,6 +128,36 @@ public class Trees {
             return judge(left.left, right.right) && judge(left.right, right.left);
         }
         return true;
+    }
+
+    /**
+     * @Description: 二叉树的层次遍历
+     * @Param: [root]
+     * @Return: List<List < Integer>>
+     * @Author: gexx
+     * @Date: 2019/11/8
+     **/
+    public List<List<Integer>> levelOrder(TreeNode root) {
+
+        if (root == null) return levels;
+        helper(root, 0);
+        return levels;
+    }
+    List<List<Integer>> levels = new ArrayList<List<Integer>>();
+
+    public void helper(TreeNode node, int level) {
+        // start the current level
+        if (levels.size() == level)
+            levels.add(new ArrayList<Integer>());
+
+        // fulfil the current level
+        levels.get(level).add(node.val);
+
+        // process child nodes for the next level
+        if (node.left != null)
+            helper(node.left, level + 1);
+        if (node.right != null)
+            helper(node.right, level + 1);
     }
 
 }
