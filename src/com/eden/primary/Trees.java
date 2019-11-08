@@ -51,4 +51,41 @@ public class Trees {
         }
         return depth;
     }
+
+    /**
+     * @Description: 验证二叉搜索树
+     * @Param: [root]
+     * @Return: boolean
+     * @Author: gexx
+     * @Date: 2019/11/8
+     **/
+    public boolean isValidBST(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+
+        if (root.left != null) {
+            TreeNode cur = root.left;
+            while (cur.right != null) {
+                cur = cur.right;
+            }
+            if (cur.val >= root.val) {
+                return false;
+            }
+        }
+
+        if (root.right != null) {
+            TreeNode cur = root.right;
+            while (cur.left != null) {
+                cur = cur.left;
+            }
+            if (cur.val <= root.val) {
+                return false;
+            }
+        }
+
+        return isValidBST(root.left) && isValidBST(root.right);
+
+
+    }
 }
