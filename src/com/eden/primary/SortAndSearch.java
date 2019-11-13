@@ -18,23 +18,25 @@ public class SortAndSearch {
      * @Date: 2019/11/11
      **/
     public static void merge(int[] nums1, int m, int[] nums2, int n) {
-        int i=m-1,j=n-1;
-        int index=m+n-1;
-        while(index>=0){
+        int i = m - 1, j = n - 1;
+        int index = m + n - 1;
+        while (index >= 0) {
             //前两个判断要放在前面，防止空指针异常
-            if(i<0){
-                nums1[index--]=nums2[j--];
-            }else if(j<0){
-                nums1[index--]=nums1[i--];
-            }
-            else if(nums1[i]>nums2[j] && i>=0){
-                nums1[index--]=nums1[i--];
-            }else if(nums1[i]<=nums2[j]&& j>=0){
-                nums1[index--]=nums2[j--];
+            if (i < 0) {
+                nums1[index--] = nums2[j--];
+            } else if (j < 0) {
+                nums1[index--] = nums1[i--];
+            } else if (nums1[i] > nums2[j] && i >= 0) {
+                nums1[index--] = nums1[i--];
+            } else if (nums1[i] <= nums2[j] && j >= 0) {
+                nums1[index--] = nums2[j--];
             }
         }
         System.out.println(Arrays.toString(nums1));
     }
+
+
+
 
     public static void main(String[] args) {
         int nums1[] = {1, 2, 3, 0, 0, 0};
