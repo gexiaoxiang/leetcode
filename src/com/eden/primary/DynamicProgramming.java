@@ -80,14 +80,38 @@ public class DynamicProgramming {
         return global;
     }
 
+    /**
+     * @Description: 打家劫舍
+     * @Param: [nums]
+     * @Return: int
+     * @Author: gexx
+     * @Date: 2019/11/18
+     **/
+    public static int rob(int[] nums) {
+        int prevMax = 0;
+        int currMax = 0;
+        for (int x : nums) {
+            int temp = currMax;
+            currMax = Math.max(prevMax + x, currMax);
+            prevMax = temp;
+        }
+        return currMax;
+
+
+    }
+
     public static void main(String[] args) {
         int prices[] = {1, 2, 4};
         int max = maxProfit(prices);
         System.out.println(max);
 
-        int nums[]={-2,1,-3,4,-1,2,1,-5,4};
-        int maxSubArray= maxSubArray(nums);
+        int nums[] = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+        int maxSubArray = maxSubArray(nums);
         System.out.println(maxSubArray);
+
+        int num[]={2,7,9,3,1};
+        int rob = rob(num);
+        System.out.println(rob);
 
     }
 }
