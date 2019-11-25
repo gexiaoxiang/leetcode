@@ -89,6 +89,16 @@ public class Design {
         int[] param_2 = obj.shuffle();
         System.out.println(Arrays.toString(param_1));
         System.out.println(Arrays.toString(param_2));
+
+        MinStack minStack = new MinStack();
+        minStack.push(-2);
+        minStack.push(0);
+        minStack.push(-3);
+        System.out.println(minStack.getMin());
+        minStack.pop();
+        minStack.top();
+        minStack.getMin();
+
     }
 
 }
