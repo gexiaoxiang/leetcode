@@ -34,8 +34,46 @@ public class Math {
         return fizzs;
     }
 
+    /**
+     * @Description: 计数质数
+     * @Param: [n]
+     * @Return: int
+     * @Author: gexx
+     * @Date: 2019/11/27
+     **/
+    public static int countPrimes(int n) {
+
+        int countPrimes = 0;
+        if (n <= 1) {
+            return countPrimes;
+        }
+        //默认为false
+        boolean[] isPrime = new boolean[n];
+        isPrime[0] = true;
+        isPrime[1] = true;
+        for (int i = 2; i * i < n; i++) {
+            if (!isPrime[i]) {
+                for (int j = i * 2; j < n; j += i) {
+                    isPrime[j] = true;
+                }
+            }
+        }
+
+        //统计质数个数
+        for (boolean b : isPrime) {
+            if (!b) {
+                countPrimes++;
+            }
+        }
+
+        return countPrimes;
+    }
+
+
     public static void main(String[] args) {
         int n = 15;
         System.out.println(fizzBuzz(n));
+        int n1=10;
+        System.out.println(countPrimes(n1));
     }
 }
