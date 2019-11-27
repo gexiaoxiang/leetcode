@@ -1,4 +1,4 @@
-package com.eden.primary;
+package com.eden.explore.interviewclassic.primary;
 
 import java.util.*;
 
@@ -164,7 +164,7 @@ public class Trees {
     /**
      * @Description: 将有序数组转换为二叉搜索树
      * @Param: [nums]
-     * @Return: com.eden.primary.Trees.TreeNode
+     * @Return: Trees.TreeNode
      * @Author: gexx
      * @Date: 2019/11/8
      **/

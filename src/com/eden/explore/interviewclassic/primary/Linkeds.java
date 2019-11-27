@@ -1,4 +1,4 @@
-package com.eden.primary;
+package com.eden.explore.interviewclassic.primary;
 
 /**
  * @Description: 链表相关算法
@@ -34,7 +34,7 @@ public class Linkeds {
     /**
      * @Description: 删除链表的倒数第N个节点
      * @Param: [head, n]
-     * @Return: com.eden.primary.Linkeds.ListNode
+     * @Return: Linkeds.ListNode
      * @Author: gexx
      * @Date: 2019/10/28
      **/
@@ -62,7 +62,7 @@ public class Linkeds {
     /**
      * @Description: 反转链表
      * @Param: [head]
-     * @Return: com.eden.primary.Linkeds.ListNode
+     * @Return: Linkeds.ListNode
      * @Author: gexx
      * @Date: 2019/10/29
      **/
@@ -89,7 +89,7 @@ public class Linkeds {
     /**
      * @Description: 合并两个有序链表
      * @Param: [l1, l2]
-     * @Return: com.eden.primary.Linkeds.ListNode
+     * @Return: Linkeds.ListNode
      * @Author: gexx
      * @Date: 2019/11/4
      **/

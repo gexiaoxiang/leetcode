@@ -1,4 +1,4 @@
-package com.eden.primary;
+package com.eden.explore.interviewclassic.primary;
 
 import java.util.ArrayList;
 import java.util.List;

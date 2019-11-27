@@ -1,4 +1,4 @@
-package com.eden.primary;
+package com.eden.explore.interviewclassic.primary;
 
 /**
  * @Description: 动态规划
