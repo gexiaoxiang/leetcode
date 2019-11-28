@@ -69,11 +69,22 @@ public class Math {
         return countPrimes;
     }
 
+    /**
+     * @Description: 3的幂
+     * @Param: [n]
+     * @Return: boolean
+     * @Author: gexx
+     * @Date: 2019/11/28
+     **/
+    public boolean isPowerOfThree(int n) {
+
+        return (n > 0 && 1162261467 % n == 0);
+    }
 
     public static void main(String[] args) {
         int n = 15;
         System.out.println(fizzBuzz(n));
-        int n1=10;
+        int n1 = 10;
         System.out.println(countPrimes(n1));
     }
 }
