@@ -81,6 +81,69 @@ public class Math {
         return (n > 0 && 1162261467 % n == 0);
     }
 
+
+    /**
+     * @Description: 罗马数字转整数
+     * @Param: [s]
+     * @Return: int
+     * @Author: gexx
+     * @Date: 2019/11/29
+     **/
+    public int romanToInt(String roman) {
+        int count = 0;
+        if (roman.indexOf("IV") > -1) {
+            count += 4;
+            roman = roman.replace("IV", "");
+        }
+        if (roman.indexOf("IX") > -1) {
+            count += 9;
+            roman = roman.replace("IX", "");
+        }
+        if (roman.indexOf("XL") > -1) {
+            count += 40;
+            roman = roman.replace("XL", "");
+        }
+        if (roman.indexOf("XC") > -1) {
+            count += 90;
+            roman = roman.replace("XC", "");
+        }
+        if (roman.indexOf("CD") > -1) {
+            count += 400;
+            roman = roman.replace("CD", "");
+        }
+        if (roman.indexOf("CM") > -1) {
+            count += 900;
+            roman = roman.replace("CM", "");
+        }
+        String[] romans = roman.split("");
+        for (int i = 0; i < romans.length; i++) {
+            if ("I".equals(romans[i])) {
+                count += 1;
+                romans[i] = "0";
+            } else if ("V".equals(romans[i])) {
+                count += 5;
+                romans[i] = "0";
+            } else if ("X".equals(romans[i])) {
+                count += 10;
+                romans[i] = "0";
+            } else if ("L".equals(romans[i])) {
+                count += 50;
+                romans[i] = "0";
+            } else if ("C".equals(romans[i])) {
+                count += 100;
+                romans[i] = "0";
+            } else if ("D".equals(romans[i])) {
+                count += 500;
+                romans[i] = "0";
+            } else if ("M".equals(romans[i])) {
+                count += 1000;
+                romans[i] = "0";
+            }
+        }
+        return count;
+
+    }
+
     public static void main(String[] args) {
         int n = 15;
         System.out.println(fizzBuzz(n));
