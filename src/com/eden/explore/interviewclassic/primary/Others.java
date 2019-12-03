@@ -1,0 +1,27 @@
+package com.eden.explore.interviewclassic.primary;
+
+/**
+ * @Description: 其他类型的题目
+ * @Author gexx
+ * @Date 2019/11/29
+ * @Version V1.0
+ **/
+public class Others {
+    /**
+     * @Description: 位1的个数
+     * 编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为汉明重量）
+     * @Param: [n]
+     * @Return: int
+     * @Author: gexx
+     * @Date: 2019/11/29
+     **/
+    public static int hammingWeight(int n) {
+        int sum = 0;
+        while (n != 0) {
+            sum++;
+            n &= (n - 1);
+        }
+        return sum;
+
+    }
+}
