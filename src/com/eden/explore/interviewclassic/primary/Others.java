@@ -42,4 +42,30 @@ public class Others {
         return count;
 
     }
+
+    /**
+     * @Description: 颠倒二进制位
+     * @Param: [n]
+     * @Return: int
+     * @Author: gexx
+     * @Date: 2019/12/4
+     **/
+    public int reverseBits(int n) {
+
+        int ret = 0;
+        int temp1 = 0;
+        for (int i = 31; i >= 0; i--) {
+            int temp = 1;
+            temp <<= i;
+            temp1 = temp & n;// 取出对应的数字；
+            if (temp1 != 0) {
+                int temp2 = 1;
+                temp2 <<= (31 - i);
+                ret |= temp2;
+            }
+
+        }
+
+        return ret;
+    }
 }
