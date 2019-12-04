@@ -24,4 +24,22 @@ public class Others {
         return sum;
 
     }
+
+    /**
+     * @Description: 汉明距离
+     * @Param: [x, y]
+     * @Return: int
+     * @Author: gexx
+     * @Date: 2019/12/4
+     **/
+    public static int hammingDistance(int x, int y) {
+        int xor = x ^ y;
+        int count = 0;
+        while (xor != 0) {
+            xor = xor & (xor - 1);
+            count++;
+        }
+        return count;
+
+    }
 }
