@@ -79,7 +79,7 @@ public class Others {
      * @Author: gexx
      * @Date: 2019/12/4
      **/
-    public List<List<Integer>> generate(int numRows) {
+    public static List<List<Integer>> generate(int numRows) {
         if (numRows < 0) {
             return null;
         }
@@ -114,5 +114,9 @@ public class Others {
         }
 
         return list;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(generate(5));
     }
 }

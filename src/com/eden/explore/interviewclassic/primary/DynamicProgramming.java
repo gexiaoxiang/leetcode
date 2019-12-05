@@ -74,8 +74,8 @@ public class DynamicProgramming {
         int local = nums[0];
         int global = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            local = Math.max(nums[i], local + nums[i]);
-            global = Math.max(local, global);
+            local = java.lang.Math.max(nums[i], local + nums[i]);
+            global = java.lang.Math.max(local, global);
         }
         return global;
     }
@@ -92,7 +92,7 @@ public class DynamicProgramming {
         int currMax = 0;
         for (int x : nums) {
             int temp = currMax;
-            currMax = Math.max(prevMax + x, currMax);
+            currMax = java.lang.Math.max(prevMax + x, currMax);
             prevMax = temp;
         }
         return currMax;
