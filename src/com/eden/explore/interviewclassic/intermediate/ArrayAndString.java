@@ -12,7 +12,7 @@ public class ArrayAndString {
     /**
      * @Description: 三数之和
      * @Param: [nums]
-     * @Return: java.util.List<java.util.List < java.lang.Integer>>
+     * @Return: java.util.List<java.util.List                                                                                                                               <                                                                                                                               java.lang.Integer>>
      * @Author: gexx
      * @Date: 2019/12/6
      **/
@@ -79,7 +79,7 @@ public class ArrayAndString {
     /**
      * @Description: 字谜分组
      * @Param: [strs]
-     * @Return: java.util.List<java.util.List       < java.lang.String>>
+     * @Return: java.util.List<java.util.List                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               <                                                                                                                               java.lang.String>>
      * @Author: gexx
      * @Date: 2019/12/10
      **/
@@ -104,6 +104,24 @@ public class ArrayAndString {
 
     }
 
+    public static int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        int res = 0;
+        int end = 0, start = 0;
+        Set<Character> set = new HashSet<>();
+        while (start < n && end < n) {
+            if (set.contains(s.charAt(end))) {
+                set.remove(s.charAt(start++));
+            } else {
+                set.add(s.charAt(end++));
+                res = Math.max(res, end - start);
+            }
+
+        }
+        return res;
+
+    }
+
     public static void main(String[] args) {
         long l = System.currentTimeMillis();
         int[][] s = {{1, 1, 1}, {1, 0, 1}, {1, 1, 1}};
@@ -111,7 +129,8 @@ public class ArrayAndString {
         System.out.println(System.currentTimeMillis() - l);
         String[] str = {"eat", "tea", "tan", "ate", "nat", "bat"};
         groupAnagrams(str);
-
+        String ss = "pwwkew";
+        System.out.println(lengthOfLongestSubstring(ss));
 
     }
 }
