@@ -164,6 +164,8 @@ public class ArrayAndString {
         groupAnagrams(str);
         String ss = "pwwkew";
         System.out.println(lengthOfLongestSubstring(ss));
+        String longestPalindrome = "babad";
+        System.out.println(longestPalindrome(longestPalindrome));
 
     }
 }
