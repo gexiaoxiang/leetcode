@@ -12,7 +12,7 @@ public class ArrayAndString {
     /**
      * @Description: 三数之和
      * @Param: [nums]
-     * @Return: java.util.List<java.util.List                                                                                                                               <                                                                                                                               java.lang.Integer>>
+     * @Return: java.util.List<java.util.List                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               <                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               java.lang.Integer>>
      * @Author: gexx
      * @Date: 2019/12/6
      **/
@@ -79,7 +79,7 @@ public class ArrayAndString {
     /**
      * @Description: 字谜分组
      * @Param: [strs]
-     * @Return: java.util.List<java.util.List                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               <                                                                                                                               java.lang.String>>
+     * @Return: java.util.List<java.util.List                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               <                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               java.lang.String>>
      * @Author: gexx
      * @Date: 2019/12/10
      **/
@@ -120,6 +120,39 @@ public class ArrayAndString {
         }
         return res;
 
+    }
+
+    /**
+     * @Description: 最长回文子串
+     * @Param: [s]
+     * @Return: java.lang.String
+     * @Author: gexx
+     * @Date: 2019/12/12
+     **/
+    public static String longestPalindrome(String string) {
+
+        if (null == string || string.length() < 1) return "";
+        int start = 0, end = 0;
+        int num1, num2, len;
+        for (int i = 0; i < string.length(); i++) {
+            num1 = getMaxLength(string, i, i);
+            num2 = getMaxLength(string, i, i + 1);
+            len = Math.max(num1, num2);
+            if (len > end - start) {
+                start = i - (len - 1) / 2;
+                end = i + len / 2;
+            }
+        }
+        return string.substring(start, end + 1);
+    }
+
+    public static int getMaxLength(String s, int left, int right) {
+        int L = left, R = right;
+        while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
+            L--;
+            R++;
+        }
+        return R - L - 1;
     }
 
     public static void main(String[] args) {
