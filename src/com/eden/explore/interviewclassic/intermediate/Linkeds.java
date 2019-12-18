@@ -63,16 +63,29 @@ public class Linkeds {
      * @Date: 2019/12/18
      **/
     public static ListNode oddEvenList(ListNode head) {
-        if(head==null) return head;
-        ListNode odd=head,even=head.next,evenhead=even;
-        while(odd.next!=null&&even.next!=null){
-            odd.next=odd.next.next;
-            even.next=even.next.next;
-            odd=odd.next;
-            even=even.next;
+        if (head == null) return head;
+        ListNode odd = head, even = head.next, evenhead = even;
+        while (odd.next != null && even.next != null) {
+            odd.next = odd.next.next;
+            even.next = even.next.next;
+            odd = odd.next;
+            even = even.next;
         }
-        odd.next=evenhead;
+        odd.next = evenhead;
         return head;
+    }
+    /**
+     * @Description: 相交链表
+     * @Param: [headA, headB]
+     * @Return: com.eden.explore.interviewclassic.intermediate.Linkeds.ListNode
+     * @Author: gexx
+     * @Date: 2019/12/18
+     **/
+    public static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+
+        
+        
+        return headA;
     }
 
     public static void main(String[] args) {
@@ -91,6 +104,9 @@ public class Linkeds {
         l6.next = null;
         ListNode listNode = addTwoNumbers(l1, l4);
         System.out.print(listNode);
+
+
+        oddEvenList(l1);
     }
 
 }
