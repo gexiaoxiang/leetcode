@@ -74,6 +74,7 @@ public class Linkeds {
         odd.next = evenhead;
         return head;
     }
+
     /**
      * @Description: 相交链表
      * @Param: [headA, headB]
@@ -82,10 +83,40 @@ public class Linkeds {
      * @Date: 2019/12/18
      **/
     public static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode A = headA;
+        ListNode B = headB;
+        int numa = 0;
+        int numb = 0;
+        while (A != null) { //记录A长度
+            numa++;
+            A = A.next;
+        }
+        while (B != null) {//记录B 长度
+            numb++;
+            B = B.next;
+        }
+        A = headA;
+        B = headB;
+        if (numa > numb) {
+            int n = numa - numb;
+            while (n > 0) {
+                A = A.next;
+                n--;
+            }
+        } else {
+            int n = numb - numa;
+            while (n > 0) {
+                B = B.next;
+                n--;
+            }
+        }
+        while (A != null) {
+            if (A == B) return A;
+            A = A.next;
+            B = B.next;
+        }
 
-        
-        
-        return headA;
+        return null;
     }
 
     public static void main(String[] args) {
