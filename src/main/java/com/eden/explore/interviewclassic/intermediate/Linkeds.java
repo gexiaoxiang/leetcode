@@ -21,7 +21,7 @@ public class Linkeds {
     /**
      * @Description: 两数相加
      * @Param: [l1, l2]
-     * @Return: com.eden.explore.interviewclassic.intermediate.Linkeds.ListNode
+     * @Return: Linkeds.ListNode
      * @Author: gexx
      * @Date: 2019/12/17
      **/
@@ -58,7 +58,7 @@ public class Linkeds {
     /**
      * @Description: 奇偶链表
      * @Param: [head]
-     * @Return: com.eden.explore.interviewclassic.intermediate.Linkeds.ListNode
+     * @Return: Linkeds.ListNode
      * @Author: gexx
      * @Date: 2019/12/18
      **/
@@ -78,7 +78,7 @@ public class Linkeds {
     /**
      * @Description: 相交链表
      * @Param: [headA, headB]
-     * @Return: com.eden.explore.interviewclassic.intermediate.Linkeds.ListNode
+     * @Return: Linkeds.ListNode
      * @Author: gexx
      * @Date: 2019/12/18
      **/
