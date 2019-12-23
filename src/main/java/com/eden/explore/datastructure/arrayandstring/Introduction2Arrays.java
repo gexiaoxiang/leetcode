@@ -1,6 +1,7 @@
 package com.eden.explore.datastructure.arrayandstring;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @Description: 数组简介
@@ -29,10 +30,46 @@ public class Introduction2Arrays {
         return -1;
     }
 
+    /**
+     * @Description: 至少是其他数字两倍的最大数
+     * @Param: [nums]
+     * @Return: int
+     * @Author: gexx
+     * @Date: 2019/12/23
+     **/
+
+    public static int dominantIndex(int[] nums) {
+        int[] clone = nums.clone();
+        Arrays.sort(clone);
+        if(nums.length==1) return 0;
+        int max = clone[clone.length - 1];
+        int maxL = clone[clone.length - 2];
+        if (maxL == 0) {
+            for (int i = 0; i < nums.length; i++) {
+                if (max == nums[i]) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        if (max / maxL < 2) {
+            return -1;
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            if (max == nums[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         int nums1[] = {-1, -1, 0, 1, 1, 0};
         int nums2[] = {1, 2, 3};
         System.out.println(pivotIndex(nums1));
         System.out.println(pivotIndex(nums2));
+        int nums3[] = {0, 0, 0, 1};
+        System.out.println(dominantIndex(nums3));
     }
 }
