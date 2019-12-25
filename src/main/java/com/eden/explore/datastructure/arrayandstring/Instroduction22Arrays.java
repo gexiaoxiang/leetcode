@@ -64,55 +64,58 @@ public class Instroduction22Arrays {
      **/
     public static List<Integer> spiralOrder(int[][] matrix) {
 
-        List<Integer> list = new ArrayList<>();
+        List<Integer> arrayList = new ArrayList<>();
         if (matrix.length == 0 || matrix[0].length == 0) {
-            return list;
+            return arrayList;
         }
 
-        int row = matrix.length;
-        int col = matrix[0].length;
-        boolean[][] status = new boolean[row][col];
-        int len = row * col;
-        int x = 0, y = 0;
-        while (true) {
-            if (list.size() == len) {
-                break;
+        int row_num = matrix.length, col_num = matrix[0].length;
+        int left = 0, right = col_num - 1, up = 0, down = row_num - 1;
+        int sum_num = row_num * col_num;
+        int num = 0;
+        while (num < sum_num) {
+            for (int i = left; i <= right; i++) {
+                arrayList.add(matrix[up][i]);
+                num++;
+                if (num == sum_num) break;
             }
-            //向右
-            while (y < col && !status[x][y] && list.size() < len) {
-                list.add(matrix[x][y]);
-                status[x][y] = true;
-                y++;
+            if (num == sum_num) break;
+            up++;
+            for (int i = up; i <= down; i++) {
+                arrayList.add(matrix[i][right]);
+                num++;
+                if (num == sum_num) break;
             }
-            y--;
-            x++;
-            //向下
-            while (x < row && !status[x][y] && list.size() < len) {
-                list.add(matrix[x][y]);
-                status[x][y] = true;
-                x++;
+            if (num == sum_num) break;
+            right--;
+            for (int i = right; i >= left; i--) {
+                arrayList.add(matrix[down][i]);
+                num++;
+                if (num == sum_num) break;
             }
-            x--;
-            y--;
-            //向左
-            while (y >= 0 && !status[x][y] && list.size() < len) {
-                list.add(matrix[x][y]);
-                status[x][y] = true;
-                y--;
+            if (num == sum_num) break;
+            down--;
+            for (int i = down; i >= up; i--) {
+                arrayList.add(matrix[i][left]);
+                num++;
+                if (num == sum_num) break;
             }
-            y++;
-            x--;
-            //向上
-            while (x >= 0 && !status[x][y] && list.size() < len) {
-                list.add(matrix[x][y]);
-                status[x][y] = true;
-                x--;
-            }
-            x++;
-            y++;
+            if (num == sum_num) break;
+            left++;
         }
-        return list;
+        return arrayList;
 
 
+    }
+
+    public static void main(String[] args) {
+        int[][] matrix = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+
+
+        spiralOrder(matrix);
     }
 }
