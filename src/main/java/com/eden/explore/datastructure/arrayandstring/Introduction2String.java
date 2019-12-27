@@ -46,4 +46,9 @@ public class Introduction2String {
         return result;
     }
 
+    public static void main(String[] args) {
+        String a = "1010", b = "1011";
+        addBinary(a,b);
+    }
+
 }
