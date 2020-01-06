@@ -50,11 +50,35 @@ public class DoublePointer {
         return new int[]{};
     }
 
+    /**
+     * @Description:   移除元素
+     * @Param: [nums, val]
+     * @Return: int
+     * @Author: gexx
+     * @Date: 2020/1/6
+     **/
+    public static int removeElement(int[] nums, int val) {
+
+
+        int i = 0;
+        for (int j = 0; j < nums.length; j++) {
+            if (nums[j] != val) {
+                nums[i] = nums[j];
+                i++;
+            }
+        }
+        return i;
+
+
+    }
+
     public static void main(String[] args) {
         int[] nums = {1, 4, 3, 2};
         System.out.println(arrayPairSum(nums));
-        int[] numbers={2, 7, 11, 15};
-        System.out.println(Arrays.toString(twoSum(numbers,9)));
+        int[] numbers = {2, 7, 11, 15};
+        System.out.println(Arrays.toString(twoSum(numbers, 9)));
+        int nums1[] = {2, 7, 11, 15};
+        System.out.println(removeElement(nums1, 2));
     }
 
 }
