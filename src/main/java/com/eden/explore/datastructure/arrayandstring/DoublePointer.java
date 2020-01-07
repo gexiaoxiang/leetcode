@@ -1,6 +1,8 @@
 package com.eden.explore.datastructure.arrayandstring;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @Description: 双指针
@@ -51,14 +53,13 @@ public class DoublePointer {
     }
 
     /**
-     * @Description:   移除元素
+     * @Description: 移除元素
      * @Param: [nums, val]
      * @Return: int
      * @Author: gexx
      * @Date: 2020/1/6
      **/
     public static int removeElement(int[] nums, int val) {
-
 
         int i = 0;
         for (int j = 0; j < nums.length; j++) {
@@ -69,7 +70,28 @@ public class DoublePointer {
         }
         return i;
 
+    }
 
+    /**
+     * @Description: 最大连续1的个数
+     * @Param: [nums]
+     * @Return: int
+     * @Author: gexx
+     * @Date: 2020/1/7
+     **/
+    public static int findMaxConsecutiveOnes(int[] nums) {
+        int maxMiddleInt = 0;
+        int maxInt = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (1 == nums[i]) {
+                maxMiddleInt++;
+            } else {
+                maxInt = Math.max(maxMiddleInt, maxInt);
+                maxMiddleInt = 0;
+            }
+        }
+
+        return Math.max(maxMiddleInt, maxInt);
     }
 
     public static void main(String[] args) {
