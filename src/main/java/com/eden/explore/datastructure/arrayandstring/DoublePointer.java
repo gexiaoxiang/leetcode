@@ -94,6 +94,53 @@ public class DoublePointer {
         return Math.max(maxMiddleInt, maxInt);
     }
 
+    /**
+     * @Description: 长度最小的子数组
+     * @Param: [s, nums]
+     * @Return: int
+     * @Author: gexx
+     * @Date: 2020/1/7
+     **/
+    public static int minSubArrayLen(int s, int[] nums) {
+        if (nums == null || nums.length <= 0) return 0;
+        int i = 0;
+        int j = 0;
+        int sum = nums[i];
+        int min = Integer.MAX_VALUE;
+        while (j < nums.length && i <= j) {
+            if (sum < s) {
+                j++;
+                if (j >= nums.length) {
+                    break;
+                }
+                sum += nums[j];
+            } else {
+                min = Math.min(min, j - i + 1);
+                sum -= nums[i];
+                i++;
+            }
+        }
+        return min == Integer.MAX_VALUE ? 0 : min;
+    }
+
+    /**
+     * @Description: 杨辉三角 II
+     * @Param: [rowIndex]
+     * @Return: java.util.List<java.lang.Integer>
+     * @Author: gexx
+     * @Date: 2020/1/8
+     **/
+    public static List<Integer> getRow(int rowIndex) {
+
+        List<Integer> res = new ArrayList<Integer>();
+        long nk = 1;
+        for (int i = 0; i <= rowIndex; i++) {
+            res.add((int) nk);
+            nk = nk * (rowIndex - i) / (i + 1);
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         int[] nums = {1, 4, 3, 2};
         System.out.println(arrayPairSum(nums));
