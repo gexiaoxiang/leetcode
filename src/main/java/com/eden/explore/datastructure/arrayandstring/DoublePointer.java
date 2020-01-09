@@ -141,6 +141,25 @@ public class DoublePointer {
         return res;
     }
 
+    /**
+     * @Description: 翻转字符串里的单词
+     * @Param: [s]
+     * @Return: java.lang.String
+     * @Author: gexx
+     * @Date: 2020/1/9
+     **/
+    public static String reverseWords(String s) {
+        String[] split = s.trim().split(" ");
+        StringBuffer sb = new StringBuffer();
+        for (int i = split.length-1; i >=0; i--) {
+            String ss = split[i];
+            if (!"".equals(ss)) {
+                sb.append(" ").append(ss);
+            }
+        }
+        return sb.toString().trim();
+    }
+
     public static void main(String[] args) {
         int[] nums = {1, 4, 3, 2};
         System.out.println(arrayPairSum(nums));
@@ -148,6 +167,8 @@ public class DoublePointer {
         System.out.println(Arrays.toString(twoSum(numbers, 9)));
         int nums1[] = {2, 7, 11, 15};
         System.out.println(removeElement(nums1, 2));
+
+        reverseWords("  hello world!  ");
     }
 
 }
