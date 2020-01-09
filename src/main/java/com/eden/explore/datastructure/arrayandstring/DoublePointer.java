@@ -123,42 +123,7 @@ public class DoublePointer {
         return min == Integer.MAX_VALUE ? 0 : min;
     }
 
-    /**
-     * @Description: 杨辉三角 II
-     * @Param: [rowIndex]
-     * @Return: java.util.List<java.lang.Integer>
-     * @Author: gexx
-     * @Date: 2020/1/8
-     **/
-    public static List<Integer> getRow(int rowIndex) {
 
-        List<Integer> res = new ArrayList<Integer>();
-        long nk = 1;
-        for (int i = 0; i <= rowIndex; i++) {
-            res.add((int) nk);
-            nk = nk * (rowIndex - i) / (i + 1);
-        }
-        return res;
-    }
-
-    /**
-     * @Description: 翻转字符串里的单词
-     * @Param: [s]
-     * @Return: java.lang.String
-     * @Author: gexx
-     * @Date: 2020/1/9
-     **/
-    public static String reverseWords(String s) {
-        String[] split = s.trim().split(" ");
-        StringBuffer sb = new StringBuffer();
-        for (int i = split.length-1; i >=0; i--) {
-            String ss = split[i];
-            if (!"".equals(ss)) {
-                sb.append(" ").append(ss);
-            }
-        }
-        return sb.toString().trim();
-    }
 
     public static void main(String[] args) {
         int[] nums = {1, 4, 3, 2};
@@ -168,7 +133,6 @@ public class DoublePointer {
         int nums1[] = {2, 7, 11, 15};
         System.out.println(removeElement(nums1, 2));
 
-        reverseWords("  hello world!  ");
     }
 
 }
