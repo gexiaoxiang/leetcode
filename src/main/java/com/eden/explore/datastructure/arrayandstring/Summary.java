@@ -46,4 +46,27 @@ public class Summary {
         }
         return sb.toString().trim();
     }
+
+    /**
+     * @Description: 反转字符串中的单词 III
+     * @Param: [s]
+     * @Return: java.lang.String
+     * @Author: gexx
+     * @Date: 2020/1/9
+     **/
+    public static String reverseWordsIII(String s) {
+        String[] strings = s.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < strings.length; i++) {
+            StringBuilder sbin = new StringBuilder();
+            sb.append(sbin.append(strings[i]).reverse().toString() + " ");
+        }
+        String trim = sb.toString().trim();
+        System.out.println(trim);
+        return trim;
+    }
+
+    public static void main(String[] args) {
+        reverseWordsIII("Let's take LeetCode contest");
+    }
 }
