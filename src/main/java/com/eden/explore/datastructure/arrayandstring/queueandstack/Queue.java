@@ -53,51 +53,7 @@ public class Queue {
         }
     }
 
-    /**
-     * @Description: 岛屿数量
-     * @Param: [grid]
-     * @Return: int
-     * @Author: gexx
-     * @Date: 2020/1/15
-     **/
-    public int numIslands(char[][] grid) {
 
-        int x = grid.length;//行
-        //边界条件
-        int counts_island = 0;
-        if (grid != null && x > 0) {
-            int y = grid[0].length;//列
-            for (int i = 0; i < x; i++) {
-                for (int j = 0; j < y; j++) {
-                    if (grid[i][j] == '1') {
-                        DFS(i, j, grid);
-                        counts_island++;
-                    }
-                }
-            }
-        }
-        return counts_island;
-    }
-
-    public void DFS(int i, int j, char[][] grid) {
-        //递归结束条件
-        if (i < 0 || j < 0 || i > grid.length - 1 || j > grid[0].length - 1) {
-            return;
-        }
-        if (grid[i][j] == '1') {
-            //中心位置重置
-            grid[i][j] = '2';
-            //上
-            DFS(i - 1, j, grid);
-            //下
-            DFS(i + 1, j, grid);
-            //左
-            DFS(i, j - 1, grid);
-            //右
-            DFS(i, j + 1, grid);
-        }
-
-    }
 
     public static void main(String[] args) {
         Queue q = new Queue();
