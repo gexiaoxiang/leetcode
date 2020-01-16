@@ -112,4 +112,16 @@ public class QueueAndBFS {
             }
         }
     }
+
+    /**
+     * @Description: 打开转盘锁
+     * @Param: [deadends, target]
+     * @Return: int
+     * @Author: gexx
+     * @Date: 2020/1/16
+     **/
+    public static int openLock(String[] deadends, String target) {
+
+        return 1;
+    }
 }
