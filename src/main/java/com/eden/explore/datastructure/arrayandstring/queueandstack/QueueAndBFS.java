@@ -158,10 +158,38 @@ public class QueueAndBFS {
         return -1;
     }
 
+    /**
+     * @Description: 完全平方数
+     * @Param: [n]
+     * @Return: int
+     * @Author: gexx
+     * @Date: 2020/1/17
+     **/
+    public static int numSquares(int n) {
+        //46340*46340=2,147,395,600
+        //Integer.max=2,147,483,647
+        //46341*46341=2,147,488,281
+
+        int[] a =new int [n+1];
+        a[0] = 0;
+        a[1] = 1;
+        for(int i = 2; i <= n;i++)
+        {
+            int temp = Integer.MAX_VALUE;
+            for(int j = 1; j*j <= i;j++)
+            {
+                temp = Math.min(temp,a[i-j*j]);
+            }
+            a[i] = temp + 1;
+        }
+        return a[n];
+
+    }
+
     public static void main(String[] args) {
-        String[] deadends={"8888"};
-        String target="0009";
-        openLock(deadends,target);
+        String[] deadends = {"8888"};
+        String target = "0009";
+        openLock(deadends, target);
     }
 
 }
