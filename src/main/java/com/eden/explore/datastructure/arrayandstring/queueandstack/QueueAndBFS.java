@@ -158,5 +158,10 @@ public class QueueAndBFS {
         return -1;
     }
 
+    public static void main(String[] args) {
+        String[] deadends={"8888"};
+        String target="0009";
+        openLock(deadends,target);
+    }
 
 }
