@@ -170,15 +170,13 @@ public class QueueAndBFS {
         //Integer.max=2,147,483,647
         //46341*46341=2,147,488,281
 
-        int[] a =new int [n+1];
+        int[] a = new int[n + 1];
         a[0] = 0;
         a[1] = 1;
-        for(int i = 2; i <= n;i++)
-        {
+        for (int i = 2; i <= n; i++) {
             int temp = Integer.MAX_VALUE;
-            for(int j = 1; j*j <= i;j++)
-            {
-                temp = Math.min(temp,a[i-j*j]);
+            for (int j = 1; j * j <= i; j++) {
+                temp = Math.min(temp, a[i - j * j]);
             }
             a[i] = temp + 1;
         }
