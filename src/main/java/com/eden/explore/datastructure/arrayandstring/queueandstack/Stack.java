@@ -1,5 +1,7 @@
 package com.eden.explore.datastructure.arrayandstring.queueandstack;
 
+import java.util.Arrays;
+
 /**
  * @Description: 栈：后入先出的数据结构
  * @Author gexx
@@ -11,12 +13,14 @@ public class Stack {
     /**
      * 最小栈
      */
-   static class MinStack {
+    static class MinStack {
 
         private java.util.Stack<Integer> data;
         private java.util.Stack<Integer> minStack;
 
-        /** initialize your data structure here. */
+        /**
+         * initialize your data structure here.
+         */
         public MinStack() {
             data = new java.util.Stack();
             minStack = new java.util.Stack();
@@ -24,7 +28,7 @@ public class Stack {
 
         public void push(int x) {
             data.push(x);
-            if(minStack.isEmpty()|| minStack.peek() >= x){
+            if (minStack.isEmpty() || minStack.peek() >= x) {
                 minStack.push(x);
             }
 
@@ -32,7 +36,7 @@ public class Stack {
 
         public void pop() {
             int x = data.pop();
-            if(!minStack.isEmpty() && minStack.peek().equals(x)){
+            if (!minStack.isEmpty() && minStack.peek().equals(x)) {
                 minStack.pop();
             }
         }
@@ -55,6 +59,35 @@ public class Stack {
             minStack.top();
             minStack.getMin();
         }
+    }
+
+    /**
+     * @Description  每日温度
+     * @author gexx
+     * @Date 2020/2/15
+     **/
+    public static int[] dailyTemperatures(int[] T) {
+        int re[]=new int[T.length];
+        for (int i = 0; i< T.length-1; i++) {
+            int count=0;
+            for (int x = i; x< T.length-1; x++) {
+                count++;
+                if (T[i] >= T[x+1]){
+                }else{
+                    re[i]=count;
+                    break;
+                }
+            }
+
+
+        }
+
+        return  re;
+    }
+
+    public static void main(String[] args) {
+        int temperatures[] = {73, 74, 75, 71, 69, 72, 76, 73};//
+        System.out.println(Arrays.toString(dailyTemperatures(temperatures)));
     }
 }
 
