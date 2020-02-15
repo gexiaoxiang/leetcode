@@ -62,19 +62,19 @@ public class Stack {
     }
 
     /**
-     * @Description  每日温度
+     * @Description 每日温度
      * @author gexx
      * @Date 2020/2/15
      **/
     public static int[] dailyTemperatures(int[] T) {
-        int re[]=new int[T.length];
-        for (int i = 0; i< T.length-1; i++) {
-            int count=0;
-            for (int x = i; x< T.length-1; x++) {
+        int re[] = new int[T.length];
+        for (int i = 0; i < T.length - 1; i++) {
+            int count = 0;
+            for (int x = i; x < T.length - 1; x++) {
                 count++;
-                if (T[i] >= T[x+1]){
-                }else{
-                    re[i]=count;
+                if (T[i] >= T[x + 1]) {
+                } else {
+                    re[i] = count;
                     break;
                 }
             }
@@ -82,12 +82,47 @@ public class Stack {
 
         }
 
-        return  re;
+        return re;
+    }
+
+    /**
+     * @Description 逆波兰表达式求值
+     * @Author gexx
+     * @Date 2020/2/15
+     **/
+    public static int evalRPN(String[] tokens) {
+        java.util.Stack<Integer> stack=new  java.util.Stack<Integer>();
+        int num1=0,num2=0;
+        for (int i = 0; i < tokens.length; i++) {
+            String s=tokens[i];
+            if(s.equals("+")){
+                num1=stack.pop();
+                num2=stack.pop();
+                stack.push(num2+num1);
+            }else if(s.equals("-")){
+                num1=stack.pop();
+                num2=stack.pop();
+                stack.push(num2-num1);
+            }else if(s.equals("*")){
+                num1=stack.pop();
+                num2=stack.pop();
+                stack.push(num2*num1);
+            }else if(s.equals("/")){
+                num1=stack.pop();
+                num2=stack.pop();
+                stack.push(num2/num1);
+            }else{
+                stack.push(Integer.parseInt(s));
+            }
+        }
+        return stack.pop();
     }
 
     public static void main(String[] args) {
-        int temperatures[] = {73, 74, 75, 71, 69, 72, 76, 73};//
+        int temperatures[] = {73, 74, 75, 71, 69, 72, 76, 73};
         System.out.println(Arrays.toString(dailyTemperatures(temperatures)));
+        String tokens[] = {"4", "13", "5", "/", "+"};
+        System.out.println(evalRPN(tokens));
     }
 }
 
