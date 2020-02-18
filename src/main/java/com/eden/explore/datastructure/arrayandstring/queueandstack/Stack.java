@@ -1,6 +1,6 @@
 package com.eden.explore.datastructure.arrayandstring.queueandstack;
 
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * @Description: 栈：后入先出的数据结构
@@ -165,6 +165,48 @@ public class Stack {
         return;
 
     }
+
+
+    class Node {
+        public int val;
+        public List<Node> neighbors;
+
+        public Node() {
+        }
+
+        public Node(int _val, List<Node> _neighbors) {
+            val = _val;
+            neighbors = _neighbors;
+        }
+    }
+
+    /**
+     * @Description 克隆图
+     * @Author gexx
+     * @Date 2020/2/18
+     **/
+    public Node cloneGraph(Node node) {
+
+        if (node == null) return null;
+        Map<Node, Node> lookup = new HashMap<Node, Node>();
+        Node clone = new Node(node.val, new ArrayList<>());
+        lookup.put(node, clone);
+        Deque<Node> queue = new LinkedList<>();
+        queue.offer(node);
+        while (!queue.isEmpty()) {
+            Node now = queue.poll();
+            for (Node tmp : now.neighbors) {
+                if (!lookup.containsKey(tmp)) {
+                    lookup.put(tmp, new Node(tmp.val, new ArrayList<>()));
+                    queue.offer(tmp);
+                }
+                lookup.get(now).neighbors.add(lookup.get(tmp));
+            }
+        }
+
+        return clone;
+    }
+
 
     public static void main(String[] args) {
         int temperatures[] = {73, 74, 75, 71, 69, 72, 76, 73};
