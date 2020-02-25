@@ -94,6 +94,50 @@ public class Summary {
 
     }
 
+    class Solution3 {
+        public class ListNode {
+            int val;
+            ListNode next;
+
+            ListNode(int x) {
+                val = x;
+            }
+        }
+
+        public ListNode rotateRight(ListNode head, int k) {
+            if (head == null || head.next == null || k == 0) {
+                return head;
+            }
+            ListNode dummyHead = new ListNode(-1);
+            dummyHead.next = head;
+            ListNode p = head, q = head, r = head;
+            int len = 0;
+
+            while (r != null) {
+                r = r.next;
+                len++;
+            }
+
+            if (k % len == 0) {
+                return head;
+            }
+            k = k % len;
+
+            for (int count = 0; count < k; count++) {
+                p = p.next;
+            }
+
+            while (p.next != null) {
+                p = p.next;
+                q = q.next;
+            }
+            dummyHead = q.next;
+            p.next = head;
+            q.next = null;
+            return dummyHead;
+        }
+    }
+
 
 }
 
