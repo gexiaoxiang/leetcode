@@ -1,4 +1,4 @@
-package com.eden.explore.datastructure.arrayandstring.queueandstack;
+package com.eden.explore.datastructure.queueandstack;
 
 import java.util.*;
 

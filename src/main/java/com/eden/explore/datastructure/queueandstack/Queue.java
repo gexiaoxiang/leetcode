@@ -1,4 +1,4 @@
-package com.eden.explore.datastructure.arrayandstring.queueandstack;
+package com.eden.explore.datastructure.queueandstack;
 
 /**
  * @Description: 队列：先入先出的数据结构
