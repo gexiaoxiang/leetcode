@@ -1,7 +1,6 @@
 package com.eden.explore.datastructure.arrayandstring.queueandstack;
 
-import java.util.ArrayDeque;
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * @Description 小結
@@ -196,5 +195,34 @@ public class Summary {
             }
         }
         return matrix;
+    }
+
+
+    /**
+     * 钥匙和房间
+     *
+     * @param rooms
+     * @return
+     */
+    public static boolean canVisitAllRooms(List<List<Integer>> rooms) {
+        java.util.Stack<Integer> todo = new java.util.Stack<>();
+        todo.add(0);
+        HashSet<Integer> done = new HashSet<>();
+        done.add(0);
+
+        while (!todo.isEmpty()) {
+
+            int i = todo.pop();
+            for (Integer j : rooms.get(i)) {
+                if (!done.contains(j)) {
+                    todo.add(j);
+                    done.add(j);
+                    if (rooms.size() == done.size())
+                        return true;
+                }
+            }
+        }
+        return rooms.size() == done.size();
+
     }
 }
