@@ -1,5 +1,6 @@
 package com.eden.explore.datastructure.hashtables;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
@@ -70,5 +71,30 @@ public class hashdesign {
         }
     }
 
+    /**
+     * @author gexx
+     * @Description设计哈希映射
+     * @Date 2020/2/28
+     **/
+    class MyHashMap {
+        int[] table;
+
+        public MyHashMap() {
+            table = new int[1000000];
+            Arrays.fill(table, -1);
+        }
+
+        public void put(int key, int value) {
+            table[key] = value;
+        }
+
+        public int get(int key) {
+            return table[key];
+        }
+
+        public void remove(int key) {
+            table[key] = -1;
+        }
+    }
 
 }
