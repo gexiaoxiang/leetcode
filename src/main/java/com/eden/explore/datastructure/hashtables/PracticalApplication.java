@@ -110,6 +110,25 @@ public class PracticalApplication {
         return map.get(min_index_sum).toArray(res);
     }
 
+    /**
+     * @Description: 存在重复元素 II
+     * @Author: gexx
+     * @Date: 2020/3/3
+     **/
+
+
+    public static boolean containsNearbyDuplicate(int[] nums, int k) {
+        int n = nums.length;
+        if (k == 0) return false;
+        if (n <= 0) return false;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            if (map.get(nums[i]) != null && (i - map.get(nums[i])) <= k) return true;
+            map.put(nums[i], i);
+        }
+        return false;
+    }
+
 
     public static void main(String[] args) {
 
@@ -123,6 +142,9 @@ public class PracticalApplication {
 
         String[] list1 = {"Shogun", "Tapioca Express", "Burger King", "KFC"},
                 list2 = {"KFC", "Shogun", "Burger King"};
-        System.out.println(Arrays.toString(findRestaurant(list1, list2)));
+
+        int[] nums = {1, 2, 3, 1};
+        int k = 3;
+        containsNearbyDuplicate(nums, k);
     }
 }
