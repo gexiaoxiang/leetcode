@@ -129,6 +129,47 @@ public class PracticalApplication {
         return false;
     }
 
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
+
+    /**
+     * @Description寻找重复的子树
+     * @Author gexx
+     * @Date 2020/3/3
+     **/
+    public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        List<TreeNode> list = new ArrayList<TreeNode>();
+        DLR(root, map, list);
+        return list;
+    }
+
+    public String DLR(TreeNode node, HashMap<String, Integer> map, List<TreeNode> list) {
+
+        if (node == null) {
+            return "";
+        }
+        String str = node.val + "(" + DLR(node.right, map, list) + ")" + "(" + DLR(node.left, map, list) + ")";
+
+        if (map.containsKey(str)) {
+            if (map.get(str) == 1) {
+                list.add(node);
+            }
+            map.put(str, map.get(str) + 1);
+
+        } else {
+            map.put(str, 1);
+        }
+        return str;
+
+    }
 
     public static void main(String[] args) {
 
