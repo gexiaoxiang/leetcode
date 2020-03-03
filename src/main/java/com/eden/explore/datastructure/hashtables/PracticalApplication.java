@@ -45,29 +45,48 @@ public class PracticalApplication {
      **/
     public static boolean isHappy(int n) {
         // Write your code here
-        if(n==1){
+        if (n == 1) {
             return true;
         }
-        if(n<1){
+        if (n < 1) {
             return false;
         }
-        int count=0;
-        while(n!=1){
-            String s=n+"";
-            char []arr=s.toCharArray();
-            int sum=0;
-            for(int i=0;i<arr.length;i++){
-                sum+=Integer.parseInt(arr[i]+"")*Integer.parseInt(arr[i]+"");
+        int count = 0;
+        while (n != 1) {
+            String s = n + "";
+            char[] arr = s.toCharArray();
+            int sum = 0;
+            for (int i = 0; i < arr.length; i++) {
+                sum += Integer.parseInt(arr[i] + "") * Integer.parseInt(arr[i] + "");
             }
-            n=sum;
+            n = sum;
             count++;
-            if(count>1000){
+            if (count > 1000) {
                 return false;
             }
         }
         return true;
 
+
     }
+
+    /**
+     * @Description: 同构字符串
+     * @Author: gexx
+     * @Date: 2020/3/3
+     **/
+    public static boolean isIsomorphic(String s, String t) {
+        char[] ch1 = s.toCharArray();
+        char[] ch2 = t.toCharArray();
+        int len = s.length();
+        for (int i = 0; i < len; i++) {
+            if (s.indexOf(ch1[i]) != t.indexOf(ch2[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     public static void main(String[] args) {
 
@@ -75,5 +94,7 @@ public class PracticalApplication {
         int[] nums2 = {9, 4, 9, 8, 4};
         System.out.println(Arrays.toString(intersection(nums1, nums2)));
 
+        String s = "aab", t = "ccb";
+        System.out.println(isIsomorphic(s, t));
     }
 }
