@@ -171,6 +171,27 @@ public class PracticalApplication {
 
     }
 
+    /**
+     * @Description 宝石与石头
+     * @author gexx
+     * @Date 2020/3/3
+     **/
+    public static int numJewelsInStones(String J, String S) {
+        char[] Js = J.toCharArray();
+        char[] Ss = S.toCharArray();
+        int count = 0;
+        for (int i = 0; i < Js.length; i++) {
+            for (int j = 0; j < Ss.length; j++) {
+                if (Js[i] == (Ss[j])) {
+                    count++;
+                }
+            }
+        }
+
+
+        return count;
+    }
+
     public static void main(String[] args) {
 
         int[] nums1 = {4, 9, 5};
@@ -187,5 +208,7 @@ public class PracticalApplication {
         int[] nums = {1, 2, 3, 1};
         int k = 3;
         containsNearbyDuplicate(nums, k);
+        String J = "aA", S = "aAAbbbb";
+        System.out.println(numJewelsInStones(J,S));
     }
 }
