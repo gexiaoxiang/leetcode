@@ -253,6 +253,47 @@ public class PracticalApplication {
 
     }
 
+    /**
+     * @Description 常数时间插入、删除和获取随机元素
+     * @Author gexx
+     * @Date 2020/3/4
+     **/
+    class RandomizedSet {
+
+        HashSet<Integer> set;
+
+        /**
+         * Initialize your data structure here.
+         */
+        public RandomizedSet() {
+            set = new HashSet<>();
+        }
+
+        /**
+         * Inserts a value to the set. Returns true if the set did not already contain the specified element.
+         */
+        public boolean insert(int val) {
+            return set.add(val);
+        }
+
+        /**
+         * Removes a value from the set. Returns true if the set contained the specified element.
+         */
+        public boolean remove(int val) {
+            return set.remove(val);
+        }
+
+        /**
+         * Get a random element from the set.
+         */
+        public int getRandom() {
+            Object[] list = set.toArray();
+            int length = list.length;
+            int index = (int) (Math.random() * length);
+            return (Integer) list[index];
+        }
+    }
+
     public static void main(String[] args) {
 
         int[] nums1 = {4, 9, 5};
@@ -278,5 +319,10 @@ public class PracticalApplication {
                 D = {0, 2};
 
         fourSumCount(A, B, C, D);
+
+        int[] nums11 = {1, 1, 1, 2, 2, 3};
+        int k1 = 2;
+        topKFrequent(nums11, k1);
+
     }
 }
