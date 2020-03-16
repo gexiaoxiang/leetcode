@@ -85,14 +85,32 @@ public class BinarySearch {
     }
 
     /**
-     * @Description: TODO
+     * @Description: 寻找峰值
      * @Author: gexx
      * @Date: 2020/3/16
      **/
     public static int findPeakElement(int[] nums) {
 
+        if (nums.length == 1)
+            return 0;
+        if (nums[0] > nums[1])
+            return 0; // 因为nums[-1]为负无穷，此时nums[0]满足
+        if (nums[nums.length - 1] > nums[nums.length - 2])
+            return nums.length - 1; // 因为nums[nums.length]为负无穷，此时nums[length-1]满足
+        int l = 1, r = nums.length - 2; //因为已经判断了nums[0]和nums[length-1]是否满足，所以缩小范围防止溢出
+        return find(nums, l, r);
+    }
 
-        return -1;
+    public static int find(int[] nums, int l, int r) {
+        if (l >= r)
+            return r;
+        int mid = (l + r) / 2;
+        if (nums[mid] > nums[mid - 1] && nums[mid] > nums[mid + 1])
+            return mid;
+        if (nums[mid] < nums[mid - 1])
+            return find(nums, l, mid - 1);
+        else
+            return find(nums, mid + 1, r);
     }
 
     public static void main(String[] args) {
