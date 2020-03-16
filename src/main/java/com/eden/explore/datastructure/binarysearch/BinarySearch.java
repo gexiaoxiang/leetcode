@@ -113,6 +113,38 @@ public class BinarySearch {
             return find(nums, mid + 1, r);
     }
 
+    /**
+     * @Description 寻找旋转排序数组中的最小值
+     * @author gexx
+     * @Date 2020/3/17
+     **/
+    public int findMin(int[] nums) {
+        if (nums == null || nums.length <= 0) {
+            return 0;
+        }
+
+        int len = nums.length;
+        if (len == 1) {
+            return nums[0];
+        }
+
+        int start = 0;
+        int end = nums.length - 1;
+        while (start < end) {
+            int mid = (start + end) >> 1;
+            // 需要与nums[end]比较才能判断出来mid的位置
+            if (nums[mid] > nums[end]) {
+                start = mid + 1;
+            } else if (nums[mid] < nums[end]) {
+                end = mid;
+            } else {
+                // 存在重复元素时，此题目不重复 可直接使用break
+                end = end - 1;
+            }
+        }
+        return nums[start];
+    }
+
     public static void main(String[] args) {
         int[] nums = {-1, 0, 3, 5, 9, 12};
         int target = 9;
