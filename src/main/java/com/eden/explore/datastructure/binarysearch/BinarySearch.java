@@ -84,6 +84,17 @@ public class BinarySearch {
         return -1;
     }
 
+    /**
+     * @Description: TODO
+     * @Author: gexx
+     * @Date: 2020/3/16
+     **/
+    public static int findPeakElement(int[] nums) {
+
+
+        return -1;
+    }
+
     public static void main(String[] args) {
         int[] nums = {-1, 0, 3, 5, 9, 12};
         int target = 9;
