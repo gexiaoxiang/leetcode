@@ -145,6 +145,51 @@ public class BinarySearch {
         return nums[start];
     }
 
+
+    /**
+     * @Description 在排序数组中查找元素的第一个和最后一个位置
+     * @author gexx
+     * @Date 2020/3/19
+     **/
+    public static int[] searchRange(int[] nums, int target) {
+        int[] res = new int[2];
+        int l = 0;
+        int r = nums.length - 1;
+        int mid = (l + r) / 2;
+        boolean flag = false;
+        while (l <= r) {
+            mid = (l + r) / 2;
+            if (nums[mid] > target) {
+                r = mid - 1;
+            } else if (nums[mid] < target) {
+                l = mid + 1;
+            } else if (nums[mid] == target) {
+                flag = true;
+                break;
+            }
+        }
+        if (flag == false) {
+            res[0] = -1;
+            res[1] = -1;
+        } else {
+            int i = mid - 1;
+            int j = mid + 1;
+            while (i >= 0 && nums[i] == target) {
+                //while循环条件里的i>=0与nums[i] == target的顺序，
+                // 顺序不同导致两个条件判断先后顺序不同，谁在前就先判断哪个条件；如果调换则会造成数组下标越界
+                i--;
+            }
+            res[0] = i + 1;
+
+            while (j < nums.length && nums[j] == target) {
+                j++;
+            }
+            res[1] = j - 1;
+        }
+
+        return res;
+    }
+
     public static void main(String[] args) {
         int[] nums = {-1, 0, 3, 5, 9, 12};
         int target = 9;
