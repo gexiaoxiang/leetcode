@@ -1,5 +1,8 @@
 package com.eden.explore.datastructure.binarysearch;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @Description 二分查找
  * @Author gexx
@@ -185,6 +188,30 @@ public class BinarySearch {
                 j++;
             }
             res[1] = j - 1;
+        }
+
+        return res;
+    }
+
+    /**
+     * @Description找到 K 个最接近的元素
+     * @author gexx
+     * @Date 2020/3/19
+     **/
+    public List<Integer> findClosestElements(int[] nums, int k, int x) {
+
+        List<Integer> res = new ArrayList<>();
+        int start = 0, end = nums.length - k;
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            if (Math.abs(nums[mid] - x) > Math.abs(nums[mid + k] - x)) {
+                start = mid + 1;
+            } else {
+                end = mid;
+            }
+        }
+        for (int i = start; i < start + k; i++) {
+            res.add(nums[i]);
         }
 
         return res;
