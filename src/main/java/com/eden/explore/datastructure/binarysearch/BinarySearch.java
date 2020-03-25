@@ -1,7 +1,9 @@
 package com.eden.explore.datastructure.binarysearch;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @Description 二分查找
@@ -219,8 +221,7 @@ public class BinarySearch {
 
 
     /**
-     * @Description  寻找比目标字母大的最小字母
-     * 
+     * @Description 寻找比目标字母大的最小字母
      * @author gexx
      * @Date 2020/3/25
      **/
@@ -238,6 +239,23 @@ public class BinarySearch {
         }
         return l < n ? letters[r] : letters[0];//l r相等 都可以
 
+    }
+
+
+    /**
+     * @Description 寻找重复数
+     * 
+     * @author gexx
+     * @Date 2020/3/26
+     **/
+    public static int findDuplicate(int[] nums) {
+        Set set = new HashSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (!set.add(nums[i])) {
+                return nums[i];
+            }
+        }
+        return 0;
     }
 
     public static void main(String[] args) {
