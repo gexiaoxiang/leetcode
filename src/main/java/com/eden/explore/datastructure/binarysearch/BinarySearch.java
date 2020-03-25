@@ -217,6 +217,29 @@ public class BinarySearch {
         return res;
     }
 
+
+    /**
+     * @Description  寻找比目标字母大的最小字母
+     * 
+     * @author gexx
+     * @Date 2020/3/25
+     **/
+    public char nextGreatestLetter(char[] letters, char target) {
+        int n = letters.length;
+        int l = 0;
+        int r = n;
+        while (l < r) {
+            int mid = l + (r - l) / 2;
+            if (letters[mid] > target) {
+                r = mid;//mid-1不通过
+            } else {
+                l = mid + 1;
+            }
+        }
+        return l < n ? letters[r] : letters[0];//l r相等 都可以
+
+    }
+
     public static void main(String[] args) {
         int[] nums = {-1, 0, 3, 5, 9, 12};
         int target = 9;
