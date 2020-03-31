@@ -1,9 +1,6 @@
 package com.eden.explore.datastructure.binarysearch;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @Description 二分查找
@@ -322,6 +319,64 @@ public class BinarySearch {
         }
         return d;     //返回中位数
     }
+
+    /**
+     * @Description 找出第 k 小的距离对
+     *
+     * @author gexx
+     * @Date 2020/4/1
+     **/
+    public int smallestDistancePair(int[] nums, int k) {
+
+        Arrays.parallelSort(nums);
+
+        int[] d = new int[nums.length - 1];
+
+        for (int i = 1; i < nums.length; i++)
+            d[i - 1] = nums[i] - nums[i - 1];
+
+        int[] sum = new int[d.length];
+
+        sum[0] = d[0];
+        for (int i = 1; i < d.length; i++)
+            sum[i] = sum[i - 1] + d[i];
+
+        int ans = 0;
+        int l = 0, r = sum[d.length - 1];
+        while (l <= r) {
+            int mid = l + (r - l) / 2;
+            if (check(sum, k, mid)) {
+                ans = mid;
+                r = mid - 1;
+            } else
+                l = mid + 1;
+        }
+
+        return ans;
+    }
+
+    private boolean check(int[] sum, int k, int d) {
+
+        int num = 0;
+        for (int i = 0; i < sum.length; i++) {
+            if (sum[i] > d) {
+                int l = 0, r = i - 1, p = i;
+                while (l <= r) {
+                    int mid = (l + r) / 2;
+                    if (sum[i] - sum[mid] <= d) {
+                        p = mid;
+                        r = mid - 1;
+                    } else
+                        l = mid + 1;
+                }
+                num += i - p;
+            } else
+                num += i + 1;
+        }
+
+        return num >= k;
+    }
+
 
     public static void main(String[] args) {
         int[] nums = {-1, 0, 3, 5, 9, 12};
