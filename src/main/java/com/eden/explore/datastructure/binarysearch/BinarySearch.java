@@ -244,7 +244,6 @@ public class BinarySearch {
 
     /**
      * @Description 寻找重复数
-     * 
      * @author gexx
      * @Date 2020/3/26
      **/
@@ -256,6 +255,72 @@ public class BinarySearch {
             }
         }
         return 0;
+    }
+
+    /**
+     * @Description 寻找两个有序数组的中位数
+     * @author gexx
+     * @Date 2020/3/31
+     **/
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int num = 0;
+        int prenum = 0;        //当总长度为偶数，中位数等于num和prenum的平均值，当总长度为奇数，中位数为num
+        double d = 0;          //返回最终的中位数
+        int len1 = nums1.length;
+        int len2 = nums2.length;
+        if (len1 == 0) {         //首先判断nums1或nums2为空的情况，返回不为空的数组的中位数即可
+            if (len2 % 2 == 0)
+                d = (double) (nums2[len2 / 2] + nums2[len2 / 2 - 1]) / 2;
+            else
+                d = nums2[len2 / 2];
+            return d;
+        } else if (len2 == 0) {
+            if (len1 % 2 == 0)
+                d = (double) (nums1[len1 / 2] + nums1[len1 / 2 - 1]) / 2;
+            else
+                d = nums1[len1 / 2];
+            return d;
+        }
+        int i = 0;    //当nums1和nums2数组都不为空时，设num1和nums2的索引分别为i和j，并初始化为0
+        int j = 0;
+        int number = 0;    //记录当前nums1和nums2的参与排序的元素个数
+        int mid = (len1 + len2) / 2;     //当总长度为偶数，中位数为索引为mid和mid-1的元素的平均数，当总长度为奇数，中位数取索引为mid的元素，因此只需要找到前mid个最小的数排序即可
+        while (i < len1 && j < len2 && number <= mid) { //当nums1或nums2遍历完或找到计算中位数所需的位数即退出循环
+            if (nums1[i] <= nums2[j]) {      //num1当前元素小时，nums1当前索引加一，并且number加一
+                prenum = num;
+                num = nums1[i];
+                i++;
+                number++;
+            } else {      //num2当前元素小时，nums2当前索引加一，并且number加一
+                prenum = num;
+                num = nums2[j];
+                j++;
+                number++;
+            }
+        }
+        if (i == len1) {     //判断如果nums1全部遍历完了，接下来只需遍历nums2即可
+            while (number <= mid) {
+                prenum = num;
+                num = nums2[j];
+                j++;
+                number++;
+            }
+        } else if (j == len2) {      //判断如果nums2全部遍历完了，接下来只需遍历nums1即可
+            while (number <= mid) {
+                prenum = num;
+                num = nums1[i];
+                i++;
+                number++;
+            }
+        }
+        if (number == mid + 1) {    //最后找到找到中位数所需的所有位数后计算中位数
+            int remain = (len1 + len2) % 2;
+            if (remain == 0)
+                d = (double) (prenum + num) / 2;
+            else
+                d = num;
+        }
+        return d;     //返回中位数
     }
 
     public static void main(String[] args) {
