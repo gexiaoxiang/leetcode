@@ -423,6 +423,8 @@ public class BinarySearch {
         int[] nums = {-1, 0, 3, 5, 9, 12};
         int target = 9;
         search(nums, target);
+
+        System.out.println("mp4,ogg".indexOf("ogg"));
     }
 
 }
