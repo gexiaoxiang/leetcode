@@ -234,13 +234,31 @@ public class BinaryTree {
      * @Author: gexx
      * @Date: 2020/4/8
      **/
+    public int index = -1;
 
     public String serialize(TreeNode root) {
-
+        StringBuffer sb = new StringBuffer();
+        if (root == null) {
+            //空节点（#）
+            sb.append("#,");
+            return sb.toString();
+        }
+        sb.append(root.val + ",");
+        sb.append(serialize(root.left));
+        sb.append(serialize(root.right));
+        return sb.toString();
     }
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-
+        index++;
+        String[] DLRseq = data.split(",");
+        TreeNode leave = null;
+        if (!DLRseq[index].equals("#")) {
+            leave = new TreeNode(Integer.valueOf(DLRseq[index]));
+            leave.left = deserialize(data);
+            leave.right = deserialize(data);
+        }
+        return leave;
     }
 }
