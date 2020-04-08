@@ -207,15 +207,40 @@ public class BinaryTree {
         }
         return root;
     }
+
     /**
-      * @Description: 二叉树的最近公共祖先
-    
-      * @Author: gexx
-      * @Date: 2020/4/8
-      **/
+     * @Description: 二叉树的最近公共祖先
+     * @Author: gexx
+     * @Date: 2020/4/8
+     **/
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || p == root || q == root) {
+            return root;
+        }
+
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+
+        if (left != null && right != null) {
+            return root;
+        }
+
+        return left == null ? right : left;
+    }
+
+    /**
+     * @Description: 二叉树的序列化与反序列化
+     * @Author: gexx
+     * @Date: 2020/4/8
+     **/
+
+    public String serialize(TreeNode root) {
 
     }
 
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+
+    }
 }
