@@ -1,6 +1,7 @@
 package com.eden.explore.datastructure.binarytree;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -161,9 +162,51 @@ public class BinaryTree {
      * @Date: 2020/4/8
      **/
 
-
     public Node connect(Node root) {
-
+        if (root == null) return root;
+        LinkedList<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            int len = queue.size();
+            Node next = null;
+            for (int i = 0; i < len; i++) {
+                Node cur = queue.poll();
+                if (cur.right != null)
+                    queue.add(cur.right);
+                if (cur.left != null)
+                    queue.add(cur.left);
+                cur.next = next;
+                next = cur;
+            }
+        }
         return root;
     }
+
+    /**
+     * @Description: 填充每个节点的下一个右侧节点指针 II java
+     * @Author: gexx
+     * @Date: 2020/4/8
+     **/
+
+    public Node connectII(Node root) {
+        if (root == null) return root;
+        LinkedList<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            int len = queue.size();
+            Node next = null;
+            for (int i = 0; i < len; i++) {
+                Node cur = queue.poll();
+                if (cur.right != null)
+                    queue.add(cur.right);
+                if (cur.left != null)
+                    queue.add(cur.left);
+                cur.next = next;
+                next = cur;
+            }
+        }
+        return root;
+    }
+
+
 }
