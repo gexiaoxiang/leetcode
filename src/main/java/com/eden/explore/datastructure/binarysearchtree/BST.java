@@ -32,27 +32,37 @@ public class BST {
 
 
         public int next() {
-            TreeNode n=stack.pop();
-            TreeNode cur=n.right;
-            while(cur!=null){
+            TreeNode n = stack.pop();
+            TreeNode cur = n.right;
+            while (cur != null) {
                 stack.push(cur);
-                cur=cur.left;
+                cur = cur.left;
             }
             return n.val;
         }
+
         public boolean hasNext() {
             return !stack.isEmpty();
         }
     }
-/**
-  * @Description: TODO
 
-  * @Author: gexx
-  * @Date: 2020/4/9
-  **/
-
-
+    /**
+     * @Description: Search in a Binary Search Tree
+     * @Author: gexx
+     * @Date: 2020/4/9
+     **/
     public TreeNode searchBST(TreeNode root, int val) {
+        if (null == root) return null;
+        while (root != null) {
+            if (root.val < val) {
+                root = root.right;
+            } else if (root.val > val) {
+                root = root.left;
+            } else {
+                return root;
+            }
+        }
 
+        return null;
     }
 }
