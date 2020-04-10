@@ -1,5 +1,6 @@
 package com.eden.explore.datastructure.binarysearchtree;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 
 /**
@@ -107,11 +108,10 @@ public class BST {
     }
 
     /**
-      * @Description: 二叉搜索树的最近公共祖先
-
-      * @Author: gexx
-      * @Date: 2020/4/10
-      **/
+     * @Description: 二叉搜索树的最近公共祖先
+     * @Author: gexx
+     * @Date: 2020/4/10
+     **/
 
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         while (root != null) {
@@ -127,5 +127,33 @@ public class BST {
             }
         }
         return null;
+    }
+
+    /**
+     * @Description: 存在重复元素 III
+     * @Author: gexx
+     * @Date: 2020/4/10
+     **/
+
+    public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
+        HashSet<Long> set = new HashSet<Long>();
+        for (int i = 0; i < nums.length; i++) {
+            if ((long) t == 0) {
+                if (set.contains((long) nums[i])) return true;
+            } else {
+                for (Long num : set) {
+                    if (Math.abs(num - nums[i]) <= t) {
+                        return true;
+                    }
+                }
+
+            }
+            set.add((long) nums[i]);
+            //set 始终保持k大小
+            if (set.size() > k) { // 大于k时候，删除数组中最左端值
+                set.remove((long) nums[i - k]);
+            }
+        }
+        return false;
     }
 }
