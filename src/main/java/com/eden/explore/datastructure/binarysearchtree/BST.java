@@ -81,13 +81,28 @@ public class BST {
 
         return root;
     }
+
     /**
-      * @Description: Delete Node in a BST
+     * @Description: Delete Node in a BST
+     * @Author: gexx
+     * @Date: 2020/4/10
+     **/
+    public TreeNode deleteNode(TreeNode root, int key) {
+        if (root == null) return root;
+        if (root.val < key) root.right = deleteNode(root.right, key);
+        else if (root.val > key) root.left = deleteNode(root.left, key);
+        else {
+            if (root.left == null) return root.right;
+            if (root.right == null) return root.left;
+            int min = findMin(root.right);
+            root.val = min;
+            root.right = deleteNode(root.right, min);
+        }
+        return root;
+    }
 
-      * @Author: gexx
-      * @Date: 2020/4/10
-      **/
-        public TreeNode deleteNode(TreeNode root, int key) {
-
+    private int findMin(TreeNode node) {
+        while (node.left != null) node = node.left;
+        return node.val;
     }
 }
