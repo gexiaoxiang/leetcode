@@ -156,4 +156,20 @@ public class BST {
         }
         return false;
     }
+
+    /**
+     * @Description: 平衡二叉树
+     * @Author: gexx
+     * @Date: 2020/4/10
+     **/
+    public boolean isBalanced(TreeNode root) {
+        if (root == null) return true;
+        if (Math.abs(Depth(root.left) - Depth(root.right)) > 1) return false;
+        else return isBalanced(root.left) && isBalanced(root.right);
+    }
+
+    private int Depth(TreeNode root) {//求深度
+        if (root == null) return 0;
+        return Math.max(Depth(root.left), Depth(root.right)) + 1;
+    }
 }
