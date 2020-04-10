@@ -71,7 +71,6 @@ public class BST {
      * @Author: gexx
      * @Date: 2020/4/9
      **/
-
     public TreeNode insertIntoBST(TreeNode root, int val) {
         if (root == null) return new TreeNode(val);
         if (root.val > val) {
@@ -81,5 +80,14 @@ public class BST {
         }
 
         return root;
+    }
+    /**
+      * @Description: Delete Node in a BST
+
+      * @Author: gexx
+      * @Date: 2020/4/10
+      **/
+        public TreeNode deleteNode(TreeNode root, int key) {
+
     }
 }
