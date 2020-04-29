@@ -103,4 +103,28 @@ public class Narytree {
         }
         return result;
     }
+
+    /**
+     * @Description: Maximum Depth of N-ary Tree
+     * @Author: gexx
+     * @Date: 2020/4/29
+     **/
+    public int maxDepth(Node root) {
+        if (root == null) return 0;
+        int res = 0;
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            int levelNum = queue.size();
+            res++;
+            for (int i = 0; i < levelNum; i++) {
+                Node tmp = queue.poll();
+                if (tmp.children != null) {
+                    List<Node> child = tmp.children;
+                    for (Node ele : child) queue.add(ele);
+                }
+            }
+        }
+        return res;
+    }
 }
