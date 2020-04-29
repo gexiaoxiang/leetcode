@@ -53,4 +53,22 @@ public class Narytree {
         }
         return list;
     }
+
+    /**
+     * @Description: N-ary Tree Postorder Traversal
+     * @Author: gexx
+     * @Date: 2020/4/29
+     **/
+    public List<Integer> postorder(Node root) {
+        List<Integer> res = new ArrayList<>();
+        postOrder(res, root);
+        return res;
+    }
+
+    public void postOrder(List<Integer> res, Node root) {
+        if (root == null) return;
+        for (Node node : root.children)
+            postOrder(res, node);
+        res.add(root.val);
+    }
 }
