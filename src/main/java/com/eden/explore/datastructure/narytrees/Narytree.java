@@ -1,7 +1,9 @@
 package com.eden.explore.datastructure.narytrees;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * @Description: N叉树
@@ -70,5 +72,35 @@ public class Narytree {
         for (Node node : root.children)
             postOrder(res, node);
         res.add(root.val);
+
+    }
+
+    /**
+     * @Description: N叉树的层序遍历
+     * @Author: gexx
+     * @Date: 2020/4/29
+     **/
+
+    public List<List<Integer>> levelOrder(Node root) {
+        List<List<Integer>> result = new LinkedList<>();
+        Queue<Node> queue = new LinkedList<>();
+        if (root == null) {
+            return result;
+        }
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            List<Integer> list = new LinkedList<>();
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                if (queue.peek().children != null) {
+                    for (int j = 0; j < queue.peek().children.size(); j++) {
+                        queue.offer(queue.peek().children.get(j));
+                    }
+                }
+                list.add(queue.poll().val);
+            }
+            result.add(list);
+        }
+        return result;
     }
 }
