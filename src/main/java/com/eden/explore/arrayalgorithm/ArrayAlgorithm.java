@@ -1,5 +1,7 @@
 package com.eden.explore.arrayalgorithm;
 
+import java.util.Arrays;
+
 /**
  * @Description: 数组类算法
  * @Author gexx
@@ -29,4 +31,14 @@ public class ArrayAlgorithm {
         return i + 1;
     }
 
+    /**
+     * @Description: 颜色分类
+     * @Author: gexx
+     * @Date: 2020/4/30
+     **/
+
+
+    public void sortColors(int[] nums) {
+        Arrays.sort(nums);
+    }
 }
