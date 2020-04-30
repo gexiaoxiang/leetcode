@@ -178,6 +178,40 @@ public class ArrayAlgorithm {
         return new ArrayList<>(result);
     }
 
+
+    /**
+     * @Description: 回旋镖的数量
+     * @Author: gexx
+     * @Date: 2020/4/30
+     **/
+    public int numberOfBoomerangs(int[][] points) {
+        int len = points.length;
+        int count = 0;
+        int tempRes = 0;
+        int result = 0;
+        HashMap<Integer, Integer> hasDis = new HashMap<Integer, Integer>();
+        for (int i = 0; i < len; i++) {
+            for (int j = 0; j < len; j++) {
+                int distance = (points[j][1] - points[i][1]) * (points[j][1] - points[i][1])
+                        + (points[j][0] - points[i][0]) * (points[j][0] - points[i][0]);
+                if (distance != 0) {
+                    if (hasDis.containsKey(distance)) {
+                        count = hasDis.get(distance);
+                        hasDis.put(distance, count + 1);
+                        tempRes = tempRes + count;
+                    } else {
+                        hasDis.put(distance, 1);
+                    }
+                }
+            }
+            result += tempRes * 2;
+            tempRes = 0;
+            hasDis.clear();
+
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         int[] ss = {3, 2, 3, 1, 2, 4, 5, 5, 6};
         findKthLargest(ss, 4);
