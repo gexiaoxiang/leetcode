@@ -37,8 +37,27 @@ public class ArrayAlgorithm {
      * @Date: 2020/4/30
      **/
 
-
     public void sortColors(int[] nums) {
         Arrays.sort(nums);
     }
+
+    /**
+     * @Description: 数组中的第K个最大元素
+     * @Author: gexx
+     * @Date: 2020/4/30
+     **/
+
+    public static int findKthLargest(int[] ints, int k) {
+        Arrays.sort(ints);
+
+        System.out.println(ints[ints.length - k]);
+
+        return ints[ints.length - k];
+    }
+
+    public static void main(String[] args) {
+        int[] ss = {3, 2, 3, 1, 2, 4, 5, 5, 6};
+        findKthLargest(ss, 4);
+    }
+
 }
