@@ -139,6 +139,45 @@ public class ArrayAlgorithm {
         return sb.toString();
     }
 
+    /**
+     * @Description: 四数之和
+     * @Author: gexx
+     * @Date: 2020/4/30
+     **/
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        // 根本不需要去重，直接把结果去重就OK.
+        Set<List<Integer>> result = new HashSet<>();
+        if (nums == null || nums.length < 4) {
+            return new ArrayList<>(result);
+        }
+        Arrays.sort(nums);
+        int len = nums.length;
+        for (int i = 0; i < len; i++) {
+            for (int j = i + 1; j < len; j++) {
+                int k = j + 1;
+                int x = len - 1;
+                while (k < x) {
+                    int sum = nums[i] + nums[j] + nums[k] + nums[x];
+                    if (sum == target) {
+                        List<Integer> list = new ArrayList<>();
+                        list.add(nums[i]);
+                        list.add(nums[j]);
+                        list.add(nums[k]);
+                        list.add(nums[x]);
+                        result.add(list);
+                        k++;
+                        x--;
+                    } else if (sum > target) {
+                        x--;
+                    } else {
+                        k++;
+                    }
+                }
+            }
+        }
+        return new ArrayList<>(result);
+    }
+
     public static void main(String[] args) {
         int[] ss = {3, 2, 3, 1, 2, 4, 5, 5, 6};
         findKthLargest(ss, 4);
