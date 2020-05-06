@@ -1,6 +1,9 @@
 package com.eden.explore.datastructure.prefixtree;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @Description: 前缀树
@@ -178,5 +181,28 @@ public class Trie {
         ///结果包括该前缀本身
         ///此处利用之前的前序搜索方法进行搜索
         return preTraversal(root, prefix);
+    }
+
+    /**
+     * @Description: 单词替换
+     * @Author: gexx
+     * @Date: 2020/5/6
+     **/
+
+    public String replaceWords(List<String> dict, String sentence) {
+        Set<String> rootset = new HashSet();
+        for (String root : dict) rootset.add(root);
+
+        StringBuilder ans = new StringBuilder();
+        for (String word : sentence.split("\\s+")) {
+            String prefix = "";
+            for (int i = 1; i <= word.length(); ++i) {
+                prefix = word.substring(0, i);
+                if (rootset.contains(prefix)) break;
+            }
+            if (ans.length() > 0) ans.append(" ");
+            ans.append(prefix);
+        }
+        return ans.toString();
     }
 }
