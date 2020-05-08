@@ -1,9 +1,6 @@
 package com.eden.explore.datastructure.prefixtree;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @Description: 前缀树
@@ -205,4 +202,63 @@ public class Trie {
         }
         return ans.toString();
     }
+
+
+    public HashSet<String> result = new HashSet<>();//1,定义结果set,去掉重复结果集，
+
+    /**
+     * @Description: 单词搜索 II
+     * @Author: gexx
+     * @Date: 2020/5/6
+     **/
+
+    public List<String> findWords(char[][] board, String[] words) {
+        //2,使用Tire，添加入trie
+        Trie trie = new Trie();
+        for (String word : words) {
+            trie.insert(word);
+        }
+        //分别获得board的一二维长度
+        int m = board.length;//获得行的长度
+        int n = board[0].length;//获得每一行中的个数，即列数
+        //定义boolean数组，存储是否被访问过的数据
+        boolean[][] visited = new boolean[m][n];
+        //双重循环遍历board矩阵
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                //DFS
+                dfs(board, trie, visited, "", i, j);
+            }
+        }
+        return new ArrayList<String>(result);
+    }
+
+    public void dfs(char[][] board, Trie trie, boolean[][] visited, String str, int x, int y) {
+        //判断i，j是否越界
+        if (x < 0 || x >= board.length || y < 0 || y >= board[0].length)
+            return;
+
+        //判断之前是否被访问过，如果被访问过，就返回，无需再遍历
+        if (visited[x][y])
+            return;
+        //把char字符加入字符串
+        str += board[x][y];
+        //如果前缀都不是，也直接返回
+        if (!trie.startsWith(str))
+            return;
+        //在tried里面查询是否有str，如果有，则添加
+        if (trie.search(str)) {
+            result.add(str);
+        }
+        //把visited的状态改成true
+        visited[x][y] = true;
+        //DFS
+        dfs(board, trie, visited, str, x - 1, y);//上
+        dfs(board, trie, visited, str, x + 1, y);//下
+        dfs(board, trie, visited, str, x, y - 1);//左
+        dfs(board, trie, visited, str, x, y + 1);//右
+        //回溯
+        visited[x][y] = false;
+    }
 }
+
