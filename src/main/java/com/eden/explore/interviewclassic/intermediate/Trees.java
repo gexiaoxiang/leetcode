@@ -3,6 +3,7 @@ package com.eden.explore.interviewclassic.intermediate;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * @Description: 树和图
@@ -52,4 +53,22 @@ public class Trees {
         }
     }
 
+    /**
+     * @Description: 二叉搜索树中第K小的元素
+     * @Author: gexx
+     * @Date: 2020/5/8
+     **/
+    public int kthSmallest(TreeNode root, int k) {
+        Stack<TreeNode> stack = new Stack<>();
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            if (--k == 0) break;
+            root = root.right;
+        }
+        return root.val;
+    }
 }
