@@ -71,7 +71,39 @@ public class BacktrackingAlgorithm {
             backtrack(ans, cur + ")", open, close + 1, max);
     }
 
+    /**
+     * @Description: 全排列
+     * @Author: gexx
+     * @Date: 2020/5/14
+     **/
+    public static List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> l = new ArrayList<>();
+        huisu(nums, l, result);
+        return result;
+    }
+
+    public static void huisu(int[] nums, List<Integer> l, List<List<Integer>> result) {
+        if (l.size() == nums.length) {
+            //指向新的一片地址空间使其变成不在跟随l改变而改变
+            result.add(new ArrayList<Integer>(l));
+            return;
+        } else {
+            for (int i = 0; i < nums.length; i++) {
+                //判断
+                if (l.contains(nums[i])) continue;
+                l.add(nums[i]);
+                huisu(nums, l, result);
+                //退回一格
+                l.remove(l.size() - 1);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         generateParenthesis(3);
+        int[] b = {1, 2, 3};
+        permute(b);
+
     }
 }
