@@ -106,7 +106,7 @@ public class BacktrackingAlgorithm {
      * @Date: 2020/6/3
      **/
 
-    public List<List<Integer>> subsets(int[] nums) {
+    public static List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> result = new ArrayList<>();
         result.add(new ArrayList<>());
         for (int n : nums) {
@@ -120,10 +120,54 @@ public class BacktrackingAlgorithm {
         return result;
     }
 
+    /**
+      * @Description:  单词搜索
+
+      * @Author: gexx
+      * @Date: 2020/6/3
+      **/
+
+    public boolean exist(char[][] board, String word) {
+        if (board == null || board.length == 0 || board[0].length == 0) return false;
+        int m = board.length;
+        int n = board[0].length;
+        boolean[][] visited = new boolean[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (dfs(board, word, i, j, 0, visited)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean dfs(char[][] board, String word, int i, int j, int start, boolean[][] visited) {
+        //首先确立剪枝条件
+        //注意下标的特点不能够是word.length()-1
+        if (start == word.length()) {
+            return true;
+        }
+        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || word.charAt(start) != board[i][j] || visited[i][j]) {
+            return false;
+        }
+        visited[i][j] = true;
+        if (dfs(board, word, i, j + 1, start + 1, visited) || dfs(board, word, i, j - 1, start + 1, visited) || dfs(board, word, i - 1, j, start + 1, visited) || dfs(board, word, i + 1, j, start + 1, visited)) {
+            return true;
+        } else {
+            //回溯
+            visited[i][j] = false;
+            return false;
+        }
+    }
+
     public static void main(String[] args) {
         generateParenthesis(3);
         int[] b = {1, 2, 3};
         permute(b);
+        int[] nums = {1, 2, 3};
+        subsets(nums);
+
 
     }
 }
