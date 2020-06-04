@@ -217,18 +217,28 @@ public class BacktrackingAlgorithm {
         return false;
     }
 
+    /**
+     * @Description: 跳跃游戏
+     * @Author: gexx
+     * @Date: 2020/6/4
+     **/
+    public boolean canJump(int[] nums) {
+
+        int index = 0;//当前位置
+        int discount = 0;//可以达到的最远距离
+        for (int i = 0; i < nums.length - 1 && index <= discount; i++) {
+            discount = Math.max(discount, index + nums[i]);
+            index++;
+        }
+        return discount >= nums.length - 1;
+    }
+
     public static void main(String[] args) {
         generateParenthesis(3);
         int[] b = {1, 2, 3};
         permute(b);
         int[] nums = {1, 2, 3};
         subsets(nums);
-
-
-        int arr1[] = {1, 3};
-        int arr2[] = {2, 6};
-        int arr3[] = {8, 10};
-        int arr4[] = {15, 18};
 
         int arr[][] = {{1, 4, 7, 11, 15}, {2, 5, 8, 12, 19}, {3, 6, 9, 16, 22}, {10, 13, 14, 17, 24}, {18, 21, 23, 26, 30}};
         System.out.println(searchMatrix(arr, 5));
