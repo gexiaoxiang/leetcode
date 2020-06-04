@@ -167,23 +167,28 @@ public class BacktrackingAlgorithm {
      **/
 
     public int[][] merge(int[][] intervals) {
+        int len = intervals.length;
+        if (len < 2) return intervals;
 
-        List<int[]> res = new ArrayList<>();
-        if (intervals.length == 0 || intervals == null) return res.toArray(new int[0][]);
-        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
-        int i = 0;
-        while (i < intervals.length) {
-            int left = intervals[i][0];
-            int right = intervals[i][1];
-            //可以用连续的不止两个数组重合，所以用while循环
-            while (i < intervals.length - 1 && intervals[i][0] <= right) {
-                i++;
-                right = Math.max(right, intervals[i][1]);
+        int cnt = 0; // 合并次数
+        for (int i = 0; i < len - 1; i++) {
+            for (int j = i + 1; j < len; j++) {
+                if (intervals[i][0] <= intervals[j][1] && intervals[i][1] >= intervals[j][0]) {
+                    intervals[j][0] = Math.min(intervals[j][0], intervals[i][0]);
+                    intervals[j][1] = Math.max(intervals[j][1], intervals[i][1]);
+                    intervals[i] = null; // 清空前者
+                    cnt++;
+                    break;
+                }
             }
-            res.add(new int[]{left, right});
-            i++;
         }
-        return res.toArray(new int[0][]);
+
+        int[][] res = new int[len - cnt][2]; // len - cnt 合并后个数
+        int ri = 0;
+        for (int[] pair : intervals) {
+            if (pair != null) res[ri++] = pair;
+        }
+        return res;
 
 
     }
