@@ -193,6 +193,29 @@ public class BacktrackingAlgorithm {
 
     }
 
+    /**
+     * @Description: 搜索二维矩阵 II
+     * @Author: gexx
+     * @Date: 2020/6/4
+     **/
+    public static boolean searchMatrix(int[][] matrix, int target) {
+        int l = matrix.length;
+        if (l == 0) return false;
+        int w = matrix[0].length;
+        if (w == 0) return false;
+
+        if (matrix[0][0] > target || matrix[l - 1][w - 1] < target) return false;
+        for (int m = 0; m < matrix.length; m++) {
+            if (matrix[m][w - 1] < target) continue;
+            if (matrix[m][0] > target) return false;
+            for (int n = 0; n < matrix[0].length; n++) {
+                if (target == matrix[m][n]) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     public static void main(String[] args) {
         generateParenthesis(3);
@@ -207,9 +230,8 @@ public class BacktrackingAlgorithm {
         int arr3[] = {8, 10};
         int arr4[] = {15, 18};
 
-        int arr[][] = {arr4, arr3, arr1, arr2};
-
-        System.out.println(arr);
+        int arr[][] = {{1, 4, 7, 11, 15}, {2, 5, 8, 12, 19}, {3, 6, 9, 16, 22}, {10, 13, 14, 17, 24}, {18, 21, 23, 26, 30}};
+        System.out.println(searchMatrix(arr, 5));
 
 
     }
