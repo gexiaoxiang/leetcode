@@ -304,6 +304,30 @@ public class BacktrackingAlgorithm {
         return res;
     }
 
+    /**
+     * @Description: 多数元素
+     * @Author: gexx
+     * @Date: 2020/6/4
+     **/
+    public static int majorityElement(int[] nums) {
+        return backtrack(nums, nums[0], 0);
+    }
+
+    private static int backtrack(int[] nums, int current, int start) {
+        int count = 1;
+        for (int i = start; i < nums.length; i++) {
+            if (nums[i] == current) {
+                count++;
+            } else {
+                count--;
+            }
+            if (count == 0) {
+                return backtrack(nums, nums[i], i + 1);
+            }
+        }
+        return current;
+    }
+
 
     public static void main(String[] args) {
         generateParenthesis(3);
@@ -314,7 +338,7 @@ public class BacktrackingAlgorithm {
 
         int arr[][] = {{1, 4, 7, 11, 15}, {2, 5, 8, 12, 19}, {3, 6, 9, 16, 22}, {10, 13, 14, 17, 24}, {18, 21, 23, 26, 30}};
         System.out.println(searchMatrix(arr, 5));
-
-
+        int arr1[] = {2, 2, 1, 1, 1, 2, 2};
+        majorityElement(arr1);
     }
 }
