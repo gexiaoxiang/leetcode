@@ -79,6 +79,27 @@ public class Introduction2Arrays {
         return ret;
     }
 
+    /**
+     * @Description: 旋转矩阵
+     * @Author: gexx
+     * @Date: 2020/6/22
+     **/
+    public void rotate(int[][] matrix) {
+        int n = matrix.length;
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {
+                int tmp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = tmp;
+            }
+            for (int j = 0; j < n / 2; j++) {
+                int tmp = matrix[i][j];
+                matrix[i][j] = matrix[i][n - j - 1];
+                matrix[i][n - j - 1] = tmp;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         int nums1[] = {-1, -1, 0, 1, 1, 0};
         int nums2[] = {1, 2, 3};
@@ -86,8 +107,8 @@ public class Introduction2Arrays {
         System.out.println(pivotIndex(nums2));
         int nums3[] = {0, 0, 0, 1};
         System.out.println(dominantIndex(nums3));
-        int[] nums = {1, 3,5,6};
-        int a =5;
-        System.out.println(searchInsert(nums,a));
+        int[] nums = {1, 3, 5, 6};
+        int a = 5;
+        System.out.println(searchInsert(nums, a));
     }
 }
