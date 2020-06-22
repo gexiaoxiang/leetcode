@@ -1,7 +1,6 @@
 package com.eden.explore.datastructure.arrayandstring;
 
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * @Description: 数组简介
@@ -41,7 +40,7 @@ public class Introduction2Arrays {
     public static int dominantIndex(int[] nums) {
         int[] clone = nums.clone();
         Arrays.sort(clone);
-        if(nums.length==1) return 0;
+        if (nums.length == 1) return 0;
         int max = clone[clone.length - 1];
         int maxL = clone[clone.length - 2];
         if (maxL == 0) {
@@ -64,6 +63,22 @@ public class Introduction2Arrays {
         return -1;
     }
 
+    /**
+     * @Description: 搜索插入位置
+     * @Author: gexx
+     * @Date: 2020/6/22
+     **/
+    public static int searchInsert(int[] nums, int target) {
+        int ret = 0;
+        if (target < nums[0]) return ret;
+        if (target > nums[nums.length - 1]) return nums.length;
+        for (int i = 0; i < nums.length; i++) {
+            if (target == nums[i]) return i;
+            if (target > nums[i] && target < nums[i + 1]) return i + 1;
+        }
+        return ret;
+    }
+
     public static void main(String[] args) {
         int nums1[] = {-1, -1, 0, 1, 1, 0};
         int nums2[] = {1, 2, 3};
@@ -71,5 +86,8 @@ public class Introduction2Arrays {
         System.out.println(pivotIndex(nums2));
         int nums3[] = {0, 0, 0, 1};
         System.out.println(dominantIndex(nums3));
+        int[] nums = {1, 3,5,6};
+        int a =5;
+        System.out.println(searchInsert(nums,a));
     }
 }
