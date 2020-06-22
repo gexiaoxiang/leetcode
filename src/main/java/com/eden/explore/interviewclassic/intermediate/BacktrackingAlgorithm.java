@@ -328,6 +328,28 @@ public class BacktrackingAlgorithm {
         return current;
     }
 
+    /**
+     * @Description: 任务调度器
+     * @Author: gexx
+     * @Date: 2020/6/22
+     **/
+    public int leastInterval(char[] tasks, int n) {
+        int[] count = new int[26];
+        for (int i = 0; i < tasks.length; i++) {
+            count[tasks[i] - 'A']++;
+        }
+        Arrays.sort(count);
+        int maxVal = count[25] - 1, idleSlots = maxVal * n;
+        for (int i = 24; i >= 0 && count[i] > 0; i--) {
+            idleSlots -= Math.min(count[i], maxVal);
+        }
+        if (idleSlots > 0) {
+            return idleSlots + tasks.length;
+        } else {
+            return tasks.length;
+        }
+
+    }
 
     public static void main(String[] args) {
         generateParenthesis(3);
@@ -340,5 +362,7 @@ public class BacktrackingAlgorithm {
         System.out.println(searchMatrix(arr, 5));
         int arr1[] = {2, 2, 1, 1, 1, 2, 2};
         majorityElement(arr1);
+
+        System.out.println("lol".indexOf(""));
     }
 }
