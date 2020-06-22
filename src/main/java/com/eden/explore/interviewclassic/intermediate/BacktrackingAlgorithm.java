@@ -333,7 +333,7 @@ public class BacktrackingAlgorithm {
      * @Author: gexx
      * @Date: 2020/6/22
      **/
-    public int leastInterval(char[] tasks, int n) {
+    public static int leastInterval(char[] tasks, int n) {
         int[] count = new int[26];
         for (int i = 0; i < tasks.length; i++) {
             count[tasks[i] - 'A']++;
@@ -364,5 +364,9 @@ public class BacktrackingAlgorithm {
         majorityElement(arr1);
 
         System.out.println("lol".indexOf(""));
+
+        char [] tasks = {'A','A','A','B','B','B'};
+        int n = 2;
+        leastInterval(tasks,n);
     }
 }
