@@ -84,7 +84,7 @@ public class Introduction2Arrays {
      * @Author: gexx
      * @Date: 2020/6/22
      **/
-    public void rotate(int[][] matrix) {
+    public static void rotate(int[][] matrix) {
         int n = matrix.length;
         for (int i = 0; i < n; i++) {
             for (int j = i; j < n; j++) {
@@ -99,7 +99,54 @@ public class Introduction2Arrays {
             }
         }
     }
-
+    /**
+      * @Description: 零矩阵
+    
+      * @Author: gexx
+      * @Date: 2020/6/22
+      **/
+    public void setZeroes(int[][] matrix) {
+        if (matrix == null || matrix.length == 0) return;
+        int m = matrix.length;
+        int n = matrix[0].length;
+        boolean row = false;
+        boolean col = false;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (matrix[i][j] == 0) {
+                    //将出现0位置的首行和首列的相应位置设置为0，用来设置内矩阵的0
+                    matrix[0][j] = 0;
+                    matrix[i][0] = 0;
+                    if (i == 0) row = true;//当前位置本来就在首列，
+                    if (j == 0) col = true;//首行
+                }
+            }
+        }
+        for (int i = 1; i < m; i++) {   //遍历行首为0的行，从第二行开始，所以后面需要用col的值来设置第一行
+            if (matrix[i][0] == 0) {
+                for (int j = 1; j < n; j++) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        for (int j = 1; j < n; j++) {   //遍历列首为0的列，从第二列开始，所以后面需要用row的值来设置第一列
+            if (matrix[0][j] == 0) {
+                for (int i = 1; i < m; i++) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        if (row) {
+            for (int j = 0; j < n; j++) {
+                matrix[0][j] = 0;
+            }
+        }
+        if (col) {
+            for (int i = 0; i < m; i++) {
+                matrix[i][0] = 0;
+            }
+        }
+    }
     public static void main(String[] args) {
         int nums1[] = {-1, -1, 0, 1, 1, 0};
         int nums2[] = {1, 2, 3};
@@ -110,5 +157,8 @@ public class Introduction2Arrays {
         int[] nums = {1, 3, 5, 6};
         int a = 5;
         System.out.println(searchInsert(nums, a));
+        int[][] matrix = {{1, 2, 3},
+                {4, 5, 6}, {7, 8, 9}};
+        rotate(matrix);
     }
 }
