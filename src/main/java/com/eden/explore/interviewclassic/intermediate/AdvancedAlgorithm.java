@@ -80,4 +80,31 @@ public class AdvancedAlgorithm {
             }
         }
     }
+
+    /**
+     * @Description: 缺失的第一个正数
+     * @Author: gexx
+     * @Date: 2020/6/24
+     **/
+    public static int firstMissingPositive(int[] nums) {
+        boolean[] verify = new boolean[nums.length + 1];
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > 0) {
+                if (nums[i] < verify.length) {
+                    verify[nums[i]] = true;
+                }
+            }
+        }
+        for (int i = 1; i < verify.length; i++) {
+            if (verify[i] == false) {
+                return i;
+            }
+        }
+        return verify.length;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {3, 4, -1, 1};
+        firstMissingPositive(nums);
+    }
 }
