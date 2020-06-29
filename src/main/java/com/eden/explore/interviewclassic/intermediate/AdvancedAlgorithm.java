@@ -305,6 +305,76 @@ public class AdvancedAlgorithm {
     }
 
 
+    public void solve(char[][] board) {
+        int row = board.length;
+        if (row == 0) {
+            return;
+        }
+        int col = board[0].length;
+        if (col == 0) {
+            return;
+        }
+        if (row == 1) {
+            for (int i = 0; i < col; i++) {
+                solveOtoA(board, 0, i);
+            }
+        }
+        if (col == 1) {
+            for (int i = 0; i < col; i++) {
+                solveOtoA(board, i, 0);
+            }
+        }
+        // 第一行和最后一行
+        for (int i = 0; i < col; i++) {
+            solveOtoA(board, 0, i);
+        }
+        for (int i = 0; i < col; i++) {
+            solveOtoA(board, row - 1, i);
+        }
+        // 第一列和最后一列（去掉头尾）
+        for (int i = 1; i < row - 1; i++) {
+            solveOtoA(board, i, 0);
+        }
+        for (int i = 1; i < row - 1; i++) {
+            solveOtoA(board, i, col - 1);
+        }
+        // O变成X，A变成O
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (board[i][j] == 'O') {
+                    board[i][j] = 'X';
+                }
+                if (board[i][j] == 'A') {
+                    board[i][j] = 'O';
+                }
+            }
+        }
+    }
+
+    /**
+     * 如果i，j的位置为O，则将i，j位置变成A，并且与它相连的O也变成A
+     *
+     * @param board
+     * @param i
+     * @param j
+     */
+    public void solveOtoA(char[][] board, int i, int j) {
+        if (i < 0 || j < 0) {
+            return;
+        }
+        if (i >= board.length || j >= board[0].length) {
+            return;
+        }
+        char now = board[i][j];
+        if (now == 'O') {
+            board[i][j] = 'A';
+            solveOtoA(board, i + 1, j);
+            solveOtoA(board, i - 1, j);
+            solveOtoA(board, i, j + 1);
+            solveOtoA(board, i, j - 1);
+        }
+    }
+
     public static void main(String[] args) {
         Map map = new HashMap();
         Object d = map.get("d");
