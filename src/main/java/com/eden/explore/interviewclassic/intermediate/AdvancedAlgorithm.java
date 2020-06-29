@@ -237,6 +237,55 @@ public class AdvancedAlgorithm {
         return true;
     }
 
+    public class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
+
+        /**
+         * 合并K个元素的有序链表
+         *
+         * @param lists
+         * @return
+         */
+        public ListNode mergeKLists(ListNode[] lists) {
+            ArrayList<Integer> arr = new ArrayList<>();
+            for (int i = 0; i < lists.length; i++) {
+                ListNode list = lists[i];
+                while (list != null) {
+                    int val = list.val;
+                    arr.add(val);
+                    list = list.next;
+                }
+
+            }
+
+            int size = arr.size();
+            int[] data = new int[size];
+            for (
+                    int i = 0;
+                    i < size; i++) {
+                data[i] = arr.get(i);
+            }
+            Arrays.sort(data);
+            ListNode list1 = new ListNode(0);
+            ListNode list2 = list1;
+            for (
+                    int i = 0;
+                    i < size; i++) {
+                int m = data[i];
+                ListNode k = new ListNode(1);
+                k.val = m;
+                list1.next = k;
+                list1 = list1.next;
+            }
+            return list2.next;
+        }
+    }
+
     public static void main(String[] args) {
         Map map = new HashMap();
         Object d = map.get("d");
