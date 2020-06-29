@@ -265,17 +265,13 @@ public class AdvancedAlgorithm {
 
             int size = arr.size();
             int[] data = new int[size];
-            for (
-                    int i = 0;
-                    i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 data[i] = arr.get(i);
             }
             Arrays.sort(data);
             ListNode list1 = new ListNode(0);
             ListNode list2 = list1;
-            for (
-                    int i = 0;
-                    i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 int m = data[i];
                 ListNode k = new ListNode(1);
                 k.val = m;
@@ -284,7 +280,30 @@ public class AdvancedAlgorithm {
             }
             return list2.next;
         }
+
+        /**
+         * @Description: 链表排序
+         * @Author: gexx
+         * @Date: 2020/6/29
+         **/
+        public ListNode sortList(ListNode head) {
+            List<Integer> list = new ArrayList<>();
+
+            ListNode temp = head;
+            while (temp != null) {
+                list.add(temp.val);
+                temp = temp.next;
+            }
+            Collections.sort(list);
+            temp = head;
+            for (Integer i : list) {
+                head.val = i;
+                head = head.next;
+            }
+            return temp;
+        }
     }
+
 
     public static void main(String[] args) {
         Map map = new HashMap();
