@@ -136,13 +136,46 @@ public class AdvancedAlgorithm {
 
     }
 
+    /**
+     * @Description: 基本计算器 II
+     * @Author: gexx
+     * @Date: 2020/6/29
+     **/
+    public static int calculate(String s) {
+        int result = 0, len = s.length(), num = 0;
+        char op = '+';  //初始上一个运算符为加法 上个数字为0
+        Stack<Integer> stack = new Stack<Integer>();
+        for (int i = 0; i < len; i++) {
+            char c = s.charAt(i);
+            if (c >= '0') {
+                num = num * 10 + s.charAt(i) - '0';
+            }
+            if (c < '0' && c != ' ' || i == len - 1) {
+                if (op == '+') stack.push(num);
+                if (op == '-') stack.push(-num);
+                if (op == '*' || op == '/') {
+                    int temp = (op == '*') ? stack.pop() * num : stack.pop() / num;
+                    stack.push(temp);
+                }
+                op = s.charAt(i);
+                num = 0;
+            }
+        }
+        while (!stack.isEmpty()) {
+            result += stack.pop();
+        }
+        return result;
+
+    }
+
     public static void main(String[] args) {
         Map map = new HashMap();
         Object d = map.get("d");
         int[] nums = {1, 0, -1};
-//        int[] nums = {1, 2, 0, 1};
-//        int[] nums = {4, 1, 3, 2};
         longestConsecutive(nums);
+
+        String s = "3+5/2";
+        calculate(s);
 
     }
 
