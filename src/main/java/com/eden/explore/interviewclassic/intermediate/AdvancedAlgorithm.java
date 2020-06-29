@@ -375,6 +375,53 @@ public class AdvancedAlgorithm {
         }
     }
 
+    public static List<List<String>> partition(String s) {
+        List<List<String>> res = new ArrayList<>();
+        int n = s.length();
+        boolean[][] dp = new boolean[n][n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= i; j++) {
+                if (s.charAt(i) == s.charAt(j) && (i - j < 2 || dp[j + 1][i - 1])) dp[j][i] = true;
+            }
+        }
+        dfs(res, dp, 0, n, s, new ArrayList<String>());
+        return res;
+
+    }
+
+    private static void dfs(List<List<String>> res, boolean[][] dp, int i, int n, String s, ArrayList<String> tmp) {
+        if (i == n) res.add(new ArrayList<>(tmp));
+        for (int j = i; j < n; j++) {
+            if (dp[i][j]) {
+                tmp.add(s.substring(i, j + 1));
+                dfs(res, dp, j + 1, n, s, tmp);
+                tmp.remove(tmp.size() - 1);
+            }
+        }
+    }
+
+    /**
+     * @Description: 单词拆分
+     * @Author: gexx
+     * @Date: 2020/6/29
+     **/
+    public static boolean wordBreak(String s, List<String> wordDict) {
+        Set<String> wordDictSet = new HashSet(wordDict);
+        boolean[] dp = new boolean[s.length() + 1];
+        dp[0] = true;
+        for (int i = 1; i <= s.length(); i++) {
+            for (int j = 0; j < i; j++) {
+                if (dp[j] && wordDictSet.contains(s.substring(j, i))) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[s.length()];
+
+    }
+
+
     public static void main(String[] args) {
         Map map = new HashMap();
         Object d = map.get("d");
@@ -383,6 +430,12 @@ public class AdvancedAlgorithm {
 
         String s = "3+5/2";
         calculate(s);
+        String pa = "aab";
+        partition(pa);
+
+        String ss = "catsandog";
+        String[] wordDict = {};
+        wordBreak(s, Arrays.asList(wordDict));
 
     }
 
