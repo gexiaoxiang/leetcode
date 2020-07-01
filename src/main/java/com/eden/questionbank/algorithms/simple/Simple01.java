@@ -46,6 +46,30 @@ public class Simple01 {
         return head;
     }
 
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
+
+    /**
+     * @Description: 相同的树
+     * @Author: gexx
+     * @Date: 2020/7/1
+     **/
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null) return true;
+        // one of p and q is null
+        if (q == null || p == null) return false;
+        if (p.val != q.val) return false;
+        return isSameTree(p.right, q.right) &&
+                isSameTree(p.left, q.left);
+
+    }
 
     public static void main(String[] args) {
         ListNode listNode1 = new ListNode(1);
