@@ -51,7 +51,7 @@ public class Simple01 {
         return head;
     }
 
-    public class TreeNode {
+    public static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -81,7 +81,7 @@ public class Simple01 {
      * @Author: gexx
      * @Date: 2020/7/2
      **/
-    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+    public static List<List<Integer>> levelOrderBottom(TreeNode root) {
         List<List<Integer>> ans = new ArrayList<>();
         if (root == null) {
             return ans;
@@ -108,6 +108,48 @@ public class Simple01 {
         return ans;
     }
 
+    /**
+     * @Description: 111. 二叉树的最小深度
+     * @Author: gexx
+     * @Date: 2020/7/2
+     **/
+    public static int minDepth(TreeNode root) {
+        if (root == null) return 0;
+        if ((root.left == null) && (root.right == null)) {
+            return 1;
+        }
+        int minDepth = Integer.MAX_VALUE;
+        if (root.left != null) {
+            minDepth = Math.min(minDepth(root.left), minDepth);
+        }
+        if (root.right != null) {
+            minDepth = Math.min(minDepth(root.right), minDepth);
+        }
+
+
+        return minDepth + 1;
+
+    }
+
+    /**
+     * @Description: Excel表列名称
+     * @Author: gexx
+     * @Date: 2020/7/3
+     **/
+    public String convertToTitle(int n) {
+        StringBuilder sb = new StringBuilder();
+        while (n > 0) {
+            int c = n % 26;
+            if (c == 0) {
+                c = 26;
+                n -= 1;
+            }
+            sb.insert(0, (char) ('A' + c - 1));
+            n /= 26;
+        }
+        return sb.toString();
+    }
+
 
     public static void main(String[] args) {
         ListNode listNode1 = new ListNode(1);
@@ -120,5 +162,18 @@ public class Simple01 {
         listNode3.next = listNode4;
         listNode4.next = listNode5;
         deleteDuplicates(listNode1);
+
+        TreeNode root = new TreeNode(3);
+        TreeNode l1 = new TreeNode(9);
+        TreeNode r1 = new TreeNode(20);
+        TreeNode l2 = new TreeNode(15);
+        TreeNode r2 = new TreeNode(7);
+        root.left = l1;
+        root.right = r1;
+        root.right.left = l2;
+        root.right.right = r2;
+        levelOrderBottom(root);
+        minDepth(root);
+
     }
 }
