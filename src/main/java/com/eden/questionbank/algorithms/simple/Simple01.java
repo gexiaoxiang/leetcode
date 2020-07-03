@@ -1,6 +1,9 @@
 package com.eden.questionbank.algorithms.simple;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 /**
  * @Description: 简单
@@ -218,6 +221,17 @@ public class Simple01 {
         }
         return bulls + "A" + cows + "B";
 
+    }
+
+    /**
+     * @Description: 4的幂
+     * @Author: gexx
+     * @Date: 2020/7/3
+     **/
+    public boolean isPowerOfFour(int n) {
+        if (n == 0) return false;
+        while (n % 4 == 0) n /= 4;
+        return n == 1;
     }
 
     public static void main(String[] args) {
