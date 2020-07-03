@@ -1,9 +1,6 @@
 package com.eden.questionbank.algorithms.simple;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * @Description: 简单
@@ -168,6 +165,61 @@ public class Simple01 {
 
     }
 
+    /**
+     * @Description: 二叉树的所有路径
+     * @Author: gexx
+     * @Date: 2020/7/3
+     **/
+    public static List<String> binaryTreePaths(TreeNode root) {
+
+        LinkedList<String> paths = new LinkedList();
+        construct_paths(root, "", paths);
+        return paths;
+
+    }
+
+    public static void construct_paths(TreeNode root, String path, LinkedList<String> paths) {
+        if (root != null) {
+            path += Integer.toString(root.val);
+            if ((root.left == null) && (root.right == null))  // 当前节点是叶子节点
+                paths.add(path);  // 把路径加入到答案中
+            else {
+                path += "->";  // 当前节点不是叶子节点，继续递归遍历
+                construct_paths(root.left, path, paths);
+                construct_paths(root.right, path, paths);
+            }
+        }
+
+    }
+
+    /**
+     * @Description: 猜数字游戏
+     * @Author: gexx
+     * @Date: 2020/7/3
+     **/
+    public static String getHint(String secret, String guess) {
+        int bulls = 0;
+        int cows = 0;
+        int[] numbers = new int[10];
+        for (int i = 0; i < secret.length(); i++) {
+            int s = secret.charAt(i) - '0';
+            int g = guess.charAt(i) - '0';
+            if (s == g) bulls++;
+            else {
+                //当前数小于 0, 说明之前在 guess 中出现过, 和 secret 当前的数匹配
+                if (numbers[s] < 0) cows++;
+                //当前数大于 0, 说明之前在 secret 中出现过, 和 guess 当前的数匹配
+                if (numbers[g] > 0) cows++;
+                //secret 中的数, 计数加 1
+                numbers[s]++;
+                //guess 中的数, 计数减 1
+                numbers[g]--;
+            }
+        }
+        return bulls + "A" + cows + "B";
+
+    }
+
     public static void main(String[] args) {
         ListNode listNode1 = new ListNode(1);
         ListNode listNode2 = new ListNode(1);
@@ -193,6 +245,9 @@ public class Simple01 {
         minDepth(root);
 
         invertTree(root);
+        String secret = "1807",
+                guess = "7810";
+        getHint(secret, guess);
 
     }
 }
