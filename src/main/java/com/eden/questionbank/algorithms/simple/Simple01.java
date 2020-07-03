@@ -1,9 +1,6 @@
 package com.eden.questionbank.algorithms.simple;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * @Description: 简单
@@ -234,6 +231,32 @@ public class Simple01 {
         return n == 1;
     }
 
+    /**
+     * @Description: 赎金信
+     * @Author: gexx
+     * @Date: 2020/7/3
+     **/
+    public static boolean canConstruct(String ransomNote, String magazine) {
+        if (ransomNote.equals("")) return true;
+        if (magazine.length() < ransomNote.length()) return false;
+        String[] magazines = magazine.split("");
+        String[] ransomNotes = ransomNote.split("");
+        Arrays.sort(magazines);
+        Arrays.sort(ransomNotes);
+        List list = new ArrayList(Arrays.asList(magazines));
+        for (int i = 0; i < ransomNotes.length; i++) {
+            if (list.contains(String.valueOf(ransomNotes[i]))) {
+                if (!list.remove(ransomNotes[i])) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
     public static void main(String[] args) {
         ListNode listNode1 = new ListNode(1);
         ListNode listNode2 = new ListNode(1);
@@ -262,6 +285,6 @@ public class Simple01 {
         String secret = "1807",
                 guess = "7810";
         getHint(secret, guess);
-
+        canConstruct("", "b");
     }
 }
