@@ -287,7 +287,7 @@ public class Simple01 {
 
     /**
      * @Description: 二进制手表
-    二进制手表    * @Author: gexx
+     * 二进制手表    * @Author: gexx
      * @Date: 2020/7/3
      **/
     public static List<String> readBinaryWatch(int num) {
@@ -300,6 +300,28 @@ public class Simple01 {
         }
         return times;
     }
+
+    /**
+     * @Description: 左叶子之和
+     * @Author: gexx
+     * @Date: 2020/7/3
+     **/
+    public int result = 0;
+
+    public int sumOfLeftLeaves(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        //是否是当前节点的左孩子
+        //当前节点的左孩子是不是叶子节点（叶子结点：没有左右孩子）
+        if (root.left != null && (root.left.left == null && root.left.right == null)) {
+            result = result + root.left.val;
+        }
+        sumOfLeftLeaves(root.left);
+        sumOfLeftLeaves(root.right);
+        return result;
+    }
+
 
     public static void main(String[] args) {
         ListNode listNode1 = new ListNode(1);
