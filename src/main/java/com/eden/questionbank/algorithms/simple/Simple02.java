@@ -174,6 +174,29 @@ public class Simple02 {
         return write;
     }
 
+    /**
+     * @Description: 找到所有数组中消失的数字
+     * @Author: gexx
+     * @Date: 2020/7/6
+     **/
+    public static List<Integer> findDisappearedNumbers(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            int newIndex = Math.abs(nums[i]) - 1;
+            if (nums[newIndex] > 0) {
+                nums[newIndex] *= -1;
+            }
+        }
+        List<Integer> result = new LinkedList<Integer>();
+        for (int i = 1; i <= nums.length; i++) {
+
+            if (nums[i - 1] > 0) {
+                result.add(i);
+            }
+        }
+        return result;
+    }
+
+
     public static void main(String[] args) {
         System.out.println(addStrings("1234", "1234"));
         System.out.println(toHex(26));
@@ -181,6 +204,6 @@ public class Simple02 {
         System.out.println(thirdMax(new int[]{1, 1, 2}));
         System.out.println(countSegments(""));
         System.out.println(compress(new char[]{'a', 'a', 'b', 'b', 'c', 'c', 'c'}));
-
+        System.out.println(findDisappearedNumbers(new int[]{4, 3, 2, 7, 8, 2, 3, 1}));
     }
 }
