@@ -1,8 +1,6 @@
 package com.eden.questionbank.algorithms.simple;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Description: 简单2  page2 size 100
@@ -107,6 +105,42 @@ public class Simple02 {
             return 0;
         }
         return trimmed.split("\\s+").length;
+    }
+
+
+    static class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+
+    }
+
+    /**
+     * @Description: 路径总和 III
+     * @Author: gexx
+     * @Date: 2020/7/6
+     **/
+    public int pathSum(TreeNode root, int sum) {
+        Map<Integer, Integer> map = new HashMap<>(4);
+        map.put(0, 1);
+        return helper(root, map, sum, 0);
+    }
+
+    public int helper(TreeNode node, Map<Integer, Integer> map, int sum, int pathSum) {
+        if (node == null) {
+            return 0;
+        }
+        int curSum = pathSum + node.val;
+        int res = map.getOrDefault(curSum - sum, 0);
+        map.put(curSum, map.getOrDefault(curSum, 0) + 1);
+        res += helper(node.left, map, sum, curSum);
+        res += helper(node.right, map, sum, curSum);
+        map.put(curSum, map.get(curSum) - 1);
+        return res;
     }
 
 
