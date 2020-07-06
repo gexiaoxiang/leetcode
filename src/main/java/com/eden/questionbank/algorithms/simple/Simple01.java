@@ -3,7 +3,7 @@ package com.eden.questionbank.algorithms.simple;
 import java.util.*;
 
 /**
- * @Description: 简单
+ * @Description: 简单 page 1  size 100
  * @Author gexx
  * @Date 2020/6/30
  * @Version V1.0
@@ -321,6 +321,7 @@ public class Simple01 {
         sumOfLeftLeaves(root.right);
         return result;
     }
+
 
 
     public static void main(String[] args) {
