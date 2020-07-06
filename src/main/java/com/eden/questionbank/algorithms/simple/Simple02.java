@@ -143,6 +143,15 @@ public class Simple02 {
         return res;
     }
 
+    /**
+     * @Description: 排列硬币
+     * @Author: gexx
+     * @Date: 2020/7/6
+     **/
+    public int arrangeCoins(int n) {
+
+        return (int) (Math.sqrt(2) * Math.sqrt(n + 0.125) - 0.5);
+    }
 
     public static void main(String[] args) {
         System.out.println(addStrings("1234", "1234"));
