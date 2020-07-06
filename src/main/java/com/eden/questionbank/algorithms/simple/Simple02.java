@@ -75,11 +75,10 @@ public class Simple02 {
     }
 
     /**
-      * @Description: 字符串相加
-
-      * @Author: gexx
-      * @Date: 2020/7/6
-      **/
+     * @Description: 字符串相加
+     * @Author: gexx
+     * @Date: 2020/7/6
+     **/
     public static String addStrings(String num1, String num2) {
         StringBuilder res = new StringBuilder("");
         int i = num1.length() - 1, j = num2.length() - 1, carry = 0;
@@ -97,10 +96,25 @@ public class Simple02 {
 
     }
 
+    /**
+     * @Description: 字符串中的单词数
+     * @Author: gexx
+     * @Date: 2020/7/6
+     **/
+    public static int countSegments(String s) {
+        String trimmed = s.trim();
+        if (trimmed.equals("")) {
+            return 0;
+        }
+        return trimmed.split("\\s+").length;
+    }
+
+
     public static void main(String[] args) {
-        System.out.println(addStrings("1234","1234"));
+        System.out.println(addStrings("1234", "1234"));
         System.out.println(toHex(26));
         System.out.println(longestPalindrome("abccccdd"));
         System.out.println(thirdMax(new int[]{1, 1, 2}));
+        System.out.println(countSegments(""));
     }
 }
