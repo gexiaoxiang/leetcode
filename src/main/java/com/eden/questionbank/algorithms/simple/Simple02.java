@@ -153,11 +153,34 @@ public class Simple02 {
         return (int) (Math.sqrt(2) * Math.sqrt(n + 0.125) - 0.5);
     }
 
+    /**
+     * @Description: 压缩字符串
+     * @Author: gexx
+     * @Date: 2020/7/6
+     **/
+    public static int compress(char[] chars) {
+        int anchor = 0, write = 0;
+        for (int read = 0; read < chars.length; read++) {
+            if (read + 1 == chars.length || chars[read + 1] != chars[read]) {
+                chars[write++] = chars[anchor];
+                if (read > anchor) {
+                    for (char c : ("" + (read - anchor + 1)).toCharArray()) {
+                        chars[write++] = c;
+                    }
+                }
+                anchor = read + 1;
+            }
+        }
+        return write;
+    }
+
     public static void main(String[] args) {
         System.out.println(addStrings("1234", "1234"));
         System.out.println(toHex(26));
         System.out.println(longestPalindrome("abccccdd"));
         System.out.println(thirdMax(new int[]{1, 1, 2}));
         System.out.println(countSegments(""));
+        System.out.println(compress(new char[]{'a', 'a', 'b', 'b', 'c', 'c', 'c'}));
+
     }
 }
