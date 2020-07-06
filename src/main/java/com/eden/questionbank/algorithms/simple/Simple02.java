@@ -50,12 +50,11 @@ public class Simple02 {
         return ans;
     }
 
-/**
-  * @Description: 第三大的数
-
-  * @Author: gexx
-  * @Date: 2020/7/6
-  **/
+    /**
+     * @Description: 第三大的数
+     * @Author: gexx
+     * @Date: 2020/7/6
+     **/
     public static int thirdMax(int[] nums) {
         Arrays.sort(nums);
         if (nums.length < 3) {
@@ -75,7 +74,31 @@ public class Simple02 {
         return (int) list.get(2);
     }
 
+    /**
+      * @Description: 字符串相加
+
+      * @Author: gexx
+      * @Date: 2020/7/6
+      **/
+    public static String addStrings(String num1, String num2) {
+        StringBuilder res = new StringBuilder("");
+        int i = num1.length() - 1, j = num2.length() - 1, carry = 0;
+        while (i >= 0 || j >= 0) {
+            int n1 = i >= 0 ? num1.charAt(i) - '0' : 0;
+            int n2 = j >= 0 ? num2.charAt(j) - '0' : 0;
+            int tmp = n1 + n2 + carry;
+            carry = tmp / 10;
+            res.append(tmp % 10);
+            i--;
+            j--;
+        }
+        if (carry == 1) res.append(1);
+        return res.reverse().toString();
+
+    }
+
     public static void main(String[] args) {
+        System.out.println(addStrings("1234","1234"));
         System.out.println(toHex(26));
         System.out.println(longestPalindrome("abccccdd"));
         System.out.println(thirdMax(new int[]{1, 1, 2}));
