@@ -233,6 +233,16 @@ public class Simple02 {
 
     }
 
+    /**
+     * @Description: 重复的子字符串
+     * @Author: gexx
+     * @Date: 2020/7/7
+     **/
+    public static boolean repeatedSubstringPattern(String s) {
+        String str = s + s;
+        return str.substring(1, str.length() - 1).contains(s);
+    }
+
     public static void main(String[] args) {
         System.out.println(addStrings("1234", "1234"));
         System.out.println(toHex(26));
@@ -242,5 +252,7 @@ public class Simple02 {
         System.out.println(compress(new char[]{'a', 'a', 'b', 'b', 'c', 'c', 'c'}));
         System.out.println(findDisappearedNumbers(new int[]{4, 3, 2, 7, 8, 2, 3, 1}));
         System.out.println(findContentChildren(new int[]{1, 2}, new int[]{1, 2, 3}));
+        System.out.println(repeatedSubstringPattern("ababab"));
+
     }
 }
