@@ -277,6 +277,33 @@ public class Simple02 {
                 + dfs(grid, r, c + 1);
     }
 
+    /**
+     * @Description: 供暖器
+     * @Author: gexx
+     * @Date: 2020/7/7
+     **/
+    public static int findRadius(int[] houses, int[] heaters) {
+        Arrays.sort(houses);
+        Arrays.sort(heaters);
+        int res = 0;
+        int right = 0;
+        for (int i = 0; i < houses.length; i++) {
+            // 找到恰好比当前房屋大的加热器
+            while (right + 1 < heaters.length && heaters[right] < houses[i]) {
+                right++;
+            }
+            // 特判， 否则会出现越界
+            if (right == 0) {
+                res = Math.max(res, Math.abs(heaters[right] - houses[i]));
+            } else {
+                res = Math.max(res, Math.min(Math.abs(heaters[right] - houses[i]), Math.abs(houses[i] - heaters[right - 1])));
+            }
+        }
+        return res;
+
+
+    }
+
     public static void main(String[] args) {
         System.out.println(addStrings("1234", "1234"));
         System.out.println(toHex(26));
@@ -294,5 +321,8 @@ public class Simple02 {
                 {1, 1, 0, 0}
         };
         System.out.println(islandPerimeter(grid));
+        System.out.println(findRadius(new int[]{1, 2, 3}, new int[]{2}));
+
+
     }
 }
