@@ -196,6 +196,20 @@ public class Simple02 {
         return result;
     }
 
+    /**
+     * @Description: 最小移动次数使数组元素相等
+     * @Author: gexx
+     * @Date: 2020/7/7
+     **/
+    public int minMoves(int[] nums) {
+        Arrays.sort(nums);
+        int count = 0;
+        for (int i = nums.length - 1; i > 0; i--) {
+            count += nums[i] - nums[0];
+        }
+
+        return count;
+    }
 
     public static void main(String[] args) {
         System.out.println(addStrings("1234", "1234"));
