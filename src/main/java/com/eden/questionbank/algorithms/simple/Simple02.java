@@ -322,6 +322,23 @@ public class Simple02 {
         return Integer.parseInt(binaryReverse.toString(), 2);
     }
 
+    /**
+     * @Description: 密钥格式化
+     * @Author: gexx
+     * @Date: 2020/7/7
+     **/
+    public static String licenseKeyFormatting(String S, int K) {
+        S = S.replace("-", "");
+        S = S.toUpperCase();
+        int stLen = S.length() % K == 0 ? K : S.length() - S.length() / K * K;
+        StringBuffer str = new StringBuffer(S);
+        for (int i = stLen; i < str.length(); i = i + K + 1) {
+            str = str.insert(i, "-");
+        }
+        return str.toString();
+
+    }
+
 
     public static void main(String[] args) {
         System.out.println(addStrings("1234", "1234"));
@@ -342,6 +359,7 @@ public class Simple02 {
         System.out.println(islandPerimeter(grid));
         System.out.println(findRadius(new int[]{1, 2, 3}, new int[]{2}));
         System.out.println(findComplement(5));
+        System.out.println(licenseKeyFormatting("2-4A0r7-4k", 4));
 
 
     }
