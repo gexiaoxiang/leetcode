@@ -304,6 +304,25 @@ public class Simple02 {
 
     }
 
+    /**
+     * @Description: 数字的补数
+     * @Author: gexx
+     * @Date: 2020/7/7
+     **/
+    public static int findComplement(int num) {
+        String binary = Integer.toBinaryString(num);
+        StringBuilder binaryReverse = new StringBuilder();
+        for (int i = 0; i < binary.length(); i++) {
+            if (binary.charAt(i) == '0') {
+                binaryReverse.append('1');
+            } else {
+                binaryReverse.append('0');
+            }
+        }
+        return Integer.parseInt(binaryReverse.toString(), 2);
+    }
+
+
     public static void main(String[] args) {
         System.out.println(addStrings("1234", "1234"));
         System.out.println(toHex(26));
@@ -322,6 +341,7 @@ public class Simple02 {
         };
         System.out.println(islandPerimeter(grid));
         System.out.println(findRadius(new int[]{1, 2, 3}, new int[]{2}));
+        System.out.println(findComplement(5));
 
 
     }
