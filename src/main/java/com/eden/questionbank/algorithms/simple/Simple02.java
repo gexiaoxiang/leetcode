@@ -211,6 +211,28 @@ public class Simple02 {
         return count;
     }
 
+    /**
+     * @Description: 分发饼干
+     * @Author: gexx
+     * @Date: 2020/7/7
+     **/
+    public static int findContentChildren(int[] g, int[] s) {
+        Arrays.sort(g);
+        Arrays.sort(s);
+        int i = 0;
+        int j = 0;
+        int count = 0;
+        while (i < g.length && j < s.length) {
+            if (s[j] >= g[i]) {
+                count++;
+                i++;
+            }
+            j++;
+        }
+        return count;
+
+    }
+
     public static void main(String[] args) {
         System.out.println(addStrings("1234", "1234"));
         System.out.println(toHex(26));
@@ -219,5 +241,6 @@ public class Simple02 {
         System.out.println(countSegments(""));
         System.out.println(compress(new char[]{'a', 'a', 'b', 'b', 'c', 'c', 'c'}));
         System.out.println(findDisappearedNumbers(new int[]{4, 3, 2, 7, 8, 2, 3, 1}));
+        System.out.println(findContentChildren(new int[]{1, 2}, new int[]{1, 2, 3}));
     }
 }
