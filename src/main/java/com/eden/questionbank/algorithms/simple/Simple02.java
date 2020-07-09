@@ -388,10 +388,41 @@ public class Simple02 {
         return res;
 
     }
+/**
+  * @Description: 键盘行
 
+  * @Author: gexx
+  * @Date: 2020/7/9
+  **/
     public static String[] findWords(String[] words) {
+        String line1st = "qwertyuiop";
+        String line2nd = "asdfghjkl";
+        List list = new ArrayList();
+        for (int i = 0; i < words.length; i++) {
+            int count1 = 0;
+            int count2 = 0;
+            int count3 = 0;
+            for (int j = 0; j < words[i].length(); j++) {
+                //逐个统计单词的每个字母来自哪一行
+                if (line1st.contains(String.valueOf(words[i].charAt(j)).toLowerCase())) {
+                    count1++;
+                } else if (line2nd.contains(String.valueOf(words[i].charAt(j)).toLowerCase())) {
+                    count2++;
+                } else {
+                    count3++;
+                }
+            }
+            //如果单词的长度等于它的字符在三行中出现的最大次数，则说明该单词全来自该行。
+            if (words[i].length() == Math.max(count3, Math.max(count1, count2))) {
+                list.add(words[i]);
+            }
+        }
+        String[] findWords = new String[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            findWords[i] = list.get(i).toString();
+        }
 
-        return words;
+        return findWords;
     }
 
     public static void main(String[] args) {
@@ -416,6 +447,7 @@ public class Simple02 {
         System.out.println(licenseKeyFormatting("2-4A0r7-4k", 4));
         System.out.println(Arrays.toString(constructRectangle(5)));
         System.out.println(Arrays.toString(nextGreaterElement(new int[]{4, 1, 2}, new int[]{1, 3, 4, 2})));
+        System.out.println(Arrays.toString(findWords(new String[]{"Hello", "Alaska", "Dad", "Peace"})));
 
     }
 }
