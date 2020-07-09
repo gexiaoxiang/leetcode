@@ -436,6 +436,7 @@ public class Simple02 {
      * @Date: 2020/7/9
      **/
     public int[] findMode(TreeNode root) {
+
         inOrder(root);
         int length = res.size();
         int[] rr = new int[length];
@@ -466,8 +467,19 @@ public class Simple02 {
         inOrder(root.right);
     }
 
+    /**
+     * @Description: 七进制数
+     * @Author: gexx
+     * @Date: 2020/7/9
+     **/
+    public static String convertToBase7(int num) {
+
+        return Integer.toString(num, 7);
+
+    }
 
     public static void main(String[] args) {
+        System.out.println(convertToBase7(-7));
         System.out.println(addStrings("1234", "1234"));
         System.out.println(toHex(26));
         System.out.println(longestPalindrome("abccccdd"));
