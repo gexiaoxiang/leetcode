@@ -389,6 +389,11 @@ public class Simple02 {
 
     }
 
+    public static String[] findWords(String[] words) {
+
+        return words;
+    }
+
     public static void main(String[] args) {
         System.out.println(addStrings("1234", "1234"));
         System.out.println(toHex(26));
