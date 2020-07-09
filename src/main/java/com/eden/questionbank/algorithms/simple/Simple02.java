@@ -478,7 +478,31 @@ public class Simple02 {
 
     }
 
+    /**
+     * @Description: 相对名次
+     * @Author: gexx
+     * @Date: 2020/7/9
+     **/
+    public static String[] findRelativeRanks(int[] nums) {
+        String[] ranks = new String[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            if (i == 0) {
+                ranks[i] = "Gold Medal";
+            } else if (i == 1) {
+                ranks[i] = "Silver Medal";
+            } else if (i == 2) {
+                ranks[i] = "Bronze Medal";
+            } else {
+                ranks[i] = String.valueOf(i + 1);
+            }
+
+        }
+
+        return ranks;
+    }
+
     public static void main(String[] args) {
+        System.out.println(Arrays.toString(findRelativeRanks(new int[]{5, 4, 3, 2, 1})));
         System.out.println(convertToBase7(-7));
         System.out.println(addStrings("1234", "1234"));
         System.out.println(toHex(26));
