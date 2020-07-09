@@ -484,25 +484,30 @@ public class Simple02 {
      * @Date: 2020/7/9
      **/
     public static String[] findRelativeRanks(int[] nums) {
+        int[] sortNums = Arrays.copyOf(nums, nums.length);
+        Arrays.sort(sortNums);
+        Map map = new HashMap();
+        for (int i = 0; i < sortNums.length; i++) {
+            if (i == sortNums.length - 1) {
+                map.put(sortNums[i], "Gold Medal");
+            } else if (i == sortNums.length - 2) {
+                map.put(sortNums[i], "Silver Medal");
+            } else if (i == sortNums.length - 3) {
+                map.put(sortNums[i], "Bronze Medal");
+            } else {
+                map.put(sortNums[i], sortNums.length - i);
+            }
+        }
         String[] ranks = new String[nums.length];
         for (int i = 0; i < nums.length; i++) {
-            if (i == 0) {
-                ranks[i] = "Gold Medal";
-            } else if (i == 1) {
-                ranks[i] = "Silver Medal";
-            } else if (i == 2) {
-                ranks[i] = "Bronze Medal";
-            } else {
-                ranks[i] = String.valueOf(i + 1);
-            }
-
+            ranks[i] = String.valueOf(map.get(nums[i]));
         }
 
         return ranks;
     }
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(findRelativeRanks(new int[]{5, 4, 3, 2, 1})));
+        System.out.println(Arrays.toString(findRelativeRanks(new int[]{10,3,8,9,4})));
         System.out.println(convertToBase7(-7));
         System.out.println(addStrings("1234", "1234"));
         System.out.println(toHex(26));
