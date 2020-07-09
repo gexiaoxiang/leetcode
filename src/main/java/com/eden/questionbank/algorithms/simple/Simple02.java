@@ -388,12 +388,12 @@ public class Simple02 {
         return res;
 
     }
-/**
-  * @Description: 键盘行
 
-  * @Author: gexx
-  * @Date: 2020/7/9
-  **/
+    /**
+     * @Description: 键盘行
+     * @Author: gexx
+     * @Date: 2020/7/9
+     **/
     public static String[] findWords(String[] words) {
         String line1st = "qwertyuiop";
         String line2nd = "asdfghjkl";
@@ -424,6 +424,48 @@ public class Simple02 {
 
         return findWords;
     }
+
+    int maxTimes = 0;
+    int thisTimes = 0;
+    List<Integer> res = new LinkedList<Integer>();
+    TreeNode pre = null;
+
+    /**
+     * @Description: 二叉搜索树中的众数
+     * @Author: gexx
+     * @Date: 2020/7/9
+     **/
+    public int[] findMode(TreeNode root) {
+        inOrder(root);
+        int length = res.size();
+        int[] rr = new int[length];
+        for (int i = 0; i < length; i++) {
+            rr[i] = res.get(i);
+        }
+        return rr;
+    }
+
+    public void inOrder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        inOrder(root.left);
+        if (pre != null && pre.val == root.val) {
+            thisTimes++;
+        } else {
+            thisTimes = 1;
+        }
+        if (thisTimes == maxTimes) {
+            res.add(root.val);
+        } else if (thisTimes > maxTimes) {
+            maxTimes = thisTimes;
+            res.clear();
+            res.add(root.val);
+        }
+        pre = root;
+        inOrder(root.right);
+    }
+
 
     public static void main(String[] args) {
         System.out.println(addStrings("1234", "1234"));
