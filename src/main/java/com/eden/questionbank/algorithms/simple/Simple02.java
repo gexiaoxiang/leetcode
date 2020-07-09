@@ -339,6 +339,55 @@ public class Simple02 {
 
     }
 
+    /**
+     * @Description: 构造矩形
+     * @Author: gexx
+     * @Date: 2020/7/7
+     **/
+    public static int[] constructRectangle(int area) {
+//长度 L 和宽度 W 之间的差距应当尽可能小 正方形就最小
+        int[] re = new int[2];
+        double sqrt = Math.sqrt(area);
+        if (((int) sqrt - sqrt == 0)) {
+            re[0] = (int) sqrt;
+            re[1] = (int) sqrt;
+        } else {
+            re[0] = (int) sqrt + 1;
+            double w = (double) area / (double) re[0];
+            while ((int) w - w != 0) {
+                re[0] = re[0] + 1;
+                w = (double) area / (double) re[0];
+            }
+            re[1] = (int) w;
+        }
+
+
+        return re;
+    }
+
+    /**
+     * @Description: 下一个更大元素 I
+     * @Author: gexx
+     * @Date: 2020/7/9
+     **/
+    public static int[] nextGreaterElement(int[] nums1, int[] nums2) {
+
+        Stack<Integer> stack = new Stack<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int[] res = new int[nums1.length];
+        for (int i = 0; i < nums2.length; i++) {
+            while (!stack.empty() && nums2[i] > stack.peek())
+                map.put(stack.pop(), nums2[i]);
+            stack.push(nums2[i]);
+        }
+        while (!stack.empty())
+            map.put(stack.pop(), -1);
+        for (int i = 0; i < nums1.length; i++) {
+            res[i] = map.get(nums1[i]);
+        }
+        return res;
+
+    }
 
     public static void main(String[] args) {
         System.out.println(addStrings("1234", "1234"));
@@ -360,7 +409,8 @@ public class Simple02 {
         System.out.println(findRadius(new int[]{1, 2, 3}, new int[]{2}));
         System.out.println(findComplement(5));
         System.out.println(licenseKeyFormatting("2-4A0r7-4k", 4));
-
+        System.out.println(Arrays.toString(constructRectangle(5)));
+        System.out.println(Arrays.toString(nextGreaterElement(new int[]{4, 1, 2}, new int[]{1, 3, 4, 2})));
 
     }
 }
