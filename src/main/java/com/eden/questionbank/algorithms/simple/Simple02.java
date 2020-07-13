@@ -506,8 +506,86 @@ public class Simple02 {
         return ranks;
     }
 
+    /**
+     * @Description: 完美数
+     * @Author: gexx
+     * @Date: 2020/7/9
+     **/
+    public boolean checkPerfectNumber(int num) {
+//奇数不是完美数
+        if (num % 2 != 0) return false;
+        int sum = 0;
+        for (int i = 1; i * i <= num; i++) {
+            if (num % i == 0) {
+                sum += i;
+                if (i * i != num) {
+                    sum += num / i;
+                }
+
+            }
+        }
+        return sum - num == num;
+
+    }
+
+    /**
+     * @Description: 检测大写字母
+     * @Author: gexx  a
+     * @Date: 2020/7/9
+     **/
+    public static boolean detectCapitalUse(String word) {
+
+        int lowerCount = 0;
+        int upperCount = 0;
+
+        for (int i = 0; i < word.length(); i++) {
+            if (word.charAt(i) >= 'a') {
+                lowerCount++;
+            } else {
+                upperCount++;
+            }
+        }
+        if (lowerCount == 0 || upperCount == 0) {
+            return true;
+        } else if (upperCount == 1 && word.charAt(0) < 'a') {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @Description: 二叉搜索树的最小绝对差
+     * @Author: gexx
+     * @Date: 2020/7/13
+     **/
+    // 初始化最小值
+    int min = Integer.MAX_VALUE;
+    // 前一个节点，初始化为null
+    TreeNode pre1 = null;
+
+    public int getMinimumDifference(TreeNode root) {
+        pre(root);
+        return min;
+    }
+
+    public void pre(TreeNode root) {
+        if (root == null)
+            return;
+        // 中序遍历
+        pre(root.left);
+        // 判空，寻找最小差值
+        if (pre1 != null)
+            min = Math.min(min, root.val - pre1.val);
+        // 将此节点设置为前一节点
+        pre1 = root;
+        pre(root.right);
+    }
+
+
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(findRelativeRanks(new int[]{10,3,8,9,4})));
+        detectCapitalUse("azAZ");
+        System.out.println(Arrays.toString(findRelativeRanks(new int[]{10, 3, 8, 9, 4})));
         System.out.println(convertToBase7(-7));
         System.out.println(addStrings("1234", "1234"));
         System.out.println(toHex(26));
