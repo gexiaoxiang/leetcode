@@ -608,6 +608,23 @@ public class Simple02 {
 
     }
 
+    /**
+     * @Description: 把二叉搜索树转换为累加树
+     * @Author: gexx
+     * @Date: 2020/7/13
+     **/
+    int sum = 0;
+
+    public TreeNode convertBST(TreeNode root) {
+        if (root != null) {
+            convertBST(root.right);
+            sum += root.val;
+            root.val = sum;
+            convertBST(root.left);
+        }
+        return root;
+    }
+
     public static void main(String[] args) {
         detectCapitalUse("azAZ");
         System.out.println(Arrays.toString(findRelativeRanks(new int[]{10, 3, 8, 9, 4})));
