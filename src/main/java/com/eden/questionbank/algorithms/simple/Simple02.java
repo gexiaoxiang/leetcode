@@ -582,6 +582,31 @@ public class Simple02 {
         pre(root.right);
     }
 
+    /**
+     * @Description: 数组中的K-diff数对
+     * @Author: gexx
+     * @Date: 2020/7/13
+     **/
+
+    public int findPairs(int[] nums, int k) {
+        if (nums.length < 2) return 0;
+        Arrays.sort(nums);
+        int count = 0;
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (i >= 1 && nums[i] == nums[i - 1]) continue;
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[j] - k > nums[i]) {
+                    break;
+                }
+                if (nums[j] - k == nums[i]) {
+                    count++;
+                    break;
+                }
+            }
+        }
+        return count;
+
+    }
 
     public static void main(String[] args) {
         detectCapitalUse("azAZ");
