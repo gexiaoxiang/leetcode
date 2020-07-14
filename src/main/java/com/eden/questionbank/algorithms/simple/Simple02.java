@@ -685,8 +685,29 @@ public class Simple02 {
         return true;
     }
 
-    public static void main(String[] args) {
+    /**
+     * @Description: 二叉树的坡度
+     * @Author: gexx
+     * @Date: 2020/7/14
+     **/
+    int tilt = 0;
 
+    public int findTilt(TreeNode root) {
+        traverse(root);
+        return tilt;
+    }
+
+    public int traverse(TreeNode root) {
+        if (root == null)
+            return 0;
+        int left = traverse(root.left);
+        int right = traverse(root.right);
+        tilt += Math.abs(left - right);
+        return left + right + root.val;
+    }
+
+
+    public static void main(String[] args) {
         System.out.println(reverseStr("abcdefg", 2));
         detectCapitalUse("azAZ");
         System.out.println(Arrays.toString(findRelativeRanks(new int[]{10, 3, 8, 9, 4})));
@@ -714,9 +735,9 @@ public class Simple02 {
         System.out.println(Arrays.toString(nextGreaterElement(new int[]{4, 1, 2}, new int[]{1, 3, 4, 2})));
         System.out.println(Arrays.toString(findWords(new String[]{"Hello", "Alaska", "Dad", "Peace"})));
 
-        TreeNode root = new TreeNode(5);
+        TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
-        root.right = new TreeNode(13);
-        convertBST(root);
+        root.right = new TreeNode(3);
+//        convertBST(root);
     }
 }
