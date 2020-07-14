@@ -117,6 +117,11 @@ public class Simple02 {
             val = x;
         }
 
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
     }
 
     /**
@@ -706,8 +711,48 @@ public class Simple02 {
         return left + right + root.val;
     }
 
+    /**
+     * @Description: 重塑矩阵
+     * @Author: gexx
+     * @Date: 2020/7/14
+     **/
+    public static int[][] matrixReshape(int[][] nums, int r, int c) {
+        int size = nums.length * nums[0].length;
+        if (size != r * c) {
+            return nums;
+        }
+        int[][] newnums = new int[r][c];
+        int col = nums[0].length;
+        for (int i = 0; i < r * c; i++) {
+            newnums[i / c][i % c] = nums[i / col][i % col];
+        }
+        return newnums;
+    }
+
+    /**
+     * @Description: 另一个树的子树
+     * @Author: gexx
+     * @Date: 2020/7/14
+     **/
+    public boolean isSubtree(TreeNode s, TreeNode t) {
+        if (t == null) return true;   // t 为 null 一定都是 true
+        if (s == null) return false;  // 这里 t 一定不为 null, 只要 s 为 null，肯定是 false
+        return isSubtree(s.left, t) || isSubtree(s.right, t) || isSameTree(s, t);
+    }
+
+    /**
+     * 判断两棵树是否相同
+     */
+    public boolean isSameTree(TreeNode s, TreeNode t) {
+        if (s == null && t == null) return true;
+        if (s == null || t == null) return false;
+        if (s.val != t.val) return false;
+        return isSameTree(s.left, t.left) && isSameTree(s.right, t.right);
+    }
+
 
     public static void main(String[] args) {
+        System.out.println(Arrays.toString(matrixReshape(new int[][]{{1, 2}, {3, 4}}, 1, 4)));
         System.out.println(reverseStr("abcdefg", 2));
         detectCapitalUse("azAZ");
         System.out.println(Arrays.toString(findRelativeRanks(new int[]{10, 3, 8, 9, 4})));
