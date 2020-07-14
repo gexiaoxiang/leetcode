@@ -613,9 +613,9 @@ public class Simple02 {
      * @Author: gexx
      * @Date: 2020/7/13
      **/
-    int sum = 0;
+    static int sum = 0;
 
-    public TreeNode convertBST(TreeNode root) {
+    public static TreeNode convertBST(TreeNode root) {
         if (root != null) {
             convertBST(root.right);
             sum += root.val;
@@ -625,7 +625,33 @@ public class Simple02 {
         return root;
     }
 
+    /**
+     * @Description: 反转字符串 II
+     * @Author: gexx
+     * @Date: 2020/7/14
+     **/
+    static StringBuffer re = new StringBuffer();
+
+    public static String reverseStr(String s, int k) {
+        StringBuffer sb = new StringBuffer(s);
+        if (sb.length() < k) {
+            sb.reverse();
+            re.append(sb.toString());
+        } else if (sb.length() > 2 * k) {
+            StringBuffer sb2 = new StringBuffer(s.substring(0, k));
+            re.append(sb2.reverse()).append(s.substring(k, 2 * k));
+            reverseStr(s.substring(2 * k), k);
+        } else {
+            StringBuffer sb2 = new StringBuffer(s.substring(0, k));
+            re.append(sb2.reverse()).append(s.substring(k, s.length()));
+        }
+
+        return re.toString();
+    }
+
     public static void main(String[] args) {
+
+        System.out.println(reverseStr("abcdefg", 2));
         detectCapitalUse("azAZ");
         System.out.println(Arrays.toString(findRelativeRanks(new int[]{10, 3, 8, 9, 4})));
         System.out.println(convertToBase7(-7));
@@ -652,5 +678,9 @@ public class Simple02 {
         System.out.println(Arrays.toString(nextGreaterElement(new int[]{4, 1, 2}, new int[]{1, 3, 4, 2})));
         System.out.println(Arrays.toString(findWords(new String[]{"Hello", "Alaska", "Dad", "Peace"})));
 
+        TreeNode root = new TreeNode(5);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(13);
+        convertBST(root);
     }
 }
