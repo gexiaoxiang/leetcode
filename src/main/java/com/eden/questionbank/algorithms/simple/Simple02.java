@@ -650,12 +650,12 @@ public class Simple02 {
     }
 
     int ans;
-/**
-  * @Description: 二叉树的直径
 
-  * @Author: gexx
-  * @Date: 2020/7/14
-  **/
+    /**
+     * @Description: 二叉树的直径
+     * @Author: gexx
+     * @Date: 2020/7/14
+     **/
     public int diameterOfBinaryTree(TreeNode root) {
         ans = 1;
         depth(root);
@@ -668,6 +668,21 @@ public class Simple02 {
         int R = depth(node.right); // 右儿子为根的子树的深度
         ans = Math.max(ans, L + R + 1); // 计算d_node即L+R+1 并更新ans
         return Math.max(L, R) + 1; // 返回该节点为根的子树的深度
+    }
+
+    /**
+     * @Description: 学生出勤记录 I
+     * @Author: gexx
+     * @Date: 2020/7/14
+     **/
+    public boolean checkRecord(String s) {
+        String L = s.replaceAll("L", "");
+        String LP = L.replaceAll("P", "");
+        if (LP.contains("AA")) return false;
+        if (s.contains("LLL"))
+            return false;
+
+        return true;
     }
 
     public static void main(String[] args) {
