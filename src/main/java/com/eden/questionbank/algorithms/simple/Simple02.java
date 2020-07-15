@@ -763,7 +763,33 @@ public class Simple02 {
         return set.size() > candies.length / 2 ? candies.length / 2 : set.size();
     }
 
+    /**
+     * @Description: 最短无序连续子数组
+     * @Author: gexx
+     * @Date: 2020/7/15
+     **/
+    public static int findUnsortedSubarray(int[] nums) {
+        int[] clone = nums.clone();
+        Arrays.sort(clone);
+        int start = 0;
+        int end = 0;
+        for (int x = 0; x < nums.length; x++) {
+            if (nums[x] != clone[x]) {
+                start = x;
+                break;
+            }
+        }
+        for (int x = nums.length - 1; x > 0; x--) {
+            if (nums[x] != clone[x]) {
+                end = x;
+                break;
+            }
+        }
+        return start == end ? 0 : end - start + 1;
+    }
+
     public static void main(String[] args) {
+        System.out.println(findUnsortedSubarray(new int[]{1, 3, 2, 2, 2}));
         System.out.println(Arrays.toString(matrixReshape(new int[][]{{1, 2}, {3, 4}}, 1, 4)));
         System.out.println(reverseStr("abcdefg", 2));
         detectCapitalUse("azAZ");
