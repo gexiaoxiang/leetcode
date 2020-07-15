@@ -788,7 +788,27 @@ public class Simple02 {
         return start == end ? 0 : end - start + 1;
     }
 
+    /**
+     * @Description: 长和谐子序列
+     * @Author: gexx
+     * @Date: 2020/7/15
+     **/
+    public static int findLHS(int[] nums) {
+        int result = 0;
+        Map<Integer, Integer> countMap = new HashMap<>((int) (nums.length / 0.75F + 1.0F));
+        for (int num : nums) {
+            countMap.put(num, countMap.getOrDefault(num, 0) + 1);
+        }
+        for (int key : countMap.keySet()) {
+            if (countMap.containsKey(key + 1))
+                result = Math.max(countMap.get(key) + countMap.get(key + 1), result);
+        }
+        return result;
+
+    }
+
     public static void main(String[] args) {
+        findLHS(new int[]{1, 3, 2, 2, 5, 2, 3, 7});
         System.out.println(findUnsortedSubarray(new int[]{1, 3, 2, 2, 2}));
         System.out.println(Arrays.toString(matrixReshape(new int[][]{{1, 2}, {3, 4}}, 1, 4)));
         System.out.println(reverseStr("abcdefg", 2));
@@ -821,6 +841,5 @@ public class Simple02 {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
         root.right = new TreeNode(3);
-//        convertBST(root);
     }
 }
