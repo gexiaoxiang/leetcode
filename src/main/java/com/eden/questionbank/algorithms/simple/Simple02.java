@@ -750,6 +750,18 @@ public class Simple02 {
         return isSameTree(s.left, t.left) && isSameTree(s.right, t.right);
     }
 
+    /**
+     * @Description: 分糖果
+     * @Author: gexx
+     * @Date: 2020/7/15
+     **/
+    public int distributeCandies(int[] candies) {
+        Set set = new HashSet();
+        for (int i = 0; i < candies.length; i++) {
+            set.add(candies[i]);
+        }
+        return set.size() > candies.length / 2 ? candies.length / 2 : set.size();
+    }
 
     public static void main(String[] args) {
         System.out.println(Arrays.toString(matrixReshape(new int[][]{{1, 2}, {3, 4}}, 1, 4)));
