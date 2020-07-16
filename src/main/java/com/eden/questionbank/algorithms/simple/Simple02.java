@@ -807,7 +807,25 @@ public class Simple02 {
 
     }
 
+    /**
+     * @Description: 范围求和 II
+     * @Author: gexx
+     * @Date: 2020/7/16
+     **/
+    public static int maxCount(int m, int n, int[][] ops) {
+        if (ops.length == 0) return m * n;
+        int minM = Integer.MAX_VALUE;
+        int minN = Integer.MAX_VALUE;
+        for (int x = 0; x < ops.length; x++) {
+            minM = Math.min(minM, ops[x][0]);
+            minN = Math.min(minN, ops[x][1]);
+        }
+        return minM * minN;
+
+    }
+
     public static void main(String[] args) {
+        System.out.println(maxCount(39999, 39999, new int[][]{{19999, 19999}}));
         findLHS(new int[]{1, 3, 2, 2, 5, 2, 3, 7});
         System.out.println(findUnsortedSubarray(new int[]{1, 3, 2, 2, 2}));
         System.out.println(Arrays.toString(matrixReshape(new int[][]{{1, 2}, {3, 4}}, 1, 4)));
