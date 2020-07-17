@@ -851,6 +851,8 @@ public class Simple02 {
         return n <= 0;
     }
 
+
+
     public static void main(String[] args) {
         canPlaceFlowers(new int[]{0, 0, 1, 0, 0}, 1);
         System.out.println(maxCount(39999, 39999, new int[][]{{19999, 19999}}));
