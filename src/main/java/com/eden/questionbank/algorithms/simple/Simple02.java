@@ -885,6 +885,15 @@ public class Simple02 {
         return t1;
     }
 
+    /**
+     * @Description: 三个数的最大乘积
+     * @Author: gexx
+     * @Date: 2020/7/17
+     **/
+    public int maximumProduct(int[] nums) {
+        Arrays.sort(nums);
+        return Math.max(nums[nums.length - 1] * nums[nums.length - 2] * nums[nums.length - 3], nums[nums.length - 1] * nums[0] * nums[1]);
+    }
 
     public static void main(String[] args) {
         canPlaceFlowers(new int[]{0, 0, 1, 0, 0}, 1);
