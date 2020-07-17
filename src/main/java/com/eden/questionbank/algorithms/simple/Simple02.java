@@ -866,6 +866,25 @@ public class Simple02 {
         return t.val + "(" + tree2str(t.left) + ")(" + tree2str(t.right) + ")";
     }
 
+    /**
+     * @Description: 合并二叉树
+     * @Author: gexx
+     * @Date: 2020/7/17
+     **/
+    public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
+        if (t1 == null) {
+            return t2;
+        }
+        if (t2 == null) {
+            return t1;
+        }
+        t1.val += t2.val;
+        t1.left = mergeTrees(t1.left, t2.left);
+        t1.right = mergeTrees(t1.right, t2.right);
+
+        return t1;
+    }
+
 
     public static void main(String[] args) {
         canPlaceFlowers(new int[]{0, 0, 1, 0, 0}, 1);
