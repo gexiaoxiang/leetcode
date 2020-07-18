@@ -895,6 +895,23 @@ public class Simple02 {
         return Math.max(nums[nums.length - 1] * nums[nums.length - 2] * nums[nums.length - 3], nums[nums.length - 1] * nums[0] * nums[1]);
     }
 
+
+
+    /**
+     * @Description 平方数之和
+     *
+     * @Author gexx
+     * @Date 2020/7/18
+     **/
+    public boolean judgeSquareSum(int c) {
+
+        for (long a = 0; a * a <= c; a++) {
+            double b = Math.sqrt(c - a * a);
+            if (b == (int) b)
+                return true;
+        }
+        return false;
+    }
     public static void main(String[] args) {
         canPlaceFlowers(new int[]{0, 0, 1, 0, 0}, 1);
         System.out.println(maxCount(39999, 39999, new int[][]{{19999, 19999}}));
