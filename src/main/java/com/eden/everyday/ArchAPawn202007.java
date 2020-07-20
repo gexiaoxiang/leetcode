@@ -26,7 +26,6 @@ public class ArchAPawn202007 {
 
     /**
      * @Description 交错字符串
-     *
      * @Author gexx
      * @Date 2020/7/18
      **/
@@ -57,7 +56,6 @@ public class ArchAPawn202007 {
 
     /**
      * @Description 戳气球
-     *
      * @Author gexx
      * @Date 2020/7/19
      **/
@@ -79,5 +77,30 @@ public class ArchAPawn202007 {
             }
         }
         return rec[0][n + 1];
+    }
+
+    /**
+     * @Description: 两数之和 II - 输入有序数组
+     * @Author: gexx
+     * @Date: 2020/7/20
+     **/
+    public static int[] twoSum(int[] numbers, int target) {
+        int[] ret = new int[2];
+        for (int i = 0, j = numbers.length - 1; i < j; ) {
+            if (numbers[i] + numbers[j] > target) {
+                j--;
+            } else if (numbers[i] + numbers[j] < target) {
+                i++;
+            } else {
+                ret[0] = i + 1;
+                ret[1] = j + 1;
+                return ret;
+            }
+        }
+        return ret;
+    }
+
+    public static void main(String[] args) {
+        twoSum(new int[]{-1, 0}, -1);
     }
 }
