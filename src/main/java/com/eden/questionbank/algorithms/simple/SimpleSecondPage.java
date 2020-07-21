@@ -962,11 +962,26 @@ public class SimpleSecondPage {
 
     }
 
-
-    public int[] findErrorNums(int[] nums) {
+    /**
+     * @Description: 错误的集合
+     * @Author: gexx
+     * @Date: 2020/7/21
+     **/
+    public static int[] findErrorNums(int[] nums) {
+        Arrays.sort(nums);
+        int dup = -1, missing = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == nums[i - 1])
+                dup = nums[i];
+            else if (nums[i] > nums[i - 1] + 1)
+                missing = nums[i - 1] + 1;
+        }
+        return new int[]{dup, nums[nums.length - 1] != nums.length ? nums.length : missing};
 
     }
+
     public static void main(String[] args) {
+        findErrorNums(new int[]{1, 3, 3});
         findMaxAverage(new int[]{-1}, 1);
         canPlaceFlowers(new int[]{0, 0, 1, 0, 0}, 1);
         System.out.println(maxCount(39999, 39999, new int[][]{{19999, 19999}}));
