@@ -980,6 +980,25 @@ public class SimpleSecondPage {
 
     }
 
+    /**
+     * @Description: 两数之和 IV - 输入 BST
+     * @Author: gexx
+     * @Date: 2020/7/21
+     **/
+    public boolean findTarget(TreeNode root, int k) {
+        Set set = new HashSet();
+        return find(root, k, set);
+    }
+
+    public boolean find(TreeNode root, int k, Set set) {
+        if (null == root) return false;
+        if (set.contains(k - root.val))
+            return true;
+        set.add(root.val);
+        return find(root.left, k, set) || find(root.right, k, set);
+
+    }
+
     public static void main(String[] args) {
         findErrorNums(new int[]{1, 3, 3});
         findMaxAverage(new int[]{-1}, 1);
