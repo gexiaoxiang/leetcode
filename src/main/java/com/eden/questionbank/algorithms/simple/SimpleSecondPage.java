@@ -962,6 +962,10 @@ public class SimpleSecondPage {
 
     }
 
+
+    public int[] findErrorNums(int[] nums) {
+
+    }
     public static void main(String[] args) {
         findMaxAverage(new int[]{-1}, 1);
         canPlaceFlowers(new int[]{0, 0, 1, 0, 0}, 1);
