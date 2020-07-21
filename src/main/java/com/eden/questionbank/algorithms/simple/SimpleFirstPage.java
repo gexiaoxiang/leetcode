@@ -8,7 +8,7 @@ import java.util.*;
  * @Date 2020/6/30
  * @Version V1.0
  **/
-public class Simple01 {
+public class SimpleFirstPage {
     /**
      * @Description: 最后一个单词的长度
      * @Author: gexx

@@ -7,7 +7,7 @@ import java.util.*;
  * @Author: gexx
  * @Date: 2020/7/6
  **/
-public class Simple02 {
+public class SimpleSecondPage {
 
     /**
      * @Description: 数字转换为十六进制数
@@ -896,10 +896,8 @@ public class Simple02 {
     }
 
 
-
     /**
      * @Description 平方数之和
-     *
      * @Author gexx
      * @Date 2020/7/18
      **/
@@ -912,6 +910,36 @@ public class Simple02 {
         }
         return false;
     }
+
+    /**
+     * @Description: 二叉树的层平均值
+     * @Author: gexx
+     * @Date: 2020/7/20
+     **/
+    public List<Double> averageOfLevels(TreeNode root) {
+        List<Integer> count = new ArrayList<>();
+        List<Double> res = new ArrayList<>();
+        average(root, 0, res, count);
+        for (int i = 0; i < res.size(); i++)
+            res.set(i, res.get(i) / count.get(i));
+        return res;
+    }
+
+    public void average(TreeNode t, int i, List<Double> sum, List<Integer> count) {
+        if (t == null)
+            return;
+        if (i < sum.size()) {
+            sum.set(i, sum.get(i) + t.val);
+            count.set(i, count.get(i) + 1);
+        } else {
+            sum.add(1.0 * t.val);
+            count.add(1);
+        }
+        average(t.left, i + 1, sum, count);
+        average(t.right, i + 1, sum, count);
+    }
+
+
     public static void main(String[] args) {
         canPlaceFlowers(new int[]{0, 0, 1, 0, 0}, 1);
         System.out.println(maxCount(39999, 39999, new int[][]{{19999, 19999}}));
