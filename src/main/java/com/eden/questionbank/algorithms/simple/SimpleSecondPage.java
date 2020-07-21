@@ -939,8 +939,31 @@ public class SimpleSecondPage {
         average(t.right, i + 1, sum, count);
     }
 
+    /**
+     * @Description: 子数组最大平均数 I
+     * @Author: gexx
+     * @Date: 2020/7/21
+     **/
+
+    public static double findMaxAverage(int[] nums, int k) {
+        int sum = 0;
+        for (int i = 0; i < k; ++i) {
+            sum += nums[i];
+        }
+
+        //记录第一个i  和  i+k   sum+nums[i+k-1]-nums[i-1];
+        int temp = sum;
+        for (int i = 1; i + k - 1 < nums.length; ++i) {
+            temp = temp + nums[i + k - 1] - nums[i - 1];
+            if (temp > sum) sum = temp;
+        }
+
+        return sum / (double) k;
+
+    }
 
     public static void main(String[] args) {
+        findMaxAverage(new int[]{-1}, 1);
         canPlaceFlowers(new int[]{0, 0, 1, 0, 0}, 1);
         System.out.println(maxCount(39999, 39999, new int[][]{{19999, 19999}}));
         findLHS(new int[]{1, 3, 2, 2, 5, 2, 3, 7});
