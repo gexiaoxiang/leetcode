@@ -172,6 +172,27 @@ public class ArchAPawn202007 {
         return min;
     }
 
+    /**
+     * @Description: 机器人能否返回原点
+     * @Author: gexx
+     * @Date: 2020/7/22
+     **/
+    public boolean judgeCircle(String moves) {
+        int x = 0, y = 0;
+        for (char move : moves.toCharArray()) {
+            if (move == 'U') {
+                x++;
+            } else if (move == 'D') {
+                x--;
+            } else if (move == 'R') {
+                y++;
+            } else {
+                y--;
+            }
+        }
+        return x == 0 && y == 0;
+    }
+
     public static void main(String[] args) {
         twoSum(new int[]{-1, 0}, -1);
     }
