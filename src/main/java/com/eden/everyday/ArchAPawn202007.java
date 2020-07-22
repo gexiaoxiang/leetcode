@@ -159,6 +159,19 @@ public class ArchAPawn202007 {
         return allTrees;
     }
 
+    /**
+     * @Description: 剑指 Offer 11. 旋转数组的最小数字
+     * @Author: gexx
+     * @Date: 2020/7/22
+     **/
+    public int minArray(int[] numbers) {
+        int min = Integer.MAX_VALUE;
+        for (int number : numbers) {
+            min = Math.min(min, number);
+        }
+        return min;
+    }
+
     public static void main(String[] args) {
         twoSum(new int[]{-1, 0}, -1);
     }
