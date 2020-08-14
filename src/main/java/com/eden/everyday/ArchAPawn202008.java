@@ -141,7 +141,7 @@ public class ArchAPawn202008 {
      * @Author: gexx
      * @Date: 2020/8/13
      **/
-    public String multiply(String num1, String num2) {
+    public static String multiply(String num1, String num2) {
         if (num1.equals("0") || num2.equals("0")) {
             return "0";
         }
@@ -168,7 +168,7 @@ public class ArchAPawn202008 {
         return ans;
     }
 
-    public String addStrings(String num1, String num2) {
+    public static String addStrings(String num1, String num2) {
         int i = num1.length() - 1, j = num2.length() - 1, add = 0;
         StringBuffer ans = new StringBuffer();
         while (i >= 0 || j >= 0 || add != 0) {
@@ -182,5 +182,9 @@ public class ArchAPawn202008 {
         }
         ans.reverse();
         return ans.toString();
+    }
+
+    public static void main(String[] args) {
+        multiply("1234","234");
     }
 }

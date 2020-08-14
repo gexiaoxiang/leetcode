@@ -999,7 +999,28 @@ public class SimpleSecondPage {
 
     }
 
+    /**
+     * @Description: 非递减数列
+     * @Author: gexx
+     * @Date: 2020/8/14
+     **/
+    public static boolean checkPossibility(int[] nums) {
+
+        int sum = 0;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i - 1] > nums[i]) {
+                sum++;
+                if (sum >= 2) return false;
+                if (i - 2 >= 0 && nums[i - 2] > nums[i]) {
+                    nums[i] = nums[i - 1];
+                } else nums[i - 1] = nums[i];
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
+        checkPossibility(new int[]{4, 2, 3});
         findErrorNums(new int[]{1, 3, 3});
         findMaxAverage(new int[]{-1}, 1);
         canPlaceFlowers(new int[]{0, 0, 1, 0, 0}, 1);
