@@ -1033,6 +1033,33 @@ public class SimpleSecondPage {
         root.right = trimBST(root.right, L, R);
         return root;
     }
+    /**
+      * @Description: 二叉树中第二小的节点
+    
+      * @Author: gexx
+      * @Date: 2020/8/19
+      **/
+    public int findSecondMinimumValue(TreeNode root) {
+        if(root == null)
+            return -1;
+        return find(root, root.val);
+    }
+
+
+    private int find(TreeNode x, int rootValue){
+        if(x.val != rootValue)
+            return x.val;
+
+        if(x.left == null)
+            return -1;
+        int leftMin = find(x.left, rootValue);
+        int rightMin = find(x.right, rootValue);
+        if(leftMin == -1)
+            return rightMin;
+        if(rightMin == -1)
+            return leftMin;
+        return Math.min(leftMin, rightMin);
+    }
 
 
     public static void main(String[] args) {
