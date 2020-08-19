@@ -1019,6 +1019,22 @@ public class SimpleSecondPage {
         return true;
     }
 
+    /**
+     * @Description: 修剪二叉搜索树
+     * @Author: gexx
+     * @Date: 2020/8/19
+     **/
+    public TreeNode trimBST(TreeNode root, int L, int R) {
+        if (root == null) return root;
+        if (root.val > R) return trimBST(root.left, L, R);
+        if (root.val < L) return trimBST(root.right, L, R);
+
+        root.left = trimBST(root.left, L, R);
+        root.right = trimBST(root.right, L, R);
+        return root;
+    }
+
+
     public static void main(String[] args) {
         checkPossibility(new int[]{4, 2, 3});
         findErrorNums(new int[]{1, 3, 3});
