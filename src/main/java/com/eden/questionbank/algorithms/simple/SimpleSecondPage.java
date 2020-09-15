@@ -1,5 +1,6 @@
 package com.eden.questionbank.algorithms.simple;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -1090,6 +1091,7 @@ public class SimpleSecondPage {
                 {0, 1, 0, 0},
                 {1, 1, 0, 0}
         };
+        System.out.println(new BigDecimal(5));
         System.out.println(islandPerimeter(grid));
         System.out.println(findRadius(new int[]{1, 2, 3}, new int[]{2}));
         System.out.println(findComplement(5));
