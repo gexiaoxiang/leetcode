@@ -1081,12 +1081,12 @@ public class SimpleSecondPage {
         }
         return Math.max(max, maxlength);
     }
-/**
-  * @Description: 验证回文字符串 Ⅱ
 
-  * @Author: gexx
-  * @Date: 2020/9/23
-  **/
+    /**
+     * @Description: 验证回文字符串 Ⅱ
+     * @Author: gexx
+     * @Date: 2020/9/23
+     **/
     public boolean validPalindrome(String s) {
         for (int i = 0, j = s.length() - 1; i < j; i++, j--) {
             if (s.charAt(i) != s.charAt(j)) {
@@ -1104,6 +1104,55 @@ public class SimpleSecondPage {
             }
         }
         return true;
+    }
+
+    public int calPoints(String[] ops) {
+        Stack<Integer> stack = new Stack<>();
+        for (String op : ops) {
+            switch (op) {
+                case "C":
+                    stack.pop();
+                    break;
+                case "D":
+                    Integer calPointsDPeek = stack.peek();
+                    stack.push(calPointsDPeek * 2);
+                    break;
+                case "+":
+                    Integer calPointsAddPop = stack.pop();
+                    Integer calPointsAddPeek = stack.peek();
+                    stack.push(calPointsAddPop);
+                    stack.push(calPointsAddPop + calPointsAddPeek);
+                    break;
+                default:
+                    stack.push(Integer.valueOf(op));
+            }
+        }
+        return stack.stream().reduce(Integer::sum).orElse(0);
+    }
+/**
+  * @Description: 最长同值路径
+
+  * @Author: gexx
+  * @Date: 2020/9/23
+  **/
+    public int longestUnivaluePath(TreeNode root) {
+        ans = 0;
+        arrowLength(root);
+        return ans;
+    }
+    public int arrowLength(TreeNode node) {
+        if (node == null) return 0;
+        int left = arrowLength(node.left);
+        int right = arrowLength(node.right);
+        int arrowLeft = 0, arrowRight = 0;
+        if (node.left != null && node.left.val == node.val) {
+            arrowLeft += left + 1;
+        }
+        if (node.right != null && node.right.val == node.val) {
+            arrowRight += right + 1;
+        }
+        ans = Math.max(ans, arrowLeft + arrowRight);
+        return Math.max(arrowLeft, arrowRight);
     }
 
     public static void main(String[] args) {
