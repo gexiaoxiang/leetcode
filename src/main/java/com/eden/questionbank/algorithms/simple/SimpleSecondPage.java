@@ -1,6 +1,5 @@
 package com.eden.questionbank.algorithms.simple;
 
-import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -1183,48 +1182,46 @@ public class SimpleSecondPage {
         return ans;
     }
 
+    /**
+     * @Description: 交替位二进制数
+     * @Author: gexx
+     * @Date: 2020/9/23
+     **/
+    public boolean hasAlternatingBits(int n) {
+        String s = Integer.toBinaryString(n);
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (s.charAt(i) == s.charAt(i + 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * @Description: 计数二进制子串
+     * @Author: gexx
+     * @Date: 2020/9/23
+     **/
+    public int countBinarySubstrings(String s) {
+        List<Integer> counts = new ArrayList<Integer>();
+        int ptr = 0, n = s.length();
+        while (ptr < n) {
+            char c = s.charAt(ptr);
+            int count = 0;
+            while (ptr < n && s.charAt(ptr) == c) {
+                ++ptr;
+                ++count;
+            }
+            counts.add(count);
+        }
+        int ans = 0;
+        for (int i = 1; i < counts.size(); ++i) {
+            ans += Math.min(counts.get(i), counts.get(i - 1));
+        }
+        return ans;
+    }
 
     public static void main(String[] args) {
-        System.out.println("123".substring(1));
-        findLengthOfLCIS(new int[]{1, 3, 5, 7});
-        checkPossibility(new int[]{4, 2, 3});
-        findErrorNums(new int[]{1, 3, 3});
-        findMaxAverage(new int[]{-1}, 1);
-        canPlaceFlowers(new int[]{0, 0, 1, 0, 0}, 1);
-        System.out.println(maxCount(39999, 39999, new int[][]{{19999, 19999}}));
-        findLHS(new int[]{1, 3, 2, 2, 5, 2, 3, 7});
-        System.out.println(findUnsortedSubarray(new int[]{1, 3, 2, 2, 2}));
-        System.out.println(Arrays.toString(matrixReshape(new int[][]{{1, 2}, {3, 4}}, 1, 4)));
-        System.out.println(reverseStr("abcdefg", 2));
-        detectCapitalUse("azAZ");
-        System.out.println(Arrays.toString(findRelativeRanks(new int[]{10, 3, 8, 9, 4})));
-        System.out.println(convertToBase7(-7));
-        System.out.println(addStrings("1234", "1234"));
-        System.out.println(toHex(26));
-        System.out.println(longestPalindrome("abccccdd"));
-        System.out.println(thirdMax(new int[]{1, 1, 2}));
-        System.out.println(countSegments(""));
-        System.out.println(compress(new char[]{'a', 'a', 'b', 'b', 'c', 'c', 'c'}));
-        System.out.println(findDisappearedNumbers(new int[]{4, 3, 2, 7, 8, 2, 3, 1}));
-        System.out.println(findContentChildren(new int[]{1, 2}, new int[]{1, 2, 3}));
-        System.out.println(repeatedSubstringPattern("ababab"));
-        int[][] grid = {
-                {0, 1, 0, 0},
-                {1, 1, 1, 0},
-                {0, 1, 0, 0},
-                {1, 1, 0, 0}
-        };
-        System.out.println(new BigDecimal(5));
-        System.out.println(islandPerimeter(grid));
-        System.out.println(findRadius(new int[]{1, 2, 3}, new int[]{2}));
-        System.out.println(findComplement(5));
-        System.out.println(licenseKeyFormatting("2-4A0r7-4k", 4));
-        System.out.println(Arrays.toString(constructRectangle(5)));
-        System.out.println(Arrays.toString(nextGreaterElement(new int[]{4, 1, 2}, new int[]{1, 3, 4, 2})));
-        System.out.println(Arrays.toString(findWords(new String[]{"Hello", "Alaska", "Dad", "Peace"})));
 
-        TreeNode root = new TreeNode(1);
-        root.left = new TreeNode(2);
-        root.right = new TreeNode(3);
     }
 }
