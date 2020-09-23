@@ -1129,17 +1129,18 @@ public class SimpleSecondPage {
         }
         return stack.stream().reduce(Integer::sum).orElse(0);
     }
-/**
-  * @Description: 最长同值路径
 
-  * @Author: gexx
-  * @Date: 2020/9/23
-  **/
+    /**
+     * @Description: 最长同值路径
+     * @Author: gexx
+     * @Date: 2020/9/23
+     **/
     public int longestUnivaluePath(TreeNode root) {
         ans = 0;
         arrowLength(root);
         return ans;
     }
+
     public int arrowLength(TreeNode node) {
         if (node == null) return 0;
         int left = arrowLength(node.left);
@@ -1154,6 +1155,34 @@ public class SimpleSecondPage {
         ans = Math.max(ans, arrowLeft + arrowRight);
         return Math.max(arrowLeft, arrowRight);
     }
+
+    class Employee {
+        public int id;
+        public int importance;
+        public List<Integer> subordinates;
+    }
+
+    Map<Integer, Employee> emap;
+
+    /**
+     * @Description: 员工的重要性
+     * @Author: gexx
+     * @Date: 2020/9/23
+     **/
+    public int getImportance(List<Employee> employees, int queryid) {
+        emap = new HashMap();
+        for (Employee e : employees) emap.put(e.id, e);
+        return dfs(queryid);
+    }
+
+    public int dfs(int eid) {
+        Employee employee = emap.get(eid);
+        int ans = employee.importance;
+        for (Integer subid : employee.subordinates)
+            ans += dfs(subid);
+        return ans;
+    }
+
 
     public static void main(String[] args) {
         System.out.println("123".substring(1));
