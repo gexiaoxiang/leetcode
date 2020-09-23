@@ -1034,36 +1034,56 @@ public class SimpleSecondPage {
         root.right = trimBST(root.right, L, R);
         return root;
     }
+
     /**
-      * @Description: 二叉树中第二小的节点
-    
-      * @Author: gexx
-      * @Date: 2020/8/19
-      **/
+     * @Description: 二叉树中第二小的节点
+     * @Author: gexx
+     * @Date: 2020/8/19
+     **/
     public int findSecondMinimumValue(TreeNode root) {
-        if(root == null)
+        if (root == null)
             return -1;
         return find(root, root.val);
     }
 
 
-    private int find(TreeNode x, int rootValue){
-        if(x.val != rootValue)
+    private int find(TreeNode x, int rootValue) {
+        if (x.val != rootValue)
             return x.val;
 
-        if(x.left == null)
+        if (x.left == null)
             return -1;
         int leftMin = find(x.left, rootValue);
         int rightMin = find(x.right, rootValue);
-        if(leftMin == -1)
+        if (leftMin == -1)
             return rightMin;
-        if(rightMin == -1)
+        if (rightMin == -1)
             return leftMin;
         return Math.min(leftMin, rightMin);
     }
 
+    /**
+     * @Description: 最长连续递增序列
+     * @Author: gexx
+     * @Date: 2020/9/23
+     **/
+    public static int findLengthOfLCIS(int[] nums) {
+        if (nums.length == 0) return 0;
+        int maxlength = 1;
+        int max = 0;
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] < nums[i + 1]) {
+                maxlength++;
+            } else {
+                max = Math.max(max, maxlength);
+                maxlength = 1;
+            }
+        }
+        return Math.max(max, maxlength);
+    }
 
     public static void main(String[] args) {
+        findLengthOfLCIS(new int[]{1, 3, 5, 7});
         checkPossibility(new int[]{4, 2, 3});
         findErrorNums(new int[]{1, 3, 3});
         findMaxAverage(new int[]{-1}, 1);
