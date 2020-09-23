@@ -1081,8 +1081,33 @@ public class SimpleSecondPage {
         }
         return Math.max(max, maxlength);
     }
+/**
+  * @Description: 验证回文字符串 Ⅱ
+
+  * @Author: gexx
+  * @Date: 2020/9/23
+  **/
+    public boolean validPalindrome(String s) {
+        for (int i = 0, j = s.length() - 1; i < j; i++, j--) {
+            if (s.charAt(i) != s.charAt(j)) {
+                //分两种情况，一是右边减一，二是左边加一
+                return isPalindrome(s, i, j - 1) || isPalindrome(s, i + 1, j);
+            }
+        }
+        return true;
+    }
+
+    public boolean isPalindrome(String s, int i, int j) {
+        while (i < j) {
+            if (s.charAt(i++) != s.charAt(j--)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     public static void main(String[] args) {
+        System.out.println("123".substring(1));
         findLengthOfLCIS(new int[]{1, 3, 5, 7});
         checkPossibility(new int[]{4, 2, 3});
         findErrorNums(new int[]{1, 3, 3});
