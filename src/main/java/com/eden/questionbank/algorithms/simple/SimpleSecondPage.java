@@ -1265,6 +1265,27 @@ public class SimpleSecondPage {
         return String.valueOf(ch);
     }
 
+    /**
+     * @Description: . 1比特与2比特字符
+     * @Author: gexx
+     * @Date: 2020/9/24
+     **/
+    public boolean isOneBitCharacter(int[] bits) {
+
+        for (int i = 0; i <= bits.length - 1; ) {
+            if (0 == bits[i]) {
+                if (i == bits.length - 1) {
+                    return true;
+                }
+                i++;
+            } else {
+                i += 2;
+            }
+        }
+
+        return false;
+    }
+
     public static void main(String[] args) {
         toLowerCase("Hello");
     }
