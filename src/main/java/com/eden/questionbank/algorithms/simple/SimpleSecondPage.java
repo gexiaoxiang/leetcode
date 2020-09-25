@@ -1332,6 +1332,22 @@ public class SimpleSecondPage {
         return true;
     }
 
+    /**
+     * @Description: 使用最小花费爬楼梯
+     * @Author: gexx
+     * @Date: 2020/9/25
+     **/
+    public int minCostClimbingStairs(int[] cost) {
+        int f1 = 0, f2 = 0;
+        for (int i = cost.length - 1; i >= 0; --i) {
+            int f0 = cost[i] + Math.min(f1, f2);
+            f2 = f1;
+            f1 = f0;
+        }
+        return Math.min(f1, f2);
+
+    }
+
     public static void main(String[] args) {
         toLowerCase("Hello");
     }
