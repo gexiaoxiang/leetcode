@@ -1379,12 +1379,12 @@ public class SimpleSecondPage {
         }
         return ans;
     }
-/**
-  * @Description: 二进制表示中质数个计算置位
 
-  * @Author: gexx
-  * @Date: 2020/9/25
-  **/
+    /**
+     * @Description: 二进制表示中质数个计算置位
+     * @Author: gexx
+     * @Date: 2020/9/25
+     **/
     public int countPrimeSetBits(int L, int R) {
         int ans = 0;
         for (int x = L; x <= R; ++x)
