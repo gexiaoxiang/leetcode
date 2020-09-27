@@ -1398,6 +1398,26 @@ public class SimpleSecondPage {
                 x == 11 || x == 13 || x == 17 || x == 19);
     }
 
+    /**
+     * @Description: 托普利茨矩阵
+     * @Author: gexx
+     * @Date: 2020/9/27
+     **/
+    public boolean isToeplitzMatrix(int[][] matrix) {
+        Map<Integer, Integer> groups = new HashMap();
+        for (int r = 0; r < matrix.length; ++r) {
+            for (int c = 0; c < matrix[0].length; ++c) {
+                if (!groups.containsKey(r - c))
+                    groups.put(r - c, matrix[r][c]);
+                else if (groups.get(r - c) != matrix[r][c])
+                    return false;
+            }
+        }
+
+        return true;
+
+    }
+
     public static void main(String[] args) {
         minCostClimbingStairs(new int[]{1, 100, 1, 1, 1, 100, 1, 1, 100, 1});
         toLowerCase("Hello");
