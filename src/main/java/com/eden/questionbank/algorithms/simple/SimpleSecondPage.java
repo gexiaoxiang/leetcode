@@ -1482,6 +1482,33 @@ public class SimpleSecondPage {
         return set.size();
     }
 
+
+    /**
+     * @Description: 写字符串需要的行数
+     * @Author: gexx
+     * @Date: 2020/12/2
+     **/
+    public int[] numberOfLines(int[] widths, String S) {
+        int lenth = 0;
+        int row = 1;
+        for (char c : S.toCharArray()) {
+            if (100 > lenth + widths[c - 'a']) {
+                lenth += widths[c - 'a'];
+            } else if (100 < lenth + widths[c - 'a']) {
+                row++;
+                lenth = widths[c - 'a'];
+            } else {
+                row++;
+                lenth = 0;
+            }
+        }
+
+        return new int[]{row, lenth};
+    }
+
+
+
+
     public static void main(String[] args) {
         minCostClimbingStairs(new int[]{1, 100, 1, 1, 1, 100, 1, 1, 100, 1});
         toLowerCase("Hello");
