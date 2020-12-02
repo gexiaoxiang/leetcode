@@ -1506,10 +1506,46 @@ public class SimpleSecondPage {
         return new int[]{row, lenth};
     }
 
+    /**
+     * @Description: 域名访问计数
+     * @Author: gexx
+     * @Date: 2020/12/2
+     **/
 
+    public static List<String> subdomainVisits(String[] cpdomains) {
+        Map<String, Integer> ma = new HashMap();
+        for (int i = 0; i < cpdomains.length; i++) {
+            String[] s = cpdomains[i].split(" ");
+            int c = Integer.valueOf(s[0]);
+            String s1 = s[1];
+            ma.put(s1, Integer.valueOf(ma.getOrDefault(s1, 0).toString()) + c);
+            if (s1.indexOf(".") > -1) {
+                //二级域名
+                String s2 = s1.substring(s1.indexOf(".") + 1);
+                ma.put(s2, Integer.valueOf(ma.getOrDefault(s2, 0).toString()) + c);
+                if (s2.indexOf(".") > -1) {
+                    //二级域名
+                    String s3 = s2.substring(s2.indexOf(".") + 1);
+                    ma.put(s3, Integer.valueOf(ma.getOrDefault(s3, 0).toString()) + c);
+                }
+
+            }
+
+        }
+        List list = new ArrayList<>();
+        for (String key : ma.keySet()) {
+            Integer integer = ma.get(key);
+            String re = String.valueOf(integer) + " " + key;
+            list.add(re);
+        }
+
+
+        return list;
+    }
 
 
     public static void main(String[] args) {
+        subdomainVisits(new String[]{"9001 discuss.leetcode.com"});
         minCostClimbingStairs(new int[]{1, 100, 1, 1, 1, 100, 1, 1, 100, 1});
         toLowerCase("Hello");
         System.out.println(rotateString("abcde", "cdeab"));
