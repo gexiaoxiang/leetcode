@@ -1457,6 +1457,31 @@ public class SimpleSecondPage {
         return A.length() == B.length() && (A + A).contains(B);
     }
 
+
+    /**
+     * @Description: 唯一摩尔斯密码词
+     * @Author: gexx
+     * @Date: 2020/11/26
+     **/
+    public int uniqueMorseRepresentations(String[] words) {
+        String[] morse = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..",
+                ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...",
+                "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
+        HashSet set = new HashSet();
+        for (int i = 0; i < words.length; i++) {
+            String word = "";
+            for (int j = 0; j < words[i].length(); j++) {
+                char ch = words[i].charAt(j);
+                word += morse[ch - 'a'];
+
+            }
+            set.add(word);
+
+        }
+
+        return set.size();
+    }
+
     public static void main(String[] args) {
         minCostClimbingStairs(new int[]{1, 100, 1, 1, 1, 100, 1, 1, 100, 1});
         toLowerCase("Hello");
