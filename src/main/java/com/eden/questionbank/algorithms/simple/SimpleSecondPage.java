@@ -1543,7 +1543,41 @@ public class SimpleSecondPage {
         return list;
     }
 
+    /**
+     * @Description: 最大三角形面积
+     * @Author: gexx
+     * @Date: 2020/12/10
+     **/
+    public double largestTriangleArea(int[][] points) {
+        double area = 0;
+        for (int i = 0; i < points.length; i++) {
+            for (int j = i + 1; j < points.length; j++) {
+                for (int k = j + 1; k < points.length; k++) {
+                    area = Math.max(area, area(points[i], points[j], points[k]));
+                }
+            }
+        }
 
+
+        return area;
+    }
+
+    private double area(int[] point, int[] point1, int[] point2) {
+        double a = distance(point, point1);
+        double b = distance(point1, point2);
+        double c = distance(point2, point);
+        if (a + b > c && a + c > b && b + c > a) {
+            double p = 0.5 * (a + b + c);
+            return Math.sqrt(p * (p - a) * (p - b) * (p - c));
+        }
+        return 0;
+    }
+    //计算2点之间的距离
+    public double distance(int[] a, int[] b){
+        double x=b[0]-a[0];
+        double y=b[1]-a[1];
+        return  Math.sqrt(Math.pow(x,2)+Math.pow(y,2));
+    }
     public static void main(String[] args) {
         subdomainVisits(new String[]{"9001 discuss.leetcode.com"});
         minCostClimbingStairs(new int[]{1, 100, 1, 1, 1, 100, 1, 1, 100, 1});
