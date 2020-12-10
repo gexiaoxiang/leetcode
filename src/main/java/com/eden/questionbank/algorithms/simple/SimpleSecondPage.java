@@ -1589,14 +1589,14 @@ public class SimpleSecondPage {
         paragraph += ".";
 
         Set<String> banset = new HashSet();
-        for (String word: banned) banset.add(word);
+        for (String word : banned) banset.add(word);
         Map<String, Integer> count = new HashMap();
 
         String ans = "";
         int ansfreq = 0;
 
         StringBuilder word = new StringBuilder();
-        for (char c: paragraph.toCharArray()) {
+        for (char c : paragraph.toCharArray()) {
             if (Character.isLetter(c)) {
                 word.append(Character.toLowerCase(c));
             } else if (word.length() > 0) {
@@ -1615,7 +1615,37 @@ public class SimpleSecondPage {
         return ans;
     }
 
+    /**
+     * @Description: 字符的最短距离
+     * @Author: gexx
+     * @Date: 2020/12/10
+     **/
+    public static int[] shortestToChar(String S, char C) {
+
+        List<Integer> l = new ArrayList();
+        for (int i = 0; i < S.length(); i++) {
+            if (S.charAt(i) == C) {
+                l.add(i);
+            }
+        }
+        int[] re = new int[S.length()];
+        char[] chars = S.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            int minFar = chars.length;
+            for (int j = 0; j < l.size(); j++) {
+                if (minFar > Math.abs(i - l.get(j))) {
+                    minFar = Math.abs(i - l.get(j));
+                }
+            }
+            re[i] = minFar;
+        }
+
+        return re;
+    }
+
     public static void main(String[] args) {
+        shortestToChar("loveleetcode", 'e');
+
         mostCommonWord("a, a, a, a, b,b,b,c, c", new String[]{"a"});
         subdomainVisits(new String[]{"9001 discuss.leetcode.com"});
         minCostClimbingStairs(new int[]{1, 100, 1, 1, 1, 100, 1, 1, 100, 1});
