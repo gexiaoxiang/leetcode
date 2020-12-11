@@ -1685,38 +1685,56 @@ public class SimpleSecondPage {
     public static List<List<Integer>> largeGroupPositions(String s) {
         List<List<Integer>> biggerGroups = new ArrayList<>();
         String[] ss = s.split("");
-        for (int i = 0; i < ss.length-1;) {
+        for (int i = 0; i < ss.length - 1; ) {
 
             int count = 0;
             List<Integer> biggerGroup = new ArrayList<>();
-            for (int j = i + 1; j < ss.length ; j++) {
+            for (int j = i + 1; j < ss.length; j++) {
                 if (ss[i].equals(ss[j])) {
                     count++;
-                   if(j==ss.length - 1){
-                       if (count >= 2) {
-                           biggerGroup.add(i);
-                           biggerGroup.add(j);
-                           i=j;
-                           break;
-                       }else {
-                        i++;}
+                    if (j == ss.length - 1) {
+                        if (count >= 2) {
+                            biggerGroup.add(i);
+                            biggerGroup.add(j);
+                            i = j;
+                            break;
+                        } else {
+                            i++;
+                        }
                     }
                 } else if (count >= 2) {
                     biggerGroup.add(i);
-                    biggerGroup.add(j-1);
-                    i=j;
+                    biggerGroup.add(j - 1);
+                    i = j;
                     break;
-                }else  {
+                } else {
                     i++;
                     break;
                 }
 
-             }
+            }
             if (!CollectionUtils.isEmpty(biggerGroup)) {
                 biggerGroups.add(biggerGroup);
             }
         }
         return biggerGroups;
+    }
+
+    /**
+     * @Description: 832. 翻转图像
+     * @Author: gexx
+     * @Date: 2020/12/11
+     **/
+    public int[][] flipAndInvertImage(int[][] A) {
+        int C = A[0].length;
+        for (int[] row: A)
+            for (int i = 0; i < (C + 1) / 2; ++i) {
+                int tmp = row[i] ^ 1;
+                row[i] = row[C - 1 - i] ^ 1;
+                row[C - 1 - i] = tmp;
+            }
+
+        return A;
     }
 
     public static void main(String[] args) {
