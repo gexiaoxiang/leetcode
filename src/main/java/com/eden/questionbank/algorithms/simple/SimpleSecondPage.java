@@ -1727,7 +1727,7 @@ public class SimpleSecondPage {
      **/
     public int[][] flipAndInvertImage(int[][] A) {
         int C = A[0].length;
-        for (int[] row: A)
+        for (int[] row : A)
             for (int i = 0; i < (C + 1) / 2; ++i) {
                 int tmp = row[i] ^ 1;
                 row[i] = row[C - 1 - i] ^ 1;
@@ -1735,6 +1735,18 @@ public class SimpleSecondPage {
             }
 
         return A;
+    }
+
+    /**
+     * @Description: 836. 矩形重叠
+     * @Author: gexx
+     * @Date: 2020/12/11
+     **/
+    public boolean isRectangleOverlap(int[] rec1, int[] rec2) {
+        return (Math.min(rec1[2], rec2[2]) > Math.max(rec1[0], rec2[0]) &&
+                Math.min(rec1[3], rec2[3]) > Math.max(rec1[1], rec2[1]));
+
+
     }
 
     public static void main(String[] args) {
