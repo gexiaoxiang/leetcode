@@ -1,7 +1,9 @@
 package com.eden.everyday;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 
 /**
  * @Description: 每日一题
@@ -54,6 +56,32 @@ public class ArchAPawn202012 {
         return true;
     }
 
+    /**
+     * @Description: 649. Dota2 参议院
+     * @Author: gexx
+     * @Date: 2020/12/11
+     **/
+    public String predictPartyVictory(String senate) {
+        int n = senate.length();
+        Queue<Integer> radiant = new LinkedList<Integer>();
+        Queue<Integer> dire = new LinkedList<Integer>();
+        for (int i = 0; i < n; ++i) {
+            if (senate.charAt(i) == 'R') {
+                radiant.offer(i);
+            } else {
+                dire.offer(i);
+            }
+        }
+        while (!radiant.isEmpty() && !dire.isEmpty()) {
+            int radiantIndex = radiant.poll(), direIndex = dire.poll();
+            if (radiantIndex < direIndex) {
+                radiant.offer(radiantIndex + n);
+            } else {
+                dire.offer(direIndex + n);
+            }
+        }
+        return !radiant.isEmpty() ? "Radiant" : "Dire";
+    }
 
     public static void main(String[] args) {
         lemonadeChange(new int[]{5, 5, 5, 5, 20, 20, 5, 5, 20, 5});
