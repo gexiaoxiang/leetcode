@@ -1,5 +1,7 @@
 package com.eden.questionbank.algorithms.simple;
 
+import com.eden.CollectionUtils;
+
 import java.util.*;
 
 /**
@@ -1675,7 +1677,51 @@ public class SimpleSecondPage {
         return ans.toString();
     }
 
+    /**
+     * @Description: 830. 较大分组的位置
+     * @Author: gexx
+     * @Date: 2020/12/11
+     **/
+    public static List<List<Integer>> largeGroupPositions(String s) {
+        List<List<Integer>> biggerGroups = new ArrayList<>();
+        String[] ss = s.split("");
+        for (int i = 0; i < ss.length-1;) {
+
+            int count = 0;
+            List<Integer> biggerGroup = new ArrayList<>();
+            for (int j = i + 1; j < ss.length ; j++) {
+                if (ss[i].equals(ss[j])) {
+                    count++;
+                   if(j==ss.length - 1){
+                       if (count >= 2) {
+                           biggerGroup.add(i);
+                           biggerGroup.add(j);
+                           i=j;
+                           break;
+                       }else {
+                        i++;}
+                    }
+                } else if (count >= 2) {
+                    biggerGroup.add(i);
+                    biggerGroup.add(j-1);
+                    i=j;
+                    break;
+                }else  {
+                    i++;
+                    break;
+                }
+
+             }
+            if (!CollectionUtils.isEmpty(biggerGroup)) {
+                biggerGroups.add(biggerGroup);
+            }
+        }
+        return biggerGroups;
+    }
+
     public static void main(String[] args) {
+
+        largeGroupPositions("abbxxxxzzy");
         shortestToChar("loveleetcode", 'e');
 
         mostCommonWord("a, a, a, a, b,b,b,c, c", new String[]{"a"});
