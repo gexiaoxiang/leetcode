@@ -35,4 +35,29 @@ public class SimpleThirdPage {
 
         return eq;
     }
+
+    /**
+     * @Description: 山脉数组的峰顶索引
+     * @Author: gexx
+     * @Date: 2020/12/16
+     **/
+    public  static  int peakIndexInMountainArray(int[] arr) {
+        int top=-1;
+        int topIndex=0;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]>top){
+            top=arr[i];
+            topIndex=i;
+            }else{
+                return topIndex;
+            }
+
+
+    }
+        return topIndex;
+    }
+
+    public static void main(String[] args) {
+peakIndexInMountainArray(new int[]{0,1,0});
+    }
 }
