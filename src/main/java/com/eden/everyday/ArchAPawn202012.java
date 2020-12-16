@@ -61,7 +61,7 @@ public class ArchAPawn202012 {
      * @Author: gexx
      * @Date: 2020/12/11
      **/
-    public String predictPartyVictory(String senate) {
+    public static String predictPartyVictory(String senate) {
         int n = senate.length();
         Queue<Integer> radiant = new LinkedList<Integer>();
         Queue<Integer> dire = new LinkedList<Integer>();
@@ -83,7 +83,9 @@ public class ArchAPawn202012 {
         return !radiant.isEmpty() ? "Radiant" : "Dire";
     }
 
+
     public static void main(String[] args) {
+        predictPartyVictory("RRDDRDDRDR");
         lemonadeChange(new int[]{5, 5, 5, 5, 20, 20, 5, 5, 20, 5});
     }
 }
