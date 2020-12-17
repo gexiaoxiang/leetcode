@@ -1,5 +1,8 @@
 package com.eden.questionbank.algorithms.simple;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @Description: 简单 page 3  size 100
  * @Author: gexx
@@ -115,7 +118,31 @@ public class SimpleThirdPage {
     }
 
 
+    /**
+     * @Description: 868. 二进制间距
+     * @Author: gexx
+     * @Date: 2020/12/17
+     **/
+    public static int binaryGap(int n) {
+        String binaryString = Integer.toBinaryString(n);
+        List<Integer> list = new ArrayList();
+        for (int i = 0; i < binaryString.length(); i++) {
+            char c = binaryString.charAt(i);
+            if (c == '1') {
+                list.add(i);
+            }
+        }
+        if (list.size() <= 1) return 0;
+        int max = 1;
+        for (int i = 0; i < list.size() - 1; i++) {
+            max = Math.max(list.get(i + 1) - list.get(i), max);
+        }
+        return max;
+
+    }
+
     public static void main(String[] args) {
+        binaryGap(22);
         peakIndexInMountainArray(new int[]{0, 1, 0});
         buddyStrings("ab", "ba");
     }
