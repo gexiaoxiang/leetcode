@@ -91,6 +91,30 @@ public class SimpleThirdPage {
     }
 
 
+    /**
+     * @Description: 867. 转置矩阵
+     * @Author: gexx
+     * [1,2,3]     [1,4,7]
+     * [4,5,6]     [2,5,8]
+     * [7,8,9]     [3,6,9]
+     * <p>
+     * [1,2,3] [1,4]
+     * [4,5,6] [2,5]
+     * [3,6]
+     * @Date: 2020/12/17
+     **/
+    public int[][] transpose(int[][] A) {
+        int R = A.length, C = A[0].length;
+        int[][] ans = new int[C][R];
+        for (int r = 0; r < R; ++r)
+            for (int c = 0; c < C; ++c) {
+                ans[c][r] = A[r][c];
+            }
+        return ans;
+
+    }
+
+
     public static void main(String[] args) {
         peakIndexInMountainArray(new int[]{0, 1, 0});
         buddyStrings("ab", "ba");
