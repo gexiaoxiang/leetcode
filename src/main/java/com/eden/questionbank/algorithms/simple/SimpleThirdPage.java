@@ -1,7 +1,9 @@
 package com.eden.questionbank.algorithms.simple;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @Description: 简单 page 3  size 100
@@ -172,8 +174,8 @@ public class SimpleThirdPage {
         List<Integer> list2 = new ArrayList();
 
 
-        dfs(root1,list1);
-        dfs(root2,list2);
+        dfs(root1, list1);
+        dfs(root2, list2);
 
         return list1.equals(list2);
 
@@ -181,14 +183,54 @@ public class SimpleThirdPage {
     }
 
     private void dfs(TreeNode node, List<Integer> list) {
-        if(node!=null){
-            if(node.left==null&&node.right==null){
+        if (node != null) {
+            if (node.left == null && node.right == null) {
                 list.add(node.val);
             }
-            dfs(node.left,list);
-            dfs(node.right,list);
+            dfs(node.left, list);
+            dfs(node.right, list);
 
         }
+    }
+
+    /**
+     * @Description: 874. 模拟行走机器人
+     * @Author: gexx
+     * @Date: 2020/12/18
+     **/
+    public int robotSim(int[] commands, int[][] obstacles) {
+        int[] dx = new int[]{0, 1, 0, -1};
+        int[] dy = new int[]{1, 0, -1, 0};
+        int x = 0, y = 0, di = 0;
+
+        Set<Long> obstacleSet = new HashSet();
+        for (int[] obstacle : obstacles) {
+            long ox = (long) obstacle[0] + 30000;
+            long oy = (long) obstacle[1] + 30000;
+            obstacleSet.add((ox << 16) + oy);
+        }
+
+        int ans = 0;
+        for (int cmd : commands) {
+            if (cmd == -2)  //left
+                di = (di + 3) % 4;
+            else if (cmd == -1)  //right
+                di = (di + 1) % 4;
+            else {
+                for (int k = 0; k < cmd; ++k) {
+                    int nx = x + dx[di];
+                    int ny = y + dy[di];
+                    long code = (((long) nx + 30000) << 16) + ((long) ny + 30000);
+                    if (!obstacleSet.contains(code)) {
+                        x = nx;
+                        y = ny;
+                        ans = Math.max(ans, x * x + y * y);
+                    }
+                }
+            }
+        }
+
+        return ans;
     }
 
     public static void main(String[] args) {
