@@ -254,14 +254,14 @@ public class SimpleThirdPage {
         int num = 0;
         num = l.size() / 2;
 
-        return  dfsLikedNum(head, num);
+        return dfsLikedNum(head, num);
 
     }
 
     private static ListNode dfsLikedNum(ListNode head, int num) {
         if (head != null && num != 0) {
             num--;
-           return dfsLikedNum(head.next, num);
+            return dfsLikedNum(head.next, num);
         }
         return head;
     }
@@ -271,6 +271,29 @@ public class SimpleThirdPage {
             l.add(head.val);
             dfsLiked(head.next, l);
         }
+    }
+
+    /**
+     * @Description: 883. 三维形体投影面积
+     * @Author: gexx
+     * @Date: 2020/12/18
+     **/
+    public int projectionArea(int[][] grid) {
+        int N = grid.length;
+        int ans = 0;
+
+        for (int i = 0; i < N;  ++i) {
+            int bestRow = 0;  // largest of grid[i][j]
+            int bestCol = 0;  // largest of grid[j][i]
+            for (int j = 0; j < N; ++j) {
+                if (grid[i][j] > 0) ans++;  // top shadow
+                bestRow = Math.max(bestRow, grid[i][j]);
+                bestCol = Math.max(bestCol, grid[j][i]);
+            }
+            ans += bestRow + bestCol;
+        }
+
+        return ans;
     }
 
     public static void main(String[] args) {
@@ -284,7 +307,7 @@ public class SimpleThirdPage {
         l2.next = l3;
         l3.next = l4;
         l4.next = l5;
-        l5.next=l6;
+        l5.next = l6;
         middleNode(l1);
         binaryGap(22);
         peakIndexInMountainArray(new int[]{0, 1, 0});
