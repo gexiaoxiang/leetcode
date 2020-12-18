@@ -233,7 +233,59 @@ public class SimpleThirdPage {
         return ans;
     }
 
+
+    public static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
+    }
+
+    /**
+     * @Description: 876. 链表的中间结点
+     * @Author: gexx
+     * @Date: 2020/12/18
+     **/
+    public static ListNode middleNode(ListNode head) {
+        List l = new ArrayList();
+        dfsLiked(head, l);
+        int num = 0;
+        num = l.size() / 2;
+
+        return  dfsLikedNum(head, num);
+
+    }
+
+    private static ListNode dfsLikedNum(ListNode head, int num) {
+        if (head != null && num != 0) {
+            num--;
+           return dfsLikedNum(head.next, num);
+        }
+        return head;
+    }
+
+    public static void dfsLiked(ListNode head, List l) {
+        if (head != null) {
+            l.add(head.val);
+            dfsLiked(head.next, l);
+        }
+    }
+
     public static void main(String[] args) {
+        ListNode l1 = new ListNode(1);
+        ListNode l2 = new ListNode(2);
+        ListNode l3 = new ListNode(3);
+        ListNode l4 = new ListNode(4);
+        ListNode l5 = new ListNode(5);
+        ListNode l6 = new ListNode(6);
+        l1.next = l2;
+        l2.next = l3;
+        l3.next = l4;
+        l4.next = l5;
+        l5.next=l6;
+        middleNode(l1);
         binaryGap(22);
         peakIndexInMountainArray(new int[]{0, 1, 0});
         buddyStrings("ab", "ba");
