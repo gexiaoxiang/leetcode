@@ -304,10 +304,10 @@ public class SimpleThirdPage {
         String[] bS = B.split(" ");
         Map<String, Integer> map = new HashMap();
         for (int i = 0; i < aS.length; i++) {
-                map.put(aS[i], map.getOrDefault(aS[i], 0) + 1);
+            map.put(aS[i], map.getOrDefault(aS[i], 0) + 1);
         }
         for (int i = 0; i < bS.length; i++) {
-                map.put(bS[i], map.getOrDefault(bS[i], 0) + 1);
+            map.put(bS[i], map.getOrDefault(bS[i], 0) + 1);
 
         }
         List<String> list = new ArrayList();
@@ -319,11 +319,34 @@ public class SimpleThirdPage {
         }
         int index = 0;
         String res[] = new String[list.size()];
-        for(String str : list){
+        for (String str : list) {
             res[index] = str;
             index++;
         }
         return list.toArray(new String[list.size()]);
+    }
+
+    /**
+     * @Description: 888. 公平的糖果交换
+     * @Author: gexx
+     * @Date: 2020/12/21
+     **/
+    public int[] fairCandySwap(int[] A, int[] B) {
+
+        int sa = 0, sb = 0;  // sum of A, B respectively
+        for (int x : A) sa += x;
+        for (int x : B) sb += x;
+        int delta = (sb - sa) / 2;
+
+        Set<Integer> setB = new HashSet();
+        for (int x : B) setB.add(x);
+
+        for (int x : A)
+            if (setB.contains(x + delta))
+                return new int[]{x, x + delta};
+
+        return null;
+
     }
 
     public static void main(String[] args) {
