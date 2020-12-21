@@ -1,9 +1,6 @@
 package com.eden.questionbank.algorithms.simple;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @Description: 简单 page 3  size 100
@@ -282,7 +279,7 @@ public class SimpleThirdPage {
         int N = grid.length;
         int ans = 0;
 
-        for (int i = 0; i < N;  ++i) {
+        for (int i = 0; i < N; ++i) {
             int bestRow = 0;  // largest of grid[i][j]
             int bestCol = 0;  // largest of grid[j][i]
             for (int j = 0; j < N; ++j) {
@@ -296,19 +293,42 @@ public class SimpleThirdPage {
         return ans;
     }
 
+    /**
+     * @Description: 884. 两句话中的不常见单词
+     * @Author: gexx
+     * @Date: 2020/12/21
+     **/
+    public static String[] uncommonFromSentences(String A, String B) {
+
+        String[] aS = A.split(" ");
+        String[] bS = B.split(" ");
+        Map<String, Integer> map = new HashMap();
+        for (int i = 0; i < aS.length; i++) {
+                map.put(aS[i], map.getOrDefault(aS[i], 0) + 1);
+        }
+        for (int i = 0; i < bS.length; i++) {
+                map.put(bS[i], map.getOrDefault(bS[i], 0) + 1);
+
+        }
+        List<String> list = new ArrayList();
+
+        for (String key : map.keySet()) {
+            if (map.get(key) == 1) {
+                list.add(key);
+            }
+        }
+        int index = 0;
+        String res[] = new String[list.size()];
+        for(String str : list){
+            res[index] = str;
+            index++;
+        }
+        return list.toArray(new String[list.size()]);
+    }
+
     public static void main(String[] args) {
-        ListNode l1 = new ListNode(1);
-        ListNode l2 = new ListNode(2);
-        ListNode l3 = new ListNode(3);
-        ListNode l4 = new ListNode(4);
-        ListNode l5 = new ListNode(5);
-        ListNode l6 = new ListNode(6);
-        l1.next = l2;
-        l2.next = l3;
-        l3.next = l4;
-        l4.next = l5;
-        l5.next = l6;
-        middleNode(l1);
+        uncommonFromSentences("d b zu d t",
+                "udb zu ap");
         binaryGap(22);
         peakIndexInMountainArray(new int[]{0, 1, 0});
         buddyStrings("ab", "ba");
