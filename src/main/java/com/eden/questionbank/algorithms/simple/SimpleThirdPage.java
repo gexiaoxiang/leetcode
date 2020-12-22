@@ -383,11 +383,28 @@ public class SimpleThirdPage {
 
     }
 
+    /**
+     * @Description: 893. 特殊等价字符串组
+     * @Author: gexx
+     * @Date: 2020/12/22
+     **/
+    public int numSpecialEquivGroups(String[] A) {
+        Set<String> seen = new HashSet();
+        for (String S : A) {
+            int[] count = new int[52];
+            for (int i = 0; i < S.length(); ++i)
+                count[S.charAt(i) - 'a' + 26 * (i % 2)]++;
+            seen.add(Arrays.toString(count));
+        }
+        return seen.size();
+    }
+
     public static void main(String[] args) {
         uncommonFromSentences("d b zu d t",
                 "udb zu ap");
         binaryGap(22);
         peakIndexInMountainArray(new int[]{0, 1, 0});
         buddyStrings("ab", "ba");
+
     }
 }
