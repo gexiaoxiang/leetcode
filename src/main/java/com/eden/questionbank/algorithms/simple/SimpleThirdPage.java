@@ -443,7 +443,33 @@ public class SimpleThirdPage {
         inorder(node.right, vals);
     }
 
+
+    /**
+     * @Description: 905. 按奇偶排序数组
+     * @Author: gexx
+     * @Date: 2020/12/25
+     **/
+    public static int[] sortArrayByParity(int[] A) {
+
+        int[] B = new int[A.length];
+        for (int i = 0, k = 0, j = A.length - 1; i < A.length; i++) {
+
+            if (A[i] % 2 == 0) {
+                B[k] = A[i];
+                k++;
+            } else {
+                B[j] = A[i];
+                j--;
+            }
+        }
+        return B;
+
+    }
+
     public static void main(String[] args) {
+
+        sortArrayByParity(new int[]{
+                3, 1, 2, 4});
         uncommonFromSentences("d b zu d t",
                 "udb zu ap");
         binaryGap(22);
