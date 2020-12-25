@@ -420,6 +420,28 @@ public class SimpleThirdPage {
         return true;
     }
 
+    /**
+     * @Description: 897. 递增顺序查找树
+     * @Author: gexx
+     * @Date: 2020/12/25
+     **/
+    public TreeNode increasingBST(TreeNode root) {
+        List<Integer> vals = new ArrayList();
+        inorder(root, vals);
+        TreeNode ans = new TreeNode(0), cur = ans;
+        for (int v : vals) {
+            cur.right = new TreeNode(v);
+            cur = cur.right;
+        }
+        return ans.right;
+    }
+
+    public void inorder(TreeNode node, List<Integer> vals) {
+        if (node == null) return;
+        inorder(node.left, vals);
+        vals.add(node.val);
+        inorder(node.right, vals);
+    }
 
     public static void main(String[] args) {
         uncommonFromSentences("d b zu d t",
@@ -430,3 +452,4 @@ public class SimpleThirdPage {
 
     }
 }
+;
