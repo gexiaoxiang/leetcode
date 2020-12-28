@@ -466,6 +466,21 @@ public class SimpleThirdPage {
 
     }
 
+    /**
+     * @Description: 908. 最小差值 I
+     * @Author: gexx
+     * @Date: 2020/12/28
+     **/
+    public int smallestRangeI(int[] A, int K) {
+        int min = A[0], max = A[0];
+        for (int x : A) {
+            min = Math.min(min, x);
+            max = Math.max(max, x);
+        }
+        return Math.max(0, max - min - 2 * K);
+
+    }
+
     public static void main(String[] args) {
 
         sortArrayByParity(new int[]{
