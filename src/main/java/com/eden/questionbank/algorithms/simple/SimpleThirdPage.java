@@ -540,6 +540,34 @@ public class SimpleThirdPage {
 
     }
 
+    /**
+     * @Description: 922. 按奇偶排序数组 II
+     * @Author: gexx
+     * @Date: 2020/12/30
+     **/
+    public int[] sortArrayByParityII(int[] A) {
+        Stack<Integer> evenStack = new Stack();
+        Stack<Integer> oddStack = new Stack();
+        int[] AC = new int[A.length];
+        for (int a : A) {
+            if (a % 2 == 0) {
+                evenStack.add(a);
+            } else {
+                oddStack.add(a);
+            }
+        }
+
+        for (int i = 0; i < A.length; i++) {
+            if (i % 2 == 0) {
+                AC[i] = evenStack.pop();
+            } else {
+                AC[i] = oddStack.pop();
+            }
+        }
+
+        return AC;
+    }
+
     public static void main(String[] args) {
         reverseOnlyLetters("a-bC-dEf-ghIj"
         );
