@@ -517,7 +517,32 @@ public class SimpleThirdPage {
         return false;
     }
 
+    /**
+     * @Description: 917. 仅仅反转字母
+     * @Author: gexx
+     * @Date: 2020/12/30
+     **/
+    public static String reverseOnlyLetters(String S) {
+        Stack<Character> letters = new Stack();
+        for (char c : S.toCharArray())
+            if (Character.isLetter(c))
+                letters.push(c);
+
+        StringBuilder ans = new StringBuilder();
+        for (char c : S.toCharArray()) {
+            if (Character.isLetter(c))
+                ans.append(letters.pop());
+            else
+                ans.append(c);
+        }
+
+        return ans.toString();
+
+    }
+
     public static void main(String[] args) {
+        reverseOnlyLetters("a-bC-dEf-ghIj"
+        );
         hasGroupsSizeX(new int[]{1, 2, 3, 4, 4, 3, 2, 1});
         sortArrayByParity(new int[]{
                 3, 1, 2, 4});
