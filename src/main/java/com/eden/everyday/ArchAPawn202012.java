@@ -1,9 +1,6 @@
 package com.eden.everyday;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * @Description: 每日一题
@@ -102,6 +99,28 @@ public class ArchAPawn202012 {
 
     }
 
+    /**
+     * @Description: 1046. 最后一块石头的重量
+     * @Author: gexx
+     * @Date: 2020/12/30
+     **/
+    public int lastStoneWeight(int[] stones) {
+        PriorityQueue<Integer> pq = new PriorityQueue<Integer>((a, b) -> b - a);
+        for (int stone : stones) {
+            pq.offer(stone);
+        }
+
+        while (pq.size() > 1) {
+            int a = pq.poll();
+            int b = pq.poll();
+            if (a > b) {
+                pq.offer(a - b);
+            }
+        }
+        return pq.isEmpty() ? 0 : pq.poll();
+
+
+    }
 
     public static void main(String[] args) {
         predictPartyVictory("RRDDRDDRDR");
