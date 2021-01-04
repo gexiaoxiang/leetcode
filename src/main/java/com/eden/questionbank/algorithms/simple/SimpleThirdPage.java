@@ -588,10 +588,27 @@ public class SimpleThirdPage {
         return i == name.length();
     }
 
+    /**
+     * @Description: 929. 独特的电子邮件地址
+     * @Author: gexx
+     * @Date: 2021/1/4
+     **/
+    public static int numUniqueEmails(String[] emails) {
+        HashSet set = new HashSet();
+        for (String email : emails) {
+            String[] split = email.split("@");
+            String prefix = split[0].replace(".", "");
+            if (prefix.contains("+")) {
+                prefix = prefix.substring(0, prefix.indexOf("+"));
+            }
+            prefix = prefix + "@" + split[1];
+            set.add(prefix);
+        }
+        return set.size();
+    }
 
     public static void main(String[] args) {
-        reverseOnlyLetters("a-bC-dEf-ghIj"
-        );
+        numUniqueEmails(new String[]{"test.email+alex@leetcode.com", "test.e.mail+bob.cathy@leetcode.com", "testemail+david@lee.tcode.com"});
         hasGroupsSizeX(new int[]{1, 2, 3, 4, 4, 3, 2, 1});
         sortArrayByParity(new int[]{
                 3, 1, 2, 4});
@@ -603,4 +620,3 @@ public class SimpleThirdPage {
 
     }
 }
-;
