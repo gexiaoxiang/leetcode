@@ -607,6 +607,21 @@ public class SimpleThirdPage {
         return set.size();
     }
 
+    class RecentCounter {
+        Queue<Integer> q;
+
+        public RecentCounter() {
+            q = new LinkedList();
+        }
+
+        public int ping(int t) {
+            q.add(t);
+            while (q.peek() < t - 3000)
+                q.poll();
+            return q.size();
+        }
+    }
+
     public static void main(String[] args) {
         numUniqueEmails(new String[]{"test.email+alex@leetcode.com", "test.e.mail+bob.cathy@leetcode.com", "testemail+david@lee.tcode.com"});
         hasGroupsSizeX(new int[]{1, 2, 3, 4, 4, 3, 2, 1});
