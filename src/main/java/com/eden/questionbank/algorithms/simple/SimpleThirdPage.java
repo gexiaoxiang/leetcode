@@ -662,6 +662,42 @@ public class SimpleThirdPage {
         return sum;
     }
 
+    /**
+     * @Description: 941. 有效的山脉数组
+     * @Author: gexx
+     * @Date: 2021/1/5
+     **/
+    public boolean validMountainArray(int[] arr) {
+        int i = 0;
+        for (; i < arr.length - 1; ) {
+            if (arr[i] < arr[i + 1]) {
+                i++;
+            } else if (arr[i] == arr[i + 1]) {
+                return false;
+            } else {
+                break;
+            }
+
+        }
+        if (i == 0 || i == arr.length - 1) {
+            return false;
+        }
+        for (; i < arr.length - 1; ) {
+            if (arr[i] > arr[i + 1]) {
+                i++;
+            } else if (arr[i] == arr[i + 1]) {
+                return false;
+            } else {
+                break;
+            }
+
+        }
+        if (i == arr.length - 1) {
+            return true;
+        }
+
+        return false;
+    }
 
     public static void main(String[] args) {
 
@@ -679,12 +715,12 @@ public class SimpleThirdPage {
         root.left = l1;
         l1.left = l2;
         l1.right = l4;
-        l2.left=l3;
-        l4.left=l5;
+        l2.left = l3;
+        l4.left = l5;
 
         root.right = r1;
         r1.right = r2;
-        r1.left=r3;
+        r1.left = r3;
         rangeSumBST(root, 6, 10);
 
         numUniqueEmails(new String[]{"test.email+alex@leetcode.com", "test.e.mail+bob.cathy@leetcode.com", "testemail+david@lee.tcode.com"});
