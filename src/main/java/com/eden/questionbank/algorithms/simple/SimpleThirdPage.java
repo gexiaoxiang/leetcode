@@ -699,8 +699,28 @@ public class SimpleThirdPage {
         return false;
     }
 
-    public static void main(String[] args) {
+    /**
+     * @Description: 942. 增减字符串匹配
+     * @Author: gexx
+     * @Date: 2021/1/5
+     **/
+    public static int[] diStringMatch(String S) {
+        int N = S.length();
+        int lo = 0, hi = N;
+        int[] ans = new int[N + 1];
+        for (int i = 0; i < N; ++i) {
+            if (S.charAt(i) == 'I')
+                ans[i] = lo++;
+            else
+                ans[i] = hi--;
+        }
 
+        ans[N] = lo;
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        diStringMatch("IDID");
 
         TreeNode root = new TreeNode(10);
         TreeNode l1 = new TreeNode(5);
