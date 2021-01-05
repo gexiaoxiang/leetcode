@@ -141,7 +141,7 @@ public class SimpleThirdPage {
     }
 
 
-    public class TreeNode {
+    public static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
@@ -643,7 +643,50 @@ public class SimpleThirdPage {
         return logs;
     }
 
+    /**
+     * @Description: 938. 二叉搜索树的范围和
+     * @Author: gexx
+     * @Date: 2021/1/5
+     **/
+    static int sum = 0;
+
+    public static int rangeSumBST(TreeNode root, int low, int high) {
+
+        if (root != null) {
+            if (root.val >= low && root.val <= high) {
+                sum = sum + root.val;
+            }
+            rangeSumBST(root.left, low, high);
+            rangeSumBST(root.right, low, high);
+        }
+        return sum;
+    }
+
+
     public static void main(String[] args) {
+
+
+        TreeNode root = new TreeNode(10);
+        TreeNode l1 = new TreeNode(5);
+        TreeNode l2 = new TreeNode(3);
+        TreeNode l3 = new TreeNode(1);
+        TreeNode l4 = new TreeNode(7);
+        TreeNode l5 = new TreeNode(6);
+        TreeNode r1 = new TreeNode(15);
+        TreeNode r2 = new TreeNode(18);
+        TreeNode r3 = new TreeNode(13);
+
+        root.left = l1;
+        l1.left = l2;
+        l1.right = l4;
+        l2.left=l3;
+        l4.left=l5;
+
+        root.right = r1;
+        r1.right = r2;
+        r1.left=r3;
+        rangeSumBST(root, 6, 10);
+
         numUniqueEmails(new String[]{"test.email+alex@leetcode.com", "test.e.mail+bob.cathy@leetcode.com", "testemail+david@lee.tcode.com"});
         hasGroupsSizeX(new int[]{1, 2, 3, 4, 4, 3, 2, 1});
         sortArrayByParity(new int[]{
