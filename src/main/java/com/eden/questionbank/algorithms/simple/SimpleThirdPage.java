@@ -767,7 +767,30 @@ public class SimpleThirdPage {
 
     }
 
+    /**
+     * @Description: 961. 重复 N 次的元素
+     * @Author: gexx
+     * @Date: 2021/1/6
+     **/
+    public static int repeatedNTimes(int[] A) {
+        int N = A.length;
+        Map<Integer, Integer> map = new HashMap();
+        for (int i = 0; i < N; i++) {
+            map.put(A[i], map.getOrDefault(A[i], 0) + 1);
+        }
+        Iterator<Integer> keys = map.keySet().iterator();
+        while (keys.hasNext()) {
+            Integer key = keys.next();
+            if (map.get(key) == N / 2) {
+                return key;
+            }
+        }
+
+        return 0;
+    }
+
     public static void main(String[] args) {
+        repeatedNTimes(new int[]{5, 1, 5, 2, 5, 3, 5, 4});
         diStringMatch("IDID");
 
         TreeNode root = new TreeNode(10);
