@@ -828,6 +828,20 @@ public class SimpleThirdPage {
         return new ArrayList<>(res);
     }
 
+    /**
+     * @Description: 976. 三角形的最大周长
+     * @Author: gexx
+     * @Date: 2021/1/7
+     **/
+    public int largestPerimeter(int[] A) {
+        Arrays.sort(A);
+        for (int i = A.length - 1; i >= 2; i--) {
+            if (A[i] < A[i - 1] + A[i - 2]) {
+                return A[i] + A[i - 1] + A[i - 2];
+            }
+        }
+        return 0;
+    }
 
     public static void main(String[] args) {
         repeatedNTimes(new int[]{5, 1, 5, 2, 5, 3, 5, 4});
