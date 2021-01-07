@@ -809,17 +809,25 @@ public class SimpleThirdPage {
      * @Date: 2021/1/7
      **/
     public List<Integer> powerfulIntegers(int x, int y, int bound) {
-
-        Set<Integer> seen = new HashSet();
-        for (int i = 0; i < 18 && Math.pow(x, i) <= bound; ++i)
-            for (int j = 0; j < 18 && Math.pow(y, j) <= bound; ++j) {
-                int v = (int) Math.pow(x, i) + (int) Math.pow(y, j);
-                if (v <= bound)
-                    seen.add(v);
+        Set<Integer> res = new HashSet<>();
+        boolean over = false;
+        int up_i = x == 1 ? 0 : (int) (Math.log(bound) / Math.log(x));
+        int up_j = y == 1 ? 0 : (int) (Math.log(bound) / Math.log(y));
+        for (int i = 0; i <= up_i; i++) {
+            for (int j = 0; j <= up_j; j++) {
+                int temp = (int) (Math.pow(x, i) + Math.pow(y, j));
+                if (temp <= bound) res.add(temp);
+                else if (j > 0) break;
+                else {
+                    over = true;
+                    break;
+                }
             }
-
-        return new ArrayList(seen);
+            if (over) break;
+        }
+        return new ArrayList<>(res);
     }
+
 
     public static void main(String[] args) {
         repeatedNTimes(new int[]{5, 1, 5, 2, 5, 3, 5, 4});
