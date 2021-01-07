@@ -789,6 +789,21 @@ public class SimpleThirdPage {
         return 0;
     }
 
+    /**
+     * @Description: 965. 单值二叉树
+     * @Author: gexx
+     * @Date: 2021/1/7
+     **/
+    public boolean isUnivalTree(TreeNode root) {
+        boolean left_correct = (root.left == null ||
+                (root.val == root.left.val && isUnivalTree(root.left)));
+        boolean right_correct = (root.right == null ||
+                (root.val == root.right.val && isUnivalTree(root.right)));
+        return left_correct && right_correct;
+
+    }
+
+
     public static void main(String[] args) {
         repeatedNTimes(new int[]{5, 1, 5, 2, 5, 3, 5, 4});
         diStringMatch("IDID");
