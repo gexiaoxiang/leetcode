@@ -359,5 +359,6 @@ public class SimpleFirstPage {
         readBinaryWatch(3);
 
         System.out.println(Integer.bitCount(7));
+        System.out.println( System.getProperty("user.home") );
     }
 }
