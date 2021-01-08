@@ -843,6 +843,18 @@ public class SimpleThirdPage {
         return 0;
     }
 
+    /**
+     * @Description: 977. 有序数组的平方
+     * @Author: gexx
+     * @Date: 2021/1/8
+     **/
+    public int[] sortedSquares(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = nums[i] * nums[i];
+        }
+        Arrays.sort(nums);
+        return nums;
+    }
     public static void main(String[] args) {
         repeatedNTimes(new int[]{5, 1, 5, 2, 5, 3, 5, 4});
         diStringMatch("IDID");
