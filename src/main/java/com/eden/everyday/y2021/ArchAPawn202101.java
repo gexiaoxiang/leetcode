@@ -1,5 +1,7 @@
 package com.eden.everyday.y2021;
 
+import java.util.Arrays;
+
 /**
  * @Description: 每日一题
  * @Author: gexx
@@ -20,8 +22,20 @@ public class ArchAPawn202101 {
     }
 
 
+    /**
+     * @Description: 977. 有序数组的平方
+     * @Author: gexx
+     * @Date: 2021/1/8
+     **/
+    public int[] sortedSquares(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = nums[i] * nums[i];
+        }
+        Arrays.sort(nums);
+        return nums;
+    }
+
     public static void main(String[] args) {
-        int fib = fib(2);
-        System.out.println(fib);
+        System.out.println(Arrays.toString("12.22".split("\\|")));
     }
 }
