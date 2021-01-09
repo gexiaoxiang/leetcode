@@ -905,6 +905,29 @@ public class SimpleThirdPage {
 
     }
 
+    /**
+     * @Description 993. 二叉树的堂兄弟节点
+     *
+     * @Author gexx
+     * @Date 2021/1/9
+     **/
+    Map<Integer,Integer> depth=new HashMap<>();
+    Map<Integer,TreeNode> father=new HashMap<>();
+    public boolean isCousins(TreeNode root, int x, int y) {
+        isCousinsDfs(root,null);
+
+        return depth.get(x)==depth.get(y)&&father.get(x)!=father.get(y);
+    }
+
+    private void isCousinsDfs(TreeNode root, TreeNode fa) {
+        if(root!=null){
+            depth.put(root.val,fa!=null?1+depth.get(fa.val):0);
+            father.put(root.val,fa);
+            isCousinsDfs(root.left,root);
+            isCousinsDfs(root.right,root);
+        }
+    }
+
     public static void main(String[] args) {
         addToArrayForm(new int[]{9, 9, 9, 9, 9, 9, 9, 9, 9, 9}
                 , 1);
