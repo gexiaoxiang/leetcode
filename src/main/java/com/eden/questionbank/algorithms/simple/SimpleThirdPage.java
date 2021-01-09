@@ -907,28 +907,56 @@ public class SimpleThirdPage {
 
     /**
      * @Description 993. 二叉树的堂兄弟节点
-     *
      * @Author gexx
      * @Date 2021/1/9
      **/
-    Map<Integer,Integer> depth=new HashMap<>();
-    Map<Integer,TreeNode> father=new HashMap<>();
-    public boolean isCousins(TreeNode root, int x, int y) {
-        isCousinsDfs(root,null);
+    Map<Integer, Integer> depth = new HashMap<>();
+    Map<Integer, TreeNode> father = new HashMap<>();
 
-        return depth.get(x)==depth.get(y)&&father.get(x)!=father.get(y);
+    public boolean isCousins(TreeNode root, int x, int y) {
+        isCousinsDfs(root, null);
+
+        return depth.get(x) == depth.get(y) && father.get(x) != father.get(y);
     }
 
     private void isCousinsDfs(TreeNode root, TreeNode fa) {
-        if(root!=null){
-            depth.put(root.val,fa!=null?1+depth.get(fa.val):0);
-            father.put(root.val,fa);
-            isCousinsDfs(root.left,root);
-            isCousinsDfs(root.right,root);
+        if (root != null) {
+            depth.put(root.val, fa != null ? 1 + depth.get(fa.val) : 0);
+            father.put(root.val, fa);
+            isCousinsDfs(root.left, root);
+            isCousinsDfs(root.right, root);
         }
     }
 
+
+    /**
+     * @Description 997. 找到小镇的法官
+     * @Author gexx
+     * @Date 2021/1/9
+     **/
+    public static int findJudge(int N, int[][] trust) {
+        if (trust.length == 0 && N == 1) {
+            return 1;
+        }
+        Map<Integer, Integer> maybeJudge = new HashMap<>();//可能是法官的人选
+        Set<Integer> trustOther = new HashSet();//相信別人的人
+        for (int[] single : trust) {
+            maybeJudge.put(single[1], maybeJudge.getOrDefault(single[1], 0) + 1);//记录每个人被多少人信任
+            trustOther.add(single[0]);
+        }
+        for (Integer set : maybeJudge.keySet()) {
+            if (maybeJudge.get(set).equals(N - 1) && trustOther.add(set)) {//法官需要N-1信任并且法官不信任任何人
+                return set;
+            }
+        }
+
+
+        return -1;
+    }
+
+
     public static void main(String[] args) {
+        findJudge(2, new int[][]{{1, 2}});
         addToArrayForm(new int[]{9, 9, 9, 9, 9, 9, 9, 9, 9, 9}
                 , 1);
         repeatedNTimes(new int[]{5, 1, 5, 2, 5, 3, 5, 4});
