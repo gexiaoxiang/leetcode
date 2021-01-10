@@ -1074,9 +1074,32 @@ public class SimpleThirdPage {
     }
 
 
+    /**
+     * @Description 1009. 十进制整数的反码
+     * @author gexx
+     * @Date 2021/1/10
+     **/
+    public static int bitwiseComplement(int N) {
+        String binaryStr = Integer.toBinaryString(N);
+        String[] split = binaryStr.split("");
+        StringBuilder sb = new StringBuilder();
+        for (String s : split) {
+            Integer integer = Integer.valueOf(s);
+            if (integer.equals(1)) {
+
+                sb.append(0);
+            } else {
+                sb.append(1);
+            }
+        }
+        String ss = sb.toString();
+        Integer s = Integer.parseInt(ss, 2);
+        return s;
+    }
 
 
     public static void main(String[] args) {
+        bitwiseComplement(5);
         largestSumAfterKNegations(new int[]{2, -3, -1, 5, -4
         }, 2);
         findJudge(2, new int[][]{{1, 2}});
