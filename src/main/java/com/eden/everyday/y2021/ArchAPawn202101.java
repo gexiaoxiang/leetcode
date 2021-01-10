@@ -1,6 +1,8 @@
 package com.eden.everyday.y2021;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @Description: 每日一题
@@ -55,6 +57,39 @@ public class ArchAPawn202101 {
         }
         return sell2;
 
+    }
+
+    /**
+     * @Description 228. 汇总区间
+     * @author gexx
+     * @Date 2021/1/10
+     **/
+    public static List<String> summaryRanges(int[] nums) {
+        List<String> result = new ArrayList<>();
+        if (nums.length == 1) {
+            result.add(nums[0] + "");
+        }
+        for (int i = 0; i < nums.length - 1; ) {
+            int begin = i;
+            while (nums[i] + 1 == nums[i + 1]) {
+                if (i < nums.length - 2) {
+                    i++;
+                } else {
+                    i = nums.length - 1;
+                    break;
+                }
+            }
+            if (i > begin) {
+                result.add(nums[begin] + "->" + nums[i]);
+            } else {
+                result.add(nums[i] + "");
+            }
+            if (i == nums.length - 2) {
+                result.add(nums[nums.length - 1] + "");
+            }
+            i++;
+        }
+        return result;
     }
 
     public static void main(String[] args) {
