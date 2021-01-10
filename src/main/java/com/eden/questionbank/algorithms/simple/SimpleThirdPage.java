@@ -998,7 +998,7 @@ public class SimpleThirdPage {
     public List<String> commonChars(String[] A) {
         int[] minfreq = new int[26];
         Arrays.fill(minfreq, Integer.MAX_VALUE);
-        for (String word: A) {
+        for (String word : A) {
             int[] freq = new int[26];
             int length = word.length();
             for (int i = 0; i < length; ++i) {
@@ -1020,7 +1020,62 @@ public class SimpleThirdPage {
 
     }
 
+    /**
+     * @Description 1005. K 次取反后最大化的数组和
+     * @author gexx
+     * @Date 2021/1/10
+     **/
+    public static int largestSumAfterKNegations(int[] A, int K) {
+        Arrays.sort(A);
+        int sum = 0;
+        //记录小于0的个数
+        int lessThanZero = 0;
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] < 0) {
+                lessThanZero++;
+            }
+        }
+        //如果K小于等于lessThanZero ，则从最小数开始依次取反A的值, 求和即可
+        if (K <= lessThanZero) {
+            for (int i = 0; i < K; i++) {
+                A[i] = -A[i];
+            }
+            sum = getSum(A, sum);
+            return sum;
+        } else {
+            //反之 先取反lessThanZero个A的小值   K-lessThanZero为剩下的K
+            for (int i = 0; i < lessThanZero; i++) {
+                A[i] = -A[i];
+            }
+            int levelK = K - lessThanZero;
+            if (((levelK & 1) == 0)) { // 如果剩下的K是偶数则将所有数直接相加得到答案，
+                sum = getSum(A, sum);
+                return sum;
+            } else {
+                // 反之重新排序数组 相加之后减去最小值得2倍即可
+                Arrays.sort(A);
+                sum = getSum(A, sum);
+                sum = sum - A[0] * 2;
+                return sum;
+
+            }
+
+
+        }
+
+
+    }
+
+    private static int getSum(int[] A, int sum) {
+        for (int i = 0; i < A.length; i++) {
+            sum += A[i];
+        }
+        return sum;
+    }
+
     public static void main(String[] args) {
+        largestSumAfterKNegations(new int[]{2, -3, -1, 5, -4
+        }, 2);
         findJudge(2, new int[][]{{1, 2}});
         addToArrayForm(new int[]{9, 9, 9, 9, 9, 9, 9, 9, 9, 9}
                 , 1);
@@ -1057,6 +1112,5 @@ public class SimpleThirdPage {
         binaryGap(22);
         peakIndexInMountainArray(new int[]{0, 1, 0});
         buddyStrings("ab", "ba");
-
     }
 }
