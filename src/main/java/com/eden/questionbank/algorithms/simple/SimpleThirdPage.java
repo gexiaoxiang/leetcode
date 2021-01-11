@@ -1148,6 +1148,23 @@ public class SimpleThirdPage {
         return ans;
     }
 
+    /**
+     * @Description: 1021. 删除最外层的括号
+     * @Author: gexx
+     * @Date: 2021/1/11
+     **/
+    public String removeOuterParentheses(String S) {
+        StringBuilder sb = new StringBuilder();
+        int level = 0;
+        for (char c : S.toCharArray()) {
+            if (c == ')') --level;
+            if (level >= 1) sb.append(c);
+            if (c == '(') ++level;
+        }
+        return sb.toString();
+
+    }
+
     public static void main(String[] args) {
         canThreePartsEqualSum(new int[]{
                 0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1});
