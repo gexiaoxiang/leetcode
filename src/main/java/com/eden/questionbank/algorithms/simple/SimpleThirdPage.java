@@ -1132,6 +1132,22 @@ public class SimpleThirdPage {
         return target == 2 * avral;
     }
 
+    /**
+     * @Description: 1018. 可被 5 整除的二进制前缀
+     * @Author: gexx
+     * @Date: 2021/1/11
+     **/
+    public List<Boolean> prefixesDivBy5(int[] A) {
+        int num = 0;
+        List<Boolean> ans = new ArrayList<>();
+        for (int index = 0; index < A.length; index++) {
+            num = (num * 2 + A[index]) % 5;
+            if (num == 0) ans.add(true);
+            else ans.add(false);
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         canThreePartsEqualSum(new int[]{
                 0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1});
