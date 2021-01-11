@@ -1097,8 +1097,44 @@ public class SimpleThirdPage {
         return s;
     }
 
+    /**
+     * @Description: 1013. 将数组分成和相等的三个部分
+     * @Author: gexx
+     * @Date: 2021/1/11
+     **/
+    public static boolean canThreePartsEqualSum(int[] arr) {
+        if (arr.length < 3) return false;
+        int sum = 0;
+        for (int a : arr) {
+            sum += a;
+        }
+        if (sum % 3 != 0) return false;
+        int avral = sum / 3;
+        int target = 0, i = 0, l = arr.length;
+        while (i < l) {
+            target += arr[i];
+            if (target != avral) {
+                i++;
+            } else {
+                break;
+            }
+        }
+        int j = i + 1;
+        while (j < l - 1) {//最后一个非空
+            target += arr[j];
+            if (target != 2 * avral) {
+                j++;
+            } else {
+                break;
+            }
+        }
+
+        return target == 2 * avral;
+    }
 
     public static void main(String[] args) {
+        canThreePartsEqualSum(new int[]{
+                0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1});
         bitwiseComplement(5);
         largestSumAfterKNegations(new int[]{2, -3, -1, 5, -4
         }, 2);
