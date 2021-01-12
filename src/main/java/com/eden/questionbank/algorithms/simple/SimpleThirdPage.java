@@ -1203,6 +1203,27 @@ public class SimpleThirdPage {
         return N % 2 == 0;
     }
 
+    /**
+     * @Description: 1030. 距离顺序排列矩阵单元格
+     * @Author: gexx
+     * @Date: 2021/1/12
+     **/
+    public int[][] allCellsDistOrder(int R, int C, int r0, int c0) {
+        int[][] ret = new int[R * C][];
+        for (int i = 0; i < R; i++) {
+            for (int j = 0; j < C; j++) {
+                ret[i * C + j] = new int[]{i, j};
+            }
+        }
+        Arrays.sort(ret, new Comparator<int[]>() {
+            public int compare(int[] a, int[] b) {
+                return (Math.abs(a[0] - r0) + Math.abs(a[1] - c0)) - (Math.abs(b[0] - r0) + Math.abs(b[1] - c0));
+            }
+        });
+        return ret;
+
+    }
+
     public static void main(String[] args) {
         canThreePartsEqualSum(new int[]{
                 0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1});
