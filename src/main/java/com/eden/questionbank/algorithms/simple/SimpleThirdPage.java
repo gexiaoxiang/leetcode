@@ -1165,6 +1165,34 @@ public class SimpleThirdPage {
 
     }
 
+    /**
+     * @Description: 1022. 从根到叶的二进制数之和
+     * @Author: gexx
+     * @Date: 2021/1/12
+     **/
+    public static int sumRootToLeaf(TreeNode root) {
+
+        StringBuilder sb = new StringBuilder();
+        leftDelver(root, sb);
+
+        return sum;
+    }
+
+    private static void leftDelver(TreeNode root, StringBuilder sb) {
+        if (root == null) {
+            return;
+        }
+        sb.append(root.val);
+        if (root.left == null && root.right == null) {
+            sum += Integer.parseInt(sb.toString(), 2) ;
+        }
+
+        leftDelver(root.left, sb);
+        leftDelver(root.right, sb);
+        sb.deleteCharAt(sb.length() - 1);
+
+    }
+
     public static void main(String[] args) {
         canThreePartsEqualSum(new int[]{
                 0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1});
@@ -1177,26 +1205,23 @@ public class SimpleThirdPage {
         repeatedNTimes(new int[]{5, 1, 5, 2, 5, 3, 5, 4});
         diStringMatch("IDID");
 
-        TreeNode root = new TreeNode(10);
-        TreeNode l1 = new TreeNode(5);
-        TreeNode l2 = new TreeNode(3);
+        TreeNode root = new TreeNode(1);
+        TreeNode l1 = new TreeNode(0);
+        TreeNode l2 = new TreeNode(0);
         TreeNode l3 = new TreeNode(1);
-        TreeNode l4 = new TreeNode(7);
-        TreeNode l5 = new TreeNode(6);
-        TreeNode r1 = new TreeNode(15);
-        TreeNode r2 = new TreeNode(18);
-        TreeNode r3 = new TreeNode(13);
+
+        TreeNode r1 = new TreeNode(1);
+        TreeNode r2 = new TreeNode(0);
+        TreeNode r3 = new TreeNode(1);
 
         root.left = l1;
         l1.left = l2;
-        l1.right = l4;
-        l2.left = l3;
-        l4.left = l5;
-
+        l1.right = l3;
         root.right = r1;
-        r1.right = r2;
-        r1.left = r3;
-        rangeSumBST(root, 6, 10);
+        r1.left = r2;
+        r1.right = r3;
+        sumRootToLeaf(root);
+
 
         numUniqueEmails(new String[]{"test.email+alex@leetcode.com", "test.e.mail+bob.cathy@leetcode.com", "testemail+david@lee.tcode.com"});
         hasGroupsSizeX(new int[]{1, 2, 3, 4, 4, 3, 2, 1});
