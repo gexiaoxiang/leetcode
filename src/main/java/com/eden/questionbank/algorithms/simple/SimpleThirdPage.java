@@ -1184,13 +1184,23 @@ public class SimpleThirdPage {
         }
         sb.append(root.val);
         if (root.left == null && root.right == null) {
-            sum += Integer.parseInt(sb.toString(), 2) ;
+            sum += Integer.parseInt(sb.toString(), 2);
         }
 
         leftDelver(root.left, sb);
         leftDelver(root.right, sb);
         sb.deleteCharAt(sb.length() - 1);
 
+    }
+
+    /**
+     * @Description: 1025. 除数博弈
+     * @Author: gexx
+     * @Date: 2021/1/12
+     **/
+    public boolean divisorGame(int N) {
+
+        return N % 2 == 0;
     }
 
     public static void main(String[] args) {
