@@ -1244,7 +1244,19 @@ public class SimpleThirdPage {
 
     }
 
+    /**
+     * @Description: 1037. 有效的回旋镖
+     * @Author: gexx
+     * @Date: 2021/1/13
+     **/
+    public static boolean isBoomerang(int[][] points) {
+        return (points[1][1] - points[0][1]) * (points[2][0] - points[0][0]) != (points[2][1] - points[0][1]) * (points[1][0] - points[0][0]);
+
+
+    }
+
     public static void main(String[] args) {
+        isBoomerang(new int[][]{{1, 1}, {2, 3}, {3, 2}});
         canThreePartsEqualSum(new int[]{
                 0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1});
         bitwiseComplement(5);
