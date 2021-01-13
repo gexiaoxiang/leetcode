@@ -1224,6 +1224,26 @@ public class SimpleThirdPage {
 
     }
 
+    /**
+     * @Description: 1033. 移动石子直到连续
+     * @Author: gexx
+     * @Date: 2021/1/13
+     **/
+    public int[] numMovesStones(int a, int b, int c) {
+        int x = Math.min(a, Math.min(b, c));
+        int z = Math.max(a, Math.max(b, c));
+        int y = a ^ b ^ c ^ x ^ z; // 位运算
+
+        if (y - x == 1 && z - y == 1) { // 最小值为 0
+            return new int[]{0, 0};
+        } else if (y - x <= 2 || z - y <= 2) { // 最小值为 1
+            return new int[]{1, z - x - 2}; //
+        } else {
+            return new int[]{2, z - x - 2}; // 最小值为 2
+        }
+
+    }
+
     public static void main(String[] args) {
         canThreePartsEqualSum(new int[]{
                 0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1});
