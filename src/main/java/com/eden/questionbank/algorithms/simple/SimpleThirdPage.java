@@ -1255,7 +1255,36 @@ public class SimpleThirdPage {
 
     }
 
+    /**
+     * @Description: 1047. 删除字符串中的所有相邻重复项
+     * @Author: gexx
+     * @Date: 2021/1/13
+     **/
+    public static String removeDuplicates(String S) {
+
+        HashSet<String> duplicates = new HashSet();
+        StringBuilder sb = new StringBuilder();
+        for (char i = 'a'; i <= 'z'; ++i) {
+            sb.setLength(0);
+            sb.append(i);
+            sb.append(i);
+            duplicates.add(sb.toString());
+        }
+
+        int prevLength = -1;
+        while (prevLength != S.length()) {
+            prevLength = S.length();
+            for (String d : duplicates) S = S.replace(d, "");
+        }
+
+        return S;
+
+
+    }
+
     public static void main(String[] args) {
+        removeDuplicates("abbaca");
+
         isBoomerang(new int[][]{{1, 1}, {2, 3}, {3, 2}});
         canThreePartsEqualSum(new int[]{
                 0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1});
