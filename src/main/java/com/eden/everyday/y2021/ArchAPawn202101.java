@@ -244,6 +244,43 @@ public class ArchAPawn202101 {
         return new ArrayList<>();
     }
 
+    /**
+     * @Description: 684. 冗余连接
+     * @Author: gexx
+     * @Date: 2021/1/13
+     **/
+    public int[] findRedundantConnection(int[][] edges) {
+
+        int nodesCount = edges.length;
+        int[] parent = new int[nodesCount + 1];
+        for (int i = 1; i <= nodesCount; i++) {
+            parent[i] = i;
+        }
+        for (int i = 0; i < nodesCount; i++) {
+            int[] edge = edges[i];
+            int node1 = edge[0], node2 = edge[1];
+            if (find(parent, node1) != find(parent, node2)) {
+                union(parent, node1, node2);
+            } else {
+                return edge;
+            }
+        }
+        return new int[0];
+    }
+
+    public void union(int[] parent, int index1, int index2) {
+        parent[find(parent, index1)] = find(parent, index2);
+    }
+
+    public int find(int[] parent, int index) {
+        if (parent[index] != index) {
+            parent[index] = find(parent, parent[index]);
+        }
+        return parent[index];
+
+
+    }
+
     public static void main(String[] args) {
         maxProfit(new int[]{3, 3, 5, 0, 0, 3, 1, 4});
         System.out.println(Arrays.toString("12.22".split("\\|")));
