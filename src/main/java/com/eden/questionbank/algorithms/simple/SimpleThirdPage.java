@@ -1327,6 +1327,24 @@ public class SimpleThirdPage {
         return ans.toString().equals(s);
     }
 
+    /**
+     * @Description: 1078. Bigram 分词
+     * @Author: gexx
+     * @Date: 2021/1/14
+     **/
+    public String[] findOcurrences(String text, String first, String second) {
+        List<String> list = new ArrayList();
+        String[] str = text.split("");
+        for (int i = 0; i < str.length - 2; i++) {
+            if (str[i].equals(first) && str[i + 1].equals(second)) {
+                list.add(str[i + 2]);
+            }
+        }
+        String[] strings = new String[list.size()];
+        list.toArray(strings);
+        return strings;
+    }
+
     public static void main(String[] args) {
         removeDuplicates("abbaca");
 
