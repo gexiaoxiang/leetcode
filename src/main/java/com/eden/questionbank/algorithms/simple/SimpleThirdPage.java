@@ -1389,7 +1389,15 @@ public class SimpleThirdPage {
     }
 
 
-
+    /**
+     * @Description: 1108. IP 地址无效化
+     * @Author: gexx
+     * @Date: 2021/1/15
+     **/
+    public static String defangIPaddr(String address) {
+        String replace = address.replace(".", "[.]");
+        return replace;
+    }
     public static void main(String[] args) {
         defangIPaddr("1.1.1.1");
         duplicateZeros(new int[]{1, 0, 2, 3, 0, 4, 5, 0});
