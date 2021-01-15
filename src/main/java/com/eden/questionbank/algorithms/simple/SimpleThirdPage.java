@@ -1361,6 +1361,33 @@ public class SimpleThirdPage {
 
     }
 
+    /**
+     * @Description: 1103. 分糖果 II
+     * @Author: gexx
+     * @Date: 2021/1/15
+     **/
+    public int[] distributeCandies(int candies, int num_people) {
+        int[] candiesPerPeople = new int[num_people];
+        int candie = 1;
+        while (candies > 0) {
+            for (int i = 0; i < num_people; i++) {
+                if (candies <= 0) {
+                    break;
+                }
+                if (candies >= candie) {
+                    candiesPerPeople[i] = candiesPerPeople[i] + candie;
+                    candies = candies - candie;
+                    candie++;
+                } else {
+                    candiesPerPeople[i] = candiesPerPeople[i] + candies;
+                    candies = 0;
+                }
+            }
+        }
+
+        return candiesPerPeople;
+    }
+
     public static void main(String[] args) {
         duplicateZeros(new int[]{1, 0, 2, 3, 0, 4, 5, 0});
 
