@@ -1345,7 +1345,25 @@ public class SimpleThirdPage {
         return strings;
     }
 
+    /**
+     * @Description: 1089. 复写零
+     * @Author: gexx
+     * @Date: 2021/1/15
+     **/
+    public static void duplicateZeros(int[] arr) {
+        int[] copy = Arrays.copyOf(arr, arr.length);
+        for (int i = 0, j = 0; j < arr.length; i++) {
+            arr[j++] = copy[i];
+            if (copy[i] == 0 && j < arr.length) {
+                arr[j++] = 0;
+            }
+        }
+
+    }
+
     public static void main(String[] args) {
+        duplicateZeros(new int[]{1, 0, 2, 3, 0, 4, 5, 0});
+
         removeDuplicates("abbaca");
 
         isBoomerang(new int[][]{{1, 1}, {2, 3}, {3, 2}});
