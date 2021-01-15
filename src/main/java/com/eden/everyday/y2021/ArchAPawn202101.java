@@ -280,7 +280,15 @@ public class ArchAPawn202101 {
 
 
     }
-
+    /**
+     * @Description: 1108. IP 地址无效化
+     * @Author: gexx
+     * @Date: 2021/1/15
+     **/
+    public static String defangIPaddr(String address) {
+        String replace = address.replace(".", "[.]");
+        return replace;
+    }
     public static void main(String[] args) {
         maxProfit(new int[]{3, 3, 5, 0, 0, 3, 1, 4});
         System.out.println(Arrays.toString("12.22".split("\\|")));

@@ -1388,7 +1388,10 @@ public class SimpleThirdPage {
         return candiesPerPeople;
     }
 
+
+
     public static void main(String[] args) {
+        defangIPaddr("1.1.1.1");
         duplicateZeros(new int[]{1, 0, 2, 3, 0, 4, 5, 0});
 
         removeDuplicates("abbaca");
