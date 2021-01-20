@@ -1398,7 +1398,47 @@ public class SimpleThirdPage {
         String replace = address.replace(".", "[.]");
         return replace;
     }
+
+    /**
+     * @Description: 1122. 数组的相对排序
+     * @Author: gexx
+     * @Date: 2021/1/19
+     **/
+    public static int[] relativeSortArray(int[] arr1, int[] arr2) {
+        int[] result = new int[arr1.length];
+        Arrays.sort(arr1);
+        List<Integer> l = new ArrayList();
+        int index = 0;
+        for (int i = 0; i < arr2.length; i++) {
+            for (int j = 0; j < arr1.length; j++) {
+                if (arr2[i] == arr1[j]) {
+                    result[index++] = arr1[j];
+                }
+            }
+
+        }
+        for (int i = 0; i < arr1.length; i++) {
+            boolean inArr2 = false;
+            for (int j = 0; j < arr2.length; j++) {
+                if (arr1[i] == arr2[j]) {
+                    inArr2 = true;
+                }
+            }
+            if (!inArr2) {
+                l.add(arr1[i]);
+            }
+
+        }
+
+        for (int arr : l) {
+            result[index++] = arr;
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
+        relativeSortArray(new int[]{2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19}, new int[]{2, 1, 4, 3, 9, 6});
         defangIPaddr("1.1.1.1");
         duplicateZeros(new int[]{1, 0, 2, 3, 0, 4, 5, 0});
 
