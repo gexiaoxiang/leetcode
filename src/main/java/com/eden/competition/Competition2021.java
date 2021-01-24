@@ -1,6 +1,6 @@
-package com.eden;
+package com.eden.competition;
 
-public class Competition {
+public class Competition2021 {
 
     /**
      * @Descriptionv5661. 替换隐藏数字得到的最晚时间
