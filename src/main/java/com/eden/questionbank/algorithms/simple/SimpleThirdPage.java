@@ -1479,7 +1479,40 @@ public class SimpleThirdPage {
         return map.get(n);
     }
 
+    /**
+     * @Description: 1154. 一年中的第几天
+     * @Author: gexx
+     * @Date: 2021/1/28
+     **/
+    public static int dayOfYear(String date) {
+        int year = Integer.valueOf(date.substring(0, 4));
+        int month = Integer.valueOf(date.substring(5, 7)) - 1;
+        int day = Integer.valueOf(date.substring(8, 10));
+        int days = 0;
+        for (int i = 1; i <= month; i++) {
+
+            if (i == 2) {
+                if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)
+                ) {
+                    days += 29;
+                } else {
+                    days += 28;
+                }
+
+            } else if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10) {
+                days += 31;
+            } else {
+                days += 30;
+            }
+
+        }
+
+        days += day;
+        return days;
+    }
+
     public static void main(String[] args) {
+        dayOfYear("2003-03-01");
 
         tribonacci(25);
         relativeSortArray(new int[]{2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19}, new int[]{2, 1, 4, 3, 9, 6});
