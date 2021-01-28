@@ -1462,8 +1462,26 @@ public class SimpleThirdPage {
 
     }
 
+    /**
+     * @Description: 1137. 第 N 个泰波那契数
+     * @Author: gexx
+     * @Date: 2021/1/28
+     **/
+    public static int tribonacci(int n) {
+
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, 0);
+        map.put(1, 1);
+        map.put(2, 1);
+        for (int i = 3; i <= n; i++) {
+            map.put(i, map.get(i - 3) + map.get(i - 2) + map.get(i - 1));
+        }
+        return map.get(n);
+    }
+
     public static void main(String[] args) {
 
+        tribonacci(25);
         relativeSortArray(new int[]{2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19}, new int[]{2, 1, 4, 3, 9, 6});
         defangIPaddr("1.1.1.1");
         duplicateZeros(new int[]{1, 0, 2, 3, 0, 4, 5, 0});
