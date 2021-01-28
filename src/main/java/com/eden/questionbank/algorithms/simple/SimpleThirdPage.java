@@ -1437,7 +1437,33 @@ public class SimpleThirdPage {
         return result;
     }
 
+    /**
+     * @Description: 1128. 等价多米诺骨牌对的数量
+     * @Author: gexx
+     * @Date: 2021/1/27
+     **/
+    public static int numEquivDominoPairs(int[][] dominoes) {
+
+        int[] freq = new int[100];
+
+        int count = 0;
+        for (int[] dominoe : dominoes) {
+            if (dominoe[0] > dominoe[1]) {
+                int temp = dominoe[0];
+                dominoe[0] = dominoe[1];
+                dominoe[1] = temp;
+            }
+
+            int num = dominoe[0] * 10 + dominoe[1];
+            count += freq[num];
+            freq[num]++;
+        }
+        return count;
+
+    }
+
     public static void main(String[] args) {
+
         relativeSortArray(new int[]{2, 3, 1, 3, 2, 4, 6, 7, 9, 2, 19}, new int[]{2, 1, 4, 3, 9, 6});
         defangIPaddr("1.1.1.1");
         duplicateZeros(new int[]{1, 0, 2, 3, 0, 4, 5, 0});
