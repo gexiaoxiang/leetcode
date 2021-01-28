@@ -282,7 +282,28 @@ public class ArchAPawn202101 {
     }
 
 
+    /**
+     * @Description: 724. 寻找数组的中心索引
+     * @Author: gexx
+     * @Date: 2021/1/28
+     **/
+    public static int pivotIndex(int[] nums) {
+        int sum = Arrays.stream(nums).sum();
+        int middleSum = 0;
+        for (int i = 0; i < nums.length; i++) {
+
+            if (middleSum * 2 + nums[i] == sum) {
+                return i;
+            }
+            middleSum += nums[i];
+        }
+
+
+        return -1;
+    }
+
     public static void main(String[] args) {
+        pivotIndex(new int[]{1, 7, 3, 6, 5, 6});
         maxProfit(new int[]{3, 3, 5, 0, 0, 3, 1, 4});
         System.out.println(Arrays.toString("12.22".split("\\|")));
         rotate(new int[]{
