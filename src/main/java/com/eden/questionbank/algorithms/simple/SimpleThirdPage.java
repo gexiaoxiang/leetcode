@@ -1511,6 +1511,32 @@ public class SimpleThirdPage {
         return days;
     }
 
+    /**
+     * @Description: 1160. 拼写单词
+     * @Author: gexx
+     * @Date: 2021/1/29
+     **/
+    public static int countCharacters(String[] words, String chars) {
+        StringBuilder sb = new StringBuilder();
+        for (String word : words) {
+            String charsCopy = new String(chars);
+            for (char wordz : word.toCharArray()) {
+                int index = charsCopy.indexOf(wordz);
+                if (index != -1) {
+                    charsCopy = charsCopy.replaceFirst(String.valueOf(wordz), "");
+                } else {
+                    break;
+                }
+            }
+            if (charsCopy.length() + word.length() == chars.length()) {
+                sb.append(word);
+            }
+
+        }
+
+        return sb.length();
+    }
+
     public static void main(String[] args) {
         dayOfYear("2003-03-01");
 
