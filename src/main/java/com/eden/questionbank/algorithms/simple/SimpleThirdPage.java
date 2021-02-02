@@ -1574,7 +1574,39 @@ public class SimpleThirdPage {
         return (int) ans % 1000000007;
     }
 
+    /**
+     * @Description: 1184. 公交站间的距离
+     * @Author: gexx
+     * @Date: 2021/1/29
+     **/
+    public static int distanceBetweenBusStops(int[] distance, int start, int destination) {
+
+        int rdistance = 0;
+        int ldistance = 0;
+        if (start > destination) {
+            int tmp = start;
+            start = destination;
+            destination = tmp;
+        }
+        for (int i = start; i < destination; i++) {
+            rdistance += distance[i];
+        }
+
+        for (int i = destination; i < distance.length; i++) {
+            ldistance += distance[i];
+        }
+        for (int i = 0; i < start; i++) {
+            ldistance += distance[i];
+        }
+        return Math.min(rdistance, ldistance);
+
+    }
+
     public static void main(String[] args) {
+        distanceBetweenBusStops(new int[]{7, 10, 1, 12, 11, 14, 5, 0},
+                7,
+                2);
+
         dayOfYear("2003-03-01");
 
         tribonacci(25);
