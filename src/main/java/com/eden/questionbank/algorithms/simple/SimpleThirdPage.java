@@ -1637,7 +1637,7 @@ public class SimpleThirdPage {
                 map.put(String.valueOf(aChar), map.getOrDefault(String.valueOf(aChar), 0) + 1);
             }
         }
-        if(map.size()!=5){
+        if (map.size() != 5) {
             return 0;
         }
         Iterator<String> iterator = map.keySet().iterator();
@@ -1654,8 +1654,33 @@ public class SimpleThirdPage {
         return min;
     }
 
-    public static void main(String[] args) {
+    /**
+     * @Description: 1200. 最小绝对差
+     * @Author: gexx
+     * @Date: 2021/2/3
+     **/
+    public static List<List<Integer>> minimumAbsDifference(int[] arr) {
+        Arrays.sort(arr);
+        List<List<Integer>> fa = new ArrayList<>();
+        int minDiff = Integer.MAX_VALUE;
+        for (int i = 0; i < arr.length - 1; i++) {
+            minDiff = Math.min(minDiff, arr[i + 1] - arr[i]);
+        }
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (minDiff == arr[i + 1] - arr[i]) {
+                List son = new ArrayList<>();
+                son.add(arr[i]);
+                son.add(arr[i + 1]);
+                fa.add(son);
+            }
+        }
 
+
+        return fa;
+    }
+
+    public static void main(String[] args) {
+        minimumAbsDifference(new int[]{3, 8, -10, 23, 19, -4, -14, 27});
         System.out.println(dayOfTheWeek(21, 8, 2019));
         distanceBetweenBusStops(new int[]{7, 10, 1, 12, 11, 14, 5, 0},
                 7,
