@@ -1620,12 +1620,43 @@ public class SimpleThirdPage {
         DayOfWeek dayOfWeek = localDate.getDayOfWeek();
         String weekStr = dayOfWeek.toString();
 
-        return weekStr.substring(0,1).concat(weekStr.substring(1,weekStr.length()).toLowerCase());
+        return weekStr.substring(0, 1).concat(weekStr.substring(1, weekStr.length()).toLowerCase());
+    }
+
+    /**
+     * @Description: 1189. “气球” 的最大数量
+     * 木桶原理
+     * @Author: gexx
+     * @Date: 2021/2/3
+     **/
+    public int maxNumberOfBalloons(String text) {
+        Map<String, Integer> map = new HashMap<>();
+        char[] chars = text.toCharArray();
+        for (char aChar : chars) {
+            if ("balloon".indexOf(aChar) > -1) {
+                map.put(String.valueOf(aChar), map.getOrDefault(String.valueOf(aChar), 0) + 1);
+            }
+        }
+        if(map.size()!=5){
+            return 0;
+        }
+        Iterator<String> iterator = map.keySet().iterator();
+        int min = Integer.MAX_VALUE;
+        while (iterator.hasNext()) {
+            String key = iterator.next();
+            Integer integer = map.get(key);
+            if (key.equals("l") || key.equals("o")) {
+                integer = integer / 2;
+            }
+            min = Math.min(integer, min);
+        }
+
+        return min;
     }
 
     public static void main(String[] args) {
 
-        System.out.println(dayOfTheWeek(21,8,2019));
+        System.out.println(dayOfTheWeek(21, 8, 2019));
         distanceBetweenBusStops(new int[]{7, 10, 1, 12, 11, 14, 5, 0},
                 7,
                 2);
