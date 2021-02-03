@@ -1,5 +1,7 @@
 package com.eden.questionbank.algorithms.simple;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -1602,7 +1604,28 @@ public class SimpleThirdPage {
 
     }
 
+    /**
+     * @Description: 1185. 一周中的第几天
+     * @Author: gexx
+     * 蔡勒公式
+     * 1、W=[C/4]-2C+y+[y/4]+[26(m+1)/10]+d-1 （其中[ ]为取整符号）
+     * 2、其中,W是所求日期的星期数.如果求得的数大于7,
+     * 可以减去7的倍数,直到余数小于7为止.c是公元年份的前两位数字,y是已知公元年份的后两位数字;
+     * m是月数,d是日数.方括[ ]表示只截取该数的整数部分
+     * @Date: 2021/2/3
+     **/
+    public static String dayOfTheWeek(int day, int month, int year) {
+        String[] theWeek = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+        LocalDate localDate = LocalDate.of(year, month, day);
+        DayOfWeek dayOfWeek = localDate.getDayOfWeek();
+        String weekStr = dayOfWeek.toString();
+
+        return weekStr.substring(0,1).concat(weekStr.substring(1,weekStr.length()).toLowerCase());
+    }
+
     public static void main(String[] args) {
+
+        System.out.println(dayOfTheWeek(21,8,2019));
         distanceBetweenBusStops(new int[]{7, 10, 1, 12, 11, 14, 5, 0},
                 7,
                 2);
