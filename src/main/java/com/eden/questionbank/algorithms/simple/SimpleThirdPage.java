@@ -1679,6 +1679,30 @@ public class SimpleThirdPage {
         return fa;
     }
 
+    /**
+     * @Description: 1207. 独一无二的出现次数
+     * @Author: gexx
+     * @Date: 2021/2/4
+     **/
+    public boolean uniqueOccurrences(int[] arr) {
+        Map<Integer, Integer> m = new HashMap<>();
+        for (int i = 0; i < arr.length; i++) {
+            m.put(arr[i], m.getOrDefault(arr[i], 0) + 1);
+        }
+        Iterator<Integer> iterator = m.keySet().iterator();
+        Set set = new HashSet();
+        while (iterator.hasNext()) {
+            Integer key = iterator.next();
+            Integer value = m.get(key);
+            if (!set.add(value)) {
+                return false;
+            }
+        }
+
+
+        return true;
+    }
+
     public static void main(String[] args) {
         minimumAbsDifference(new int[]{3, 8, -10, 23, 19, -4, -14, 27});
         System.out.println(dayOfTheWeek(21, 8, 2019));
