@@ -1703,6 +1703,24 @@ public class SimpleThirdPage {
         return true;
     }
 
+    /**
+     * @Description: 1217. 玩筹码
+     * @Author: gexx
+     * @Date: 2021/2/4
+     **/
+    public int minCostToMoveChips(int[] chips) {
+        int odd = 0, even = 0;
+        for (int i = 0; i < chips.length; i++) {
+            if (chips[i] % 2 == 0) {
+                even++;
+            } else if (chips[i] % 2 != 0) {
+                odd++;
+            }
+        }
+        return Math.min(even, odd);
+
+    }
+
     public static void main(String[] args) {
         minimumAbsDifference(new int[]{3, 8, -10, 23, 19, -4, -14, 27});
         System.out.println(dayOfTheWeek(21, 8, 2019));
