@@ -1721,6 +1721,22 @@ public class SimpleThirdPage {
 
     }
 
+    /**
+     * @Description: 1221. 分割平衡字符串
+     * @Author: gexx
+     * @Date: 2021/2/4
+     **/
+    public int balancedStringSplit(String s) {
+        int count = 0;
+        int ans = 0;
+        for (char ch : s.toCharArray()) {
+            if (ch == 'R') count++;
+            if (ch == 'L') count--;
+            if (count == 0) ans++;
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         minimumAbsDifference(new int[]{3, 8, -10, 23, 19, -4, -14, 27});
         System.out.println(dayOfTheWeek(21, 8, 2019));
