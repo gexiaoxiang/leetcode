@@ -1753,11 +1753,37 @@ public class SimpleThirdPage {
             if (y1 * x2 != y2 * x1) {
                 return false;
             }
-
-
         }
 
         return true;
+    }
+
+    /**
+     * @Description: 1252. 奇数值单元格的数目
+     * @Author: gexx
+     * @Date: 2021/2/5
+     **/
+    public int oddCells(int n, int m, int[][] indices) {
+        int[] rows = new int[n];
+        int[] cols = new int[m];
+        for (int[] index : indices) {
+            rows[index[0]]++;
+            cols[index[1]]++;
+        }
+        int sum = 0;
+        int rowNum = 0;
+        for (int row : rows) {
+            if (row % 2 == 1) {
+                sum += m;
+                rowNum++;
+            }
+        }
+        for (int col : cols) {
+            if (col % 2 == 1) {
+                sum += n - 2 * rowNum;
+            }
+        }
+        return sum;
     }
 
     public static void main(String[] args) {
