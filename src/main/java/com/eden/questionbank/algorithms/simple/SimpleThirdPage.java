@@ -1737,6 +1737,29 @@ public class SimpleThirdPage {
         return ans;
     }
 
+    /**
+     * @Description: 1232. 缀点成线
+     * @Author: gexx
+     * @Date: 2021/2/5
+     **/
+    public boolean checkStraightLine(int[][] coordinates) {
+        for (int i = 1; i < coordinates.length - 1; i++) {
+            // y2-y1 /x2-x1 =k1   y3-y2/x
+            int y1 = coordinates[i][1] - coordinates[i - 1][1];
+            int x1 = coordinates[i][0] - coordinates[i - 1][0];
+            int y2 = coordinates[i + 1][1] - coordinates[i][1];
+            int x2 = coordinates[i + 1][0] - coordinates[i][0];
+
+            if (y1 * x2 != y2 * x1) {
+                return false;
+            }
+
+
+        }
+
+        return true;
+    }
+
     public static void main(String[] args) {
         minimumAbsDifference(new int[]{3, 8, -10, 23, 19, -4, -14, 27});
         System.out.println(dayOfTheWeek(21, 8, 2019));
