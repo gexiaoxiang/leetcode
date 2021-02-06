@@ -1845,7 +1845,66 @@ public class SimpleThirdPage {
         return sum;
     }
 
+    /**
+     * @Description: 1275. 找出井字棋的获胜者
+     * @Author: gexx
+     * @Date: 2021/2/6
+     **/
+    public static String tictactoe(int[][] moves) {
+
+        String[][] checkerboard = new String[3][3];
+        for (int i = 0; i < moves.length; i++) {
+            int[] move = moves[i];
+            if (i % 2 == 0) {
+                checkerboard[move[0]][move[1]] = "X";
+            } else {
+                checkerboard[move[0]][move[1]] = "O";
+
+            }
+        }
+        String l1 = "";
+        String l2 = "";
+        String l3 = "";
+
+        String l4 = "";
+        String l5 = "";
+
+        for (int i = 0; i < checkerboard.length; i++) {
+            String[] strings = checkerboard[i];
+            String s = "";
+            for (String string : strings) {
+                s = s + string;
+            }
+
+            if (s.contains("XXX")) {
+                return "A";
+            }
+            if (s.contains("OOO")) {
+                return "B";
+            }
+            l1 = l1 + strings[0];
+            l2 = l2 + strings[1];
+            l3 = l3 + strings[2];
+
+            l4 = l4 + strings[i];
+            l5 = l5 + strings[2 - i];
+        }
+        if (l1.equals("XXX") || l2.equals("XXX") || l3.equals("XXX") || l4.equals("XXX") || l5.equals("XXX")) {
+            return "A";
+        }
+        if (l1.equals("OOO") || l2.equals("OOO") || l3.equals("OOO") || l4.equals("OOO") || l5.equals("OOO")) {
+            return "B";
+        }
+        if (moves.length == 9) {
+
+            return "Draw";
+        }
+
+        return "Pending";
+    }
+
     public static void main(String[] args) {
+        tictactoe(new int[][]{{2, 2}, {0, 2}, {1, 0}, {0, 1}, {2, 0}, {0, 0}});
         minimumAbsDifference(new int[]{3, 8, -10, 23, 19, -4, -14, 27});
         System.out.println(dayOfTheWeek(21, 8, 2019));
         distanceBetweenBusStops(new int[]{7, 10, 1, 12, 11, 14, 5, 0},
