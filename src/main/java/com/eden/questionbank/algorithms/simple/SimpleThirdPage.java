@@ -1830,6 +1830,21 @@ public class SimpleThirdPage {
 
     }
 
+    /**
+     * @Description: 1266. 访问所有点的最小时间
+     * @Author: gexx
+     * @Date: 2021/2/6
+     **/
+    public int minTimeToVisitAllPoints(int[][] points) {
+        int sum = 0;
+        for (int i = 0, j = i + 1; j < points.length; i++, j++) {
+            int x = Math.abs(points[j][0] - points[i][0]);
+            int y = Math.abs(points[j][1] - points[i][1]);
+            sum += y >= x ? y : x;
+        }
+        return sum;
+    }
+
     public static void main(String[] args) {
         minimumAbsDifference(new int[]{3, 8, -10, 23, 19, -4, -14, 27});
         System.out.println(dayOfTheWeek(21, 8, 2019));
