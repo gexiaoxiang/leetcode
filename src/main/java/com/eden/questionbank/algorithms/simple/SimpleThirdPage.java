@@ -1920,7 +1920,29 @@ public class SimpleThirdPage {
         return mul - add;
     }
 
+    /**
+     * @Description: 1287. 有序数组中出现次数超过25%的元素
+     * @Author: gexx
+     * @Date: 2021/2/6
+     **/
+    public static int findSpecialInteger(int[] arr) {
+        int len = arr.length;
+        int p = len / 4 + 1;
+        int arrs[] = new int[arr[len - 1] + 1];
+        for (int i : arr) {
+            arrs[i] = arrs[i] + 1;
+        }
+        for (int i = 0; i < arrs.length; i++) {
+
+            if (arrs[i] >= p) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
+        findSpecialInteger(new int[]{1, 2, 2, 6, 6, 6, 6, 7, 10});
         subtractProductAndSum(99999);
         tictactoe(new int[][]{{2, 2}, {0, 2}, {1, 0}, {0, 1}, {2, 0}, {0, 0}});
         minimumAbsDifference(new int[]{3, 8, -10, 23, 19, -4, -14, 27});
