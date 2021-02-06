@@ -1903,7 +1903,25 @@ public class SimpleThirdPage {
         return "Pending";
     }
 
+    /**
+     * @Description: 1281. 整数的各位积和之差
+     * @Author: gexx
+     * @Date: 2021/2/6
+     **/
+    public static int subtractProductAndSum(int n) {
+        int mul = 1;
+        int add = 0;
+        while (n > 0) {
+            int digit = n % 10;
+            mul *= digit;
+            add += digit;
+            n /= 10;
+        }
+        return mul - add;
+    }
+
     public static void main(String[] args) {
+        subtractProductAndSum(99999);
         tictactoe(new int[][]{{2, 2}, {0, 2}, {1, 0}, {0, 1}, {2, 0}, {0, 0}});
         minimumAbsDifference(new int[]{3, 8, -10, 23, 19, -4, -14, 27});
         System.out.println(dayOfTheWeek(21, 8, 2019));
