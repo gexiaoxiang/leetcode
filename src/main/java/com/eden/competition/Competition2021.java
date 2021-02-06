@@ -56,7 +56,7 @@ public class Competition2021 {
         Iterator iterator = cap.keySet().iterator();
         while (iterator.hasNext()) {
             Integer key = (Integer) iterator.next();
-            maxNum=Math.max(maxNum, cap.get(key));
+            maxNum = Math.max(maxNum, cap.get(key));
         }
 
 
@@ -73,7 +73,30 @@ public class Competition2021 {
         return sum;
     }
 
+    /**
+     * @Description 5657. 唯一元素的和
+     * @Author gexx
+     * @Date 2021/2/6
+     **/
+    public static int sumOfUnique(int[] nums) {
+        int fill[] = new int[101];
+
+        for (int i = 0; i < nums.length; i++) {
+            fill[nums[i]] = fill[nums[i]] + 1;
+        }
+        int sum = 0;
+        for (int i = 0; i < fill.length; i++) {
+            if (fill[i] == 1) {
+                sum += i;
+            }
+        }
+
+        return sum;
+
+    }
+
     public static void main(String[] args) {
+        sumOfUnique(new int[]{1, 2, 3, 2});
 
         System.out.println(countBalls(1, 10));
         System.out.println(maximumTime("2?:?0"));
