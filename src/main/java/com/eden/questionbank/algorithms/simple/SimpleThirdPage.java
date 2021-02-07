@@ -1979,7 +1979,34 @@ public class SimpleThirdPage {
         return count;
     }
 
+
+    /**
+     * @Description 1299. 将每个元素替换为右侧最大元素
+     * @author gexx
+     * @Date 2021/2/7
+     **/
+    public static int[] replaceElements(int[] arr) {
+        int[] reslut = new int[arr.length];
+        maxRightItem(arr, 0, reslut);
+        return reslut;
+    }
+
+    private static void maxRightItem(int[] arr, int i, int[] reslut) {
+        if (i == arr.length - 1) {
+            reslut[i] = -1;
+            return;
+        }
+        int max = 0;
+        for (int i1 = i+1; i1 < arr.length; i1++) {
+            max = Math.max(max, arr[i1]);
+        }
+        reslut[i] = max;
+        maxRightItem(arr, i + 1, reslut);
+        return;
+    }
+
     public static void main(String[] args) {
+        replaceElements(new int[]{17, 18, 5, 4, 6, 1});
         ListNode head = new ListNode(1);
         ListNode next = new ListNode(0);
         ListNode tail = new ListNode(1);
