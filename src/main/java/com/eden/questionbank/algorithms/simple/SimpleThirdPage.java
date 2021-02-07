@@ -1997,12 +1997,39 @@ public class SimpleThirdPage {
             return;
         }
         int max = 0;
-        for (int i1 = i+1; i1 < arr.length; i1++) {
+        for (int i1 = i + 1; i1 < arr.length; i1++) {
             max = Math.max(max, arr[i1]);
         }
         reslut[i] = max;
         maxRightItem(arr, i + 1, reslut);
         return;
+    }
+
+
+    /**
+     * @Description 1304. 和为零的N个唯一整数
+     * @author gexx
+     * @Date 2021/2/7
+     **/
+    public int[] sumZero(int n) {
+        int[] result = new int[n];
+        if (n % 2 == 0) {
+            for (int i = 1; i < n / 2 + 1; i+=2) {
+                result[i] = i;
+                result[i + 1] = -i;
+            }
+
+        } else {
+            for (int i = 1; i < n; i+=2) {
+                result[i] = i;
+                result[i + 1] = -i;
+            }
+            result[n - 1] = 0;
+
+        }
+
+        return result;
+
     }
 
     public static void main(String[] args) {
