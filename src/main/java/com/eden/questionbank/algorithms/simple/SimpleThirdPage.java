@@ -2014,13 +2014,13 @@ public class SimpleThirdPage {
     public int[] sumZero(int n) {
         int[] result = new int[n];
         if (n % 2 == 0) {
-            for (int i = 1; i < n / 2 + 1; i+=2) {
+            for (int i = 1; i < n / 2 + 1; i += 2) {
                 result[i] = i;
                 result[i + 1] = -i;
             }
 
         } else {
-            for (int i = 1; i < n; i+=2) {
+            for (int i = 1; i < n; i += 2) {
                 result[i] = i;
                 result[i + 1] = -i;
             }
@@ -2030,6 +2030,29 @@ public class SimpleThirdPage {
 
         return result;
 
+    }
+
+
+    /**
+     * @Description 1309. 解码字母到整数映射
+     * @author gexx
+     * @Date 2021/2/7
+     **/
+    public String freqAlphabets(String s) {
+        char[] chars = s.toCharArray();
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = chars.length - 1; i >= 0; i--) {
+            if (chars[i] == '#') {
+                int num = (chars[i - 2] - '0') * 10 + (chars[i - 1] - '0');
+                sb.append((char) (num - 1 + 'a'));
+                i -= 2;
+            } else {
+                sb.append((char) (chars[i] - '1' + 'a'));
+            }
+        }
+
+        return sb.reverse().toString();
     }
 
     public static void main(String[] args) {
