@@ -302,6 +302,30 @@ public class ArchAPawn202101 {
         return -1;
     }
 
+    /**
+     * @Description 665. 非递减数列
+     * @author gexx
+     * @Date 2021/2/7
+     **/
+    public boolean checkPossibility(int[] nums) {
+        int n = nums.length, cnt = 0;
+        for (int i = 0; i < n - 1; ++i) {
+            int x = nums[i], y = nums[i + 1];
+            if (x > y) {
+                cnt++;
+                if (cnt > 1) {
+                    return false;
+                }
+                if (i > 0 && y < nums[i - 1]) {
+                    nums[i + 1] = x;
+                }
+            }
+        }
+        return true;
+
+
+    }
+
     public static void main(String[] args) {
         pivotIndex(new int[]{1, 7, 3, 6, 5, 6});
         maxProfit(new int[]{3, 3, 5, 0, 0, 3, 1, 4});
