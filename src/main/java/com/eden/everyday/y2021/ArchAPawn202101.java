@@ -326,6 +326,7 @@ public class ArchAPawn202101 {
 
     }
 
+
     public static void main(String[] args) {
         pivotIndex(new int[]{1, 7, 3, 6, 5, 6});
         maxProfit(new int[]{3, 3, 5, 0, 0, 3, 1, 4});
