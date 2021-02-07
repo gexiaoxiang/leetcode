@@ -1941,7 +1941,37 @@ public class SimpleThirdPage {
         return -1;
     }
 
+
+    /**
+     * @Description 1290. 二进制链表转整数
+     * @author gexx
+     * @Date 2021/2/7
+     **/
+    public static int getDecimalValue(ListNode head) {
+        StringBuffer sb = new StringBuffer();
+        buildBuffer(head, sb);
+        String s = sb.toString();
+        int decimalValue = Integer.parseInt(s, 2);
+        return decimalValue;
+
+    }
+
+
+
+    private static void buildBuffer(ListNode head, StringBuffer sb) {
+        if (head != null) {
+            sb.append(head.val);
+            buildBuffer(head.next, sb);
+        }
+    }
+
     public static void main(String[] args) {
+        ListNode head=new ListNode(1);
+        ListNode next=new ListNode(0);
+        ListNode tail=new ListNode(1);
+        head.next=next;
+        next.next=tail;
+        getDecimalValue(head);
         findSpecialInteger(new int[]{1, 2, 2, 6, 6, 6, 6, 7, 10});
         subtractProductAndSum(99999);
         tictactoe(new int[][]{{2, 2}, {0, 2}, {1, 0}, {0, 1}, {2, 0}, {0, 0}});
