@@ -1957,7 +1957,6 @@ public class SimpleThirdPage {
     }
 
 
-
     private static void buildBuffer(ListNode head, StringBuffer sb) {
         if (head != null) {
             sb.append(head.val);
@@ -1965,12 +1964,27 @@ public class SimpleThirdPage {
         }
     }
 
+    /**
+     * @Description 1295. 统计位数为偶数的数字
+     * @author gexx
+     * @Date 2021/2/7
+     **/
+    public int findNumbers(int[] nums) {
+        int count = 0;
+        for (int num : nums) {
+            if (String.valueOf(num).length() % 2 == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
-        ListNode head=new ListNode(1);
-        ListNode next=new ListNode(0);
-        ListNode tail=new ListNode(1);
-        head.next=next;
-        next.next=tail;
+        ListNode head = new ListNode(1);
+        ListNode next = new ListNode(0);
+        ListNode tail = new ListNode(1);
+        head.next = next;
+        next.next = tail;
         getDecimalValue(head);
         findSpecialInteger(new int[]{1, 2, 2, 6, 6, 6, 6, 7, 10});
         subtractProductAndSum(99999);
