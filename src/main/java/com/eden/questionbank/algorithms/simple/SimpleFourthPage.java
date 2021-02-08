@@ -45,6 +45,18 @@ public class SimpleFourthPage {
     }
 
 
+    /**
+     * @Description 1323. 6 和 9 组成的最大数字
+     * @author gexx
+     * @Date 2021/2/8
+     **/
+    public int maximum69Number(int num) {
+        String s = String.valueOf(num);
+        String s1 = s.replaceFirst("6", "9");
+        Integer integer = Integer.valueOf(s1);
+        return integer;
+    }
+
     public static void main(String[] args) {
         decompressRLElist(new int[]{1, 2, 3, 4});
     }
