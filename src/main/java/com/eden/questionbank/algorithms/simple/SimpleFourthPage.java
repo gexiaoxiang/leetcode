@@ -137,6 +137,16 @@ public class SimpleFourthPage {
 
 
     }
+    /**
+     * @Description 1332. 删除回文子序列
+     * @author gexx
+     * @Date 2021/2/9
+     **/
+    public int removePalindromeSub(String s) {
+        if ("".equals(s)) return 0;
+        if (s.equals(new StringBuilder(s).reverse().toString())) return 1;
+        return 2;
+    }
 
     public static void main(String[] args) {
         decompressRLElist(new int[]{1, 2, 3, 4});
