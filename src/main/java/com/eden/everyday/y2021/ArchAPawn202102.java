@@ -290,6 +290,17 @@ public class ArchAPawn202102 {
         return res;
     }
 
+
+    /**
+     * @Description 567. 字符串的排列
+     * @Author gexx
+     * @Date 2021/2/10
+     **/
+    public boolean checkInclusion(String s1, String s2) {
+
+        return true;
+    }
+
     public static void main(String[] args) {
 
         characterReplacement("AABBBCBB", 1);

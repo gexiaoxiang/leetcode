@@ -1,6 +1,7 @@
 package com.eden.questionbank.algorithms.simple;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -137,6 +138,7 @@ public class SimpleFourthPage {
 
 
     }
+
     /**
      * @Description 1332. 删除回文子序列
      * @author gexx
@@ -148,7 +150,56 @@ public class SimpleFourthPage {
         return 2;
     }
 
+
+    /**
+     * @Description 1337. 矩阵中战斗力最弱的 K 行
+     * @Author gexx
+     * @Date 2021/2/9
+     **/
+    public int[] kWeakestRows(int[][] mat, int k) {
+        int[][] tmp = new int[mat.length][2];
+        for (int i = 0; i < mat.length; i++) {
+            tmp[i][0] = i;
+            for (int j = 0; j < mat[0].length; j++) {
+                if (mat[i][j] == 1) tmp[i][1] += 1;
+            }
+        }
+        Arrays.sort(tmp, (o1, o2) -> o1[1] - o2[1]);
+        int[] res = new int[k];
+        for (int i = 0; i < k; i++) res[i] = tmp[i][0];
+        return res;
+
+    }
+
+    /**
+     * @Description 1342. 将数字变成 0 的操作次数
+     * @Author gexx
+     * @Date 2021/2/10
+     **/
+    static int count = 0;
+
+    public static int numberOfSteps(int num) {
+
+        toZero(num);
+        return count;
+    }
+
+    private static void toZero(int num) {
+        if (num == 0) {
+            return;
+        }
+        count++;
+        if (num % 2 == 0) {
+            toZero(num / 2);
+        } else {
+
+            toZero(num - 1);
+        }
+    }
+
+
     public static void main(String[] args) {
+        numberOfSteps(8);
         decompressRLElist(new int[]{1, 2, 3, 4});
     }
 }
