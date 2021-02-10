@@ -2,6 +2,7 @@ package com.eden.questionbank.algorithms.simple;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -197,6 +198,43 @@ public class SimpleFourthPage {
         }
     }
 
+
+    /**
+     * @Description 1346. 检查整数及其两倍数是否存在
+     * @Author gexx
+     * @Date 2021/2/10
+     **/
+    public boolean checkIfExist(int[] arr) {
+
+        HashSet<Integer> set = new HashSet<>();
+        for (int i : arr) {
+            if (set.contains(2 * i) || (i % 2 == 0 && set.contains(i / 2)))
+                return true;
+            set.add(i);
+        }
+        return false;
+
+    }
+
+
+    /**
+     * @Description 1351. 统计有序矩阵中的负数
+     * @Author gexx
+     * @Date 2021/2/10
+     **/
+    public int countNegatives(int[][] grid) {
+        int num = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int i1 = 0; i1 < grid[i].length; i1++) {
+                if (grid[i][i1] >= 0) {
+                    num++;
+                } else {
+                    continue;
+                }
+            }
+        }
+        return num;
+    }
 
     public static void main(String[] args) {
         numberOfSteps(8);
