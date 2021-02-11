@@ -1,5 +1,7 @@
 package com.eden.questionbank.algorithms.simple;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 /**
@@ -268,6 +270,41 @@ public class SimpleFourthPage {
         }
         return res;
 
+    }
+
+    /**
+     * @Description
+     * @author gexx
+     * @Date 2021/2/11
+     **/
+    public int daysBetweenDates(String date1, String date2) {
+        LocalDate startDate = LocalDate.parse(date1);
+
+        LocalDate endDate = LocalDate.parse(date2);
+
+
+        long daysDiff = ChronoUnit.DAYS.between(startDate, endDate);
+        return Math.abs((int) daysDiff);
+    }
+
+    /**
+     * @Description 1365. 有多少小于当前数字的数字
+     * @author gexx
+     * @Date 2021/2/11
+     **/
+    public int[] smallerNumbersThanCurrent(int[] nums) {
+        int n = nums.length;
+        int[] ret = new int[n];
+        for (int i = 0; i < n; i++) {
+            int cnt = 0;
+            for (int j = 0; j < n; j++) {
+                if (nums[j] < nums[i]) {
+                    cnt++;
+                }
+            }
+            ret[i] = cnt;
+        }
+        return ret;
     }
 
     public static void main(String[] args) {
