@@ -307,6 +307,9 @@ public class SimpleFourthPage {
         return ret;
     }
 
+
+
+
     public static void main(String[] args) {
         numberOfSteps(8);
         decompressRLElist(new int[]{1, 2, 3, 4});

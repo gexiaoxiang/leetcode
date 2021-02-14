@@ -290,15 +290,41 @@ public class ArchAPawn202102 {
         return res;
     }
 
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        int n = nums.length;
+        for (int num : nums) {
+            int x = (num - 1) % n;
+            nums[x] += n;
+        }
+        List<Integer> ret = new ArrayList<Integer>();
+        for (int i = 0; i < n; i++) {
+            if (nums[i] <= n) {
+                ret.add(i + 1);
+            }
+        }
+        return ret;
+    }
+
 
     /**
-     * @Description 567. 字符串的排列
-     * @Author gexx
-     * @Date 2021/2/10
+     * @Description 485. 最大连续1的个数
+     * @author gexx
+     * @Date 2021/2/15
      **/
-    public boolean checkInclusion(String s1, String s2) {
+    public int findMaxConsecutiveOnes(int[] nums) {
 
-        return true;
+        int maxCount = 0, count = 0;
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] == 1) {
+                count++;
+            } else {
+                maxCount = Math.max(maxCount, count);
+                count = 0;
+            }
+        }
+        maxCount = Math.max(maxCount, count);
+        return maxCount;
     }
 
     public static void main(String[] args) {
