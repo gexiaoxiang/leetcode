@@ -231,6 +231,20 @@ public class ArchAPawn202102 {
 
     }
 
+    /**
+     * @Description: 1004. 最大连续1的个数 III
+     * @Author: gexx
+     * @Date: 2021/2/19
+     **/
+    public int longestOnes(int[] A, int K) {
+        int l = 0, r = 0;
+        while (r < A.length) {
+            if (A[r++] == 0) K--;
+            if (K < 0 && A[l++] == 0) K++;
+        }
+        return r - l;
+    }
+
     public static void main(String[] args) {
 
         characterReplacement("AABBBCBB", 1);

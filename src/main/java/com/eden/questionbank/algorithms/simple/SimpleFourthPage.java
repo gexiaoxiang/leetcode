@@ -108,6 +108,7 @@ public class SimpleFourthPage {
         return ans;
     }
 
+
     public static void main(String[] args) {
         decompressRLElist(new int[]{1, 2, 3, 4});
     }
