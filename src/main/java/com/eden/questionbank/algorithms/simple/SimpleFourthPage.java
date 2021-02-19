@@ -57,6 +57,28 @@ public class SimpleFourthPage {
         return integer;
     }
 
+    /**
+     * @Description: 1374. 生成每种字符都是奇数个的字符串
+     * @Author: gexx
+     * @Date: 2021/2/19
+     **/
+    public String generateTheString(int n) {
+
+        StringBuffer ret = new StringBuffer();
+        if (n % 2 == 0) {
+            ret.append("a");
+            for (int i = 0; i < n - 1; i++) {
+                ret.append("b");
+            }
+        } else {
+            for (int i = 0; i < n; i++) {
+                ret.append("a");
+            }
+        }
+
+        return ret.toString();
+    }
+
     public static void main(String[] args) {
         decompressRLElist(new int[]{1, 2, 3, 4});
     }
