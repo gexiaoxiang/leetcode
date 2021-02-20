@@ -131,6 +131,23 @@ public class SimpleFourthPage {
 
     }
 
+    /**
+     * @Description: 1389. 按既定顺序创建目标数组
+     * @Author: gexx
+     * @Date: 2021/2/20
+     **/
+    public int[] createTargetArray(int[] nums, int[] index) {
+        List<Integer> list = new ArrayList<Integer>();
+        for (int i = 0; i < nums.length; ++i) {
+            list.add(index[i], nums[i]);
+        }
+        int[] ret = new int[nums.length];
+        for (int i = 0; i < nums.length; ++i) {
+            ret[i] = list.get(i);
+        }
+        return ret;
+    }
+
     public static void main(String[] args) {
         findTheDistanceValue(new int[]{1, 4, 2, 3}, new int[]{-4, -3, 6, 10, 20, 30}, 3);
         decompressRLElist(new int[]{1, 2, 3, 4});
