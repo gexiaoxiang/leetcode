@@ -148,7 +148,33 @@ public class SimpleFourthPage {
         return ret;
     }
 
+    /**
+     * @Description: 1394. 找出数组中的幸运数
+     * @Author: gexx
+     * @Date: 2021/2/20
+     **/
+    public static int findLucky(int[] arr) {
+        Arrays.sort(arr);
+        int count = 1;
+        for (int i = arr.length - 2; i >= 0; i--) {
+            if (arr[i] == arr[i + 1]) {
+                count++;
+            } else {
+                if (count == arr[i + 1]) {
+                    return count;
+                }
+                count = 1;
+            }
+        }
+        if (count == arr[0]) {
+            return count;
+        }
+
+        return -1;
+    }
+
     public static void main(String[] args) {
+        findLucky(new int[]{1, 2, 2, 3, 3, 3});
         findTheDistanceValue(new int[]{1, 4, 2, 3}, new int[]{-4, -3, 6, 10, 20, 30}, 3);
         decompressRLElist(new int[]{1, 2, 3, 4});
     }
