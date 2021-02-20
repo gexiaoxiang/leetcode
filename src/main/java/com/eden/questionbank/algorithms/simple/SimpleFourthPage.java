@@ -108,8 +108,31 @@ public class SimpleFourthPage {
         return ans;
     }
 
+    /**
+     * @Description: 1385. 两个数组间的距离值
+     * @Author: gexx
+     * @Date: 2021/2/20
+     **/
+    public static int findTheDistanceValue(int[] arr1, int[] arr2, int d) {
+        int count = 0;
+        for (int i : arr1) {
+            boolean allBigger = true;
+            for (int i1 : arr2) {
+                if (Math.abs(i - i1) <= d) {
+                    allBigger = false;
+                    break;
+                }
+            }
+            if (allBigger) {
+                count++;
+            }
+        }
+        return count;
+
+    }
 
     public static void main(String[] args) {
+        findTheDistanceValue(new int[]{1, 4, 2, 3}, new int[]{-4, -3, 6, 10, 20, 30}, 3);
         decompressRLElist(new int[]{1, 2, 3, 4});
     }
 }
