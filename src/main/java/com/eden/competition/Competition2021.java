@@ -95,6 +95,32 @@ public class Competition2021 {
 
     }
 
+    /**
+     * @Description: 5685. 交替合并字符串
+     * @Author: gexx
+     * @Date: 2021/2/21
+     **/
+    public String mergeAlternately(String word1, String word2) {
+        StringBuilder sb = new StringBuilder();
+        int word1Length = word1.length();
+        int word2Length = word2.length();
+        int length;
+        String word;
+        if (word1Length > word2Length) {
+            length = word2.length();
+            word = word1;
+        } else {
+            length = word1.length();
+            word = word2;
+        }
+
+        for (int i = 0; i < length; i++) {
+            sb.append(word1.charAt(i)).append(word2.charAt(i));
+        }
+        sb.append(word.substring(length));
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         sumOfUnique(new int[]{1, 2, 3, 2});
 
