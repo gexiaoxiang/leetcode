@@ -426,6 +426,27 @@ public class SimpleFourthPage {
         return result;
     }
 
+    /**
+     * @Description: 1408. 数组中的字符串匹配
+     * @Author: gexx
+     * @Date: 2021/2/21
+     **/
+    public List<String> stringMatching(String[] words) {
+
+        StringBuilder sb = new StringBuilder();
+        for (String word : words) {
+            sb.append(".").append(word);
+        }
+        List<String> res = new ArrayList<>();
+        for (String word : words) {
+            if (sb.indexOf(word) != sb.lastIndexOf(word)) {
+                res.add(word);
+            }
+        }
+        return res;
+
+    }
+
     public static void main(String[] args) {
         findLucky(new int[]{1, 2, 2, 3, 3, 3});
         findTheDistanceValue(new int[]{1, 4, 2, 3}, new int[]{-4, -3, 6, 10, 20, 30}, 3);
