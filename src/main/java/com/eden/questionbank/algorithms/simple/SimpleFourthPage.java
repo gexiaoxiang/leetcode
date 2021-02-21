@@ -399,6 +399,32 @@ public class SimpleFourthPage {
         return count;
     }
 
+    /**
+     * @Description: 1403. 非递增顺序的最小子序列
+     * @Author: gexx
+     * @Date: 2021/2/21
+     **/
+    public static List<Integer> minSubsequence(int[] nums) {
+        int sum = 0;
+        Arrays.sort(nums);
+        int reverseNums[] = new int[nums.length];
+        for (int i = nums.length - 1, j = 0; i >= 0; i--) {
+            sum += nums[i];
+            reverseNums[j++] = nums[i];
+
+        }
+        List<Integer> result = new ArrayList<>();
+        int subSum = 0;
+        for (int reverseNum : reverseNums) {
+            subSum += reverseNum;
+            result.add(reverseNum);
+            if (subSum > sum - subSum) {
+                return result;
+            }
+        }
+
+        return result;
+    }
 
     public static void main(String[] args) {
         findLucky(new int[]{1, 2, 2, 3, 3, 3});
