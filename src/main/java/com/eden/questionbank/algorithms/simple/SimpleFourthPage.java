@@ -308,7 +308,6 @@ public class SimpleFourthPage {
     }
 
 
-
     /**
      * @Description: 1385. 两个数组间的距离值
      * @Author: gexx
@@ -373,6 +372,33 @@ public class SimpleFourthPage {
 
         return -1;
     }
+
+    /**
+     * @Description: 1399. 统计最大组的数目
+     * @Author: gexx
+     * @Date: 2021/2/21
+     **/
+    public int countLargestGroup(int n) {
+        Map<Integer, Integer> hashMap = new HashMap<Integer, Integer>();
+        int maxValue = 0;
+        for (int i = 1; i <= n; ++i) {
+            int key = 0, i0 = i;
+            while (i0 != 0) {
+                key += i0 % 10;
+                i0 /= 10;
+            }
+            hashMap.put(key, hashMap.getOrDefault(key, 0) + 1);
+            maxValue = Math.max(maxValue, hashMap.get(key));
+        }
+        int count = 0;
+        for (Map.Entry<Integer, Integer> kvpair : hashMap.entrySet()) {
+            if (kvpair.getValue() == maxValue) {
+                ++count;
+            }
+        }
+        return count;
+    }
+
 
     public static void main(String[] args) {
         findLucky(new int[]{1, 2, 2, 3, 3, 3});
