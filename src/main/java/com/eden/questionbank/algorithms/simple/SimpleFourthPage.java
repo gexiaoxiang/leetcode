@@ -462,6 +462,48 @@ public class SimpleFourthPage {
         return minSum >= 1 ? 1 : 1 - minSum;
     }
 
+    /**
+     * @Description: 1417. 重新格式化字符串
+     * @Author: gexx
+     * @Date: 2021/2/22
+     **/
+    public String reformat(String s) {
+        StringBuilder letterSB = new StringBuilder();
+        StringBuilder numSB = new StringBuilder();
+        for (char ch : s.toCharArray()) {
+            if (Character.isLetter(ch)) {
+                letterSB.append(ch);
+            } else {
+                numSB.append(ch);
+            }
+        }
+        int letterLength = letterSB.length();
+        int numLength = numSB.length();
+        if (Math.abs(letterLength - numLength) > 1) {
+            return "";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        if (letterLength >= numLength) {
+
+            for (int i = 0; i < numLength; i++) {
+                sb.append(letterSB.charAt(i));
+                sb.append(numSB.charAt(i));
+            }
+            if (letterLength > numLength) {
+                sb.append(letterSB.charAt(letterLength - 1));
+            }
+        } else {
+            for (int i = 0; i < letterLength; i++) {
+                sb.append(numSB.charAt(i));
+                sb.append(letterSB.charAt(i));
+            }
+            sb.append(numSB.charAt(numLength - 1));
+        }
+        return sb.toString();
+
+    }
+
     public static void main(String[] args) {
         minStartValue(new int[]{
                 -3, 2, -3, 4, 2});
