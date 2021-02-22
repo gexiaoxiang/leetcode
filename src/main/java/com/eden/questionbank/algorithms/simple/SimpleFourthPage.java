@@ -447,7 +447,24 @@ public class SimpleFourthPage {
 
     }
 
+    /**
+     * @Description: 3. 逐步求和得到正数的最小值
+     * @Author: gexx
+     * @Date: 2021/2/22
+     **/
+    public static int minStartValue(int[] nums) {
+        int minSum = Integer.MAX_VALUE;
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+            minSum = Math.min(minSum, sum);
+        }
+        return minSum >= 1 ? 1 : 1 - minSum;
+    }
+
     public static void main(String[] args) {
+        minStartValue(new int[]{
+                -3, 2, -3, 4, 2});
         findLucky(new int[]{1, 2, 2, 3, 3, 3});
         findTheDistanceValue(new int[]{1, 4, 2, 3}, new int[]{-4, -3, 6, 10, 20, 30}, 3);
         decompressRLElist(new int[]{1, 2, 3, 4});
