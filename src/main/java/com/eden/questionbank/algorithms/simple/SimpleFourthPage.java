@@ -545,7 +545,43 @@ public class SimpleFourthPage {
         return result;
     }
 
+    /**
+     * @Description: 1436. 旅行终点站
+     * @Author: gexx
+     * @Date: 2021/2/23
+     **/
+    public static String destCity(List<List<String>> paths) {
+        HashMap<String, String> hashMap = new HashMap<>();
+        for (List<String> path : paths) {
+            hashMap.put(path.get(0), path.get(1));
+        }
+        String key = paths.get(0).get(0);
+        while (hashMap.containsKey(key)) {
+            String value = hashMap.get(key);
+            key = value;
+        }
+        return key;
+
+
+    }
+
     public static void main(String[] args) {
+        List l = new ArrayList();
+
+        List l1 = new ArrayList();
+        l.add(l1);
+        l1.add("London");
+        l1.add("New York");
+        List l2 = new ArrayList();
+        l.add(l2);
+        l2.add("New York");
+        l2.add("Lima");
+        List l3 = new ArrayList();
+        l.add(l3);
+        l3.add("Lima");
+        l3.add("Sao Paulo");
+
+        destCity(l);
         minStartValue(new int[]{
                 -3, 2, -3, 4, 2});
         findLucky(new int[]{1, 2, 2, 3, 3, 3});
