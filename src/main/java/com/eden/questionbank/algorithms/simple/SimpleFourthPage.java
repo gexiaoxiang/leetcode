@@ -522,6 +522,29 @@ public class SimpleFourthPage {
         return res;
     }
 
+    /**
+     * @Description: 1431. 拥有最多糖果的孩子
+     * @Author: gexx
+     * @Date: 2021/2/23
+     **/
+    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+
+        int max = 0;
+        for (int candy : candies) {
+            max = Math.max(max, candy);
+        }
+
+        List<Boolean> result = new ArrayList<>();
+        for (int i = 0; i < candies.length; i++) {
+            if (max <= candies[i] + extraCandies) {
+                result.add(true);
+            } else {
+                result.add(false);
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         minStartValue(new int[]{
                 -3, 2, -3, 4, 2});
