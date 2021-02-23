@@ -565,23 +565,28 @@ public class SimpleFourthPage {
 
     }
 
+    /**
+     * @Description: 1437. 是否所有 1 都至少相隔 k 个元素
+     * @Author: gexx
+     * @Date: 2021/2/23
+     **/
+    public static boolean kLengthApart(int[] nums, int k) {
+        List<Integer> l = new ArrayList();
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 1) {
+                l.add(i);
+            }
+        }
+        for (int i = 0; i < l.size() - 1; i++) {
+            if (l.get(i + 1) - l.get(i) < k) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
-        List l = new ArrayList();
-
-        List l1 = new ArrayList();
-        l.add(l1);
-        l1.add("London");
-        l1.add("New York");
-        List l2 = new ArrayList();
-        l.add(l2);
-        l2.add("New York");
-        l2.add("Lima");
-        List l3 = new ArrayList();
-        l.add(l3);
-        l3.add("Lima");
-        l3.add("Sao Paulo");
-
-        destCity(l);
+        kLengthApart(new int[]{1, 0, 0, 1, 0, 1}, 2);
         minStartValue(new int[]{
                 -3, 2, -3, 4, 2});
         findLucky(new int[]{1, 2, 2, 3, 3, 3});
