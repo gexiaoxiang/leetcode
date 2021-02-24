@@ -610,6 +610,31 @@ public class SimpleFourthPage {
         return ans;
     }
 
+    /**
+     * @Description: 1446. 连续字符
+     * @Author: gexx
+     * @Date: 2021/2/24
+     **/
+    public int maxPower(String s) {
+        int max = 1;
+        int count = 1;
+        char[] chars = s.toCharArray();
+        for (int i = 1; i < chars.length; i++) {
+            if (chars[i] == chars[i - 1]) {
+                count++;
+                if (i == chars.length - 1) {
+                    max = Math.max(max, count);
+                }
+
+            } else {
+                max = Math.max(max, count);
+                count = 1;
+            }
+        }
+        return max;
+
+    }
+
     public static void main(String[] args) {
         kLengthApart(new int[]{1, 0, 0, 1, 0, 1}, 2);
         minStartValue(new int[]{
