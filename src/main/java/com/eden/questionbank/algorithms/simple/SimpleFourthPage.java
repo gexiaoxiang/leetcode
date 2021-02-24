@@ -585,6 +585,31 @@ public class SimpleFourthPage {
         return true;
     }
 
+    /**
+     * @Description: 1441. 用栈操作构建数组
+     * @Author: gexx
+     * @Date: 2021/2/24
+     **/
+    public List<String> buildArray(int[] target, int n) {
+        List<String> ans = new ArrayList<>();
+
+        int idx = 0, num = 1, len = target.length;
+
+        while (idx < len && num <= n) {
+            ans.add("Push");
+
+            if (target[idx] != num) {
+                ans.add("Pop");
+            } else {
+                idx++;
+            }
+
+            num++;
+        }
+
+        return ans;
+    }
+
     public static void main(String[] args) {
         kLengthApart(new int[]{1, 0, 0, 1, 0, 1}, 2);
         minStartValue(new int[]{
