@@ -635,6 +635,21 @@ public class SimpleFourthPage {
 
     }
 
+    /**
+     * @Description: 1450. 在既定时间做作业的学生人数
+     * @Author: gexx
+     * @Date: 2021/2/24
+     **/
+    public int busyStudent(int[] startTime, int[] endTime, int queryTime) {
+        int count = 0;
+        for (int i = 0; i < startTime.length; i++) {
+            if (queryTime >= startTime[i] && queryTime < endTime[i]) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         kLengthApart(new int[]{1, 0, 0, 1, 0, 1}, 2);
         minStartValue(new int[]{
