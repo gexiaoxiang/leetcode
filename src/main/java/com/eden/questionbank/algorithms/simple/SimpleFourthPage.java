@@ -681,6 +681,17 @@ public class SimpleFourthPage {
         return true;
     }
 
+    /**
+     * @Description: 64. 数组中两元素的最大乘积
+     * @Author: gexx
+     * @Date: 2021/2/25
+     **/
+    public int maxProduct(int[] nums) {
+        Arrays.sort(nums);
+
+        return (nums[nums.length - 1] - 1) * (nums[nums.length - 2] - 1);
+    }
+
     public static void main(String[] args) {
         kLengthApart(new int[]{1, 0, 0, 1, 0, 1}, 2);
         minStartValue(new int[]{
