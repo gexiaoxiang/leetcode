@@ -665,6 +665,22 @@ public class SimpleFourthPage {
         return -1;
     }
 
+    /**
+     * @Description: 1460. 通过翻转子数组使两个数组相等
+     * @Author: gexx
+     * @Date: 2021/2/25
+     **/
+    public boolean canBeEqual(int[] target, int[] arr) {
+        Arrays.sort(target);
+        Arrays.sort(arr);
+        for (int i = 0; i < target.length; i++) {
+            if (target[i] != arr[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         kLengthApart(new int[]{1, 0, 0, 1, 0, 1}, 2);
         minStartValue(new int[]{
