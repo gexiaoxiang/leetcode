@@ -650,6 +650,21 @@ public class SimpleFourthPage {
         return count;
     }
 
+    /**
+     * @Description: 1455. 检查单词是否为句中其他单词的前缀
+     * @Author: gexx
+     * @Date: 2021/2/25
+     **/
+    public int isPrefixOfWord(String sentence, String searchWord) {
+        String[] s = sentence.split(" ");
+        for (int i = 0; i < s.length; i++) {
+            if (s[i].indexOf(searchWord) == 0) {
+                return i + 1;
+            }
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
         kLengthApart(new int[]{1, 0, 0, 1, 0, 1}, 2);
         minStartValue(new int[]{
