@@ -707,7 +707,29 @@ public class SimpleFourthPage {
         return result;
     }
 
+    /**
+     * @Description: 1475. 商品折扣后的最终价格
+     * @Author: gexx
+     * @Date: 2021/2/26
+     **/
+    public static int[] finalPrices(int[] prices) {
+
+        int[] result = new int[prices.length];
+        for (int i = 0; i < prices.length; i++) {
+            result[i] = prices[i];
+            for (int j = i + 1; j < prices.length; j++) {
+                if (prices[i] >= prices[j]) {
+                    result[i] = prices[i] - prices[j];
+                    break;
+                }
+            }
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
+        finalPrices(new int[]{8, 4, 6, 2, 3});
         kLengthApart(new int[]{1, 0, 0, 1, 0, 1}, 2);
         minStartValue(new int[]{
                 -3, 2, -3, 4, 2});
