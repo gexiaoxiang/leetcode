@@ -378,8 +378,45 @@ public class ArchAPawn202102 {
         return total + maxIncrease;
     }
 
-    public static void main(String[] args) {
+    /**
+     * @Description: 1178. 猜字谜
+     * @Author: gexx
+     * @Date: 2021/2/26
+     **/
+    public static List<Integer> findNumOfValidWords(String[] words, String[] puzzles) {
 
+        List<Integer> list = new ArrayList<>();
+        for (String puzzle : puzzles) {
+            int count = 0;
+            for (String word : words) {
+                boolean contain = true;
+                if (word.indexOf(puzzle.charAt(0)) != -1) {
+                    char[] chars = word.toCharArray();
+                    for (char aChar : chars) {
+                        if (puzzle.indexOf(aChar) == -1) {
+                            contain = false;
+                            break;
+                        }
+                    }
+                } else {
+                    contain = false;
+                }
+                if (contain) {
+                    count++;
+                }
+
+            }
+            list.add(count);
+
+        }
+
+
+        return list;
+    }
+
+    public static void main(String[] args) {
+        findNumOfValidWords(new String[]{"aaaa", "asas", "able", "ability", "actt", "actor", "access"},
+                new String[]{"aboveyz", "abrodyz", "abslute", "absoryz", "actresz", "gaswxyz"});
         characterReplacement("AABBBCBB", 1);
     }
 
