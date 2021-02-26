@@ -692,6 +692,21 @@ public class SimpleFourthPage {
         return (nums[nums.length - 1] - 1) * (nums[nums.length - 2] - 1);
     }
 
+    /**
+     * @Description: 1470. 重新排列数组
+     * @Author: gexx
+     * @Date: 2021/2/26
+     **/
+    public int[] shuffle(int[] nums, int n) {
+        int[] result = new int[nums.length];
+        for (int i = 0; i < n; i++) {
+            result[i * 2] = nums[i];
+            result[i * 2 + 1] = nums[i + n];
+
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         kLengthApart(new int[]{1, 0, 0, 1, 0, 1}, 2);
         minStartValue(new int[]{
