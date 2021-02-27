@@ -378,6 +378,21 @@ public class ArchAPawn202102 {
         return total + maxIncrease;
     }
 
+
+    /**
+     * @Description 1486. 数组异或操作
+     *
+     * @author gexx
+     * @Date 2021/2/27
+     **/
+    public int xorOperation(int n, int start) {
+        int result = start;
+        for (int i = 1; i < n; i++) {
+            result ^= start + 2 * i;
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
 
         characterReplacement("AABBBCBB", 1);
