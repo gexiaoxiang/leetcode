@@ -381,7 +381,6 @@ public class ArchAPawn202102 {
 
     /**
      * @Description 1486. 数组异或操作
-     *
      * @author gexx
      * @Date 2021/2/27
      **/
@@ -391,6 +390,48 @@ public class ArchAPawn202102 {
             result ^= start + 2 * i;
         }
         return result;
+    }
+
+    /**
+     * @Description 1491. 去掉最低工资和最高工资后的工资平均值
+     * @author gexx
+     * @Date 2021/2/27
+     **/
+    public double average(int[] salary) {
+        Arrays.sort(salary);
+        int[] ints = Arrays.copyOfRange(salary, 1, salary.length - 1);
+        OptionalDouble average = Arrays.stream(ints).average();
+        double asDouble = average.getAsDouble();
+        return asDouble;
+
+    }
+
+    /**
+     * @Description 1496. 判断路径是否相交
+     * @author gexx
+     * @Date 2021/2/27
+     **/
+    public boolean isPathCrossing(String path) {
+        int[] point = new int[]{0, 0};
+        Set<String> set = new HashSet<>();
+        set.add("[0, 0]");
+        for (char c : path.toCharArray()) {
+            if (c == 'N') {
+                point[0] += 1;
+            } else if (c == 'S') {
+                point[0] -= 1;
+            } else if (c == 'E') {
+                point[1] += 1;
+            } else if (c == 'W') {
+                point[1] -= 1;
+            }
+            if (set.contains(Arrays.toString(point))) {
+                return true;
+            } else {
+                set.add(Arrays.toString(point));
+            }
+        }
+        return false;
     }
 
     public static void main(String[] args) {
