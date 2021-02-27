@@ -692,10 +692,7 @@ public class SimpleFourthPage {
         return (nums[nums.length - 1] - 1) * (nums[nums.length - 2] - 1);
     }
 
-    public int longestSubstring(String s, int k) {
-        int n = s.length();
-        return dfs(s, 0, n - 1, k);
-    }
+
 
     /**
      * @Description 395. 至少有K个重复字符的最长子串
@@ -703,6 +700,10 @@ public class SimpleFourthPage {
      * @author gexx
      * @Date 2021/2/27
      **/
+    public int longestSubstring(String s, int k) {
+        int n = s.length();
+        return dfs(s, 0, n - 1, k);
+    }
     public int dfs(String s, int l, int r, int k) {
         int[] cnt = new int[26];
         for (int i = l; i <= r; i++) {
