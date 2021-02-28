@@ -434,6 +434,32 @@ public class ArchAPawn202102 {
         return false;
     }
 
+
+    /**
+     * @Description 896. 单调数列
+     * @Author gexx
+     * @Date 2021/2/28
+     **/
+    public boolean isMonotonic(int[] A) {
+        if (A.length <= 2) {
+            return true;
+        }
+        boolean monotonicIncr = false;
+        if (A[0] <= A[A.length - 1]) {
+            monotonicIncr = true;
+        }
+
+        for (int i = 0; i < A.length - 1; i++) {
+            if (A[i] < A[i + 1] && !monotonicIncr) {
+                return false;
+            } else if (A[i] > A[i + 1] && monotonicIncr) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
     public static void main(String[] args) {
 
         characterReplacement("AABBBCBB", 1);
