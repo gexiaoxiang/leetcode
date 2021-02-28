@@ -823,6 +823,24 @@ public class SimpleFourthPage {
         return sb.toString();
     }
 
+    /**
+     * @Description 1512. 好数对的数目
+     * @Author gexx
+     * @Date 2021/2/28
+     **/
+    public int numIdenticalPairs(int[] nums) {
+        int count = 0;
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] == nums[j]) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+
     public static void main(String[] args) {
         reformatDate("6th Jun 1933");
         kLengthApart(new int[]{1, 0, 0, 1, 0, 1}, 2);
