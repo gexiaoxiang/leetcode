@@ -693,10 +693,8 @@ public class SimpleFourthPage {
     }
 
 
-
     /**
      * @Description 395. 至少有K个重复字符的最长子串
-     *
      * @author gexx
      * @Date 2021/2/27
      **/
@@ -704,6 +702,7 @@ public class SimpleFourthPage {
         int n = s.length();
         return dfs(s, 0, n - 1, k);
     }
+
     public int dfs(String s, int l, int r, int k) {
         int[] cnt = new int[26];
         for (int i = l; i <= r; i++) {
@@ -739,6 +738,22 @@ public class SimpleFourthPage {
             ret = Math.max(ret, length);
         }
         return ret;
+    }
+
+
+    /**
+     * @Description 1502. 判断能否形成等差数列
+     * @author gexx
+     * @Date 2021/2/28
+     **/
+    public boolean canMakeArithmeticProgression(int[] arr) {
+        Arrays.sort(arr);
+        for (int i = 1; i < arr.length - 1; i++) {
+            if (arr[i] * 2 != arr[i + 1] + arr[i - 1]) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static void main(String[] args) {
