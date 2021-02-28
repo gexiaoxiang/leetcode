@@ -756,7 +756,75 @@ public class SimpleFourthPage {
         return true;
     }
 
+    /**
+     * @Description 1507. 转变日期格式
+     * @Author gexx
+     * @Date 2021/2/28
+     **/
+    public static String reformatDate(String date) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(date.substring(date.length() - 4, date.length() - 1)).append("-");
+        String month = date.substring(date.length() - 9, date.length() - 6);
+        String monthN = "";
+        switch (month) {
+            case "Jan":
+                monthN = "01";
+                break;
+            case "Feb":
+                monthN = "02";
+                break;
+            case "Mar":
+                monthN = "03";
+                break;
+            case "Apr":
+                monthN = "04";
+                break;
+            case "May":
+                monthN = "05";
+                break;
+            case "Jun":
+                monthN = "06";
+                break;
+            case "Jul":
+                monthN = "07";
+                break;
+            case "Aug":
+                monthN = "08";
+                break;
+            case "Sep":
+                monthN = "09";
+                break;
+            case "Oct":
+                monthN = "10";
+                break;
+            case "Nov":
+                monthN = "11";
+                break;
+            case "Dec":
+                monthN = "12";
+                break;
+        }
+        sb.append(monthN + "-");
+        char[] chars = date.toCharArray();
+        StringBuilder sbDay = new StringBuilder();
+        for (int i = 0; i < chars.length; i++) {
+            if (Character.isDigit(chars[i])) {
+                sbDay.append(chars[i]);
+            } else {
+                break;
+            }
+        }
+        if (sbDay.length() == 1) {
+            sbDay.insert(0, 0);
+        }
+        sb.append(sbDay.toString());
+
+
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
+        reformatDate("6th Jun 1933");
         kLengthApart(new int[]{1, 0, 0, 1, 0, 1}, 2);
         minStartValue(new int[]{
                 -3, 2, -3, 4, 2});
