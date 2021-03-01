@@ -744,6 +744,21 @@ public class SimpleFourthPage {
     }
 
 
+    /**
+     * @Description: 1518. 换酒问题
+     * @Author: gexx
+     * @Date: 2021/3/1
+     **/
+    public static int numWaterBottles(int numBottles, int numExchange) {
+        int bottle = numBottles, ans = numBottles;
+        while (bottle >= numExchange) {
+            bottle -= numExchange;
+            ++ans;
+            ++bottle;
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         finalPrices(new int[]{8, 4, 6, 2, 3});
         kLengthApart(new int[]{1, 0, 0, 1, 0, 1}, 2);
