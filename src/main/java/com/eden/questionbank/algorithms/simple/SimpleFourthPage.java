@@ -759,6 +759,20 @@ public class SimpleFourthPage {
         return ans;
     }
 
+    /**
+     * @Description: 1523. 在区间范围内统计奇数数目
+     * @Author: gexx
+     * @Date: 2021/3/1
+     **/
+    public int countOdds(int low, int high) {
+
+        if (low % 2 == 0 && high % 2 == 0) {
+            return (high - low) / 2;
+        } else {
+            return (high - low) / 2 + 1;
+        }
+    }
+
     public static void main(String[] args) {
         finalPrices(new int[]{8, 4, 6, 2, 3});
         kLengthApart(new int[]{1, 0, 0, 1, 0, 1}, 2);
