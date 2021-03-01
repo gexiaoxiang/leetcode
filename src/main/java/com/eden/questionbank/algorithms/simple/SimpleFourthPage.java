@@ -773,7 +773,24 @@ public class SimpleFourthPage {
         }
     }
 
+    /**
+     * @Description: 1528. 重新排列字符串
+     * @Author: gexx
+     * @Date: 2021/3/1
+     **/
+    public static String restoreString(String s, int[] indices) {
+        int length = s.length();
+        char[] result = new char[length];
+
+        for (int i = 0; i < length; i++) {
+            result[indices[i]] = s.charAt(i);
+        }
+        return new String(result);
+
+    }
+
     public static void main(String[] args) {
+        restoreString("aiohn", new int[]{3, 1, 4, 2, 0});
         finalPrices(new int[]{8, 4, 6, 2, 3});
         kLengthApart(new int[]{1, 0, 0, 1, 0, 1}, 2);
         minStartValue(new int[]{
