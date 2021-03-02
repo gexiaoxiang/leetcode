@@ -812,7 +812,23 @@ public class SimpleFourthPage {
         return count;
     }
 
+    /**
+     * @Description: 1539. 第 k 个缺失的正整数
+     * @Author: gexx
+     * @Date: 2021/3/2
+     **/
+    public static int findKthPositive(int[] arr, int k) {
+        int n = arr.length;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] - i - 1 >= k) {
+                return k + i;
+            }
+        }
+        return k + n;
+    }
+
     public static void main(String[] args) {
+        findKthPositive(new int[]{2, 3, 4, 7, 11}, 5);
         restoreString("aiohn", new int[]{3, 1, 4, 2, 0});
         finalPrices(new int[]{8, 4, 6, 2, 3});
         kLengthApart(new int[]{1, 0, 0, 1, 0, 1}, 2);
