@@ -833,8 +833,6 @@ public class SimpleFourthPage {
      * @Date: 2021/3/2
      **/
     public String makeGood(String s) {
-
-
         StringBuffer ret = new StringBuffer();
         int retIndex = -1;
         int length = s.length();
