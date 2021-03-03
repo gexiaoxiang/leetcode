@@ -850,6 +850,26 @@ public class SimpleFourthPage {
 
     }
 
+    /**
+     * @Description: 1550. 存在连续三个奇数的数组
+     * @Author: gexx
+     * @Date: 2021/3/3
+     **/
+    public boolean threeConsecutiveOdds(int[] arr) {
+        int count = 0;
+        for (int i : arr) {
+            if (i % 2 == 0) {
+                count = 0;
+            } else {
+                count++;
+            }
+            if (count == 3) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         findKthPositive(new int[]{2, 3, 4, 7, 11}, 5);
         restoreString("aiohn", new int[]{3, 1, 4, 2, 0});
