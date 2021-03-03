@@ -895,6 +895,31 @@ public class SimpleFourthPage {
 
     }
 
+    /**
+     * @Description: 1560. 圆形赛道上经过次数最多的扇区
+     * @Author: gexx
+     * @Date: 2021/3/3
+     **/
+    public List<Integer> mostVisited(int n, int[] rounds) {
+        List<Integer> ret = new ArrayList<Integer>();
+        int length = rounds.length;
+        int start = rounds[0], end = rounds[length - 1];
+        if (start <= end) {
+            for (int i = start; i <= end; i++) {
+                ret.add(i);
+            }
+        } else {
+            for (int i = 1; i <= end; i++) {
+                ret.add(i);
+            }
+            for (int i = start; i <= n; i++) {
+                ret.add(i);
+            }
+        }
+        return ret;
+
+    }
+
     public static void main(String[] args) {
         findKthPositive(new int[]{2, 3, 4, 7, 11}, 5);
         restoreString("aiohn", new int[]{3, 1, 4, 2, 0});
