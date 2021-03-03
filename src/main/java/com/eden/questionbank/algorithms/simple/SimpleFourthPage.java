@@ -870,6 +870,31 @@ public class SimpleFourthPage {
         return false;
     }
 
+    /**
+     * @Description: 千位分隔数
+     * @Author: gexx
+     * @Date: 2021/3/3
+     **/
+    public String thousandSeparator(int n) {
+
+        StringBuilder sb = new StringBuilder();
+        String s = String.valueOf(n);
+        int bite = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            if (bite == 3) {
+                sb.append(".");
+                bite = 0;
+            }
+            sb.append(s.charAt(i));
+            bite++;
+
+        }
+
+
+        return sb.reverse().toString();
+
+    }
+
     public static void main(String[] args) {
         findKthPositive(new int[]{2, 3, 4, 7, 11}, 5);
         restoreString("aiohn", new int[]{3, 1, 4, 2, 0});
