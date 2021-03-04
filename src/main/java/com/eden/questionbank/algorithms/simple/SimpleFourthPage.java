@@ -920,6 +920,28 @@ public class SimpleFourthPage {
 
     }
 
+    /**
+     * @Description: 1566. 重复至少 K 次且长度为 M 的模式
+     * @Author: gexx
+     * @Date: 2021/3/4
+     **/
+    public boolean containsPattern(int[] arr, int m, int k) {
+        int n = arr.length;
+        for (int l = 0; l <= n - m * k; ++l) {
+            int offset;
+            for (offset = 0; offset < m * k; ++offset) {
+                if (arr[l + offset] != arr[l + offset % m]) {
+                    break;
+                }
+            }
+            if (offset == m * k) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
     public static void main(String[] args) {
         findKthPositive(new int[]{2, 3, 4, 7, 11}, 5);
         restoreString("aiohn", new int[]{3, 1, 4, 2, 0});
