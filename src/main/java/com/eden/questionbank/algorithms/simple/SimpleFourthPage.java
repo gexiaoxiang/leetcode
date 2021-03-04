@@ -956,6 +956,31 @@ public class SimpleFourthPage {
 
     }
 
+    /**
+     * @Description: 1576. 替换所有的问号
+     * @Author: gexx
+     * @Date: 2021/3/4
+     **/
+    public String modifyString(String s) {
+        char[] chars = s.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+
+            if ('?' == chars[i]) {
+                char first = i == 0 ? ' ' : chars[i - 1];
+                char last = i == chars.length - 1 ? ' ' : chars[i + 1];
+                char replaceChar = 'a';
+                while (replaceChar == first || replaceChar == last) {
+                    replaceChar++;
+                }
+                chars[i] = replaceChar;
+
+            }
+
+        }
+
+        return new String(chars);
+    }
+
     public static void main(String[] args) {
         findKthPositive(new int[]{2, 3, 4, 7, 11}, 5);
         restoreString("aiohn", new int[]{3, 1, 4, 2, 0});
