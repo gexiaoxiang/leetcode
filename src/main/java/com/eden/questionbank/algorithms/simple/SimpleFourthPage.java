@@ -942,6 +942,20 @@ public class SimpleFourthPage {
 
     }
 
+    /**
+     * @Description: 1572. 矩阵对角线元素的和
+     * @Author: gexx
+     * @Date: 2021/3/4
+     **/
+    public int diagonalSum(int[][] mat) {
+        int n = mat.length, sum = 0, mid = n / 2;
+        for (int i = 0; i < n; ++i) {
+            sum += mat[i][i] + mat[i][n - 1 - i];
+        }
+        return sum - mat[mid][mid] * (n & 1);
+
+    }
+
     public static void main(String[] args) {
         findKthPositive(new int[]{2, 3, 4, 7, 11}, 5);
         restoreString("aiohn", new int[]{3, 1, 4, 2, 0});
