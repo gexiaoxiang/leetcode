@@ -1008,6 +1008,22 @@ public class SimpleFourthPage {
         return count;
     }
 
+    /**
+     * @Description: 1588. 所有奇数长度子数组的和
+     * @Author: gexx
+     * @Date: 2021/3/5
+     **/
+    public int sumOddLengthSubarrays(int[] arr) {
+        int len = arr.length, res = 0;
+        for (int i = 0; i < len; i++) {
+            int LeftOdd = (i + 1) / 2, LeftEven = i / 2 + 1;
+            int RightOdd = (len - i) / 2, RightEven = (len - 1 - i) / 2 + 1;
+            res += arr[i] * (LeftOdd * RightOdd + LeftEven * RightEven);
+        }
+        return res;
+
+    }
+
     public static void main(String[] args) {
         findKthPositive(new int[]{2, 3, 4, 7, 11}, 5);
         restoreString("aiohn", new int[]{3, 1, 4, 2, 0});
