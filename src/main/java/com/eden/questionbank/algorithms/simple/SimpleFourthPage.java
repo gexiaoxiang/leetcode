@@ -3,6 +3,8 @@ package com.eden.questionbank.algorithms.simple;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author gexx
@@ -981,6 +983,31 @@ public class SimpleFourthPage {
         return new String(chars);
     }
 
+    /**
+     * @Description: 1582. 二进制矩阵中的特殊位置
+     * @Author: gexx
+     * @Date: 2021/3/5
+     **/
+    public int numSpecial(int[][] mat) {
+        int[] sumOfrows = new int[mat.length];
+        int[] sumOfcols = new int[mat[0].length];
+
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat[0].length; j++) {
+                sumOfrows[i] += mat[i][j];
+                sumOfcols[j] += mat[i][j];
+            }
+        }
+        int count = 0;
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat[0].length; j++) {
+                if (sumOfrows[i] == 1 && sumOfcols[j] == 1 && mat[i][j] == 1)
+                    count++;
+            }
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         findKthPositive(new int[]{2, 3, 4, 7, 11}, 5);
         restoreString("aiohn", new int[]{3, 1, 4, 2, 0});
@@ -991,5 +1018,14 @@ public class SimpleFourthPage {
         findLucky(new int[]{1, 2, 2, 3, 3, 3});
         findTheDistanceValue(new int[]{1, 4, 2, 3}, new int[]{-4, -3, 6, 10, 20, 30}, 3);
         decompressRLElist(new int[]{1, 2, 3, 4});
+
+
+        Pattern p = Pattern.compile("(name:)([a-zA-Z]*)(,age:)([0-9]*)");
+        Matcher m = p.matcher("name:vunv,age:20");
+        while (m.find()) {
+            System.out.println(m.group(2));
+            System.out.println(m.group(4));
+        }
+
     }
 }
