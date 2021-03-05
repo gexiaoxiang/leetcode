@@ -1024,7 +1024,41 @@ public class SimpleFourthPage {
 
     }
 
+    /**
+     * @Description: 1592. 重新排列单词间的空格
+     * @Author: gexx
+     * @Date: 2021/3/5
+     **/
+    public String reorderSpaces(String text) {
+
+        int bc = 0, wc = 0;
+        for (int i = 0; i < text.length(); i++) {
+            //计算空格数
+            if (text.charAt(i) == ' ') bc++;
+            //计算单词数
+            if ((i == 0 || text.charAt(i - 1) == ' ') && text.charAt(i) != ' ') wc++;
+        }
+        int ec = wc == 1 ? bc : bc / (wc - 1); //计算单词间的空格数
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < text.length(); i++) {
+            if (sb.length() == 0 && text.charAt(i) == ' ') continue;
+            if (text.charAt(i) != ' ') sb.append(text.charAt(i));
+            else if (text.charAt(i - 1) != ' ' && text.charAt(i) == ' ') {
+                for (int j = 0; j < ec; j++) sb.append(' ');
+            }
+
+        }
+        while (sb.length() < text.length()) sb.append(' ');
+        if (sb.length() > text.length()) sb.delete(text.length(), sb.length());
+        return sb.toString();
+
+
+    }
+
     public static void main(String[] args) {
+        String[] s = "js  jj   ss".split(" ");
+        System.out.println(Arrays.toString(s));
+
         findKthPositive(new int[]{2, 3, 4, 7, 11}, 5);
         restoreString("aiohn", new int[]{3, 1, 4, 2, 0});
         finalPrices(new int[]{8, 4, 6, 2, 3});
