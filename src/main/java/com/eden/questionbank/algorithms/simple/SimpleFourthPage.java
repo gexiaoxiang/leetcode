@@ -1055,6 +1055,27 @@ public class SimpleFourthPage {
 
     }
 
+
+    /**
+     * @Description 1598. 文件夹操作日志搜集器
+     * @author gexx
+     * @Date 2021/3/6
+     **/
+    public int minOperations(String[] logs) {
+        int level = 0;
+        for (String log : logs) {
+            if ("./".equals(log)) {
+
+            } else if ("../".equals(log) && level != 0) {
+                level--;
+            } else if (!"./".equals(log) && !"../".equals(log)) {
+                level++;
+            }
+        }
+
+        return level;
+    }
+
     public static void main(String[] args) {
         String[] s = "js  jj   ss".split(" ");
         System.out.println(Arrays.toString(s));
