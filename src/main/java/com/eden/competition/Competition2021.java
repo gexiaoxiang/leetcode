@@ -121,6 +121,35 @@ public class Competition2021 {
         return sb.toString();
     }
 
+
+    /**
+     * @Description 5680. 找到最近的有相同 X 或 Y 坐标的点
+     * @author gexx
+     * @Date 2021/3/6
+     **/
+    public int nearestValidPoint(int x, int y, int[][] points) {
+
+        int minDistance = Integer.MAX_VALUE;
+        int index = 0;
+        boolean none = false;
+        for (int i = 0; i < points.length; i++) {
+            if (points[i][0] == x || points[i][1] == y) {
+                none = true;
+                if (minDistance > Math.abs(points[i][0] - x) + Math.abs(points[i][1] - y)) {
+                    minDistance = Math.min(minDistance, Math.abs(points[i][0] - x) + Math.abs(points[i][1] - y));
+                    index = i;
+                }
+
+            }
+        }
+        if (!none) {
+            return -1;
+
+        }
+
+        return index;
+    }
+
     public static void main(String[] args) {
         sumOfUnique(new int[]{1, 2, 3, 2});
 
