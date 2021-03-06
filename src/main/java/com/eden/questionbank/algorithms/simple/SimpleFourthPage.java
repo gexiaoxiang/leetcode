@@ -1118,6 +1118,11 @@ public class SimpleFourthPage {
     }
 
 
+    /**
+     * @Description 1608. 特殊数组的特征值
+     * @author gexx
+     * @Date 2021/3/6
+     **/
     public int specialArray(int[] nums) {
 
         int length = nums.length;
