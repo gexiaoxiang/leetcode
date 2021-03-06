@@ -1117,6 +1117,26 @@ public class SimpleFourthPage {
         }
     }
 
+
+    public int specialArray(int[] nums) {
+
+        int length = nums.length;
+        Arrays.sort(nums);
+        for (int i = 0; i <= length; i++) {
+            for (int j = 0; j < nums.length; j++) {
+                if (i <= nums[j]) {
+                    if (length - j == i) {
+                        return i;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        return -1;
+
+    }
+
     public static void main(String[] args) {
         String[] s = "js  jj   ss".split(" ");
         System.out.println(Arrays.toString(s));
