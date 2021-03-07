@@ -171,19 +171,19 @@ public class Competition2021 {
 
 
     public static int minElements(int[] nums, int limit, int goal) {
-        int sum = 0;
+        long sum = 0;
         for (int num : nums) {
             sum += num;
         }
-        int need = goal - sum;
-        int count = 1;
-        count = Math.abs(Integer.MAX_VALUE / limit);
+        long need = goal - sum;
+        long count = 1;
+        count = Math.abs(need/ limit);
         if (need % limit != 0) {
             count++;
         }
 
 
-        return count;
+        return (int)count;
     }
 
     public static void main(String[] args) {
