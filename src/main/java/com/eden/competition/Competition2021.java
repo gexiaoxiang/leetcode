@@ -150,7 +150,44 @@ public class Competition2021 {
         return index;
     }
 
+
+    public boolean checkPowersOfThree(int n) {
+        for (int i = 0; i < n; n /= 3) if (n % 3 == 2) return false;
+        return true;
+
+    }
+
+
+    public boolean checkOnesSegment(String s) {
+        int l = s.indexOf('1');
+        int r = s.lastIndexOf('1');
+        for (int i = l; i < r; i++) {
+            if (s.charAt(i) == '0') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    public static int minElements(int[] nums, int limit, int goal) {
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+        int need = goal - sum;
+        int count = 1;
+        count = Math.abs(Integer.MAX_VALUE / limit);
+        if (need % limit != 0) {
+            count++;
+        }
+
+
+        return count;
+    }
+
     public static void main(String[] args) {
+        minElements(new int[]{1000000, 1000000, 1000000, 1000000, 1000000}, 100000, -1000000000);
         sumOfUnique(new int[]{1, 2, 3, 2});
 
         System.out.println(countBalls(1, 10));
