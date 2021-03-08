@@ -1142,6 +1142,25 @@ public class SimpleFourthPage {
 
     }
 
+    /**
+     * @Description: 1614. 括号的最大嵌套深度
+     * @Author: gexx
+     * @Date: 2021/3/8
+     **/
+    public int maxDepth(String s) {
+        int maxDepth = 0;
+        int depth = 0;
+        for (char ch : s.toCharArray()) {
+            if ('(' == ch) {
+                depth++;
+                maxDepth = Math.max(maxDepth, depth);
+            } else if (')' == ch) {
+                depth--;
+            }
+        }
+        return maxDepth;
+    }
+
     public static void main(String[] args) {
         String[] s = "js  jj   ss".split(" ");
         System.out.println(Arrays.toString(s));
