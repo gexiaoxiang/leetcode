@@ -1161,7 +1161,27 @@ public class SimpleFourthPage {
         return maxDepth;
     }
 
+    /**
+     * @Description: 1619. 删除某些元素后的数组均值
+     * @Author: gexx
+     * @Date: 2021/3/8
+     **/
+    public static double trimMean(int[] arr) {
+        double sum = 0;
+        Arrays.sort(arr);
+        int length = arr.length;
+        int percentNum = length / 20;
+        for (int i = percentNum; i < length - percentNum; i++) {
+            sum += arr[i];
+        }
+        double res = sum / (length - 2 * percentNum);
+        return res;
+
+    }
+
     public static void main(String[] args) {
+
+        trimMean(new int[]{6, 0, 7, 0, 7, 5, 7, 8, 3, 4, 0, 7, 8, 1, 6, 8, 1, 1, 2, 4, 8, 1, 9, 5, 4, 3, 8, 5, 10, 8, 6, 6, 1, 0, 6, 10, 8, 2, 3, 4});
         String[] s = "js  jj   ss".split(" ");
         System.out.println(Arrays.toString(s));
 
