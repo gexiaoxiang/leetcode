@@ -1179,8 +1179,18 @@ public class SimpleFourthPage {
 
     }
 
-    public static void main(String[] args) {
+    public static int maxLengthBetweenEqualCharacters(String s) {
 
+        int ans = -1;
+        for (int i = 0; i < 26; i++) {
+            ans = Math.max(ans, s.lastIndexOf(i + 'a') - s.indexOf(i + 'a') - 1);
+        }
+        return ans;
+
+    }
+
+    public static void main(String[] args) {
+        maxLengthBetweenEqualCharacters("scayofdzca");
         trimMean(new int[]{6, 0, 7, 0, 7, 5, 7, 8, 3, 4, 0, 7, 8, 1, 6, 8, 1, 1, 2, 4, 8, 1, 9, 5, 4, 3, 8, 5, 10, 8, 6, 6, 1, 0, 6, 10, 8, 2, 3, 4});
         String[] s = "js  jj   ss".split(" ");
         System.out.println(Arrays.toString(s));
