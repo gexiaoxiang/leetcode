@@ -1179,6 +1179,11 @@ public class SimpleFourthPage {
 
     }
 
+    /**
+     * @Description: 1624. 两个相同字符之间的最长子字符串
+     * @Author: gexx
+     * @Date: 2021/3/8
+     **/
     public static int maxLengthBetweenEqualCharacters(String s) {
 
         int ans = -1;

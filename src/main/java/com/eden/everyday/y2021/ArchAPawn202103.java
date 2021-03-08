@@ -93,4 +93,38 @@ public class ArchAPawn202103 {
         }
         return ret;
     }
+
+    /**
+     * @Description: 132. 分割回文串 II
+     * @Author: gexx
+     * @Date: 2021/3/8
+     **/
+    public static int minCut(String s) {
+        char[] arr = s.toCharArray();
+        int len = arr.length;
+        // dp[2] = 1，表示子串 [0, 2] 中，最少的分割次数是 1
+        int[] dp = new int[len];
+        // 每个字符都是一个子串的情况，最多切割 len - 1 次
+        Arrays.fill(dp, len - 1);
+        for (int i = 0; i < len; i++) {
+            // bab 的情况，一个 a 在中间
+            palindromic(arr, i, i, dp);
+            // baac 的情况，两个 a 在中间
+            palindromic(arr, i, i + 1, dp);
+        }
+        return dp[len - 1];
+    }
+
+    public static void palindromic(char[] arr, int i, int j, int[] dp) {
+        // 中心扩展法，找到以 [i, j] 为中心，向左右两侧能够找到的最大回文串
+        while (i >= 0 && j <= arr.length - 1 && arr[i] == arr[j]) {
+            int cur = i == 0 ? 0 : dp[i - 1] + 1;
+            if (cur < dp[j]) {
+                dp[j] = cur;
+            }
+            i--;
+            j++;
+        }
+    }
+
 }
