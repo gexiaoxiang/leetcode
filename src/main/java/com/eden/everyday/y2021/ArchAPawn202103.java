@@ -127,4 +127,8 @@ public class ArchAPawn202103 {
         }
     }
 
+
+    public static void main(String[] args) {
+        minCut("ssop");
+    }
 }

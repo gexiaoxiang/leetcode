@@ -1194,7 +1194,39 @@ public class SimpleFourthPage {
 
     }
 
+    /**
+     * @Description: 1629. 按键持续时间最长的键
+     * @Author: gexx
+     * @Date: 2021/3/9
+     **/
+    public static char slowestKey(int[] releaseTimes, String keysPressed) {
+        int[] keysHold = new int[keysPressed.length()];
+        keysHold[0] = releaseTimes[0];
+        for (int i = 1; i < releaseTimes.length; i++) {
+            keysHold[i] = releaseTimes[i] - releaseTimes[i - 1];
+        }
+        int maxV = 0;
+        char re = 'A';
+        Map<Integer, Character> map = new HashMap();
+        for (int i = 0; i < keysHold.length; i++) {
+            if (keysHold[i] > maxV) {
+                maxV = keysHold[i];
+                re = keysPressed.charAt(i);
+
+            } else if (keysHold[i] == maxV) {
+                if (keysPressed.charAt(i) > re) {
+                    re = keysPressed.charAt(i);
+                }
+            }
+
+        }
+
+
+        return re;
+    }
+
     public static void main(String[] args) {
+        slowestKey(new int[]{12, 23, 36, 46, 62}, "spuda");
         maxLengthBetweenEqualCharacters("scayofdzca");
         trimMean(new int[]{6, 0, 7, 0, 7, 5, 7, 8, 3, 4, 0, 7, 8, 1, 6, 8, 1, 1, 2, 4, 8, 1, 9, 5, 4, 3, 8, 5, 10, 8, 6, 6, 1, 0, 6, 10, 8, 2, 3, 4});
         String[] s = "js  jj   ss".split(" ");
