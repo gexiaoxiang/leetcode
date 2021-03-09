@@ -1225,6 +1225,26 @@ public class SimpleFourthPage {
         return re;
     }
 
+    /**
+     * @Description: 1636. 按照频率将数组升序排序
+     * @Author: gexx
+     * @Date: 2021/3/9
+     **/
+    public int[] frequencySort(int[] nums) {
+        int[] cnts = new int[201];
+        for (int n : nums) {
+            cnts[n + 100]++;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = 201 * cnts[nums[i] + 100] - nums[i] + 100;
+        }
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = 100 - nums[i] % 201;
+        }
+        return nums;
+    }
+
     public static void main(String[] args) {
         slowestKey(new int[]{12, 23, 36, 46, 62}, "spuda");
         maxLengthBetweenEqualCharacters("scayofdzca");
