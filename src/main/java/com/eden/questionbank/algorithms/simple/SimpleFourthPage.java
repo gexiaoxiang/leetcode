@@ -1245,6 +1245,39 @@ public class SimpleFourthPage {
         return nums;
     }
 
+    /**
+     * @Description: 1640. 能否连接形成数组
+     * @Author: gexx
+     * @Date: 2021/3/9
+     **/
+    public boolean canFormArray(int[] arr, int[][] pieces) {
+        int[] map = new int[101];// 因为 1 <= arr[i], pieces[i][j] <= 100
+        Arrays.fill(map, -1);// 所有值初始化为 -1，方便后面判断
+        for (int i = 0; i < pieces.length; i++) {
+            // 每个piece的第一个值作为数组map的index，piece在pieces中的index作为数组map对应的值
+            map[pieces[i][0]] = i;
+        }
+        // 注意：for()这里不要写 i++ 了，也可改用while循环
+        for (int i = 0; i < arr.length; ) {
+            int pieceIndex = map[arr[i]];
+            if (pieceIndex != -1) {
+                int[] piece = pieces[pieceIndex];
+                i++;
+                // 从1开始遍历，0位置肯定符合，不用比了
+                for (int j = 1; j < piece.length; j++) {
+                    if (arr[i] != piece[j]) {
+                        return false;
+                    } else {
+                        i++;
+                    }
+                }
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         slowestKey(new int[]{12, 23, 36, 46, 62}, "spuda");
         maxLengthBetweenEqualCharacters("scayofdzca");
