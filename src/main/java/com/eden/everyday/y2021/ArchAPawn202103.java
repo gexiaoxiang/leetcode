@@ -127,8 +127,49 @@ public class ArchAPawn202103 {
         }
     }
 
+    /**
+     * @Description: 224. 基本计算器
+     * @Author: gexx
+     * @Date: 2021/3/10
+     **/
+    public static int calculate(String s) {
+        Deque<Integer> ops = new LinkedList<Integer>();
+        ops.push(1);
+        int sign = 1;
+
+        int ret = 0;
+        int n = s.length();
+        int i = 0;
+        while (i < n) {
+            if (s.charAt(i) == ' ') {
+                i++;
+            } else if (s.charAt(i) == '+') {
+                sign = ops.peek();
+                i++;
+            } else if (s.charAt(i) == '-') {
+                sign = -ops.peek();
+                i++;
+            } else if (s.charAt(i) == '(') {
+                ops.push(sign);
+                i++;
+            } else if (s.charAt(i) == ')') {
+                ops.pop();
+                i++;
+            } else {
+                long num = 0;
+                while (i < n && Character.isDigit(s.charAt(i))) {
+                    num = num * 10 + s.charAt(i) - '0';
+                    i++;
+                }
+                ret += sign * num;
+            }
+        }
+        return ret;
+
+    }
 
     public static void main(String[] args) {
+        calculate("2+1-1+(1+2-3)");
         minCut("ssop");
     }
 }
