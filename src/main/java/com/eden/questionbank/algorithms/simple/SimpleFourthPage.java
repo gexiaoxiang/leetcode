@@ -1278,7 +1278,32 @@ public class SimpleFourthPage {
         return true;
     }
 
+    /**
+     * @Description: 1646. 获取生成数组中的最大值
+     * @Author: gexx
+     * @Date: 2021/3/10
+     **/
+    public static int getMaximumGenerated(int n) {
+        int[] nums = new int[n + 1];
+        if (n < 2) {
+            return n;
+        }
+        nums[0] = 0;
+        nums[1] = 1;
+        int max = 1;
+        for (int i = 2; i < nums.length; i++) {
+            if (i % 2 == 0) {
+                nums[i] = nums[i / 2];
+            } else {
+                nums[i] = nums[i / 2] + nums[i / 2 + 1];
+            }
+            max = Math.max(max, nums[i]);
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
+        System.out.println(getMaximumGenerated(100));
         slowestKey(new int[]{12, 23, 36, 46, 62}, "spuda");
         maxLengthBetweenEqualCharacters("scayofdzca");
         trimMean(new int[]{6, 0, 7, 0, 7, 5, 7, 8, 3, 4, 0, 7, 8, 1, 6, 8, 1, 1, 2, 4, 8, 1, 9, 5, 4, 3, 8, 5, 10, 8, 6, 6, 1, 0, 6, 10, 8, 2, 3, 4});
