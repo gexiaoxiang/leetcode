@@ -1384,6 +1384,23 @@ public class SimpleFourthPage {
         return sb1.toString().equals(sb2.toString());
     }
 
+    /**
+     * @Description: 1668. 最大重复子字符串
+     * @Author: gexx
+     * @Date: 2021/3/11
+     **/
+    public int maxRepeating(String sequence, String word) {
+        int max = 0;
+        String repetWord = word;
+        while (sequence.indexOf(repetWord) != -1) {
+            repetWord = repetWord + word;
+            max++;
+
+        }
+        return max;
+
+    }
+
     public static void main(String[] args) {
 
         maxLengthBetweenEqualCharacters("scayofdzca");
