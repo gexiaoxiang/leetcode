@@ -3,6 +3,7 @@ package com.eden.everyday.y2021;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * @Description: 每日一题
@@ -168,8 +169,52 @@ public class ArchAPawn202103 {
 
     }
 
+    /**
+     * @Description: 227. 基本计算器 II
+     * @Author: gexx
+     * @Date: 2021/3/11
+     **/
+    public static int calculate2(String s) {
+        Stack<Integer> stack = new Stack();
+        char preSign = '+';
+        int num = 0;
+        int n = s.length();
+        for (int i = 0; i < n; i++) {
+            char ch = s.charAt(i);
+            if (Character.isDigit(ch)) {
+                num = num * 10 + ch - '0';
+            }
+            if (!Character.isDigit(ch) && ch != ' ' || i == n - 1) {
+                switch (preSign) {
+                    case '+':
+                        stack.push(num);
+                        break;
+                    case '-':
+                        stack.push(-num);
+                        break;
+                    case '*':
+                        stack.push(stack.pop() * num);
+                        break;
+                    default:
+                        stack.push(stack.pop() / num);
+                        break;
+
+                }
+                preSign = ch;
+                num = 0;
+            }
+
+        }
+        int sum = 0;
+        while (!stack.isEmpty()) {
+            sum += stack.pop();
+        }
+
+        return sum;
+    }
+
     public static void main(String[] args) {
-        calculate("2+1-1+(1+2-3)");
         minCut("ssop");
+        calculate2("3+2*2");
     }
 }
