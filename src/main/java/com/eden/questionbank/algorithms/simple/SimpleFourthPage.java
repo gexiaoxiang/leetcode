@@ -1365,10 +1365,27 @@ public class SimpleFourthPage {
         }
     }
 
+    /**
+     * @Description: 1662. 检查两个字符串数组是否相等
+     * @Author: gexx
+     * @Date: 2021/3/11
+     **/
+    public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+        StringBuilder sb1 = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
+        for (String s : word1) {
+            sb1.append(s);
+        }
+        for (String s : word2) {
+            sb2.append(s);
+        }
+
+
+        return sb1.toString().equals(sb2.toString());
+    }
 
     public static void main(String[] args) {
-        System.out.println(getMaximumGenerated(100));
-        slowestKey(new int[]{12, 23, 36, 46, 62}, "spuda");
+
         maxLengthBetweenEqualCharacters("scayofdzca");
         trimMean(new int[]{6, 0, 7, 0, 7, 5, 7, 8, 3, 4, 0, 7, 8, 1, 6, 8, 1, 1, 2, 4, 8, 1, 9, 5, 4, 3, 8, 5, 10, 8, 6, 6, 1, 0, 6, 10, 8, 2, 3, 4});
         String[] s = "js  jj   ss".split(" ");
