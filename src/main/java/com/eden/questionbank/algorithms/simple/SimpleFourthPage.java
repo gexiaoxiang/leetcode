@@ -1401,6 +1401,26 @@ public class SimpleFourthPage {
 
     }
 
+    /**
+     * @Description: 1672. 最富有客户的资产总量
+     * @Author: gexx
+     * @Date: 2021/3/11
+     **/
+    public int maximumWealth(int[][] accounts) {
+        int maxRich = 0;
+        for (int[] account : accounts) {
+            int sum = 0;
+            for (int i : account) {
+                sum += i;
+            }
+
+            maxRich = Math.max(sum, maxRich);
+
+        }
+        return maxRich;
+
+    }
+
     public static void main(String[] args) {
 
         maxLengthBetweenEqualCharacters("scayofdzca");
