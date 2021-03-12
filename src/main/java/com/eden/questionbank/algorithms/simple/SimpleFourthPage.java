@@ -1454,6 +1454,21 @@ public class SimpleFourthPage {
         return count;
     }
 
+    /**
+     * @Description: 1688. 比赛中的配对次数
+     * @Author: gexx
+     * @Date: 2021/3/12
+     **/
+    public int numberOfMatches(int n) {
+        int count = 0;
+        while (n != 1) {
+            count += n / 2;
+            n = n / 2 + n % 2;
+
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         interpret("G()(al)");
         maxLengthBetweenEqualCharacters("scayofdzca");
