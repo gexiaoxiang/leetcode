@@ -1421,8 +1421,19 @@ public class SimpleFourthPage {
 
     }
 
-    public static void main(String[] args) {
+    /**
+     * @Description: 1678. 设计 Goal 解析器
+     * @Author: gexx
+     * @Date: 2021/3/12
+     **/
+    public static String interpret(String command) {
+        command = command.replace("(al)", "al");
+        command = command.replace("()", "o");
+        return command;
+    }
 
+    public static void main(String[] args) {
+        interpret("G()(al)");
         maxLengthBetweenEqualCharacters("scayofdzca");
         trimMean(new int[]{6, 0, 7, 0, 7, 5, 7, 8, 3, 4, 0, 7, 8, 1, 6, 8, 1, 1, 2, 4, 8, 1, 9, 5, 4, 3, 8, 5, 10, 8, 6, 6, 1, 0, 6, 10, 8, 2, 3, 4});
         String[] s = "js  jj   ss".split(" ");
