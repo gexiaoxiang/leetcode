@@ -1432,6 +1432,28 @@ public class SimpleFourthPage {
         return command;
     }
 
+    /**
+     * @Description: 1684. 统计一致字符串的数目
+     * @Author: gexx
+     * @Date: 2021/3/12
+     **/
+    public int countConsistentStrings(String allowed, String[] words) {
+        int count = 0;
+        for (String word : words) {
+            boolean consistent = true;
+            for (char ch : word.toCharArray()) {
+                if (allowed.indexOf(ch) == -1) {
+                    consistent = false;
+                    break;
+                }
+            }
+            if (consistent) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         interpret("G()(al)");
         maxLengthBetweenEqualCharacters("scayofdzca");
