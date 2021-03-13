@@ -2055,7 +2055,35 @@ public class SimpleThirdPage {
         return sb.reverse().toString();
     }
 
+
+    /**
+     * @Description 1694. 重新格式化电话号码
+     * @author gexx
+     * @Date 2021/3/13
+     **/
+    public static String reformatNumber(String number) {
+        number = number.replace(" ", "").replace("-", "");
+        StringBuilder sb = new StringBuilder(number);
+        int length = number.length();
+        int count = 0;
+        for (int i = 0; i < length; ) {
+            if (length - i == 4) {
+                sb.insert(sb.length() - 2, "-");
+                i += 4;
+            } else if (length - i < 4) {
+                i = length;
+            } else {
+                i += 3;
+                sb.insert(i + count, "-");
+                count++;
+            }
+        }
+
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
+        reformatNumber("121 1");
         replaceElements(new int[]{17, 18, 5, 4, 6, 1});
         ListNode head = new ListNode(1);
         ListNode next = new ListNode(0);
