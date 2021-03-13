@@ -2082,7 +2082,40 @@ public class SimpleThirdPage {
         return sb.toString();
     }
 
+    /**
+     * @Description 1700. 无法吃午餐的学生数量
+     * @author gexx
+     * @Date 2021/3/13
+     **/
+    public static int countStudents(int[] students, int[] sandwiches) {
+        Deque<Integer> studentsDeque = new ArrayDeque();
+        Stack<Integer> studentsStack = new Stack<>();
+        for (int i = sandwiches.length - 1; i >= 0; i--) {
+            studentsDeque.add(students[sandwiches.length - 1 - i]);
+            studentsStack.push(sandwiches[i]);
+        }
+        int count = 0;
+        while (studentsDeque.size() > 0) {
+            Integer sandwich = studentsStack.peek();
+            Integer poll = studentsDeque.poll();
+
+            if (poll == sandwich) {
+                studentsStack.pop();
+                count = 0;
+            } else {
+                count++;
+                studentsDeque.add(poll);
+            }
+            if (count > studentsDeque.size()) {
+                break;
+            }
+        }
+
+        return studentsDeque.size();
+    }
+
     public static void main(String[] args) {
+        countStudents(new int[]{1, 1, 1, 0, 0, 1}, new int[]{1, 0, 0, 0, 1, 1});
         reformatNumber("121 1");
         replaceElements(new int[]{17, 18, 5, 4, 6, 1});
         ListNode head = new ListNode(1);
