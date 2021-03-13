@@ -2114,6 +2114,28 @@ public class SimpleThirdPage {
         return studentsDeque.size();
     }
 
+    /**
+     * @Description 1704. 判断字符串的两半是否相似
+     * @author gexx
+     * @Date 2021/3/13
+     **/
+    public boolean halvesAreAlike(String s) {
+        s = s.toLowerCase();
+        char[] chars = s.toCharArray();
+        int length = s.toCharArray().length;
+        int left = 0;
+        for (int i = 0; i < length; i++) {
+            if ("aeiou".indexOf(chars[i]) != -1) {
+                if (i < length / 2) {
+                    left++;
+                } else {
+                    left--;
+                }
+            }
+        }
+        return left == 0;
+    }
+
     public static void main(String[] args) {
         countStudents(new int[]{1, 1, 1, 0, 0, 1}, new int[]{1, 0, 0, 0, 1, 1});
         reformatNumber("121 1");
