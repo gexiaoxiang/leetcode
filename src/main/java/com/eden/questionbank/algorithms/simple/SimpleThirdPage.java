@@ -2136,6 +2136,28 @@ public class SimpleThirdPage {
         return left == 0;
     }
 
+    /**
+     * @Description 705. 设计哈希集合
+     * @Author gexx
+     * @Date 2021/3/13
+     **/
+    class MyHashSet {
+        boolean[] nodes = new boolean[1000009];
+
+        public void add(int key) {
+            nodes[key] = true;
+        }
+
+        public void remove(int key) {
+            nodes[key] = false;
+        }
+
+        public boolean contains(int key) {
+            return nodes[key];
+        }
+
+    }
+
     public static void main(String[] args) {
         countStudents(new int[]{1, 1, 1, 0, 0, 1}, new int[]{1, 0, 0, 0, 1, 1});
         reformatNumber("121 1");
