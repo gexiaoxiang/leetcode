@@ -251,6 +251,32 @@ public class ArchAPawn202103 {
 
     }
 
+
+    /**
+     * @author gexx
+     * @Description 706. 设计哈希映射
+     * @Date 2021/3/14
+     **/
+    class MyHashMap {
+        Integer data[];
+
+        public MyHashMap() {
+            data = new Integer[1000001];
+        }
+
+        public void put(int key, int value) {
+            data[key] = value;
+        }
+
+        public int get(int key) {
+            return data[key] == null ? -1 : data[key];
+        }
+
+        public void remove(int key) {
+            data[key] = null;
+        }
+    }
+
     public static void main(String[] args) {
         minCut("ssop");
         calculate2("3+2*2");
