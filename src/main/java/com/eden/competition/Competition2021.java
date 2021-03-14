@@ -177,16 +177,51 @@ public class Competition2021 {
         }
         long need = goal - sum;
         long count = 1;
-        count = Math.abs(need/ limit);
+        count = Math.abs(need / limit);
         if (need % limit != 0) {
             count++;
         }
 
 
-        return (int)count;
+        return (int) count;
+    }
+
+
+    /**
+     * @Description 5701. 仅执行一次字符串交换能否使两个字符串相等
+     * @author gexx
+     * @Date 2021/3/14
+     **/
+    public static boolean areAlmostEqual(String s1, String s2) {
+        if (s1.equals(s2)) {
+            return true;
+        }
+        int count = 0;
+        char first = ' ', second = ' ';
+        int firstindex = 0, secondIndex = 0;
+        for (int i = 0; i < s1.length(); i++) {
+            if (s1.charAt(i) != s2.charAt(i)) {
+                count++;
+                if (first == ' ') {
+                    first = s1.charAt(i);
+                    firstindex = i;
+                } else if (second == ' ') {
+                    second = s1.charAt(i);
+                    secondIndex = i;
+                }
+            }
+        }
+        if (count != 2) {
+            return false;
+        } else if (s1.charAt(firstindex) == s2.charAt(secondIndex) && s2.charAt(firstindex) == s1.charAt(secondIndex)) {
+            return true;
+        }
+
+        return false;
     }
 
     public static void main(String[] args) {
+        areAlmostEqual("bank", "kanb");
         minElements(new int[]{1000000, 1000000, 1000000, 1000000, 1000000}, 100000, -1000000000);
         sumOfUnique(new int[]{1, 2, 3, 2});
 
