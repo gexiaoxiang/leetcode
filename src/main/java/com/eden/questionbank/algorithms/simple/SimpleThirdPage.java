@@ -2158,6 +2158,34 @@ public class SimpleThirdPage {
 
     }
 
+    /**
+     * @Description 1710. 卡车上的最大单元数
+     * @Author gexx
+     * @Date 2021/3/14
+     **/
+    public int maximumUnits(int[][] boxTypes, int truckSize) {
+        Arrays.sort(boxTypes, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o2[1] - o1[1];
+            }
+        });
+        int maxSum = 0;
+        int currentTruckSize = 0;
+        for (int[] boxType : boxTypes) {
+            currentTruckSize += boxType[0];
+            if (currentTruckSize <= truckSize) {
+                maxSum += boxType[0] * boxType[1];
+            } else {
+                currentTruckSize -= boxType[0];
+                maxSum += (truckSize - currentTruckSize) * boxType[1];
+                break;
+            }
+        }
+        return maxSum;
+    }
+
+
     public static void main(String[] args) {
         countStudents(new int[]{1, 1, 1, 0, 0, 1}, new int[]{1, 0, 0, 0, 1, 1});
         reformatNumber("121 1");
