@@ -220,6 +220,30 @@ public class Competition2021 {
         return false;
     }
 
+
+    /**
+     * @Description 5702. 找出星型图的中心节点
+     * @author gexx
+     * @Date 2021/3/14
+     **/
+    public int findCenter(int[][] edges) {
+        int[] re = new int[100001];
+        for (int i = 0; i < edges.length; i++) {
+            re[edges[i][0]]++;
+            re[edges[i][1]]++;
+        }
+        int max = 0;
+        int maxIndex = 0;
+        for (int i = 0; i < re.length; i++) {
+            if (max < re[i]) {
+                max = Math.max(max, re[i]);
+                maxIndex = i;
+            }
+        }
+        return maxIndex;
+    }
+
+
     public static void main(String[] args) {
         areAlmostEqual("bank", "kanb");
         minElements(new int[]{1000000, 1000000, 1000000, 1000000, 1000000}, 100000, -1000000000);
