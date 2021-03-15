@@ -1479,6 +1479,23 @@ public class SimpleFourthPage {
         return ((day + 1) * day) / 2 + day * week + (((week + 7) * week) / 2) * 7;
     }
 
+    /**
+     * @Description: 1720. 解码异或后的数组
+     * @Author: gexx
+     * @Date: 2021/3/15
+     **/
+    public int[] decode(int[] encoded, int first) {
+        int[] arr = new int[encoded.length + 1];
+        arr[0] = first;
+        for (int i = 1; i < arr.length; i++) {
+            arr[i] = encoded[i - 1] ^ arr[i - 1];
+
+        }
+
+        return arr;
+
+    }
+
     public static void main(String[] args) {
         interpret("G()(al)");
         maxLengthBetweenEqualCharacters("scayofdzca");
