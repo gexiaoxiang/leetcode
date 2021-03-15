@@ -1496,6 +1496,25 @@ public class SimpleFourthPage {
 
     }
 
+    /**
+     * @Description: 1725. 可以形成最大正方形的矩形数目
+     * @Author: gexx
+     * @Date: 2021/3/15
+     **/
+    public int countGoodRectangles(int[][] rectangles) {
+        int maxLen = 0, ans = 0;
+        for (int[] rect : rectangles) {
+            int len = Math.min(rect[0], rect[1]);
+            if (len > maxLen) {
+                maxLen = len;
+                ans = 1;
+            } else if (len == maxLen) {
+                ans++;
+            }
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         interpret("G()(al)");
         maxLengthBetweenEqualCharacters("scayofdzca");
