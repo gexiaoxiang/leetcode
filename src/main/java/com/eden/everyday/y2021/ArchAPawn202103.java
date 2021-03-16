@@ -1,9 +1,6 @@
 package com.eden.everyday.y2021;
 
-import java.util.Arrays;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @Description: 每日一题

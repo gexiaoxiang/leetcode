@@ -1515,7 +1515,25 @@ public class SimpleFourthPage {
         return ans;
     }
 
+    /**
+     * @Description: 1732. 找到最高海拔
+     * @Author: gexx
+     * @Date: 2021/3/16
+     **/
+    public static int largestAltitude(int[] gain) {
+        int res[] = new int[gain.length + 1];
+
+        int x = -Integer.MAX_VALUE;
+        for (int i = 0; i < res.length - 1; i++) {
+            res[i + 1] = res[i] + gain[i];
+            x = Math.max(x, res[i + 1]);
+        }
+
+        return Math.max(x, res[0]);
+    }
+
     public static void main(String[] args) {
+        largestAltitude(new int[]{44, 32, -9, 52, 23, -50, 50, 33, -84, 47, -14, 84, 36, -62, 37, 81, -36, -85, -39, 67, -63, 64, -47, 95, 91, -40, 65, 67, 92, -28, 97, 100, 81});
         interpret("G()(al)");
         maxLengthBetweenEqualCharacters("scayofdzca");
         trimMean(new int[]{6, 0, 7, 0, 7, 5, 7, 8, 3, 4, 0, 7, 8, 1, 6, 8, 1, 1, 2, 4, 8, 1, 9, 5, 4, 3, 8, 5, 10, 8, 6, 6, 1, 0, 6, 10, 8, 2, 3, 4});
