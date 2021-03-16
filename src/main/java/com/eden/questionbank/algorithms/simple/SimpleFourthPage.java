@@ -1547,6 +1547,26 @@ public class SimpleFourthPage {
         return count <= 1;
     }
 
+    /**
+     * @Description: 1758. 生成交替二进制字符串的最少操作数
+     * @Author: gexx
+     * @Date: 2021/3/16
+     **/
+    public int minOperations(String s) {
+        int n = s.length();
+        int count1 = 0;
+        int count2 = 0;
+        char[] a = s.toCharArray();
+        for (int i = 0; i < n; i++) {
+            if (a[i] % 2 == i % 2) {
+                count1++;
+            } else {
+                count2++;
+            }
+        }
+        return Math.min(count1, count2);
+    }
+
     public static void main(String[] args) {
         largestAltitude(new int[]{44, 32, -9, 52, 23, -50, 50, 33, -84, 47, -14, 84, 36, -62, 37, 81, -36, -85, -39, 67, -63, 64, -47, 95, 91, -40, 65, 67, 92, -28, 97, 100, 81});
         interpret("G()(al)");
