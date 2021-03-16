@@ -1532,6 +1532,21 @@ public class SimpleFourthPage {
         return Math.max(x, res[0]);
     }
 
+    /**
+     * @Description: 1752. 检查数组是否经排序和轮转得到
+     * @Author: gexx
+     * @Date: 2021/3/16
+     **/
+    public boolean check(int[] nums) {
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > nums[(i + 1) % nums.length]) {
+                count++;
+            }
+        }
+        return count <= 1;
+    }
+
     public static void main(String[] args) {
         largestAltitude(new int[]{44, 32, -9, 52, 23, -50, 50, 33, -84, 47, -14, 84, 36, -62, 37, 81, -36, -85, -39, 67, -63, 64, -47, 95, 91, -40, 65, 67, 92, -28, 97, 100, 81});
         interpret("G()(al)");
