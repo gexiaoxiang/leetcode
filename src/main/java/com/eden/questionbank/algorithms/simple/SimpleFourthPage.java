@@ -1567,6 +1567,22 @@ public class SimpleFourthPage {
         return Math.min(count1, count2);
     }
 
+    /**
+     * @Description: LCP 01. 猜数字
+     * @Author: gexx
+     * @Date: 2021/3/17
+     **/
+    public int game(int[] guess, int[] answer) {
+        int count = 0;
+        for (int i = 0; i < guess.length; i++) {
+            if (guess[i] == answer[i]) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
     public static void main(String[] args) {
         largestAltitude(new int[]{44, 32, -9, 52, 23, -50, 50, 33, -84, 47, -14, 84, 36, -62, 37, 81, -36, -85, -39, 67, -63, 64, -47, 95, 91, -40, 65, 67, 92, -28, 97, 100, 81});
         interpret("G()(al)");
