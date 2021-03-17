@@ -1601,6 +1601,20 @@ public class SimpleFourthPage {
 
     }
 
+    /**
+     * @Description: LCP 06. 拿硬币
+     * @Author: gexx
+     * @Date: 2021/3/17
+     **/
+    public int minCount(int[] coins) {
+        int count = 0;
+        for (int coin : coins) {
+            count = count + coin / 2 + coin % 2;
+
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         largestAltitude(new int[]{44, 32, -9, 52, 23, -50, 50, 33, -84, 47, -14, 84, 36, -62, 37, 81, -36, -85, -39, 67, -63, 64, -47, 95, 91, -40, 65, 67, 92, -28, 97, 100, 81});
         interpret("G()(al)");
