@@ -1615,6 +1615,22 @@ public class SimpleFourthPage {
         return count;
     }
 
+    /**
+     * @Description: LCP 07. 传递信息
+     * @Author: gexx
+     * @Date: 2021/3/17
+     **/
+    public int numWays(int n, int[][] relation, int k) {
+        int[][] dp = new int[k + 1][n];
+        dp[0][0] = 1;
+        for (int i = 1; i < dp.length; i++) {
+            for (int[] arr : relation) {
+                dp[i][arr[1]] += dp[i - 1][arr[0]];
+            }
+        }
+        return dp[k][n - 1];
+    }
+
     public static void main(String[] args) {
         largestAltitude(new int[]{44, 32, -9, 52, 23, -50, 50, 33, -84, 47, -14, 84, 36, -62, 37, 81, -36, -85, -39, 67, -63, 64, -47, 95, 91, -40, 65, 67, 92, -28, 97, 100, 81});
         interpret("G()(al)");
