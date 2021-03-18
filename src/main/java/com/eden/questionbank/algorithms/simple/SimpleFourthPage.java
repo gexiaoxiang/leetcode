@@ -1638,17 +1638,14 @@ public class SimpleFourthPage {
      **/
     public int calculate(String s) {
         int x = 1, y = 0;
-        int sum = 0;
         for (int i = 0; i < s.length(); i++) {
             if ('A' == s.charAt(i)) {
                 x = 2 * x + y;
-                sum += x;
             } else {
                 y = 2 * y + x;
-                sum += y;
             }
         }
-        return sum;
+        return x + y;
     }
 
     public static void main(String[] args) {
