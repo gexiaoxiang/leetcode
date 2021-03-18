@@ -1631,6 +1631,26 @@ public class SimpleFourthPage {
         return dp[k][n - 1];
     }
 
+    /**
+     * @Description: LCP 17. 速算机器人
+     * @Author: gexx
+     * @Date: 2021/3/18
+     **/
+    public int calculate(String s) {
+        int x = 1, y = 0;
+        int sum = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if ('A' == s.charAt(i)) {
+                x = 2 * x + y;
+                sum += x;
+            } else {
+                y = 2 * y + x;
+                sum += y;
+            }
+        }
+        return sum;
+    }
+
     public static void main(String[] args) {
         largestAltitude(new int[]{44, 32, -9, 52, 23, -50, 50, 33, -84, 47, -14, 84, 36, -62, 37, 81, -36, -85, -39, 67, -63, 64, -47, 95, 91, -40, 65, 67, 92, -28, 97, 100, 81});
         interpret("G()(al)");
