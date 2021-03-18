@@ -1648,6 +1648,29 @@ public class SimpleFourthPage {
         return x + y;
     }
 
+    /**
+     * @Description: LCP 18. 早餐组合
+     * @Author: gexx
+     * @Date: 2021/3/18
+     **/
+    public int breakfastNumber(int[] staple, int[] drinks, int x) {
+        Arrays.sort(staple);
+        Arrays.sort(drinks);
+        int cnt = 0;
+        int m = staple.length, n = drinks.length;
+        int i = 0, j = n - 1;
+        while (i < m && j >= 0) {
+            if (staple[i] + drinks[j] <= x) {
+                cnt = (cnt + j + 1) % 1000000007;
+                i++;
+            } else {
+                j--;
+            }
+        }
+        return cnt % 1000000007;
+
+    }
+
     public static void main(String[] args) {
         largestAltitude(new int[]{44, 32, -9, 52, 23, -50, 50, 33, -84, 47, -14, 84, 36, -62, 37, 81, -36, -85, -39, 67, -63, 64, -47, 95, 91, -40, 65, 67, 92, -28, 97, 100, 81});
         interpret("G()(al)");
