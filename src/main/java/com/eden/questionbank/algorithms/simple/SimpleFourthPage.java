@@ -1671,6 +1671,41 @@ public class SimpleFourthPage {
 
     }
 
+    /**
+     * @Description: LCP 22. 黑白方格画
+     * @Author: gexx
+     * @Date: 2021/3/18
+     **/
+    public int paintingPlan(int n, int k) {
+
+        if (k == n * n) {
+            return 1;
+        }
+
+        int count = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i * n + (n - i) * j == k) {
+                    count += sumC(i, n) * sumC(j, n);
+                }
+            }
+        }
+        return count;
+    }
+
+    int sumC(int m, int n) {
+
+        int i = recurrence(n) / (recurrence(m) * recurrence(n - m));
+        return i;
+    }
+
+    int recurrence(int num) {
+        if (num <= 1)
+            return 1;
+        else
+            return num * recurrence(num - 1);
+    }
+
     public static void main(String[] args) {
         largestAltitude(new int[]{44, 32, -9, 52, 23, -50, 50, 33, -84, 47, -14, 84, 36, -62, 37, 81, -36, -85, -39, 67, -63, 64, -47, 95, 91, -40, 65, 67, 92, -28, 97, 100, 81});
         interpret("G()(al)");
