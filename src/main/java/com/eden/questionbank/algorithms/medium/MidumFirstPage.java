@@ -123,7 +123,28 @@ public class MidumFirstPage {
         }
     }
 
+    /**
+     * @Description: 45. 跳跃游戏 II
+     * @Author: gexx
+     * @Date: 2021/3/30
+     **/
+    public static int jump(int[] nums) {
+        int position = nums.length - 1;
+        int steps = 0;
+        while (position > 0) {
+            for (int i = 0; i < position; i++) {
+                if (i + nums[i] >= position) {
+                    position = i;
+                    steps++;
+                    break;
+                }
+            }
+        }
+        return steps;
+    }
+
     public static void main(String[] args) {
+        jump(new int[]{2, 3, 1, 2, 4, 2, 3});
         intToRoman(66);
     }
 }
