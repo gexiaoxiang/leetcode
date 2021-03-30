@@ -160,6 +160,11 @@ public class MidumFirstPage {
         return ans;
     }
 
+    /**
+     * @Description: 47. 全排列 II
+     * @Author: gexx
+     * @Date: 2021/3/30
+     **/
     public void backtrack(int[] nums, List<List<Integer>> ans, int idx, List<Integer> perm) {
         if (idx == nums.length) {
             ans.add(new ArrayList<Integer>(perm));
