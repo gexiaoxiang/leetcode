@@ -3,6 +3,7 @@ package com.eden.questionbank.algorithms.medium;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * @Description: 中等 page 1  size 100
@@ -182,9 +183,15 @@ public class MidumFirstPage {
         }
     }
 
+
     public static void main(String[] args) {
         jump(new int[]{2, 3, 1, 2, 4, 2, 3});
         intToRoman(66);
+        Scanner scanner=new Scanner(System.in);
+        if (scanner.hasNextLine()){
+            String next = scanner.nextLine();
+            System.out.println(next);
+        }
     }
 }
 
