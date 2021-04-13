@@ -31,8 +31,31 @@ public class ClassicalSort {
         return arr;
     }
 
+    /**
+     * @Description: 选择排序
+     * @Author: gexx
+     * @Date: 2021/4/13
+     **/
+    public static int[] SelectionSort(int[] arr) {
+        int minIndex, tmp;
+        for (int i = 0; i < arr.length - 1; i++) {
+            minIndex = i;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[minIndex]) {
+                    minIndex = j;
+                }
+            }
+            tmp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = tmp;
+        }
+
+        return arr;
+    }
+
     public static void main(String[] args) {
         int arr[] = new int[]{3, 1, 2, 4};
-        System.out.println(Arrays.toString(BubbleSort(arr)));
+//        System.out.println(Arrays.toString(BubbleSort(arr)));
+        System.out.println(Arrays.toString(SelectionSort(arr)));
     }
 }
