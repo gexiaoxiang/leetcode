@@ -1,5 +1,7 @@
 package com.eden;
 
+import java.math.BigDecimal;
+
 /**
  * @Description: TODO
  * @Author gexx
@@ -9,14 +11,8 @@ package com.eden;
 public class test1 {
 
     public static void main(String[] args) {
-        try {
-            Number n = Integer.valueOf("444dff");
-        } catch (NumberFormatException e) {
-            System.out.println(1);
-        } catch (IllegalArgumentException e) {
-            System.out.println(2);
-        } catch (Exception e) {
-            System.out.println(3);
-        }
+        BigDecimal ss=new BigDecimal("4.5");
+        BigDecimal bigDecimal = ss.setScale(6, BigDecimal.ROUND_HALF_UP);
+        System.out.println(bigDecimal);
     }
 }

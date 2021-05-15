@@ -52,9 +52,18 @@ public class ClassicalSort {
 
         return arr;
     }
+    /**
+     * @Description: 插入排序
+     * @Author: gexx
+     * @Date: 2021/4/13
+     **/
+    public static int[] InsertionSort(int[] arr) {
 
+
+        return arr;
+    }
     public static void main(String[] args) {
-        int arr[] = new int[]{3, 1, 2, 4};
+        int arr[] = new int[] {3, 1, 2, 4};
 //        System.out.println(Arrays.toString(BubbleSort(arr)));
         System.out.println(Arrays.toString(SelectionSort(arr)));
     }
