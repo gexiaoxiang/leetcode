@@ -31,5 +31,16 @@ public class ArchAPawn202106 {
         return sentinel.next;
     }
 
+    /**
+     * @Description: 剑指 Offer 15. 二进制中1的个数
+     * @Author: gexx
+     * @Date: 2021/6/23
+     **/
+    public static int hammingWeight(int n) {
+        return Integer.bitCount(n);
+    }
 
+    public static void main(String[] args) {
+        hammingWeight(00000000000000000000000000001011);
+    }
 }

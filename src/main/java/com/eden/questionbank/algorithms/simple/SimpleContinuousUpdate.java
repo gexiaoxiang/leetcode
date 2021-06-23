@@ -2,6 +2,7 @@ package com.eden.questionbank.algorithms.simple;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -58,6 +59,7 @@ public class SimpleContinuousUpdate {
 
     public static void main(String[] args) {
         secondHighest("ck077");
+        HashSet h=new HashSet();
     }
 
 }
