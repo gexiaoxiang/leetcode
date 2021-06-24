@@ -57,9 +57,30 @@ public class SimpleContinuousUpdate {
         return -1;
     }
 
+    /**
+     * @Description: 1800. 最大升序子数组和
+     * @Author: gexx
+     * @Date: 2021/6/24
+     **/
+    public int maxAscendingSum(int[] nums) {
+
+        int max = nums[0];
+        int sum = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+
+            if (nums[i] > nums[i - 1]) {
+                sum += nums[i];
+                max = Math.max(max, sum);
+            } else {
+                sum = nums[i];
+            }
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
         secondHighest("ck077");
-        HashSet h=new HashSet();
+        HashSet h = new HashSet();
     }
 
 }
