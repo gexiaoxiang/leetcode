@@ -102,9 +102,20 @@ public class SimpleContinuousUpdate {
 
     }
 
+    /**
+     * @Description: 1812. 判断国际象棋棋盘中一个格子的颜色
+     * @Author: gexx
+     * @Date: 2021/6/28
+     **/
+    public static boolean squareIsWhite(String coordinates) {
+
+        return ((coordinates.charAt(0) + coordinates.charAt(1)) % 2 != 0);
+    }
+
     public static void main(String[] args) {
         secondHighest("ck077");
         HashSet h = new HashSet();
+        squareIsWhite("w");
     }
 
 }
