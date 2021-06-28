@@ -1,9 +1,6 @@
 package com.eden.questionbank.algorithms.simple;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Description: 简单题持续更新
@@ -76,6 +73,33 @@ public class SimpleContinuousUpdate {
             }
         }
         return max;
+    }
+
+    /**
+     * @Description: 1805. 字符串中不同整数的数目
+     * @Author: gexx
+     * @Date: 2021/6/28
+     **/
+    public int numDifferentIntegers(String word) {
+        Set<String> set = new HashSet<>();
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            if (Character.isDigit(c)) {
+                StringBuilder sb = new StringBuilder();
+                //去除前导0
+                while (i < word.length() && word.charAt(i) == '0') {
+                    i++;
+                }
+                while (i < word.length() && Character.isDigit(word.charAt(i))) {
+                    sb.append(word.charAt(i));
+                    i++;
+                }
+                i -= 1;
+                set.add(sb.toString());
+            }
+        }
+        return set.size();
+
     }
 
     public static void main(String[] args) {
