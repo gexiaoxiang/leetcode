@@ -112,10 +112,27 @@ public class SimpleContinuousUpdate {
         return ((coordinates.charAt(0) + coordinates.charAt(1)) % 2 != 0);
     }
 
+    /**
+     * @Description: 1816. 截断句子
+     * @Author: gexx
+     * @Date: 2021/7/8
+     **/
+    public String truncateSentence(String s, int k) {
+        String[] s1 = s.split(" ");
+        int len = s1.length >= k ? k : s1.length;
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < len; i++) {
+            sb.append(s1[i]).append(" ");
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        return sb.toString();
+    }
+
     public static void main(String[] args) {
         secondHighest("ck077");
         HashSet h = new HashSet();
-        squareIsWhite("w");
+
     }
 
 }
