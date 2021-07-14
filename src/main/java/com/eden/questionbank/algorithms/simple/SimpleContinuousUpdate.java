@@ -129,9 +129,55 @@ public class SimpleContinuousUpdate {
         return sb.toString();
     }
 
+    /**
+     * @Description: 1822. 数组元素积的符号
+     * @Author: gexx
+     * @Date: 2021/7/8
+     **/
+    public static int arraySign(int[] nums) {
+        int negativeCount = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                return 0;
+            }
+            if (nums[i] < 0) {
+                negativeCount++;
+            }
+
+        }
+        if (negativeCount % 2 == 0) {
+            return 1;
+        } else {
+            return -1;
+        }
+
+
+    }
+
+    /**
+     * @Description: 1827. 最少操作使数组递增
+     * @Author: gexx
+     * @Date: 2021/7/14
+     **/
+    public int minOperations(int[] nums) {
+        int count = 0;
+        if (nums.length == 1) {
+            return count;
+        }
+        for (int i = 1; i <= nums.length; i++) {
+            while (nums[i] < nums[i - 1]) {
+                nums[i]++;
+                count++;
+            }
+        }
+
+        return count;
+    }
+
     public static void main(String[] args) {
         secondHighest("ck077");
         HashSet h = new HashSet();
+        arraySign(new int[]{41, 65, 14, 80, 20, 10, 55, 58, 24, 56, 28, 86, 96, 10, 3, 84, 4, 41, 13, 32, 42, 43, 83, 78, 82, 70, 15, -41});
 
     }
 

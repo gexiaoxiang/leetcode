@@ -11,6 +11,6 @@ import org.junit.Test;
 public class Test2 {
     @Test
     public void fun() {
-
+        System.out.println("31AZ".charAt(2));
     }
 }
