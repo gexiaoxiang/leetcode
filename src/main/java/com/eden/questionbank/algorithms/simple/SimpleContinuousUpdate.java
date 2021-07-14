@@ -174,6 +174,29 @@ public class SimpleContinuousUpdate {
         return count;
     }
 
+    /**
+     * @Description: 1832. 判断句子是否为全字母句
+     * @Author: gexx
+     * @Date: 2021/7/14
+     **/
+    public boolean checkIfPangram(String sentence) {
+
+        if (sentence.length() < 26) {
+            return false;
+        }
+        char[] chars = sentence.toCharArray();
+        Set set = new HashSet();
+        for (char aChar : chars) {
+
+            set.add(aChar);
+            if (set.size() == 26) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public static void main(String[] args) {
         secondHighest("ck077");
         HashSet h = new HashSet();
