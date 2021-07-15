@@ -205,9 +205,13 @@ public class SimpleContinuousUpdate {
         StringBuilder sb = new StringBuilder();
 
         char[] chars = s.toCharArray();
-        for (int i = 1; i < chars.length; i += 2) {
-            sb.append(chars[i - 1]);
-            sb.append((char) (chars[i - 1] + Integer.valueOf(String.valueOf(chars[i]))));
+        for (int i = 0; i < chars.length; i++) {
+
+            if (i % 2 == 0) {
+                sb.append(chars[i]);
+            } else {
+                sb.append((char) (chars[i - 1] + Integer.valueOf(String.valueOf(chars[i]))));
+            }
         }
 
         return sb.toString();
