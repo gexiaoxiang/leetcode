@@ -196,8 +196,20 @@ public class SimpleContinuousUpdate {
         return false;
     }
 
+    public static String replaceDigits(String s) {
+        StringBuilder sb = new StringBuilder();
+
+        char[] chars = s.toCharArray();
+        for (int i = 1; i < chars.length; i += 2) {
+            sb.append(chars[i - 1]);
+            sb.append((char)( chars[i - 1] + Integer.valueOf(String.valueOf(chars[i]))));
+        }
+
+        return sb.toString();
+    }
 
     public static void main(String[] args) {
+        replaceDigits("a1c1e1");
         secondHighest("ck077");
         HashSet h = new HashSet();
         arraySign(new int[]{41, 65, 14, 80, 20, 10, 55, 58, 24, 56, 28, 86, 96, 10, 3, 84, 4, 41, 13, 32, 42, 43, 83, 78, 82, 70, 15, -41});
