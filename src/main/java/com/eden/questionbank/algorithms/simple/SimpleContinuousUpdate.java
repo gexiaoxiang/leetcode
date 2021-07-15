@@ -196,13 +196,18 @@ public class SimpleContinuousUpdate {
         return false;
     }
 
+    /**
+     * @Description: 1844. 将所有数字用字符替换
+     * @Author: gexx
+     * @Date: 2021/7/15
+     **/
     public static String replaceDigits(String s) {
         StringBuilder sb = new StringBuilder();
 
         char[] chars = s.toCharArray();
         for (int i = 1; i < chars.length; i += 2) {
             sb.append(chars[i - 1]);
-            sb.append((char)( chars[i - 1] + Integer.valueOf(String.valueOf(chars[i]))));
+            sb.append((char) (chars[i - 1] + Integer.valueOf(String.valueOf(chars[i]))));
         }
 
         return sb.toString();
