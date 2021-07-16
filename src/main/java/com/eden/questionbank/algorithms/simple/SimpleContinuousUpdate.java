@@ -228,6 +228,23 @@ public class SimpleContinuousUpdate {
         return count;
     }
 
+    /**
+     * @Description: 1848. 到目标元素的最小距离
+     * @Author: gexx
+     * @Date: 2021/7/16
+     **/
+    public int getMinDistance(int[] nums, int target, int start) {
+        int minAbs = Integer.MAX_VALUE;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target) {
+                minAbs = Math.min(minAbs, Math.abs(i - start));
+            }
+
+        }
+
+        return minAbs;
+    }
+
     public static void main(String[] args) {
         replaceDigits("a1c1e1");
         secondHighest("ck077");
