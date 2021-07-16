@@ -217,6 +217,17 @@ public class SimpleContinuousUpdate {
         return sb.toString();
     }
 
+    public int sumBase(int n, int k) {
+        String s = Integer.toString(n, k);
+        char[] chars = s.toCharArray();
+        int count = 0;
+        for (char ch : chars) {
+            count += ch - '0';
+        }
+
+        return count;
+    }
+
     public static void main(String[] args) {
         replaceDigits("a1c1e1");
         secondHighest("ck077");
@@ -226,3 +237,11 @@ public class SimpleContinuousUpdate {
     }
 
 }
+
+
+
+
+
+
+
+
