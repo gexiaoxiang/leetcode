@@ -245,6 +245,28 @@ public class SimpleContinuousUpdate {
         return minAbs;
     }
 
+    /**
+     * @Description: 1854. 人口最多的年份
+     * @Author: gexx
+     * @Date: 2021/7/16
+     **/
+    public int maximumPopulation(int[][] logs) {
+        int[] d = new int[110];
+        for (int[] log : logs) {     //遍历每个人的出生和死亡年份
+            d[log[0] - 1950] += 1;  //出生年份人数+1
+            d[log[1] - 1950] -= 1;  //死亡年份人数-1
+        }
+        int s = 0, res = 0, cnt = 0;
+        for (int i = 0; i <= 100; i++) {
+            s += d[i];      //s是记录每一年的存活人数
+            if (s > cnt) {
+                cnt = s;
+                res = i;
+            }
+        }
+        return res + 1950;
+    }
+
     public static void main(String[] args) {
         replaceDigits("a1c1e1");
         secondHighest("ck077");
