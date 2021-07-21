@@ -267,7 +267,26 @@ public class SimpleContinuousUpdate {
         return res + 1950;
     }
 
+    /**
+     * @Description: 1859. 将句子排序
+     * @Author: gexx
+     * @Date: 2021/7/21
+     **/
+    public static String sortSentence(String s) {
+        String[] words = s.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= words.length; i++) {
+            for (String word : words) {
+                if (word.indexOf(i + "") > -1) {
+                    sb.append(word.substring(0, word.length() - 1)).append(" ");
+                }
+            }
+        }
+        return sb.deleteCharAt(sb.length() - 1).toString();
+    }
+
     public static void main(String[] args) {
+        sortSentence("is2 sentence4 This1 a3");
         replaceDigits("a1c1e1");
         secondHighest("ck077");
         HashSet h = new HashSet();
