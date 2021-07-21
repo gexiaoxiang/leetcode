@@ -285,6 +285,32 @@ public class SimpleContinuousUpdate {
         return sb.deleteCharAt(sb.length() - 1).toString();
     }
 
+
+    int res = 0;
+
+    /**
+     * 1863. 找出所有子集的异或总和再求和
+     *
+     * @param nums
+     * @return
+     */
+    public int subsetXORSum(int[] nums) {
+        if (nums.length == 1) return nums[0];
+        dfs(nums, 0, 0);
+        return res;
+    }
+
+    public void dfs(int[] nums, int i, int xor_sum) {
+        if (i == nums.length) {
+            res += xor_sum;
+            return;
+        }
+        //当前位置要
+        dfs(nums, i + 1, xor_sum ^ nums[i]);
+        //当前位置不要
+        dfs(nums, i + 1, xor_sum);
+    }
+
     public static void main(String[] args) {
         sortSentence("is2 sentence4 This1 a3");
         replaceDigits("a1c1e1");
