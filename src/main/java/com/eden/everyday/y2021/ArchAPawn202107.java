@@ -61,4 +61,30 @@ public class ArchAPawn202107 {
         return nums[l] == target ? right - l + 1 : 0;
 
     }
+
+    public class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+            next = null;
+        }
+    }
+
+    /**
+     * @Description: 剑指 Offer 52. 两个链表的第一个公共节点
+     * @Author: gexx
+     * @Date: 2021/7/21
+     **/
+    public ListNode getIntersectionNode(ListNode a, ListNode b) {
+        ListNode ta = a, tb = b;
+        while (ta != tb) {
+            ta = ta == null ? b : ta.next;
+            tb = tb == null ? a : tb.next;
+        }
+        return ta;
+    }
+
+
 }
