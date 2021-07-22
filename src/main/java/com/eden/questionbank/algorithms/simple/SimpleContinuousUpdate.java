@@ -311,7 +311,40 @@ public class SimpleContinuousUpdate {
         dfs(nums, i + 1, xor_sum);
     }
 
+    /**
+     * @Description: 1869. 哪种连续子字符串更长
+     * @Author: gexx
+     * @Date: 2021/7/22
+     **/
+    public static boolean checkZeroOnes(String s) {
+        char[] chars = s.toCharArray();
+        int MaxcountLength1 = 0;
+        int countLength1 = 0;
+        int MaxcountLength0 = 0;
+        int countLength0 = 0;
+        for (char aChar : chars) {
+            if (aChar == '1') {
+                countLength1++;
+
+                MaxcountLength0 = Math.max(MaxcountLength0, countLength0);
+                countLength0 = 0;
+            } else {
+                countLength0++;
+
+                MaxcountLength1 = Math.max(MaxcountLength1, countLength1);
+                countLength1 = 0;
+
+            }
+        }
+        MaxcountLength1 = Math.max(MaxcountLength1, countLength1);
+        MaxcountLength0 = Math.max(MaxcountLength0, countLength0);
+
+        return MaxcountLength1 > MaxcountLength0;
+    }
+
+
     public static void main(String[] args) {
+        checkZeroOnes("111000");
         sortSentence("is2 sentence4 This1 a3");
         replaceDigits("a1c1e1");
         secondHighest("ck077");
