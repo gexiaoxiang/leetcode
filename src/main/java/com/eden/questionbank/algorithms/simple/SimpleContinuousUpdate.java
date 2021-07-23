@@ -342,8 +342,23 @@ public class SimpleContinuousUpdate {
         return MaxcountLength1 > MaxcountLength0;
     }
 
+    public static int countGoodSubstrings(String s) {
+        int count = s.length() - 2;
+        for (int i = 0, j = i + 3; i <= s.length() - 3; i++, j++) {
+            String substring = s.substring(i, j);
+            if (substring.charAt(0) == substring.charAt(1)
+                    || substring.charAt(0) == substring.charAt(2)
+                    || substring.charAt(2) == substring.charAt(1)) {
+                count--;
+            }
+
+        }
+
+        return count >= 0 ? count : 0;
+    }
 
     public static void main(String[] args) {
+        countGoodSubstrings("xyzzaz");
         checkZeroOnes("111000");
         sortSentence("is2 sentence4 This1 a3");
         replaceDigits("a1c1e1");

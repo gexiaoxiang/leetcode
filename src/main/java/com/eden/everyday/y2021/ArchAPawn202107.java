@@ -86,5 +86,28 @@ public class ArchAPawn202107 {
         return ta;
     }
 
+    /**
+     * @Description: 1893. 检查是否区域内所有整数都被覆盖
+     * @Author: gexx
+     * @Date: 2021/7/23
+     **/
+    public boolean isCovered(int[][] ranges, int left, int right) {
 
+        for (int i = left; i <= right; i++) {
+            boolean overFalg = false;
+            for (int[] range : ranges) {
+                if ((range[0] <= i && range[1] >= i)) {
+                    overFalg = true;
+                    continue;
+                }
+
+            }
+            if (!overFalg) {
+                return false;
+            }
+        }
+
+
+        return true;
+    }
 }
