@@ -357,6 +357,27 @@ public class SimpleContinuousUpdate {
         return count >= 0 ? count : 0;
     }
 
+    /**
+     * 1880. 检查某单词是否等于两单词之和
+     *
+     * @param firstWord
+     * @param secondWord
+     * @param targetWord
+     * @return
+     */
+    public boolean isSumEqual(String firstWord, String secondWord, String targetWord) {
+
+        return toInt(firstWord) + toInt(secondWord) == toInt(targetWord);
+    }
+
+    private int toInt(String words) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < words.length(); i++) {
+            sb.append(words.charAt(i) - 'a');
+        }
+        return Integer.valueOf(sb.toString());
+    }
+
     public static void main(String[] args) {
         countGoodSubstrings("xyzzaz");
         checkZeroOnes("111000");
@@ -365,7 +386,7 @@ public class SimpleContinuousUpdate {
         secondHighest("ck077");
         HashSet h = new HashSet();
         arraySign(new int[]{41, 65, 14, 80, 20, 10, 55, 58, 24, 56, 28, 86, 96, 10, 3, 84, 4, 41, 13, 32, 42, 43, 83, 78, 82, 70, 15, -41});
-
+        System.out.println(Integer.valueOf("021"));
     }
 
 }
