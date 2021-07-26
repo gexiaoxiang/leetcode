@@ -399,6 +399,23 @@ public class SimpleContinuousUpdate {
         return true;
     }
 
+    /**
+     * @Description: 1903. 字符串中的最大奇数
+     * @Author: gexx
+     * @Date: 2021/7/26
+     **/
+    public String largestOddNumber(String num) {
+
+        int n = num.length();
+        for (int i = n - 1; i >= 0; i--) {
+            int temp = num.charAt(i) - '0';
+            if (temp % 2 != 0) {
+                return num.substring(0, i + 1);
+            }
+        }
+        return "";
+    }
+
     public static void main(String[] args) {
         countGoodSubstrings("xyzzaz");
         checkZeroOnes("111000");
