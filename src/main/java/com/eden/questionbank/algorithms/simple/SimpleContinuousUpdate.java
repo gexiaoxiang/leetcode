@@ -378,6 +378,27 @@ public class SimpleContinuousUpdate {
         return Integer.valueOf(sb.toString());
     }
 
+    /**
+     * @Description: 1897. 重新分配字符使所有字符串都相等
+     * @Author: gexx
+     * @Date: 2021/7/26
+     **/
+    public boolean makeEqual(String[] words) {
+
+        int len = words.length;
+        int[] charCount = new int[129];
+        for (String word : words) {
+            for (char c : word.toCharArray()) {
+                charCount[c]++;
+            }
+        }
+        for (int i : charCount) {
+            if (i % len != 0)
+                return false;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         countGoodSubstrings("xyzzaz");
         checkZeroOnes("111000");
