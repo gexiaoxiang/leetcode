@@ -416,6 +416,26 @@ public class SimpleContinuousUpdate {
         return "";
     }
 
+    /**
+     * @Description: 1909. 删除一个元素使数组严格递增
+     * @Author: gexx
+     * @Date: 2021/7/27
+     **/
+    public static boolean canBeIncreasing(int[] nums) {
+        boolean asc = true;
+        int n = nums.length;
+        for (int i = 0; i < n - 1; i++) {
+            if (nums[i] >= nums[i + 1]) {
+                if (asc) {
+                    if (i - 1 < 0 || nums[i + 1] > nums[i - 1]) asc = false;
+                    else if (i + 2 >= n || nums[i + 2] > nums[i]) asc = false;
+                    else return false;
+                } else return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         countGoodSubstrings("xyzzaz");
         checkZeroOnes("111000");
@@ -424,7 +444,9 @@ public class SimpleContinuousUpdate {
         secondHighest("ck077");
         HashSet h = new HashSet();
         arraySign(new int[]{41, 65, 14, 80, 20, 10, 55, 58, 24, 56, 28, 86, 96, 10, 3, 84, 4, 41, 13, 32, 42, 43, 83, 78, 82, 70, 15, -41});
-        System.out.println(Integer.valueOf("021"));
+
+        canBeIncreasing(new int[]{
+                1, 2, 10, 5, 7});
     }
 
 }
