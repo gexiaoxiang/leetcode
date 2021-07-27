@@ -436,6 +436,19 @@ public class SimpleContinuousUpdate {
         return true;
     }
 
+    /**
+     * 1913. 两个数对之间的最大乘积差
+     *
+     * @param nums
+     * @return
+     */
+    public int maxProductDifference(int[] nums) {
+        int muldiff = 0;
+        Arrays.sort(nums);
+        muldiff = nums[nums.length - 1] * nums[nums.length - 2] - nums[0] * nums[1];
+        return muldiff;
+    }
+
     public static void main(String[] args) {
         countGoodSubstrings("xyzzaz");
         checkZeroOnes("111000");
