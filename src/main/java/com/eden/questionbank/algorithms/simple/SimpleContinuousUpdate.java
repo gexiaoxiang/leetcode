@@ -449,6 +449,22 @@ public class SimpleContinuousUpdate {
         return muldiff;
     }
 
+    /**
+     * 1920. 基于排列构建数组
+     *
+     * @param nums
+     * @return
+     */
+    public int[] buildArray(int[] nums) {
+
+        int[] build = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            build[i] = nums[nums[i]];
+        }
+        return build;
+    }
+
+
     public static void main(String[] args) {
         countGoodSubstrings("xyzzaz");
         checkZeroOnes("111000");
