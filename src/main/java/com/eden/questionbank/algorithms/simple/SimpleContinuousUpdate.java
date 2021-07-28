@@ -464,6 +464,23 @@ public class SimpleContinuousUpdate {
         return build;
     }
 
+    /**
+     * @Description: 重组数据
+     * @Author: gexx
+     * @Date: 2021/7/28
+     **/
+    public int[] getConcatenation(int[] nums) {
+        int[] ints = new int[nums.length * 2];
+        for (int i = 0; i < ints.length; i++) {
+            if (i < nums.length) {
+                ints[i] = nums[i];
+            } else {
+                ints[i] = nums[i - nums.length];
+
+            }
+        }
+        return ints;
+    }
 
     public static void main(String[] args) {
         countGoodSubstrings("xyzzaz");
