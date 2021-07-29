@@ -30,6 +30,7 @@ public class test1 {
     public User createUser() {
         User user = new User();
         user.setName("zhangsan");
+        System.out.println( "createUser");
         return user;
     }
 
