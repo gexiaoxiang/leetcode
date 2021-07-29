@@ -507,6 +507,33 @@ public class SimpleContinuousUpdate {
         return count;
     }
 
+    /**
+     * 1941. 检查是否所有字符出现次数相同
+     *
+     * @param s
+     * @return
+     */
+    public boolean areOccurrencesEqual(String s) {
+        String[] split = s.split("");
+        Map<String, Integer> map = new HashMap();
+        for (int i = 0; i < split.length; i++) {
+            map.put(split[i], map.getOrDefault(split[i], 0) + 1);
+        }
+        Set<String> keys = map.keySet();
+        Iterator<String> iterator = keys.iterator();
+        int count = 0;
+        while (iterator.hasNext()) {
+            String key = iterator.next();
+            Integer integer = map.get(key);
+            if (count == 0) {
+                count = integer;
+            } else if (count != integer) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         canBeTypedWords("abc de", " ");
         countGoodSubstrings("xyzzaz");
