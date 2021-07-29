@@ -482,7 +482,33 @@ public class SimpleContinuousUpdate {
         return ints;
     }
 
+    /**
+     * @Description: 1935. 可以输入的最大单词数
+     * @Author: gexx
+     * @Date: 2021/7/29
+     **/
+    public static int canBeTypedWords(String text, String brokenLetters) {
+
+        String[] s = text.split(" ");
+        String[] split = brokenLetters.split("");
+        if (brokenLetters.length() == 0) {
+            return s.length;
+        }
+        int count = s.length;
+        for (String s1 : s) {
+            for (String s2 : split) {
+                if (s1.indexOf(s2) > -1) {
+                    count--;
+                    break;
+                }
+            }
+        }
+
+        return count;
+    }
+
     public static void main(String[] args) {
+        canBeTypedWords("abc de", " ");
         countGoodSubstrings("xyzzaz");
         checkZeroOnes("111000");
         sortSentence("is2 sentence4 This1 a3");
@@ -490,9 +516,7 @@ public class SimpleContinuousUpdate {
         secondHighest("ck077");
         HashSet h = new HashSet();
         arraySign(new int[]{41, 65, 14, 80, 20, 10, 55, 58, 24, 56, 28, 86, 96, 10, 3, 84, 4, 41, 13, 32, 42, 43, 83, 78, 82, 70, 15, -41});
-
-        canBeIncreasing(new int[]{
-                1, 2, 10, 5, 7});
+        canBeIncreasing(new int[]{1, 2, 10, 5, 7});
     }
 
 }
