@@ -84,4 +84,10 @@ public class DynamicProgramming {
         }
         return dp[length - 1];
     }
+
+
+    public int deleteAndEarn(int[] nums) {
+
+        return 1;
+    }
 }

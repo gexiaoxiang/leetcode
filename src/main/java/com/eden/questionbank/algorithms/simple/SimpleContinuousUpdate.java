@@ -534,6 +534,37 @@ public class SimpleContinuousUpdate {
         return true;
     }
 
+    /**
+     * 1945. 字符串转化后的各位数字之和
+     *
+     * @param s
+     * @param k
+     * @return
+     */
+    public int getLucky(String s, int k) {
+        char[] chars = s.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        for (char aChar : chars) {
+            sb.append(aChar - 'a' + 1);
+        }
+        String s1 = sb.toString();
+
+        return addT(s1, k);
+    }
+
+    private int addT(String s1, int k) {
+        String[] split = s1.split("");
+        int count = 0;
+        for (String s : split) {
+            count += Integer.valueOf(s);
+        }
+        k--;
+        if (k > 0) {
+            return addT(String.valueOf(count), k);
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         canBeTypedWords("abc de", " ");
         countGoodSubstrings("xyzzaz");
