@@ -609,6 +609,56 @@ public class SimpleContinuousUpdate {
         return (int) (index % 9 == 0 ? 9 : index % 9);
     }
 
+    public int storeWater(int[] bucket, int[] vat) {
+        PriorityQueue<int[]> queue = new PriorityQueue<int[]>(new Comparator<int[]>() {//按照倾倒次数降序排列
+            public int compare(int[] s1, int[] s2) {
+                return s2[0] - s1[0];
+            }
+        });
+        int num = 0, res = Integer.MAX_VALUE;//num记录当前使用升级的次数
+        for (int i = 0; i < bucket.length; i++) {
+            if (vat[i] == 0) {//vat[i]==0时不用将其加入到优先队列中
+                continue;
+            } else if (bucket[i] == 0)//+1后放入优先队列
+            {
+                queue.add(new int[]{vat[i], i});
+                bucket[i]++;
+                num++;
+            } else {
+                queue.add(new int[]{(vat[i] + bucket[i] - 1) / bucket[i], i});
+            }
+        }
+        while (!queue.isEmpty()) {//每次升级所需倾倒次数最多的桶  记录当前需要倾倒的次数
+            int[] nihao = queue.poll();
+            if (num >= res)//如果num>=res时后面都会大于res直接返回最小值
+                return res;
+            res = Math.min(res, nihao[0] + num);
+            bucket[nihao[1]]++;
+            queue.add(new int[]{(vat[nihao[1]] + bucket[nihao[1]] - 1) / bucket[nihao[1]], nihao[1]});//将升级后所要倾倒的情况放入队列
+            num++;//升级次数加1
+        }
+        return num;
+
+    }
+
+    /**
+     * LCS 01. 下载插件
+     *
+     * @param n
+     * @return
+     */
+    public int leastMinutes(int n) {
+        int oriDown = 1; // 原下载速度
+        int steps = 0; // 步骤 -->  分钟
+        while (true) {
+            if (oriDown >= n) break; // 如果是0或者1个文件可以1分钟直接下完
+            oriDown *= 2;  // 文件多的话要将带宽加倍，随后每次下载两个文件 --> 以2的倍数递增
+            steps++; // 记录时间
+        }
+        return steps + 1; // 原始的一分钟 或者说是带宽加倍的那分钟
+
+    }
+
     public static void main(String[] args) {
         canBeTypedWords("abc de", " ");
         countGoodSubstrings("xyzzaz");
