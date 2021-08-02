@@ -85,9 +85,20 @@ public class DynamicProgramming {
         return dp[length - 1];
     }
 
+    /**
+     * 55. 跳跃游戏
+     *
+     * @param nums
+     * @return
+     */
+    public boolean canJump(int[] nums) {
 
-    public int deleteAndEarn(int[] nums) {
+        int k = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (i > k) return false;
+            k = Math.max(k, i + nums[i]);
 
-        return 1;
+        }
+        return true;
     }
 }
