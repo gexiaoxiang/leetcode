@@ -14,6 +14,6 @@ public class Test2 {
     @Test
     public void fun() {
         System.out.println("31AZ".charAt(2));
-        new BigDecimal(11D)
+        new BigDecimal(11D);
     }
 }
