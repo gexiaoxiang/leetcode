@@ -312,6 +312,32 @@ public class MidumFirstPage {
         }
     }
 
+    /**
+     * 313. 超级丑数
+     *
+     * @param n
+     * @param primes
+     * @return
+     */
+    public int nthSuperUglyNumber(int n, int[] primes) {
+
+        Set<Long> seen = new HashSet<Long>();
+        PriorityQueue<Long> heap = new PriorityQueue<Long>();
+        seen.add(1L);
+        heap.offer(1L);
+        int ugly = 0;
+        for (int i = 0; i < n; i++) {
+            long curr = heap.poll();
+            ugly = (int) curr;
+            for (int prime : primes) {
+                long next = curr * prime;
+                if (seen.add(next)) {
+                    heap.offer(next);
+                }
+            }
+        }
+        return ugly;
+    }
 
     public static void main(String[] args) {
         insert(new int[][]{{1, 3}, {6, 9}}, new int[]{2, 5});
