@@ -682,6 +682,54 @@ public class SimpleContinuousUpdate {
         return cnt == 3;
     }
 
+    /**
+     * 1961. 检查字符串是否为数组前缀
+     *
+     * @param s
+     * @param words
+     * @return
+     */
+    public boolean isPrefixString(String s, String[] words) {
+        StringBuilder sb = new StringBuilder();
+        for (String word : words) {
+            sb.append(word);
+            if (sb.toString().equals(s)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 1957. 删除字符使字符串变好
+     *
+     * @param s
+     * @return
+     */
+    public String makeFancyString(String s) {
+
+        char[] chars = s.toCharArray();
+
+        int curCharNum = 1;
+        char curChar = chars[0];
+
+        int index = 1;
+        for (int i = 1; i < chars.length; i++) {
+            if (chars[i] == curChar) {
+                if (++curCharNum < 3) {
+                    chars[index++] = chars[i];
+                }
+            } else {
+                chars[index++] = chars[i];
+                curCharNum = 1;
+                curChar = chars[i];
+            }
+        }
+
+        return new String(chars, 0, index);
+
+    }
+
     public static void main(String[] args) {
         canBeTypedWords("abc de", " ");
         countGoodSubstrings("xyzzaz");
