@@ -21,9 +21,13 @@ public class Introduction2Arrays {
      **/
     public static int pivotIndex(int[] nums) {
         int sum = 0, leftsum = 0;
-        for (int x : nums) sum += x;
+        for (int x : nums) {
+            sum += x;
+        }
         for (int i = 0; i < nums.length; ++i) {
-            if (leftsum == sum - leftsum - nums[i]) return i;
+            if (leftsum == sum - leftsum - nums[i]) {
+                return i;
+            }
             leftsum += nums[i];
         }
         return -1;
@@ -40,7 +44,9 @@ public class Introduction2Arrays {
     public static int dominantIndex(int[] nums) {
         int[] clone = nums.clone();
         Arrays.sort(clone);
-        if (nums.length == 1) return 0;
+        if (nums.length == 1) {
+            return 0;
+        }
         int max = clone[clone.length - 1];
         int maxL = clone[clone.length - 2];
         if (maxL == 0) {
@@ -70,11 +76,19 @@ public class Introduction2Arrays {
      **/
     public static int searchInsert(int[] nums, int target) {
         int ret = 0;
-        if (target < nums[0]) return ret;
-        if (target > nums[nums.length - 1]) return nums.length;
+        if (target < nums[0]) {
+            return ret;
+        }
+        if (target > nums[nums.length - 1]) {
+            return nums.length;
+        }
         for (int i = 0; i < nums.length; i++) {
-            if (target == nums[i]) return i;
-            if (target > nums[i] && target < nums[i + 1]) return i + 1;
+            if (target == nums[i]) {
+                return i;
+            }
+            if (target > nums[i] && target < nums[i + 1]) {
+                return i + 1;
+            }
         }
         return ret;
     }
@@ -106,7 +120,9 @@ public class Introduction2Arrays {
       * @Date: 2020/6/22
       **/
     public void setZeroes(int[][] matrix) {
-        if (matrix == null || matrix.length == 0) return;
+        if (matrix == null || matrix.length == 0) {
+            return;
+        }
         int m = matrix.length;
         int n = matrix[0].length;
         boolean row = false;
@@ -117,8 +133,12 @@ public class Introduction2Arrays {
                     //将出现0位置的首行和首列的相应位置设置为0，用来设置内矩阵的0
                     matrix[0][j] = 0;
                     matrix[i][0] = 0;
-                    if (i == 0) row = true;//当前位置本来就在首列，
-                    if (j == 0) col = true;//首行
+                    if (i == 0) {
+                        row = true;//当前位置本来就在首列，
+                    }
+                    if (j == 0) {
+                        col = true;//首行
+                    }
                 }
             }
         }

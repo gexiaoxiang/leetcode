@@ -66,11 +66,13 @@ public class ArchAPawn202102 {
 
         public DualHeap(int k) {
             this.small = new PriorityQueue<Integer>(new Comparator<Integer>() {
+                @Override
                 public int compare(Integer num1, Integer num2) {
                     return num2.compareTo(num1);
                 }
             });
             this.large = new PriorityQueue<Integer>(new Comparator<Integer>() {
+                @Override
                 public int compare(Integer num1, Integer num2) {
                     return num1.compareTo(num2);
                 }
@@ -237,11 +239,15 @@ public class ArchAPawn202102 {
      * @Date: 2021/2/19
      **/
 
-    public int longestOnes(int[] A, int K) {
+    public int longestOnes(int[] a, int k) {
         int l = 0, r = 0;
-        while (r < A.length) {
-            if (A[r++] == 0) K--;
-            if (K < 0 && A[l++] == 0) K++;
+        while (r < a.length) {
+            if (a[r++] == 0) {
+                k--;
+            }
+            if (k < 0 && a[l++] == 0) {
+                k++;
+            }
         }
         return r - l;
     }
@@ -252,17 +258,15 @@ public class ArchAPawn202102 {
      * @Date 2021/2/9
      **/
 
-    public int subarraysWithKDistinct(int[] A, int K) {
-        return atMostKDistinct(A, K) - atMostKDistinct(A, K - 1);
-    }
+
 
     /**
-     * @Description 最多包含 K 个不同整数的子区间的个数
+     * @Description 最多包含 k 个不同整数的子区间的个数
      * @author gexx
      * @Date 2021/2/9
      **/
-    private int atMostKDistinct(int[] A, int K) {
-        int len = A.length;
+    private int atMostDistinct(int[] a, int k) {
+        int len = a.length;
         int[] freq = new int[len + 1];
 
         int left = 0;
@@ -270,17 +274,17 @@ public class ArchAPawn202102 {
         // [left, right) 里不同整数的个数
         int count = 0;
         int res = 0;
-        // [left, right) 包含不同整数的个数小于等于 K
+        // [left, right) 包含不同整数的个数小于等于 k
         while (right < len) {
-            if (freq[A[right]] == 0) {
+            if (freq[a[right]] == 0) {
                 count++;
             }
-            freq[A[right]]++;
+            freq[a[right]]++;
             right++;
 
-            while (count > K) {
-                freq[A[left]]--;
-                if (freq[A[left]] == 0) {
+            while (count > k) {
+                freq[a[left]]--;
+                if (freq[a[left]] == 0) {
                     count--;
                 }
                 left++;
@@ -358,7 +362,7 @@ public class ArchAPawn202102 {
      * @Author: gexx
      * @Date: 2021/2/23
      **/
-    public int maxSatisfied(int[] customers, int[] grumpy, int X) {
+    public int maxSatisfied(int[] customers, int[] grumpy, int x) {
         int total = 0;
         int n = customers.length;
         for (int i = 0; i < n; i++) {
@@ -367,12 +371,12 @@ public class ArchAPawn202102 {
             }
         }
         int increase = 0;
-        for (int i = 0; i < X; i++) {
+        for (int i = 0; i < x; i++) {
             increase += customers[i] * grumpy[i];
         }
         int maxIncrease = increase;
-        for (int i = X; i < n; i++) {
-            increase = increase - customers[i - X] * grumpy[i - X] + customers[i] * grumpy[i];
+        for (int i = x; i < n; i++) {
+            increase = increase - customers[i - x] * grumpy[i - x] + customers[i] * grumpy[i];
             maxIncrease = Math.max(maxIncrease, increase);
         }
         return total + maxIncrease;

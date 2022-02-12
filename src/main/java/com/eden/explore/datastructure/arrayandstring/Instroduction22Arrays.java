@@ -23,13 +23,13 @@ public class Instroduction22Arrays {
         }
         int m = matrix.length;
         int n = matrix[0].length;
-        int[] new_array = new int[m * n];
+        int[] newArray = new int[m * n];
         int[][] trans = {{-1, 1}, {1, -1}};
         int raw = 0;
         int col = 0;
         int k = 0;
-        for (int i = 0; i < new_array.length; i++) {
-            new_array[i] = matrix[raw][col];
+        for (int i = 0; i < newArray.length; i++) {
+            newArray[i] = matrix[raw][col];
             raw += trans[k][0];
             col += trans[k][1];
 
@@ -52,7 +52,7 @@ public class Instroduction22Arrays {
                 k = 1 - k;
             }
         }
-        return new_array;
+        return newArray;
     }
 
     /**
@@ -69,38 +69,54 @@ public class Instroduction22Arrays {
             return arrayList;
         }
 
-        int row_num = matrix.length, col_num = matrix[0].length;
-        int left = 0, right = col_num - 1, up = 0, down = row_num - 1;
-        int sum_num = row_num * col_num;
+        int rowNum = matrix.length, colNum = matrix[0].length;
+        int left = 0, right = colNum - 1, up = 0, down = rowNum - 1;
+        int sumNum = rowNum * colNum;
         int num = 0;
-        while (num < sum_num) {
+        while (num < sumNum) {
             for (int i = left; i <= right; i++) {
                 arrayList.add(matrix[up][i]);
                 num++;
-                if (num == sum_num) break;
+                if (num == sumNum) {
+                    break;
+                }
             }
-            if (num == sum_num) break;
+            if (num == sumNum) {
+                break;
+            }
             up++;
             for (int i = up; i <= down; i++) {
                 arrayList.add(matrix[i][right]);
                 num++;
-                if (num == sum_num) break;
+                if (num == sumNum) {
+                    break;
+                }
             }
-            if (num == sum_num) break;
+            if (num == sumNum) {
+                break;
+            }
             right--;
             for (int i = right; i >= left; i--) {
                 arrayList.add(matrix[down][i]);
                 num++;
-                if (num == sum_num) break;
+                if (num == sumNum) {
+                    break;
+                }
             }
-            if (num == sum_num) break;
+            if (num == sumNum) {
+                break;
+            }
             down--;
             for (int i = down; i >= up; i--) {
                 arrayList.add(matrix[i][left]);
                 num++;
-                if (num == sum_num) break;
+                if (num == sumNum) {
+                    break;
+                }
             }
-            if (num == sum_num) break;
+            if (num == sumNum) {
+                break;
+            }
             left++;
         }
         return arrayList;

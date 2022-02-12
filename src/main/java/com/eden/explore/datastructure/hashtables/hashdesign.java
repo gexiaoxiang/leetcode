@@ -19,21 +19,22 @@ public class hashdesign {
         public MyHashSet() {
             this.keyRange = 769;
             this.bucketArray = new Bucket[this.keyRange];
-            for (int i = 0; i < this.keyRange; ++i)
+            for (int i = 0; i < this.keyRange; ++i) {
                 this.bucketArray[i] = new Bucket();
+            }
         }
 
-        protected int _hash(int key) {
+        protected int hash(int key) {
             return (key % this.keyRange);
         }
 
         public void add(int key) {
-            int bucketIndex = this._hash(key);
+            int bucketIndex = this.hash(key);
             this.bucketArray[bucketIndex].insert(key);
         }
 
         public void remove(int key) {
-            int bucketIndex = this._hash(key);
+            int bucketIndex = this.hash(key);
             this.bucketArray[bucketIndex].delete(key);
         }
 
@@ -41,7 +42,7 @@ public class hashdesign {
          * Returns true if this set contains the specified element
          */
         public boolean contains(int key) {
-            int bucketIndex = this._hash(key);
+            int bucketIndex = this.hash(key);
             return this.bucketArray[bucketIndex].exists(key);
         }
     }

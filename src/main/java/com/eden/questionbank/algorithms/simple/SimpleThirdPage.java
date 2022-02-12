@@ -15,24 +15,24 @@ public class SimpleThirdPage {
      * @Author: gexx
      * @Date: 2020/12/16
      **/
-    public static boolean backspaceCompare(String S, String T) {
-        int sL = S.length();
-        int tL = T.length();
+    public static boolean backspaceCompare(String s, String t) {
+        int sL = s.length();
+        int tL = t.length();
         boolean eq;
         StringBuilder sbs = new StringBuilder();
         for (int i = 0; i < sL; i++) {
-            if (S.charAt(i) == '#' && sbs.length() != 0) {
+            if (s.charAt(i) == '#' && sbs.length() != 0) {
                 sbs.deleteCharAt(sbs.length() - 1);
             } else {
-                sbs.append(S.charAt(i));
+                sbs.append(s.charAt(i));
             }
         }
         StringBuilder sbl = new StringBuilder();
         for (int i = 0; i < tL; i++) {
-            if (T.charAt(i) == '#' && sbl.length() != 0) {
+            if (t.charAt(i) == '#' && sbl.length() != 0) {
                 sbl.deleteCharAt(sbl.length() - 1);
             } else {
-                sbl.append(T.charAt(i));
+                sbl.append(t.charAt(i));
             }
         }
         eq = sbs.toString().replace("#", "").equals(sbl.toString().replace("#", ""));
@@ -66,31 +66,38 @@ public class SimpleThirdPage {
      * @Author: gexx
      * @Date: 2020/12/16
      **/
-    public static boolean buddyStrings(String A, String B) {
-        if (A.length() != B.length()) return false;
-        if (A.equals(B)) {
+    public static boolean buddyStrings(String a, String b) {
+        if (a.length() != b.length()) {
+            return false;
+        }
+        if (a.equals(b)) {
             int[] count = new int[26];
-            for (int i = 0; i < A.length(); ++i)
-                count[A.charAt(i) - 'a']++;
+            for (int i = 0; i < a.length(); ++i) {
+                count[a.charAt(i) - 'a']++;
+            }
 
-            for (int c : count)
-                if (c > 1) return true;
+            for (int c : count) {
+                if (c > 1) {
+                    return true;
+                }
+            }
             return false;
         } else {
             int first = -1, second = -1;
-            for (int i = 0; i < A.length(); ++i) {
-                if (A.charAt(i) != B.charAt(i)) {
-                    if (first == -1)
+            for (int i = 0; i < a.length(); ++i) {
+                if (a.charAt(i) != b.charAt(i)) {
+                    if (first == -1) {
                         first = i;
-                    else if (second == -1)
+                    } else if (second == -1) {
                         second = i;
-                    else
+                    } else {
                         return false;
+                    }
                 }
             }
 
-            return (second != -1 && A.charAt(first) == B.charAt(second) &&
-                    A.charAt(second) == B.charAt(first));
+            return (second != -1 && a.charAt(first) == b.charAt(second) &&
+                    a.charAt(second) == b.charAt(first));
         }
     }
 
@@ -107,13 +114,14 @@ public class SimpleThirdPage {
      * [3,6]
      * @Date: 2020/12/17
      **/
-    public int[][] transpose(int[][] A) {
-        int R = A.length, C = A[0].length;
-        int[][] ans = new int[C][R];
-        for (int r = 0; r < R; ++r)
+    public int[][] transpose(int[][] a) {
+        int r = a.length, C = a[0].length;
+        int[][] ans = new int[C][r];
+        for (int i = 0; i < i; ++i) {
             for (int c = 0; c < C; ++c) {
-                ans[c][r] = A[r][c];
+                ans[c][i] = a[i][c];
             }
+        }
         return ans;
 
     }
@@ -133,7 +141,9 @@ public class SimpleThirdPage {
                 list.add(i);
             }
         }
-        if (list.size() <= 1) return 0;
+        if (list.size() <= 1) {
+            return 0;
+        }
         int max = 1;
         for (int i = 0; i < list.size() - 1; i++) {
             max = Math.max(list.get(i + 1) - list.get(i), max);
@@ -212,10 +222,12 @@ public class SimpleThirdPage {
         int ans = 0;
         for (int cmd : commands) {
             if (cmd == -2)  //left
+            {
                 di = (di + 3) % 4;
-            else if (cmd == -1)  //right
+            } else if (cmd == -1)  //right
+            {
                 di = (di + 1) % 4;
-            else {
+            } else {
                 for (int k = 0; k < cmd; ++k) {
                     int nx = x + dx[di];
                     int ny = y + dy[di];
@@ -285,7 +297,9 @@ public class SimpleThirdPage {
             int bestRow = 0;  // largest of grid[i][j]
             int bestCol = 0;  // largest of grid[j][i]
             for (int j = 0; j < N; ++j) {
-                if (grid[i][j] > 0) ans++;  // top shadow
+                if (grid[i][j] > 0) {
+                    ans++;  // top shadow
+                }
                 bestRow = Math.max(bestRow, grid[i][j]);
                 bestCol = Math.max(bestCol, grid[j][i]);
             }
@@ -336,16 +350,24 @@ public class SimpleThirdPage {
     public int[] fairCandySwap(int[] A, int[] B) {
 
         int sa = 0, sb = 0;  // sum of A, B respectively
-        for (int x : A) sa += x;
-        for (int x : B) sb += x;
+        for (int x : A) {
+            sa += x;
+        }
+        for (int x : B) {
+            sb += x;
+        }
         int delta = (sb - sa) / 2;
 
         Set<Integer> setB = new HashSet();
-        for (int x : B) setB.add(x);
+        for (int x : B) {
+            setB.add(x);
+        }
 
-        for (int x : A)
-            if (setB.contains(x + delta))
+        for (int x : A) {
+            if (setB.contains(x + delta)) {
                 return new int[]{x, x + delta};
+            }
+        }
 
         return null;
 
@@ -394,8 +416,9 @@ public class SimpleThirdPage {
         Set<String> seen = new HashSet();
         for (String S : A) {
             int[] count = new int[52];
-            for (int i = 0; i < S.length(); ++i)
+            for (int i = 0; i < S.length(); ++i) {
                 count[S.charAt(i) - 'a' + 26 * (i % 2)]++;
+            }
             seen.add(Arrays.toString(count));
         }
         return seen.size();
@@ -411,14 +434,20 @@ public class SimpleThirdPage {
     }
 
     public boolean increasing(int[] A) {
-        for (int i = 0; i < A.length - 1; ++i)
-            if (A[i] > A[i + 1]) return false;
+        for (int i = 0; i < A.length - 1; ++i) {
+            if (A[i] > A[i + 1]) {
+                return false;
+            }
+        }
         return true;
     }
 
     public boolean decreasing(int[] A) {
-        for (int i = 0; i < A.length - 1; ++i)
-            if (A[i] < A[i + 1]) return false;
+        for (int i = 0; i < A.length - 1; ++i) {
+            if (A[i] < A[i + 1]) {
+                return false;
+            }
+        }
         return true;
     }
 
@@ -439,7 +468,9 @@ public class SimpleThirdPage {
     }
 
     public void inorder(TreeNode node, List<Integer> vals) {
-        if (node == null) return;
+        if (node == null) {
+            return;
+        }
         inorder(node.left, vals);
         vals.add(node.val);
         inorder(node.right, vals);
@@ -526,16 +557,19 @@ public class SimpleThirdPage {
      **/
     public static String reverseOnlyLetters(String S) {
         Stack<Character> letters = new Stack();
-        for (char c : S.toCharArray())
-            if (Character.isLetter(c))
+        for (char c : S.toCharArray()) {
+            if (Character.isLetter(c)) {
                 letters.push(c);
+            }
+        }
 
         StringBuilder ans = new StringBuilder();
         for (char c : S.toCharArray()) {
-            if (Character.isLetter(c))
+            if (Character.isLetter(c)) {
                 ans.append(letters.pop());
-            else
+            } else {
                 ans.append(c);
+            }
         }
 
         return ans.toString();
@@ -618,8 +652,9 @@ public class SimpleThirdPage {
 
         public int ping(int t) {
             q.add(t);
-            while (q.peek() < t - 3000)
+            while (q.peek() < t - 3000) {
                 q.poll();
+            }
             return q.size();
         }
     }
@@ -637,7 +672,9 @@ public class SimpleThirdPage {
             boolean isDigit2 = Character.isDigit(split2[1].charAt(0));
             if (!isDigit1 && !isDigit2) {
                 int cmp = split1[1].compareTo(split2[1]);
-                if (cmp != 0) return cmp;
+                if (cmp != 0) {
+                    return cmp;
+                }
                 return split1[0].compareTo(split2[0]);
             }
             return isDigit1 ? (isDigit2 ? 0 : 1) : -1;
@@ -711,10 +748,11 @@ public class SimpleThirdPage {
         int lo = 0, hi = N;
         int[] ans = new int[N + 1];
         for (int i = 0; i < N; ++i) {
-            if (S.charAt(i) == 'I')
+            if (S.charAt(i) == 'I') {
                 ans[i] = lo++;
-            else
+            } else {
                 ans[i] = hi--;
+            }
         }
 
         ans[N] = lo;
@@ -728,12 +766,14 @@ public class SimpleThirdPage {
      **/
     public int minDeletionSize(String[] A) {
         int ans = 0;
-        for (int c = 0; c < A[0].length(); ++c)
-            for (int r = 0; r < A.length - 1; ++r)
+        for (int c = 0; c < A[0].length(); ++c) {
+            for (int r = 0; r < A.length - 1; ++r) {
                 if (A[r].charAt(c) > A[r + 1].charAt(c)) {
                     ans++;
                     break;
                 }
+            }
+        }
 
         return ans;
     }
@@ -745,8 +785,9 @@ public class SimpleThirdPage {
      **/
     public boolean isAlienSorted(String[] words, String order) {
         int[] index = new int[26];
-        for (int i = 0; i < order.length(); ++i)
+        for (int i = 0; i < order.length(); ++i) {
             index[order.charAt(i) - 'a'] = i;
+        }
 
         search:
         for (int i = 0; i < words.length - 1; ++i) {
@@ -755,14 +796,16 @@ public class SimpleThirdPage {
 
             for (int k = 0; k < Math.min(word1.length(), word2.length()); ++k) {
                 if (word1.charAt(k) != word2.charAt(k)) {
-                    if (index[word1.charAt(k) - 'a'] > index[word2.charAt(k) - 'a'])
+                    if (index[word1.charAt(k) - 'a'] > index[word2.charAt(k) - 'a']) {
                         return false;
+                    }
                     continue search;
                 }
             }
 
-            if (word1.length() > word2.length())
+            if (word1.length() > word2.length()) {
                 return false;
+            }
         }
 
         return true;
@@ -818,14 +861,18 @@ public class SimpleThirdPage {
         for (int i = 0; i <= up_i; i++) {
             for (int j = 0; j <= up_j; j++) {
                 int temp = (int) (Math.pow(x, i) + Math.pow(y, j));
-                if (temp <= bound) res.add(temp);
-                else if (j > 0) break;
-                else {
+                if (temp <= bound) {
+                    res.add(temp);
+                } else if (j > 0) {
+                    break;
+                } else {
                     over = true;
                     break;
                 }
             }
-            if (over) break;
+            if (over) {
+                break;
+            }
         }
         return new ArrayList<>(res);
     }
@@ -865,17 +912,23 @@ public class SimpleThirdPage {
      **/
     public int[] sumEvenAfterQueries(int[] A, int[][] queries) {
         int S = 0;
-        for (int x : A)
-            if (x % 2 == 0)
+        for (int x : A) {
+            if (x % 2 == 0) {
                 S += x;
+            }
+        }
 
         int[] ans = new int[queries.length];
 
         for (int i = 0; i < queries.length; ++i) {
             int val = queries[i][0], index = queries[i][1];
-            if (A[index] % 2 == 0) S -= A[index];
+            if (A[index] % 2 == 0) {
+                S -= A[index];
+            }
             A[index] += val;
-            if (A[index] % 2 == 0) S += A[index];
+            if (A[index] % 2 == 0) {
+                S += A[index];
+            }
             ans[i] = S;
         }
 
@@ -896,8 +949,9 @@ public class SimpleThirdPage {
 
         int i = N;
         while (--i >= 0 || cur > 0) {
-            if (i >= 0)
+            if (i >= 0) {
                 cur += A[i];
+            }
             ans.add(cur % 10);
             cur /= 10;
         }
@@ -918,7 +972,7 @@ public class SimpleThirdPage {
     public boolean isCousins(TreeNode root, int x, int y) {
         isCousinsDfs(root, null);
 
-        return depth.get(x) == depth.get(y) && father.get(x) != father.get(y);
+        return depth.get(x).equals(depth.get(y)) && father.get(x) != father.get(y);
     }
 
     private void isCousinsDfs(TreeNode root, TreeNode fa) {
@@ -1105,12 +1159,16 @@ public class SimpleThirdPage {
      * @Date: 2021/1/11
      **/
     public static boolean canThreePartsEqualSum(int[] arr) {
-        if (arr.length < 3) return false;
+        if (arr.length < 3) {
+            return false;
+        }
         int sum = 0;
         for (int a : arr) {
             sum += a;
         }
-        if (sum % 3 != 0) return false;
+        if (sum % 3 != 0) {
+            return false;
+        }
         int avral = sum / 3;
         int target = 0, i = 0, l = arr.length;
         while (i < l) {
@@ -1144,8 +1202,11 @@ public class SimpleThirdPage {
         List<Boolean> ans = new ArrayList<>();
         for (int index = 0; index < A.length; index++) {
             num = (num * 2 + A[index]) % 5;
-            if (num == 0) ans.add(true);
-            else ans.add(false);
+            if (num == 0) {
+                ans.add(true);
+            } else {
+                ans.add(false);
+            }
         }
         return ans;
     }
@@ -1159,9 +1220,15 @@ public class SimpleThirdPage {
         StringBuilder sb = new StringBuilder();
         int level = 0;
         for (char c : S.toCharArray()) {
-            if (c == ')') --level;
-            if (level >= 1) sb.append(c);
-            if (c == '(') ++level;
+            if (c == ')') {
+                --level;
+            }
+            if (level >= 1) {
+                sb.append(c);
+            }
+            if (c == '(') {
+                ++level;
+            }
         }
         return sb.toString();
 
@@ -1218,6 +1285,7 @@ public class SimpleThirdPage {
             }
         }
         Arrays.sort(ret, new Comparator<int[]>() {
+            @Override
             public int compare(int[] a, int[] b) {
                 return (Math.abs(a[0] - r0) + Math.abs(a[1] - c0)) - (Math.abs(b[0] - r0) + Math.abs(b[1] - c0));
             }
@@ -1276,7 +1344,9 @@ public class SimpleThirdPage {
         int prevLength = -1;
         while (prevLength != S.length()) {
             prevLength = S.length();
-            for (String d : duplicates) S = S.replace(d, "");
+            for (String d : duplicates) {
+                S = S.replace(d, "");
+            }
         }
 
         return S;
@@ -1645,7 +1715,7 @@ public class SimpleThirdPage {
         while (iterator.hasNext()) {
             String key = iterator.next();
             Integer integer = map.get(key);
-            if (key.equals("l") || key.equals("o")) {
+            if ("l".equals(key) || "o".equals(key)) {
                 integer = integer / 2;
             }
             min = Math.min(integer, min);
@@ -1730,9 +1800,15 @@ public class SimpleThirdPage {
         int count = 0;
         int ans = 0;
         for (char ch : s.toCharArray()) {
-            if (ch == 'R') count++;
-            if (ch == 'L') count--;
-            if (count == 0) ans++;
+            if (ch == 'R') {
+                count++;
+            }
+            if (ch == 'L') {
+                count--;
+            }
+            if (count == 0) {
+                ans++;
+            }
         }
         return ans;
     }
@@ -1822,7 +1898,9 @@ public class SimpleThirdPage {
         for (int[] row : grid) {
             List<Integer> listRow = new ArrayList<>();
             result.add(listRow);
-            for (int v : row) listRow.add(v);
+            for (int v : row) {
+                listRow.add(v);
+            }
         }
 
         return result;
@@ -1889,10 +1967,10 @@ public class SimpleThirdPage {
             l4 = l4 + strings[i];
             l5 = l5 + strings[2 - i];
         }
-        if (l1.equals("XXX") || l2.equals("XXX") || l3.equals("XXX") || l4.equals("XXX") || l5.equals("XXX")) {
+        if ("XXX".equals(l1) || "XXX".equals(l2) || "XXX".equals(l3) || "XXX".equals(l4) || "XXX".equals(l5)) {
             return "A";
         }
-        if (l1.equals("OOO") || l2.equals("OOO") || l3.equals("OOO") || l4.equals("OOO") || l5.equals("OOO")) {
+        if ("OOO".equals(l1) || "OOO".equals(l2) || "OOO".equals(l3) || "OOO".equals(l4) || "OOO".equals(l5)) {
             return "B";
         }
         if (moves.length == 9) {
@@ -2099,7 +2177,7 @@ public class SimpleThirdPage {
             Integer sandwich = studentsStack.peek();
             Integer poll = studentsDeque.poll();
 
-            if (poll == sandwich) {
+            if (poll.equals(sandwich)) {
                 studentsStack.pop();
                 count = 0;
             } else {

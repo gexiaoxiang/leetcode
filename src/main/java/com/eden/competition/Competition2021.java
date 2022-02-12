@@ -152,7 +152,11 @@ public class Competition2021 {
 
 
     public boolean checkPowersOfThree(int n) {
-        for (int i = 0; i < n; n /= 3) if (n % 3 == 2) return false;
+        for (int i = 0; i < n; n /= 3) {
+            if (n % 3 == 2) {
+                return false;
+            }
+        }
         return true;
 
     }

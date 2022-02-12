@@ -52,8 +52,10 @@ public class BST {
      * @Author: gexx
      * @Date: 2020/4/9
      **/
-    public TreeNode searchBST(TreeNode root, int val) {
-        if (null == root) return null;
+    public TreeNode searchBst(TreeNode root, int val) {
+        if (null == root) {
+            return null;
+        }
         while (root != null) {
             if (root.val < val) {
                 root = root.right;
@@ -72,12 +74,14 @@ public class BST {
      * @Author: gexx
      * @Date: 2020/4/9
      **/
-    public TreeNode insertIntoBST(TreeNode root, int val) {
-        if (root == null) return new TreeNode(val);
+    public TreeNode insertIntoBst(TreeNode root, int val) {
+        if (root == null) {
+            return new TreeNode(val);
+        }
         if (root.val > val) {
-            root.left = insertIntoBST(root.left, val);
+            root.left = insertIntoBst(root.left, val);
         } else {
-            root.right = insertIntoBST(root.right, val);
+            root.right = insertIntoBst(root.right, val);
         }
 
         return root;
@@ -89,12 +93,20 @@ public class BST {
      * @Date: 2020/4/10
      **/
     public TreeNode deleteNode(TreeNode root, int key) {
-        if (root == null) return root;
-        if (root.val < key) root.right = deleteNode(root.right, key);
-        else if (root.val > key) root.left = deleteNode(root.left, key);
-        else {
-            if (root.left == null) return root.right;
-            if (root.right == null) return root.left;
+        if (root == null) {
+            return root;
+        }
+        if (root.val < key) {
+            root.right = deleteNode(root.right, key);
+        } else if (root.val > key) {
+            root.left = deleteNode(root.left, key);
+        } else {
+            if (root.left == null) {
+                return root.right;
+            }
+            if (root.right == null) {
+                return root.left;
+            }
             int min = findMin(root.right);
             root.val = min;
             root.right = deleteNode(root.right, min);
@@ -103,7 +115,9 @@ public class BST {
     }
 
     private int findMin(TreeNode node) {
-        while (node.left != null) node = node.left;
+        while (node.left != null) {
+            node = node.left;
+        }
         return node.val;
     }
 
@@ -139,7 +153,9 @@ public class BST {
         HashSet<Long> set = new HashSet<Long>();
         for (int i = 0; i < nums.length; i++) {
             if ((long) t == 0) {
-                if (set.contains((long) nums[i])) return true;
+                if (set.contains((long) nums[i])) {
+                    return true;
+                }
             } else {
                 for (Long num : set) {
                     if (Math.abs(num - nums[i]) <= t) {
@@ -163,13 +179,20 @@ public class BST {
      * @Date: 2020/4/10
      **/
     public boolean isBalanced(TreeNode root) {
-        if (root == null) return true;
-        if (Math.abs(Depth(root.left) - Depth(root.right)) > 1) return false;
-        else return isBalanced(root.left) && isBalanced(root.right);
+        if (root == null) {
+            return true;
+        }
+        if (Math.abs(depth(root.left) - depth(root.right)) > 1) {
+            return false;
+        } else {
+            return isBalanced(root.left) && isBalanced(root.right);
+        }
     }
 
-    private int Depth(TreeNode root) {//求深度
-        if (root == null) return 0;
-        return Math.max(Depth(root.left), Depth(root.right)) + 1;
+    private int depth(TreeNode root) {//求深度
+        if (root == null) {
+            return 0;
+        }
+        return Math.max(depth(root.left), depth(root.right)) + 1;
     }
 }

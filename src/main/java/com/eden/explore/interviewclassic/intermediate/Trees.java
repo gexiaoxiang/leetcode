@@ -66,7 +66,9 @@ public class Trees {
                 root = root.left;
             }
             root = stack.pop();
-            if (--k == 0) break;
+            if (--k == 0) {
+                break;
+            }
             root = root.right;
         }
         return root.val;

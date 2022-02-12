@@ -124,7 +124,9 @@ public class QueueAndBFS {
      **/
     public static int openLock(String[] deadends, String target) {
         Set<String> dead = new HashSet<>();
-        for (String d : deadends) dead.add(d);
+        for (String d : deadends) {
+            dead.add(d);
+        }
 
         Queue<String> queue = new LinkedList();
         queue.offer("0000");
@@ -138,8 +140,9 @@ public class QueueAndBFS {
             String node = queue.poll();
             if (node == null) {
                 depth++;
-                if (queue.peek() != null)
+                if (queue.peek() != null) {
                     queue.offer(null);
+                }
             } else if (node.equals(target)) {
                 return depth;
             } else if (!dead.contains(node)) {

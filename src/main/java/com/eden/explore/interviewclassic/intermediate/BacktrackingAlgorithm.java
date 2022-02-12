@@ -65,10 +65,12 @@ public class BacktrackingAlgorithm {
             return;
         }
 
-        if (open < max)
+        if (open < max) {
             backtrack(ans, cur + "(", open + 1, close, max);
-        if (close < open)
+        }
+        if (close < open) {
             backtrack(ans, cur + ")", open, close + 1, max);
+        }
     }
 
     /**
@@ -91,7 +93,9 @@ public class BacktrackingAlgorithm {
         } else {
             for (int i = 0; i < nums.length; i++) {
                 //判断
-                if (l.contains(nums[i])) continue;
+                if (l.contains(nums[i])) {
+                    continue;
+                }
                 l.add(nums[i]);
                 huisu(nums, l, result);
                 //退回一格
@@ -127,7 +131,9 @@ public class BacktrackingAlgorithm {
      **/
 
     public boolean exist(char[][] board, String word) {
-        if (board == null || board.length == 0 || board[0].length == 0) return false;
+        if (board == null || board.length == 0 || board[0].length == 0) {
+            return false;
+        }
         int m = board.length;
         int n = board[0].length;
         boolean[][] visited = new boolean[m][n];
@@ -168,7 +174,9 @@ public class BacktrackingAlgorithm {
 
     public int[][] merge(int[][] intervals) {
         int len = intervals.length;
-        if (len < 2) return intervals;
+        if (len < 2) {
+            return intervals;
+        }
 
         int cnt = 0; // 合并次数
         for (int i = 0; i < len - 1; i++) {
@@ -186,7 +194,9 @@ public class BacktrackingAlgorithm {
         int[][] res = new int[len - cnt][2]; // len - cnt 合并后个数
         int ri = 0;
         for (int[] pair : intervals) {
-            if (pair != null) res[ri++] = pair;
+            if (pair != null) {
+                res[ri++] = pair;
+            }
         }
         return res;
 
@@ -200,14 +210,24 @@ public class BacktrackingAlgorithm {
      **/
     public static boolean searchMatrix(int[][] matrix, int target) {
         int l = matrix.length;
-        if (l == 0) return false;
+        if (l == 0) {
+            return false;
+        }
         int w = matrix[0].length;
-        if (w == 0) return false;
+        if (w == 0) {
+            return false;
+        }
 
-        if (matrix[0][0] > target || matrix[l - 1][w - 1] < target) return false;
+        if (matrix[0][0] > target || matrix[l - 1][w - 1] < target) {
+            return false;
+        }
         for (int m = 0; m < matrix.length; m++) {
-            if (matrix[m][w - 1] < target) continue;
-            if (matrix[m][0] > target) return false;
+            if (matrix[m][w - 1] < target) {
+                continue;
+            }
+            if (matrix[m][0] > target) {
+                return false;
+            }
             for (int n = 0; n < matrix[0].length; n++) {
                 if (target == matrix[m][n]) {
                     return true;
@@ -239,8 +259,9 @@ public class BacktrackingAlgorithm {
      * @Date: 2020/6/4
      **/
     public int uniquePaths(int m, int n) {
-        if (m == 0 || n == 0)
+        if (m == 0 || n == 0) {
             return 0;
+        }
         int[][] arr = new int[n][m];
         for (int i = 0; i < n; i++) {
             arr[i][0] = 1;
@@ -262,12 +283,16 @@ public class BacktrackingAlgorithm {
      * @Date: 2020/6/4
      **/
     public static int coinChange(int[] coins, int amount) {
-        if (amount == 0) return 0;
+        if (amount == 0) {
+            return 0;
+        }
         int[] dp = new int[amount + 1];  //dp[i]表示达到i用的最少硬币数  默认=初始化全为0
         for (int i = 1; i <= amount; i++) {  //目标为0 的不用计算
             dp[i] = 999999;   //此处不能用int的最大值，最大值+1 会溢出变为最小值
             for (int coin : coins) {
-                if (i - coin >= 0) dp[i] = Math.min(dp[i - coin] + 1, dp[i]);
+                if (i - coin >= 0) {
+                    dp[i] = Math.min(dp[i - coin] + 1, dp[i]);
+                }
             }
         }
         return dp[amount] == 999999 ? -1 : dp[amount];
@@ -279,7 +304,7 @@ public class BacktrackingAlgorithm {
      * @Author: gexx
      * @Date: 2020/6/4
      **/
-    public int lengthOfLIS(int[] nums) {
+    public int lengthOfLis(int[] nums) {
         int len = nums.length;
         if (len == 0) {
             return 0;

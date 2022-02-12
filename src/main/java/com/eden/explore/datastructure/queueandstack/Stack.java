@@ -67,7 +67,7 @@ public class Stack {
      * @Date 2020/2/15
      **/
     public static int[] dailyTemperatures(int[] T) {
-        int re[] = new int[T.length];
+        int[] re = new int[T.length];
         for (int i = 0; i < T.length - 1; i++) {
             int count = 0;
             for (int x = i; x < T.length - 1; x++) {
@@ -95,19 +95,19 @@ public class Stack {
         int num1 = 0, num2 = 0;
         for (int i = 0; i < tokens.length; i++) {
             String s = tokens[i];
-            if (s.equals("+")) {
+            if ("+".equals(s)) {
                 num1 = stack.pop();
                 num2 = stack.pop();
                 stack.push(num2 + num1);
-            } else if (s.equals("-")) {
+            } else if ("-".equals(s)) {
                 num1 = stack.pop();
                 num2 = stack.pop();
                 stack.push(num2 - num1);
-            } else if (s.equals("*")) {
+            } else if ("*".equals(s)) {
                 num1 = stack.pop();
                 num2 = stack.pop();
                 stack.push(num2 * num1);
-            } else if (s.equals("/")) {
+            } else if ("/".equals(s)) {
                 num1 = stack.pop();
                 num2 = stack.pop();
                 stack.push(num2 / num1);
@@ -137,7 +137,8 @@ public class Stack {
                 {
                     count++;
                 }
-                FS(grid, vist, i, j); //遍历这个区域周围，将与自己相连的区域 vist全置为1(相连接的 1 为一块)
+                //遍历这个区域周围，将与自己相连的区域 vist全置为1(相连接的 1 为一块)
+                FS(grid, vist, i, j);
             }
             //继续下一个位子
         }
@@ -149,10 +150,12 @@ public class Stack {
         if (i < 0 || i > grid.length - 1 || j < 0 || j > grid[0].length - 1) {
             return;
         }
-        if (grid[i][j] == '0') { //访问到海洋返回
+        //访问到海洋返回
+        if (grid[i][j] == '0') {
             return;
         }
-        if (vist[i][j] == '1') { //访问过的陆地 返回。
+        //访问过的陆地 返回。
+        if (vist[i][j] == '1') {
             return;
         }
         //没访问过 先置1
@@ -174,9 +177,26 @@ public class Stack {
         public Node() {
         }
 
-        public Node(int _val, List<Node> _neighbors) {
-            val = _val;
-            neighbors = _neighbors;
+        public Node(int val, List<Node> neighbors) {
+            val = val;
+            neighbors = neighbors;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Node node = (Node) o;
+            return val == node.val && Objects.equals(neighbors, node.neighbors);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(val, neighbors);
         }
     }
 
@@ -185,9 +205,13 @@ public class Stack {
      * @Author gexx
      * @Date 2020/2/18
      **/
+    @SuppressWarnings("MapOrSetKeyShouldOverrideHashCodeEquals")
     public Node cloneGraph(Node node) {
 
-        if (node == null) return null;
+        if (node == null) {
+            return null;
+        }
+        //noinspection MapOrSetKeyShouldOverrideHashCodeEquals
         Map<Node, Node> lookup = new HashMap<Node, Node>();
         Node clone = new Node(node.val, new ArrayList<>());
         lookup.put(node, clone);
@@ -236,9 +260,9 @@ public class Stack {
     }
 
     public static void main(String[] args) {
-        int temperatures[] = {73, 74, 75, 71, 69, 72, 76, 73};
+        int[] temperatures = {73, 74, 75, 71, 69, 72, 76, 73};
         System.out.println(Arrays.toString(dailyTemperatures(temperatures)));
-        String tokens[] = {"4", "13", "5", "/", "+"};
+        String[] tokens = {"4", "13", "5", "/", "+"};
         System.out.println(evalRPN(tokens));
     }
 }

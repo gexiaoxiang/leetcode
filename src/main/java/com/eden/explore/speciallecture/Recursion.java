@@ -37,8 +37,9 @@ public class Recursion {
          **/
 
         public ListNode swapPairs(ListNode head) {
-            if (head == null || head.next == null)
+            if (head == null || head.next == null) {
                 return head;
+            }
             ListNode ans = head.next;
             ListNode temp = swapPairs(head.next.next);
             ans.next = head;
@@ -54,9 +55,11 @@ public class Recursion {
          **/
 
 
-        public int kthGrammar(int N, int K) {
-            if (N == 1) return 0;
-            return (~K & 1) ^ kthGrammar(N - 1, (K + 1) / 2);
+        public int kthGrammar(int z, int k) {
+            if (z == 1) {
+                return 0;
+            }
+            return (~k & 1) ^ kthGrammar(z - 1, (k + 1) / 2);
         }
     }
 
@@ -66,7 +69,7 @@ public class Recursion {
      * @Date: 2020/4/29
      **/
 
-    public LinkedList<TreeNode> generate_trees(int start, int end) {
+    public LinkedList<TreeNode> generateTrees(int start, int end) {
         LinkedList<TreeNode> all_trees = new LinkedList<TreeNode>();
         if (start > end) {
             all_trees.add(null);
@@ -76,10 +79,10 @@ public class Recursion {
         // pick up a root
         for (int i = start; i <= end; i++) {
             // all possible left subtrees if i is choosen to be a root
-            LinkedList<TreeNode> left_trees = generate_trees(start, i - 1);
+            LinkedList<TreeNode> left_trees = generateTrees(start, i - 1);
 
             // all possible right subtrees if i is choosen to be a root
-            LinkedList<TreeNode> right_trees = generate_trees(i + 1, end);
+            LinkedList<TreeNode> right_trees = generateTrees(i + 1, end);
 
             // connect left and right trees to the root i
             for (TreeNode l : left_trees) {
@@ -98,6 +101,6 @@ public class Recursion {
         if (n == 0) {
             return new LinkedList<TreeNode>();
         }
-        return generate_trees(1, n);
+        return generateTrees(1, n);
     }
 }

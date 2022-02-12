@@ -114,7 +114,9 @@ public class Summary {
             } else if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
                 sb.append(c);
             } else if (c == '[') {
-                if (num > 0) numStack.push(num);
+                if (num > 0) {
+                    numStack.push(num);
+                }
                 strStack.push(sb.toString());
                 sb = new StringBuilder();
                 num = 0;
@@ -217,8 +219,9 @@ public class Summary {
                 if (!done.contains(j)) {
                     todo.add(j);
                     done.add(j);
-                    if (rooms.size() == done.size())
+                    if (rooms.size() == done.size()) {
                         return true;
+                    }
                 }
             }
         }

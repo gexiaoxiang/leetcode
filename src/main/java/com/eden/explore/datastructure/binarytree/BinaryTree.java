@@ -30,14 +30,17 @@ public class BinaryTree {
      */
     public static List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> list = new ArrayList<>();
-        if (root == null) return list;
+        if (root == null) {
+            return list;
+        }
         recursion(root, list);
         return list;
     }
 
     public static void recursion(TreeNode root, List<Integer> list) {
-        if (root == null) return;
-        else {
+        if (root == null) {
+            return;
+        } else {
             list.add(root.val);
             recursion(root.left, list);
             recursion(root.right, list);
@@ -52,11 +55,13 @@ public class BinaryTree {
      * @return
      */
     public boolean hasPathSum(TreeNode root, int sum) {
-        if (root == null)
+        if (root == null) {
             return false;
+        }
         sum = sum - root.val;
-        if (root.left == null && root.right == null)
+        if (root.left == null && root.right == null) {
             return (sum == 0);
+        }
         return hasPathSum(root.left, sum) || hasPathSum(root.right, sum);
     }
 
@@ -69,12 +74,16 @@ public class BinaryTree {
 
         int instart = 0, inend = inorder.length - 1;
         int poststart = 0, postend = postorder.length - 1;
-        if (postorder == null || postend == -1) return null;
+        if (postorder == null || postend == -1) {
+            return null;
+        }
         return create(inorder, instart, inend, postorder, poststart, postend);
     }
 
     public TreeNode create(int[] inorder, int instart, int inend, int[] postorder, int poststart, int postend) {
-        if (postend < poststart || instart > inend) return null;
+        if (postend < poststart || instart > inend) {
+            return null;
+        }
         int value = postorder[postend]; //后续遍历的最后一个节点作为根节点，记录值
         int mid = 0;
         for (int i = 0; i < inorder.length; i++) { //后序遍历的最后一个节点在中序遍历中的位子。
@@ -144,15 +153,15 @@ public class BinaryTree {
         public Node() {
         }
 
-        public Node(int _val) {
-            val = _val;
+        public Node(int val) {
+            val = val;
         }
 
-        public Node(int _val, Node _left, Node _right, Node _next) {
-            val = _val;
-            left = _left;
-            right = _right;
-            next = _next;
+        public Node(int val, Node left, Node right, Node next) {
+            val = val;
+            left = left;
+            right = right;
+            next = next;
         }
     }
 
@@ -163,7 +172,9 @@ public class BinaryTree {
      **/
 
     public Node connect(Node root) {
-        if (root == null) return root;
+        if (root == null) {
+            return root;
+        }
         LinkedList<Node> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
@@ -171,10 +182,12 @@ public class BinaryTree {
             Node next = null;
             for (int i = 0; i < len; i++) {
                 Node cur = queue.poll();
-                if (cur.right != null)
+                if (cur.right != null) {
                     queue.add(cur.right);
-                if (cur.left != null)
+                }
+                if (cur.left != null) {
                     queue.add(cur.left);
+                }
                 cur.next = next;
                 next = cur;
             }
@@ -188,8 +201,10 @@ public class BinaryTree {
      * @Date: 2020/4/8
      **/
 
-    public Node connectII(Node root) {
-        if (root == null) return root;
+    public Node connectIi(Node root) {
+        if (root == null) {
+            return root;
+        }
         LinkedList<Node> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
@@ -197,10 +212,12 @@ public class BinaryTree {
             Node next = null;
             for (int i = 0; i < len; i++) {
                 Node cur = queue.poll();
-                if (cur.right != null)
+                if (cur.right != null) {
                     queue.add(cur.right);
-                if (cur.left != null)
+                }
+                if (cur.left != null) {
                     queue.add(cur.left);
+                }
                 cur.next = next;
                 next = cur;
             }
@@ -252,10 +269,10 @@ public class BinaryTree {
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
         index++;
-        String[] DLRseq = data.split(",");
+        String[] dlrseq = data.split(",");
         TreeNode leave = null;
-        if (!DLRseq[index].equals("#")) {
-            leave = new TreeNode(Integer.valueOf(DLRseq[index]));
+        if (!"#".equals(dlrseq[index])) {
+            leave = new TreeNode(Integer.valueOf(dlrseq[index]));
             leave.left = deserialize(data);
             leave.right = deserialize(data);
         }

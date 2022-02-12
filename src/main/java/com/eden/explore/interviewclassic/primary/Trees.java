@@ -139,7 +139,9 @@ public class Trees {
      **/
     public List<List<Integer>> levelOrder(TreeNode root) {
 
-        if (root == null) return levels;
+        if (root == null) {
+            return levels;
+        }
         helper(root, 0);
         return levels;
     }
@@ -148,17 +150,20 @@ public class Trees {
 
     public void helper(TreeNode node, int level) {
         // start the current level
-        if (levels.size() == level)
+        if (levels.size() == level) {
             levels.add(new ArrayList<Integer>());
+        }
 
         // fulfil the current level
         levels.get(level).add(node.val);
 
         // process child nodes for the next level
-        if (node.left != null)
+        if (node.left != null) {
             helper(node.left, level + 1);
-        if (node.right != null)
+        }
+        if (node.right != null) {
             helper(node.right, level + 1);
+        }
     }
 
     /**
@@ -174,7 +179,9 @@ public class Trees {
     }
 
     public TreeNode sortedArrayToBST(int[] nums, int left, int right) {
-        if (left > right) return null;                                        //边界条件，注意是left>right
+        if (left > right) {
+            return null;                                        //边界条件，注意是left>right
+        }
         int mid = (left + right) / 2;
         TreeNode root = new TreeNode(nums[mid]);
         root.left = sortedArrayToBST(nums, left, mid - 1);        //递归向左探索，范围变成left~mid-1;

@@ -44,12 +44,13 @@ public class BinarySearch {
         int high = x;
         while (low <= high) {
             long mid = (long) (low + high) / 2;
-            if (mid * mid < x)
+            if (mid * mid < x) {
                 low = (int) mid + 1;
-            else if (mid * mid > x)
+            } else if (mid * mid > x) {
                 high = (int) mid - 1;
-            else
+            } else {
                 return (int) mid;
+            }
         }
         return high;
     }
@@ -60,12 +61,16 @@ public class BinarySearch {
      * @Date: 2020/3/16
      **/
     public static int search1(int[] nums, int target) {
-        if (nums == null || nums.length < 1) return -1;
+        if (nums == null || nums.length < 1) {
+            return -1;
+        }
         int left = 0;
         int right = nums.length - 1;
         while (left <= right) {
             int mid = left + (right - left) / 2;
-            if (nums[mid] == target) return mid;
+            if (nums[mid] == target) {
+                return mid;
+            }
             //条件1
             if (nums[mid] >= nums[left]) {
                 if (target < nums[mid] && target >= nums[left]) {
@@ -93,26 +98,32 @@ public class BinarySearch {
      **/
     public static int findPeakElement(int[] nums) {
 
-        if (nums.length == 1)
+        if (nums.length == 1) {
             return 0;
-        if (nums[0] > nums[1])
+        }
+        if (nums[0] > nums[1]) {
             return 0; // 因为nums[-1]为负无穷，此时nums[0]满足
-        if (nums[nums.length - 1] > nums[nums.length - 2])
+        }
+        if (nums[nums.length - 1] > nums[nums.length - 2]) {
             return nums.length - 1; // 因为nums[nums.length]为负无穷，此时nums[length-1]满足
+        }
         int l = 1, r = nums.length - 2; //因为已经判断了nums[0]和nums[length-1]是否满足，所以缩小范围防止溢出
         return find(nums, l, r);
     }
 
     public static int find(int[] nums, int l, int r) {
-        if (l >= r)
+        if (l >= r) {
             return r;
+        }
         int mid = (l + r) / 2;
-        if (nums[mid] > nums[mid - 1] && nums[mid] > nums[mid + 1])
+        if (nums[mid] > nums[mid - 1] && nums[mid] > nums[mid + 1]) {
             return mid;
-        if (nums[mid] < nums[mid - 1])
+        }
+        if (nums[mid] < nums[mid - 1]) {
             return find(nums, l, mid - 1);
-        else
+        } else {
             return find(nums, mid + 1, r);
+        }
     }
 
     /**
@@ -266,16 +277,18 @@ public class BinarySearch {
         int len1 = nums1.length;
         int len2 = nums2.length;
         if (len1 == 0) {         //首先判断nums1或nums2为空的情况，返回不为空的数组的中位数即可
-            if (len2 % 2 == 0)
+            if (len2 % 2 == 0) {
                 d = (double) (nums2[len2 / 2] + nums2[len2 / 2 - 1]) / 2;
-            else
+            } else {
                 d = nums2[len2 / 2];
+            }
             return d;
         } else if (len2 == 0) {
-            if (len1 % 2 == 0)
+            if (len1 % 2 == 0) {
                 d = (double) (nums1[len1 / 2] + nums1[len1 / 2 - 1]) / 2;
-            else
+            } else {
                 d = nums1[len1 / 2];
+            }
             return d;
         }
         int i = 0;    //当nums1和nums2数组都不为空时，设num1和nums2的索引分别为i和j，并初始化为0
@@ -312,10 +325,11 @@ public class BinarySearch {
         }
         if (number == mid + 1) {    //最后找到找到中位数所需的所有位数后计算中位数
             int remain = (len1 + len2) % 2;
-            if (remain == 0)
+            if (remain == 0) {
                 d = (double) (prenum + num) / 2;
-            else
+            } else {
                 d = num;
+            }
         }
         return d;     //返回中位数
     }
@@ -331,14 +345,16 @@ public class BinarySearch {
 
         int[] d = new int[nums.length - 1];
 
-        for (int i = 1; i < nums.length; i++)
+        for (int i = 1; i < nums.length; i++) {
             d[i - 1] = nums[i] - nums[i - 1];
+        }
 
         int[] sum = new int[d.length];
 
         sum[0] = d[0];
-        for (int i = 1; i < d.length; i++)
+        for (int i = 1; i < d.length; i++) {
             sum[i] = sum[i - 1] + d[i];
+        }
 
         int ans = 0;
         int l = 0, r = sum[d.length - 1];
@@ -347,8 +363,9 @@ public class BinarySearch {
             if (check(sum, k, mid)) {
                 ans = mid;
                 r = mid - 1;
-            } else
+            } else {
                 l = mid + 1;
+            }
         }
 
         return ans;
@@ -365,12 +382,14 @@ public class BinarySearch {
                     if (sum[i] - sum[mid] <= d) {
                         p = mid;
                         r = mid - 1;
-                    } else
+                    } else {
                         l = mid + 1;
+                    }
                 }
                 num += i - p;
-            } else
+            } else {
                 num += i + 1;
+            }
         }
 
         return num >= k;

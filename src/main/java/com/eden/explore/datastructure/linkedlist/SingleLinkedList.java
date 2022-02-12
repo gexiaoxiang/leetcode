@@ -29,10 +29,14 @@ public class SingleLinkedList {
         }
 
         public int get(int index) {
-            if (index < 0 || index >= size) return -1;
+            if (index < 0 || index >= size) {
+                return -1;
+            }
 
             ListNode curr = head;
-            for (int i = 0; i < index + 1; ++i) curr = curr.next;
+            for (int i = 0; i < index + 1; ++i) {
+                curr = curr.next;
+            }
             return curr.val;
         }
 
@@ -45,13 +49,19 @@ public class SingleLinkedList {
         }
 
         public void addAtIndex(int index, int val) {
-            if (index > size) return;
+            if (index > size) {
+                return;
+            }
 
-            if (index < 0) index = 0;
+            if (index < 0) {
+                index = 0;
+            }
 
             ++size;
             ListNode pred = head;
-            for (int i = 0; i < index; ++i) pred = pred.next;
+            for (int i = 0; i < index; ++i) {
+                pred = pred.next;
+            }
 
             ListNode toAdd = new ListNode(val);
             toAdd.next = pred.next;
@@ -59,11 +69,15 @@ public class SingleLinkedList {
         }
 
         public void deleteAtIndex(int index) {
-            if (index < 0 || index >= size) return;
+            if (index < 0 || index >= size) {
+                return;
+            }
 
             size--;
             ListNode pred = head;
-            for (int i = 0; i < index; ++i) pred = pred.next;
+            for (int i = 0; i < index; ++i) {
+                pred = pred.next;
+            }
 
             pred.next = pred.next.next;
         }

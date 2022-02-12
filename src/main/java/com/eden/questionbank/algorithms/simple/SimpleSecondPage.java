@@ -19,7 +19,9 @@ public class SimpleSecondPage {
     public static String toHex(int num) {
         StringBuffer buffer = new StringBuffer();
         char[] arr = "0123456789abcdef".toCharArray();
-        if (num == 0) return "0";
+        if (num == 0) {
+            return "0";
+        }
         while (num != 0) {
             int tmp = num & 15;
             buffer.append(arr[tmp]);
@@ -38,14 +40,16 @@ public class SimpleSecondPage {
      **/
     public static int longestPalindrome(String s) {
         int[] count = new int[128];
-        for (char c : s.toCharArray())
+        for (char c : s.toCharArray()) {
             count[c]++;
+        }
 
         int ans = 0;
         for (int v : count) {
             ans += v / 2 * 2;
-            if (v % 2 == 1 && ans % 2 == 0)
+            if (v % 2 == 1 && ans % 2 == 0) {
                 ans++;
+            }
         }
         return ans;
     }
@@ -91,7 +95,9 @@ public class SimpleSecondPage {
             i--;
             j--;
         }
-        if (carry == 1) res.append(1);
+        if (carry == 1) {
+            res.append(1);
+        }
         return res.reverse().toString();
 
     }
@@ -103,7 +109,7 @@ public class SimpleSecondPage {
      **/
     public static int countSegments(String s) {
         String trimmed = s.trim();
-        if (trimmed.equals("")) {
+        if ("".equals(trimmed)) {
             return 0;
         }
         return trimmed.split("\\s+").length;
@@ -334,12 +340,12 @@ public class SimpleSecondPage {
      * @Author: gexx
      * @Date: 2020/7/7
      **/
-    public static String licenseKeyFormatting(String S, int K) {
-        S = S.replace("-", "");
-        S = S.toUpperCase();
-        int stLen = S.length() % K == 0 ? K : S.length() - S.length() / K * K;
-        StringBuffer str = new StringBuffer(S);
-        for (int i = stLen; i < str.length(); i = i + K + 1) {
+    public static String licenseKeyFormatting(String s, int k) {
+        s = s.replace("-", "");
+        s = s.toUpperCase();
+        int stLen = s.length() % k == 0 ? k : s.length() - s.length() / k * k;
+        StringBuffer str = new StringBuffer(s);
+        for (int i = stLen; i < str.length(); i = i + k + 1) {
             str = str.insert(i, "-");
         }
         return str.toString();
@@ -383,12 +389,14 @@ public class SimpleSecondPage {
         HashMap<Integer, Integer> map = new HashMap<>();
         int[] res = new int[nums1.length];
         for (int i = 0; i < nums2.length; i++) {
-            while (!stack.empty() && nums2[i] > stack.peek())
+            while (!stack.empty() && nums2[i] > stack.peek()) {
                 map.put(stack.pop(), nums2[i]);
+            }
             stack.push(nums2[i]);
         }
-        while (!stack.empty())
+        while (!stack.empty()) {
             map.put(stack.pop(), -1);
+        }
         for (int i = 0; i < nums1.length; i++) {
             res[i] = map.get(nums1[i]);
         }
@@ -520,7 +528,9 @@ public class SimpleSecondPage {
      **/
     public boolean checkPerfectNumber(int num) {
 //奇数不是完美数
-        if (num % 2 != 0) return false;
+        if (num % 2 != 0) {
+            return false;
+        }
         int sum = 0;
         for (int i = 1; i * i <= num; i++) {
             if (num % i == 0) {
@@ -577,13 +587,15 @@ public class SimpleSecondPage {
     }
 
     public void pre(TreeNode root) {
-        if (root == null)
+        if (root == null) {
             return;
+        }
         // 中序遍历
         pre(root.left);
         // 判空，寻找最小差值
-        if (pre1 != null)
+        if (pre1 != null) {
             min = Math.min(min, root.val - pre1.val);
+        }
         // 将此节点设置为前一节点
         pre1 = root;
         pre(root.right);
@@ -596,11 +608,15 @@ public class SimpleSecondPage {
      **/
 
     public int findPairs(int[] nums, int k) {
-        if (nums.length < 2) return 0;
+        if (nums.length < 2) {
+            return 0;
+        }
         Arrays.sort(nums);
         int count = 0;
         for (int i = 0; i < nums.length - 1; i++) {
-            if (i >= 1 && nums[i] == nums[i - 1]) continue;
+            if (i >= 1 && nums[i] == nums[i - 1]) {
+                continue;
+            }
             for (int j = i + 1; j < nums.length; j++) {
                 if (nums[j] - k > nums[i]) {
                     break;
@@ -622,12 +638,12 @@ public class SimpleSecondPage {
      **/
     static int sum = 0;
 
-    public static TreeNode convertBST(TreeNode root) {
+    public static TreeNode convertbst(TreeNode root) {
         if (root != null) {
-            convertBST(root.right);
+            convertbst(root.right);
             sum += root.val;
             root.val = sum;
-            convertBST(root.left);
+            convertbst(root.left);
         }
         return root;
     }
@@ -670,11 +686,13 @@ public class SimpleSecondPage {
     }
 
     public int depth(TreeNode node) {
-        if (node == null) return 0; // 访问到空节点了，返回0
-        int L = depth(node.left); // 左儿子为根的子树的深度
-        int R = depth(node.right); // 右儿子为根的子树的深度
-        ans = Math.max(ans, L + R + 1); // 计算d_node即L+R+1 并更新ans
-        return Math.max(L, R) + 1; // 返回该节点为根的子树的深度
+        if (node == null) {
+            return 0; // 访问到空节点了，返回0
+        }
+        int l = depth(node.left); // 左儿子为根的子树的深度
+        int r = depth(node.right); // 右儿子为根的子树的深度
+        ans = Math.max(ans, l + r + 1); // 计算d_node即L+r+1 并更新ans
+        return Math.max(l, r) + 1; // 返回该节点为根的子树的深度
     }
 
     /**
@@ -683,11 +701,14 @@ public class SimpleSecondPage {
      * @Date: 2020/7/14
      **/
     public boolean checkRecord(String s) {
-        String L = s.replaceAll("L", "");
-        String LP = L.replaceAll("P", "");
-        if (LP.contains("AA")) return false;
-        if (s.contains("LLL"))
+        String l = s.replaceAll("L", "");
+        String lp = l.replaceAll("P", "");
+        if (lp.contains("AA")) {
             return false;
+        }
+        if (s.contains("LLL")) {
+            return false;
+        }
 
         return true;
     }
@@ -705,8 +726,9 @@ public class SimpleSecondPage {
     }
 
     public int traverse(TreeNode root) {
-        if (root == null)
+        if (root == null) {
             return 0;
+        }
         int left = traverse(root.left);
         int right = traverse(root.right);
         tilt += Math.abs(left - right);
@@ -737,8 +759,12 @@ public class SimpleSecondPage {
      * @Date: 2020/7/14
      **/
     public boolean isSubtree(TreeNode s, TreeNode t) {
-        if (t == null) return true;   // t 为 null 一定都是 true
-        if (s == null) return false;  // 这里 t 一定不为 null, 只要 s 为 null，肯定是 false
+        if (t == null) {
+            return true;   // t 为 null 一定都是 true
+        }
+        if (s == null) {
+            return false;  // 这里 t 一定不为 null, 只要 s 为 null，肯定是 false
+        }
         return isSubtree(s.left, t) || isSubtree(s.right, t) || isSameTree(s, t);
     }
 
@@ -746,9 +772,15 @@ public class SimpleSecondPage {
      * 判断两棵树是否相同
      */
     public boolean isSameTree(TreeNode s, TreeNode t) {
-        if (s == null && t == null) return true;
-        if (s == null || t == null) return false;
-        if (s.val != t.val) return false;
+        if (s == null && t == null) {
+            return true;
+        }
+        if (s == null || t == null) {
+            return false;
+        }
+        if (s.val != t.val) {
+            return false;
+        }
         return isSameTree(s.left, t.left) && isSameTree(s.right, t.right);
     }
 
@@ -795,15 +827,16 @@ public class SimpleSecondPage {
      * @Author: gexx
      * @Date: 2020/7/15
      **/
-    public static int findLHS(int[] nums) {
+    public static int findlhs(int[] nums) {
         int result = 0;
         Map<Integer, Integer> countMap = new HashMap<>((int) (nums.length / 0.75F + 1.0F));
         for (int num : nums) {
             countMap.put(num, countMap.getOrDefault(num, 0) + 1);
         }
         for (int key : countMap.keySet()) {
-            if (countMap.containsKey(key + 1))
+            if (countMap.containsKey(key + 1)) {
                 result = Math.max(countMap.get(key) + countMap.get(key + 1), result);
+            }
         }
         return result;
 
@@ -815,7 +848,9 @@ public class SimpleSecondPage {
      * @Date: 2020/7/16
      **/
     public static int maxCount(int m, int n, int[][] ops) {
-        if (ops.length == 0) return m * n;
+        if (ops.length == 0) {
+            return m * n;
+        }
         int minM = Integer.MAX_VALUE;
         int minN = Integer.MAX_VALUE;
         for (int x = 0; x < ops.length; x++) {
@@ -832,7 +867,9 @@ public class SimpleSecondPage {
      * @Date: 2020/7/16
      **/
     public static boolean canPlaceFlowers(int[] flowerbed, int n) {
-        if (flowerbed.length == 1 && flowerbed[0] == 0) return true;
+        if (flowerbed.length == 1 && flowerbed[0] == 0) {
+            return true;
+        }
         for (int i = 0; i < flowerbed.length; i++) {
             //处理头部
             if (i == 0 && flowerbed[0] == 0 && flowerbed.length > 0 && flowerbed[1] == 0) {
@@ -859,12 +896,15 @@ public class SimpleSecondPage {
      * @Date: 2020/7/17
      **/
     public String tree2str(TreeNode t) {
-        if (t == null)
+        if (t == null) {
             return "";
-        if (t.left == null && t.right == null)
+        }
+        if (t.left == null && t.right == null) {
             return t.val + "";
-        if (t.right == null)
+        }
+        if (t.right == null) {
             return t.val + "(" + tree2str(t.left) + ")";
+        }
         return t.val + "(" + tree2str(t.left) + ")(" + tree2str(t.right) + ")";
     }
 
@@ -907,8 +947,9 @@ public class SimpleSecondPage {
 
         for (long a = 0; a * a <= c; a++) {
             double b = Math.sqrt(c - a * a);
-            if (b == (int) b)
+            if (b == (int) b) {
                 return true;
+            }
         }
         return false;
     }
@@ -922,14 +963,16 @@ public class SimpleSecondPage {
         List<Integer> count = new ArrayList<>();
         List<Double> res = new ArrayList<>();
         average(root, 0, res, count);
-        for (int i = 0; i < res.size(); i++)
+        for (int i = 0; i < res.size(); i++) {
             res.set(i, res.get(i) / count.get(i));
+        }
         return res;
     }
 
     public void average(TreeNode t, int i, List<Double> sum, List<Integer> count) {
-        if (t == null)
+        if (t == null) {
             return;
+        }
         if (i < sum.size()) {
             sum.set(i, sum.get(i) + t.val);
             count.set(i, count.get(i) + 1);
@@ -957,7 +1000,9 @@ public class SimpleSecondPage {
         int temp = sum;
         for (int i = 1; i + k - 1 < nums.length; ++i) {
             temp = temp + nums[i + k - 1] - nums[i - 1];
-            if (temp > sum) sum = temp;
+            if (temp > sum) {
+                sum = temp;
+            }
         }
 
         return sum / (double) k;
@@ -973,10 +1018,11 @@ public class SimpleSecondPage {
         Arrays.sort(nums);
         int dup = -1, missing = 1;
         for (int i = 1; i < nums.length; i++) {
-            if (nums[i] == nums[i - 1])
+            if (nums[i] == nums[i - 1]) {
                 dup = nums[i];
-            else if (nums[i] > nums[i - 1] + 1)
+            } else if (nums[i] > nums[i - 1] + 1) {
                 missing = nums[i - 1] + 1;
+            }
         }
         return new int[]{dup, nums[nums.length - 1] != nums.length ? nums.length : missing};
 
@@ -993,9 +1039,12 @@ public class SimpleSecondPage {
     }
 
     public boolean find(TreeNode root, int k, Set set) {
-        if (null == root) return false;
-        if (set.contains(k - root.val))
+        if (null == root) {
+            return false;
+        }
+        if (set.contains(k - root.val)) {
             return true;
+        }
         set.add(root.val);
         return find(root.left, k, set) || find(root.right, k, set);
 
@@ -1012,10 +1061,14 @@ public class SimpleSecondPage {
         for (int i = 1; i < nums.length; i++) {
             if (nums[i - 1] > nums[i]) {
                 sum++;
-                if (sum >= 2) return false;
+                if (sum >= 2) {
+                    return false;
+                }
                 if (i - 2 >= 0 && nums[i - 2] > nums[i]) {
                     nums[i] = nums[i - 1];
-                } else nums[i - 1] = nums[i];
+                } else {
+                    nums[i - 1] = nums[i];
+                }
             }
         }
         return true;
@@ -1026,13 +1079,19 @@ public class SimpleSecondPage {
      * @Author: gexx
      * @Date: 2020/8/19
      **/
-    public TreeNode trimBST(TreeNode root, int L, int R) {
-        if (root == null) return root;
-        if (root.val > R) return trimBST(root.left, L, R);
-        if (root.val < L) return trimBST(root.right, L, R);
+    public TreeNode trimbst(TreeNode root, int L, int R) {
+        if (root == null) {
+            return root;
+        }
+        if (root.val > R) {
+            return trimbst(root.left, L, R);
+        }
+        if (root.val < L) {
+            return trimbst(root.right, L, R);
+        }
 
-        root.left = trimBST(root.left, L, R);
-        root.right = trimBST(root.right, L, R);
+        root.left = trimbst(root.left, L, R);
+        root.right = trimbst(root.right, L, R);
         return root;
     }
 
@@ -1042,24 +1101,29 @@ public class SimpleSecondPage {
      * @Date: 2020/8/19
      **/
     public int findSecondMinimumValue(TreeNode root) {
-        if (root == null)
+        if (root == null) {
             return -1;
+        }
         return find(root, root.val);
     }
 
 
     private int find(TreeNode x, int rootValue) {
-        if (x.val != rootValue)
+        if (x.val != rootValue) {
             return x.val;
+        }
 
-        if (x.left == null)
+        if (x.left == null) {
             return -1;
+        }
         int leftMin = find(x.left, rootValue);
         int rightMin = find(x.right, rootValue);
-        if (leftMin == -1)
+        if (leftMin == -1) {
             return rightMin;
-        if (rightMin == -1)
+        }
+        if (rightMin == -1) {
             return leftMin;
+        }
         return Math.min(leftMin, rightMin);
     }
 
@@ -1068,8 +1132,10 @@ public class SimpleSecondPage {
      * @Author: gexx
      * @Date: 2020/9/23
      **/
-    public static int findLengthOfLCIS(int[] nums) {
-        if (nums.length == 0) return 0;
+    public static int findlengthoflcis(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
         int maxlength = 1;
         int max = 0;
         for (int i = 0; i < nums.length - 1; i++) {
@@ -1115,8 +1181,8 @@ public class SimpleSecondPage {
                     stack.pop();
                     break;
                 case "D":
-                    Integer calPointsDPeek = stack.peek();
-                    stack.push(calPointsDPeek * 2);
+                    Integer calpointsdpeek = stack.peek();
+                    stack.push(calpointsdpeek * 2);
                     break;
                 case "+":
                     Integer calPointsAddPop = stack.pop();
@@ -1143,7 +1209,9 @@ public class SimpleSecondPage {
     }
 
     public int arrowLength(TreeNode node) {
-        if (node == null) return 0;
+        if (node == null) {
+            return 0;
+        }
         int left = arrowLength(node.left);
         int right = arrowLength(node.right);
         int arrowLeft = 0, arrowRight = 0;
@@ -1172,15 +1240,18 @@ public class SimpleSecondPage {
      **/
     public int getImportance(List<Employee> employees, int queryid) {
         emap = new HashMap();
-        for (Employee e : employees) emap.put(e.id, e);
+        for (Employee e : employees) {
+            emap.put(e.id, e);
+        }
         return dfs(queryid);
     }
 
     public int dfs(int eid) {
         Employee employee = emap.get(eid);
         int ans = employee.importance;
-        for (Integer subid : employee.subordinates)
+        for (Integer subid : employee.subordinates) {
             ans += dfs(subid);
+        }
         return ans;
     }
 
@@ -1234,7 +1305,9 @@ public class SimpleSecondPage {
 
         for (int i = 0; i < nums.length; i++) {
             int x = nums[i];
-            if (left.get(x) == null) left.put(x, i);
+            if (left.get(x) == null) {
+                left.put(x, i);
+            }
             right.put(x, i);
             count.put(x, count.getOrDefault(x, 0) + 1);
         }
@@ -1296,7 +1369,9 @@ public class SimpleSecondPage {
     public String longestWord(String[] words) {
         String ans = "";
         Set<String> wordset = new HashSet();
-        for (String word : words) wordset.add(word);
+        for (String word : words) {
+            wordset.add(word);
+        }
         for (String word : words) {
             if (word.length() > ans.length() ||
                     word.length() == ans.length() && word.compareTo(ans) < 0) {
@@ -1307,7 +1382,9 @@ public class SimpleSecondPage {
                         break;
                     }
                 }
-                if (good) ans = word;
+                if (good) {
+                    ans = word;
+                }
             }
         }
         return ans;
@@ -1321,15 +1398,18 @@ public class SimpleSecondPage {
     public List<Integer> selfDividingNumbers(int left, int right) {
         List<Integer> ans = new ArrayList();
         for (int n = left; n <= right; ++n) {
-            if (selfDividing(n)) ans.add(n);
+            if (selfDividing(n)) {
+                ans.add(n);
+            }
         }
         return ans;
     }
 
     public boolean selfDividing(int n) {
         for (char c : String.valueOf(n).toCharArray()) {
-            if (c == '0' || (n % (c - '0') > 0))
+            if (c == '0' || (n % (c - '0') > 0)) {
                 return false;
+            }
         }
         return true;
     }
@@ -1358,17 +1438,21 @@ public class SimpleSecondPage {
     public String shortestCompletingWord(String licensePlate, String[] words) {
         int[] target = count(licensePlate);
         String ans = "";
-        for (String word : words)
+        for (String word : words) {
             if ((word.length() < ans.length() || ans.length() == 0) &&
-                    dominates(count(word.toLowerCase()), target))
+                    dominates(count(word.toLowerCase()), target)) {
                 ans = word;
+            }
+        }
         return ans;
     }
 
     public boolean dominates(int[] count1, int[] count2) {
-        for (int i = 0; i < 26; ++i)
-            if (count1[i] < count2[i])
+        for (int i = 0; i < 26; ++i) {
+            if (count1[i] < count2[i]) {
                 return false;
+            }
+        }
         return true;
     }
 
@@ -1376,8 +1460,9 @@ public class SimpleSecondPage {
         int[] ans = new int[26];
         for (char letter : word.toCharArray()) {
             int index = Character.toLowerCase(letter) - 'a';
-            if (0 <= index && index < 26)
+            if (0 <= index && index < 26) {
                 ans[index]++;
+            }
         }
         return ans;
     }
@@ -1387,11 +1472,13 @@ public class SimpleSecondPage {
      * @Author: gexx
      * @Date: 2020/9/25
      **/
-    public int countPrimeSetBits(int L, int R) {
+    public int countPrimeSetBits(int l, int r) {
         int ans = 0;
-        for (int x = L; x <= R; ++x)
-            if (isSmallPrime(Integer.bitCount(x)))
+        for (int x = l; x <= r; ++x) {
+            if (isSmallPrime(Integer.bitCount(x))) {
                 ans++;
+            }
+        }
         return ans;
     }
 
@@ -1409,10 +1496,11 @@ public class SimpleSecondPage {
         Map<Integer, Integer> groups = new HashMap();
         for (int r = 0; r < matrix.length; ++r) {
             for (int c = 0; c < matrix[0].length; ++c) {
-                if (!groups.containsKey(r - c))
+                if (!groups.containsKey(r - c)) {
                     groups.put(r - c, matrix[r][c]);
-                else if (groups.get(r - c) != matrix[r][c])
+                } else if (groups.get(r - c) != matrix[r][c]) {
                     return false;
+                }
             }
         }
 
@@ -1425,38 +1513,47 @@ public class SimpleSecondPage {
      * @Author: gexx
      * @Date: 2020/9/27
      **/
-    public int rotatedDigits(int N) {
+    public int rotatedDigits(int n) {
         int ans = 0;
-        for (int n = 1; n <= N; ++n)
-            if (good(n, false)) ans++;
+        for (int n = 1; n <= n; ++n) {
+            if (good(n, false)) {
+                ans++;
+            }
+        }
         return ans;
     }
 
     public boolean good(int n, boolean flag) {
-        if (n == 0) return flag;
+        if (n == 0) {
+            return flag;
+        }
 
         int d = n % 10;
-        if (d == 3 || d == 4 || d == 7) return false;
-        if (d == 0 || d == 1 || d == 8) return good(n / 10, flag);
+        if (d == 3 || d == 4 || d == 7) {
+            return false;
+        }
+        if (d == 0 || d == 1 || d == 8) {
+            return good(n / 10, flag);
+        }
         return good(n / 10, true);
     }
 
 
     /**
      * @Description: 旋转字符串
-     * 给定两个字符串, A 和 B。
+     * 给定两个字符串, a 和 B。
      * <p>
-     * A 的旋转操作就是将 A 最左边的字符移动到最右边。 例如, 若 A = 'abcde'，在移动一次之后结果就是'bcdea' 。如果在若干次旋转操作之后，A 能变成B，那么返回True。
+     * a 的旋转操作就是将 a 最左边的字符移动到最右边。 例如, 若 a = 'abcde'，在移动一次之后结果就是'bcdea' 。如果在若干次旋转操作之后，a 能变成B，那么返回True。
      * <p>
      * <p>
      * 注意：
      * <p>
-     * A 和 B 长度不超过 100。
+     * a 和 B 长度不超过 100。
      * @Author: gexx
      * @Date: 2020/11/19
      **/
-    public static boolean rotateString(String A, String B) {
-        return A.length() == B.length() && (A + A).contains(B);
+    public static boolean rotateString(String a, String b) {
+        return a.length() == b.length() && (a + a).contains(b);
     }
 
 
@@ -1490,10 +1587,10 @@ public class SimpleSecondPage {
      * @Author: gexx
      * @Date: 2020/12/2
      **/
-    public int[] numberOfLines(int[] widths, String S) {
+    public int[] numberOfLines(int[] widths, String s) {
         int lenth = 0;
         int row = 1;
-        for (char c : S.toCharArray()) {
+        for (char c : s.toCharArray()) {
             if (100 > lenth + widths[c - 'a']) {
                 lenth += widths[c - 'a'];
             } else if (100 < lenth + widths[c - 'a']) {
@@ -1591,7 +1688,9 @@ public class SimpleSecondPage {
         paragraph += ".";
 
         Set<String> banset = new HashSet();
-        for (String word : banned) banset.add(word);
+        for (String word : banned) {
+            banset.add(word);
+        }
         Map<String, Integer> count = new HashMap();
 
         String ans = "";
@@ -1622,16 +1721,16 @@ public class SimpleSecondPage {
      * @Author: gexx
      * @Date: 2020/12/10
      **/
-    public static int[] shortestToChar(String S, char C) {
+    public static int[] shortestToChar(String s, char c) {
 
         List<Integer> l = new ArrayList();
-        for (int i = 0; i < S.length(); i++) {
-            if (S.charAt(i) == C) {
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == c) {
                 l.add(i);
             }
         }
-        int[] re = new int[S.length()];
-        char[] chars = S.toCharArray();
+        int[] re = new int[s.length()];
+        char[] chars = s.toCharArray();
         for (int i = 0; i < chars.length; i++) {
             int minFar = chars.length;
             for (int j = 0; j < l.size(); j++) {
@@ -1650,15 +1749,16 @@ public class SimpleSecondPage {
      * @Author: gexx
      * @Date: 2020/12/11
      **/
-    public String toGoatLatin(String S) {
+    public String toGoatLatin(String s) {
 
         Set<Character> vowel = new HashSet();
-        for (char c : new char[]{'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'})
+        for (char c : new char[]{'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}) {
             vowel.add(c);
+        }
 
         int t = 1;
         StringBuilder ans = new StringBuilder();
-        for (String word : S.split(" ")) {
+        for (String word : s.split(" ")) {
             char first = word.charAt(0);
             if (vowel.contains(first)) {
                 ans.append(word);
@@ -1667,8 +1767,9 @@ public class SimpleSecondPage {
                 ans.append(word.substring(0, 1));
             }
             ans.append("ma");
-            for (int i = 0; i < t; i++)
+            for (int i = 0; i < t; i++) {
                 ans.append("a");
+            }
             t++;
             ans.append(" ");
         }
@@ -1725,16 +1826,17 @@ public class SimpleSecondPage {
      * @Author: gexx
      * @Date: 2020/12/11
      **/
-    public int[][] flipAndInvertImage(int[][] A) {
-        int C = A[0].length;
-        for (int[] row : A)
-            for (int i = 0; i < (C + 1) / 2; ++i) {
+    public int[][] flipAndInvertImage(int[][] a) {
+        int c = a[0].length;
+        for (int[] row : a) {
+            for (int i = 0; i < (c + 1) / 2; ++i) {
                 int tmp = row[i] ^ 1;
-                row[i] = row[C - 1 - i] ^ 1;
-                row[C - 1 - i] = tmp;
+                row[i] = row[c - 1 - i] ^ 1;
+                row[c - 1 - i] = tmp;
             }
+        }
 
-        return A;
+        return a;
     }
 
     /**

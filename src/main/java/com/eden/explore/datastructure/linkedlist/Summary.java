@@ -30,11 +30,13 @@ public class Summary {
                 cur.child = null;
                 child.prev = cur;
 
-                while (childTail.next != null)
+                while (childTail.next != null) {
                     childTail = childTail.next;
+                }
                 childTail.next = cur.next;
-                if (cur.next != null)
+                if (cur.next != null) {
                     cur.next.prev = childTail;
+                }
                 cur.next = child;
                 cur = cur.next;
             }

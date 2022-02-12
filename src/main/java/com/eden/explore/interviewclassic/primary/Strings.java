@@ -77,7 +77,9 @@ public class Strings {
      **/
     public static int firstUniqChar(String s) {
 
-        if (null == s || 0 == s.length()) return -1;
+        if (null == s || 0 == s.length()) {
+            return -1;
+        }
         int[] a = new int[26];
         char[] ss = s.toCharArray();
         for (int i = 0; i < ss.length; i++) {
@@ -125,7 +127,9 @@ public class Strings {
      * @Date: 2019/10/18
      **/
     public static boolean isPalindrome(String s) {
-        if (s == null) return true;
+        if (s == null) {
+            return true;
+        }
         s = s.toLowerCase();
         int l = s.length();
         StringBuilder str = new StringBuilder(l);
@@ -176,7 +180,7 @@ public class Strings {
         try {
             return Integer.valueOf(stringBuilder.toString());
         } catch (Exception e) {
-            if (stringBuilder.substring(0, 1).equals("-")) {
+            if ("-".equals(stringBuilder.substring(0, 1))) {
                 return Integer.MIN_VALUE;
             } else {
                 return Integer.MAX_VALUE;

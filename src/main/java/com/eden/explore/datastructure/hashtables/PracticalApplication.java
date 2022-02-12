@@ -97,17 +97,19 @@ public class PracticalApplication {
         for (int i = 0; i < list1.length; i++) {
             for (int j = 0; j < list2.length; j++) {
                 if (list1[i].equals(list2[j])) {
-                    if (!map.containsKey(i + j))
+                    if (!map.containsKey(i + j)) {
                         map.put(i + j, new ArrayList<String>());
+                    }
                     map.get(i + j).add(list1[i]);
                 }
             }
         }
-        int min_index_sum = Integer.MAX_VALUE;
-        for (int key : map.keySet())
-            min_index_sum = Math.min(min_index_sum, key);
-        String[] res = new String[map.get(min_index_sum).size()];
-        return map.get(min_index_sum).toArray(res);
+        int minIndexSum = Integer.MAX_VALUE;
+        for (int key : map.keySet()) {
+            minIndexSum = Math.min(minIndexSum, key);
+        }
+        String[] res = new String[map.get(minIndexSum).size()];
+        return map.get(minIndexSum).toArray(res);
     }
 
     /**
@@ -119,11 +121,17 @@ public class PracticalApplication {
 
     public static boolean containsNearbyDuplicate(int[] nums, int k) {
         int n = nums.length;
-        if (k == 0) return false;
-        if (n <= 0) return false;
+        if (k == 0) {
+            return false;
+        }
+        if (n <= 0) {
+            return false;
+        }
         HashMap<Integer, Integer> map = new HashMap<>();
         for (int i = 0; i < n; i++) {
-            if (map.get(nums[i]) != null && (i - map.get(nums[i])) <= k) return true;
+            if (map.get(nums[i]) != null && (i - map.get(nums[i])) <= k) {
+                return true;
+            }
             map.put(nums[i], i);
         }
         return false;
@@ -147,16 +155,16 @@ public class PracticalApplication {
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
         HashMap<String, Integer> map = new HashMap<String, Integer>();
         List<TreeNode> list = new ArrayList<TreeNode>();
-        DLR(root, map, list);
+        dlr(root, map, list);
         return list;
     }
 
-    public String DLR(TreeNode node, HashMap<String, Integer> map, List<TreeNode> list) {
+    public String dlr(TreeNode node, HashMap<String, Integer> map, List<TreeNode> list) {
 
         if (node == null) {
             return "";
         }
-        String str = node.val + "(" + DLR(node.right, map, list) + ")" + "(" + DLR(node.left, map, list) + ")";
+        String str = node.val + "(" + dlr(node.right, map, list) + ")" + "(" + dlr(node.left, map, list) + ")";
 
         if (map.containsKey(str)) {
             if (map.get(str) == 1) {
@@ -176,13 +184,13 @@ public class PracticalApplication {
      * @author gexx
      * @Date 2020/3/3
      **/
-    public static int numJewelsInStones(String J, String S) {
-        char[] Js = J.toCharArray();
-        char[] Ss = S.toCharArray();
+    public static int numJewelsInStones(String j, String s) {
+        char[] js = j.toCharArray();
+        char[] ss = s.toCharArray();
         int count = 0;
-        for (int i = 0; i < Js.length; i++) {
-            for (int j = 0; j < Ss.length; j++) {
-                if (Js[i] == (Ss[j])) {
+        for (int i = 0; i < js.length; i++) {
+            for (int i1 = 0; i1 < ss.length; i1++) {
+                if (js[i] == (ss[i1])) {
                     count++;
                 }
             }
@@ -199,21 +207,26 @@ public class PracticalApplication {
      **/
 
 
-    public static int fourSumCount(int[] A, int[] B, int[] C, int[] D) {
+    public static int fourSumCount(int[] a, int[] b, int[] c, int[] d) {
         Map<Integer, Integer> map = new HashMap<>();
         int res = 0;
-        for (int i = 0; i < A.length; i++) {
-            for (int j = 0; j < B.length; j++) {
-                int sumAB = A[i] + B[j];
-                if (map.containsKey(sumAB)) map.put(sumAB, map.get(sumAB) + 1);
-                else map.put(sumAB, 1);
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < b.length; j++) {
+                int sumab = a[i] + b[j];
+                if (map.containsKey(sumab)) {
+                    map.put(sumab, map.get(sumab) + 1);
+                } else {
+                    map.put(sumab, 1);
+                }
             }
         }
 
-        for (int i = 0; i < C.length; i++) {
-            for (int j = 0; j < D.length; j++) {
-                int sumCD = -(C[i] + D[j]);
-                if (map.containsKey(sumCD)) res += map.get(sumCD);
+        for (int i = 0; i < c.length; i++) {
+            for (int j = 0; j < d.length; j++) {
+                int sumcd = -(c[i] + d[j]);
+                if (map.containsKey(sumcd)) {
+                    res += map.get(sumcd);
+                }
             }
         }
         return res;
@@ -225,7 +238,7 @@ public class PracticalApplication {
      * @author gexx
      * @Date 2020/3/4
      **/
-    public static List<Integer> topKFrequent(int[] nums, int k) {
+    public static List<Integer> topkfrequent(int[] nums, int k) {
         // 统计元素的频次
         Map<Integer, Integer> int2FreqMap = new HashMap<>(16);
         for (int num : nums) {
@@ -310,19 +323,19 @@ public class PracticalApplication {
         int[] nums = {1, 2, 3, 1};
         int k = 3;
         containsNearbyDuplicate(nums, k);
-        String J = "aA", S = "aAAbbbb";
-        System.out.println(numJewelsInStones(J, S));
+        String j = "aA", abbbb = "aAAbbbb";
+        System.out.println(numJewelsInStones(j, abbbb));
         int[]
-                A = {1, 2},
-                B = {-2, -1},
-                C = {-1, 2},
-                D = {0, 2};
+                a = {1, 2},
+                b = {-2, -1},
+                c = {-1, 2},
+                d = {0, 2};
 
-        fourSumCount(A, B, C, D);
+        fourSumCount(a, b, c, d);
 
         int[] nums11 = {1, 1, 1, 2, 2, 3};
         int k1 = 2;
-        topKFrequent(nums11, k1);
+        topkfrequent(nums11, k1);
 
     }
 }

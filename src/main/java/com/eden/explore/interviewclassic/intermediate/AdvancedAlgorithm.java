@@ -111,19 +111,19 @@ public class AdvancedAlgorithm {
      * @Date: 2020/6/28
      **/
     public static int longestConsecutive(int[] nums) {
-        Set<Integer> num_set = new HashSet<Integer>();
+        Set<Integer> numSet = new HashSet<Integer>();
         for (int num : nums) {
-            num_set.add(num);
+            numSet.add(num);
         }
 
         int longestStreak = 0;
 
-        for (int num : num_set) {
-            if (!num_set.contains(num - 1)) {
+        for (int num : numSet) {
+            if (!numSet.contains(num - 1)) {
                 int currentNum = num;
                 int currentStreak = 1;
 
-                while (num_set.contains(currentNum + 1)) {
+                while (numSet.contains(currentNum + 1)) {
                     currentNum += 1;
                     currentStreak += 1;
                 }
@@ -143,7 +143,8 @@ public class AdvancedAlgorithm {
      **/
     public static int calculate(String s) {
         int result = 0, len = s.length(), num = 0;
-        char op = '+';  //初始上一个运算符为加法 上个数字为0
+        //初始上一个运算符为加法 上个数字为0
+        char op = '+';
         Stack<Integer> stack = new Stack<Integer>();
         for (int i = 0; i < len; i++) {
             char c = s.charAt(i);
@@ -151,8 +152,12 @@ public class AdvancedAlgorithm {
                 num = num * 10 + s.charAt(i) - '0';
             }
             if (c < '0' && c != ' ' || i == len - 1) {
-                if (op == '+') stack.push(num);
-                if (op == '-') stack.push(-num);
+                if (op == '+') {
+                    stack.push(num);
+                }
+                if (op == '-') {
+                    stack.push(-num);
+                }
                 if (op == '*' || op == '/') {
                     int temp = (op == '*') ? stack.pop() * num : stack.pop() / num;
                     stack.push(temp);
@@ -169,18 +174,26 @@ public class AdvancedAlgorithm {
     }
 
     public int[] maxSlidingWindow(int[] nums, int k) {
-        if (nums == null || nums.length == 0) return new int[0];
+        if (nums == null || nums.length == 0) {
+            return new int[0];
+        }
         LinkedList<Integer> deque = new LinkedList<Integer>();
         int[] res = new int[nums.length + 1 - k];
         for (int i = 0; i < nums.length; i++) {
             // 每当新数进来时，如果发现队列头部的数的下标，是窗口最左边数的下标，则扔掉
-            if (!deque.isEmpty() && deque.peekFirst() == i - k) deque.poll();
+            if (!deque.isEmpty() && deque.peekFirst() == i - k) {
+                deque.poll();
+            }
             // 把队列尾部所有比新数小的都扔掉，保证队列是降序的
-            while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) deque.removeLast();
+            while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
+                deque.removeLast();
+            }
             // 加入新数
             deque.offerLast(i);
             // 队列头部就是该窗口内第一大的
-            if ((i + 1) >= k) res[i + 1 - k] = nums[deque.peek()];
+            if ((i + 1) >= k) {
+                res[i + 1 - k] = nums[deque.peek()];
+            }
         }
         return res;
     }
@@ -251,7 +264,7 @@ public class AdvancedAlgorithm {
          * @param lists
          * @return
          */
-        public ListNode mergeKLists(ListNode[] lists) {
+        public ListNode mergeLists(ListNode[] lists) {
             ArrayList<Integer> arr = new ArrayList<>();
             for (int i = 0; i < lists.length; i++) {
                 ListNode list = lists[i];
@@ -381,7 +394,9 @@ public class AdvancedAlgorithm {
         boolean[][] dp = new boolean[n][n];
         for (int i = 0; i < n; i++) {
             for (int j = 0; j <= i; j++) {
-                if (s.charAt(i) == s.charAt(j) && (i - j < 2 || dp[j + 1][i - 1])) dp[j][i] = true;
+                if (s.charAt(i) == s.charAt(j) && (i - j < 2 || dp[j + 1][i - 1])) {
+                    dp[j][i] = true;
+                }
             }
         }
         dfs(res, dp, 0, n, s, new ArrayList<String>());
@@ -390,7 +405,9 @@ public class AdvancedAlgorithm {
     }
 
     private static void dfs(List<List<String>> res, boolean[][] dp, int i, int n, String s, ArrayList<String> tmp) {
-        if (i == n) res.add(new ArrayList<>(tmp));
+        if (i == n) {
+            res.add(new ArrayList<>(tmp));
+        }
         for (int j = i; j < n; j++) {
             if (dp[i][j]) {
                 tmp.add(s.substring(i, j + 1));
@@ -447,7 +464,7 @@ public class AdvancedAlgorithm {
 
         // If, after being sorted, the largest number is `0`, the entire number
         // is zero.
-        if (asStrs[0].equals("0")) {
+        if ("0".equals(asStrs[0])) {
             return "0";
         }
 
@@ -462,23 +479,29 @@ public class AdvancedAlgorithm {
 
 
     public static String multiply(String num1, String num2) {
-        if (num1.equals("0") || num2.equals("0")) return "0";
+        if ("0".equals(num1) || "0".equals(num2)) {
+            return "0";
+        }
         int m = num1.length();
         int n = num2.length();
-        int[] mul = new int[m + n - 1]; // 元素默认值为 0
-        for (int i = 0; i < m; ++i) { // 竖式运算
+        // 元素默认值为 0
+        int[] mul = new int[m + n - 1];
+        // 竖式运算
+        for (int i = 0; i < m; ++i) {
             for (int j = 0; j < n; ++j) {
                 int vi = num1.charAt(i) - 48;
                 int vj = num2.charAt(j) - 48;
                 mul[i + j] += vi * vj;
             }
         }
-        for (int i = m + n - 2; i > 0; --i) { // 进位
+        // 进位
+        for (int i = m + n - 2; i > 0; --i) {
             mul[i - 1] += mul[i] / 10;
             mul[i] %= 10;
         }
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < m + n - 1; ++i) { // 结果拼接为字符串
+        // 结果拼接为字符串
+        for (int i = 0; i < m + n - 1; ++i) {
             result.append(mul[i]);
         }
         return result.toString();
@@ -496,14 +519,20 @@ public class AdvancedAlgorithm {
             return true;
         }
         double d = Math.sqrt(x);
-        if (d * d == x) return true;
+        if (d * d == x) {
+            return true;
+        }
         return false;
     }
 
 
     public static boolean isPowerOfTwo(int n) {
-        if (n == 1) return true;
-        if (n <= 0) return false;
+        if (n == 1) {
+            return true;
+        }
+        if (n <= 0) {
+            return false;
+        }
         double x = n;
         while (x != 2) {
             x = x / 2;

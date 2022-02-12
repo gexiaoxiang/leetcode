@@ -188,16 +188,22 @@ public class Trie {
 
     public String replaceWords(List<String> dict, String sentence) {
         Set<String> rootset = new HashSet();
-        for (String root : dict) rootset.add(root);
+        for (String root : dict) {
+            rootset.add(root);
+        }
 
         StringBuilder ans = new StringBuilder();
         for (String word : sentence.split("\\s+")) {
             String prefix = "";
             for (int i = 1; i <= word.length(); ++i) {
                 prefix = word.substring(0, i);
-                if (rootset.contains(prefix)) break;
+                if (rootset.contains(prefix)) {
+                    break;
+                }
             }
-            if (ans.length() > 0) ans.append(" ");
+            if (ans.length() > 0) {
+                ans.append(" ");
+            }
             ans.append(prefix);
         }
         return ans.toString();
@@ -235,17 +241,20 @@ public class Trie {
 
     public void dfs(char[][] board, Trie trie, boolean[][] visited, String str, int x, int y) {
         //判断i，j是否越界
-        if (x < 0 || x >= board.length || y < 0 || y >= board[0].length)
+        if (x < 0 || x >= board.length || y < 0 || y >= board[0].length) {
             return;
+        }
 
         //判断之前是否被访问过，如果被访问过，就返回，无需再遍历
-        if (visited[x][y])
+        if (visited[x][y]) {
             return;
+        }
         //把char字符加入字符串
         str += board[x][y];
         //如果前缀都不是，也直接返回
-        if (!trie.startsWith(str))
+        if (!trie.startsWith(str)) {
             return;
+        }
         //在tried里面查询是否有str，如果有，则添加
         if (trie.search(str)) {
             result.add(str);

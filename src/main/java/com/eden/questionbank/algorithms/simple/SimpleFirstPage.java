@@ -15,7 +15,9 @@ public class SimpleFirstPage {
      * @Date: 2020/6/30
      **/
     public int lengthOfLastWord(String s) {
-        if (s.trim().length() == 0) return 0;
+        if (s.trim().length() == 0) {
+            return 0;
+        }
         String[] s1 = s.split(" ");
         return s1[s1.length - 1].length();
 
@@ -64,10 +66,16 @@ public class SimpleFirstPage {
      * @Date: 2020/7/1
      **/
     public boolean isSameTree(TreeNode p, TreeNode q) {
-        if (p == null && q == null) return true;
+        if (p == null && q == null) {
+            return true;
+        }
         // one of p and q is null
-        if (q == null || p == null) return false;
-        if (p.val != q.val) return false;
+        if (q == null || p == null) {
+            return false;
+        }
+        if (p.val != q.val) {
+            return false;
+        }
         return isSameTree(p.right, q.right) &&
                 isSameTree(p.left, q.left);
 
@@ -111,7 +119,9 @@ public class SimpleFirstPage {
      * @Date: 2020/7/2
      **/
     public static int minDepth(TreeNode root) {
-        if (root == null) return 0;
+        if (root == null) {
+            return 0;
+        }
         if ((root.left == null) && (root.right == null)) {
             return 1;
         }
@@ -173,20 +183,21 @@ public class SimpleFirstPage {
     public static List<String> binaryTreePaths(TreeNode root) {
 
         LinkedList<String> paths = new LinkedList();
-        construct_paths(root, "", paths);
+        constructPaths(root, "", paths);
         return paths;
 
     }
 
-    public static void construct_paths(TreeNode root, String path, LinkedList<String> paths) {
+    public static void constructPaths(TreeNode root, String path, LinkedList<String> paths) {
         if (root != null) {
             path += Integer.toString(root.val);
             if ((root.left == null) && (root.right == null))  // 当前节点是叶子节点
+            {
                 paths.add(path);  // 把路径加入到答案中
-            else {
+            } else {
                 path += "->";  // 当前节点不是叶子节点，继续递归遍历
-                construct_paths(root.left, path, paths);
-                construct_paths(root.right, path, paths);
+                constructPaths(root.left, path, paths);
+                constructPaths(root.right, path, paths);
             }
         }
 
@@ -204,12 +215,17 @@ public class SimpleFirstPage {
         for (int i = 0; i < secret.length(); i++) {
             int s = secret.charAt(i) - '0';
             int g = guess.charAt(i) - '0';
-            if (s == g) bulls++;
-            else {
+            if (s == g) {
+                bulls++;
+            } else {
                 //当前数小于 0, 说明之前在 guess 中出现过, 和 secret 当前的数匹配
-                if (numbers[s] < 0) cows++;
+                if (numbers[s] < 0) {
+                    cows++;
+                }
                 //当前数大于 0, 说明之前在 secret 中出现过, 和 guess 当前的数匹配
-                if (numbers[g] > 0) cows++;
+                if (numbers[g] > 0) {
+                    cows++;
+                }
                 //secret 中的数, 计数加 1
                 numbers[s]++;
                 //guess 中的数, 计数减 1
@@ -226,8 +242,12 @@ public class SimpleFirstPage {
      * @Date: 2020/7/3
      **/
     public boolean isPowerOfFour(int n) {
-        if (n == 0) return false;
-        while (n % 4 == 0) n /= 4;
+        if (n == 0) {
+            return false;
+        }
+        while (n % 4 == 0) {
+            n /= 4;
+        }
         return n == 1;
     }
 
@@ -237,8 +257,12 @@ public class SimpleFirstPage {
      * @Date: 2020/7/3
      **/
     public static boolean canConstruct(String ransomNote, String magazine) {
-        if (ransomNote.equals("")) return true;
-        if (magazine.length() < ransomNote.length()) return false;
+        if ("".equals(ransomNote)) {
+            return true;
+        }
+        if (magazine.length() < ransomNote.length()) {
+            return false;
+        }
         String[] magazines = magazine.split("");
         String[] ransomNotes = ransomNote.split("");
         Arrays.sort(magazines);
@@ -265,8 +289,12 @@ public class SimpleFirstPage {
      **/
     public static char findTheDifference(String s, String t) {
         int ans = 0;
-        for (char ch : t.toCharArray()) ans += ch;
-        for (char ch : s.toCharArray()) ans -= ch;
+        for (char ch : t.toCharArray()) {
+            ans += ch;
+        }
+        for (char ch : s.toCharArray()) {
+            ans -= ch;
+        }
         return (char) ans;
 
     }
@@ -279,7 +307,9 @@ public class SimpleFirstPage {
     public boolean isSubsequence(String s, String t) {
         int i = 0;
         for (char ch : s.toCharArray()) {
-            while (i < t.length() && t.charAt(i) != ch) i++;
+            while (i < t.length() && t.charAt(i) != ch) {
+                i++;
+            }
             i++;
         }
         return i <= t.length() ? true : false;
@@ -294,8 +324,9 @@ public class SimpleFirstPage {
         List<String> times = new ArrayList<>();
         for (int h = 0; h < 12; h++) {
             for (int m = 0; m < 60; m++) {
-                if (Integer.bitCount(h) + Integer.bitCount(m) == num)
+                if (Integer.bitCount(h) + Integer.bitCount(m) == num) {
                     times.add(String.format("%d:%02d", h, m));
+                }
             }
         }
         return times;

@@ -25,6 +25,7 @@ public class ArchAPawn202008 {
         int size = nums.size();
         int[] next = new int[size];
         PriorityQueue<Integer> priorityQueue = new PriorityQueue<Integer>(new Comparator<Integer>() {
+            @Override
             public int compare(Integer index1, Integer index2) {
                 return nums.get(index1).get(next[index1]) - nums.get(index2).get(next[index2]);
             }
@@ -142,7 +143,7 @@ public class ArchAPawn202008 {
      * @Date: 2020/8/13
      **/
     public static String multiply(String num1, String num2) {
-        if (num1.equals("0") || num2.equals("0")) {
+        if ("0".equals(num1) || "0".equals(num2)) {
             return "0";
         }
         String ans = "0";

@@ -18,7 +18,7 @@ public class Design {
     private int[] copy;
 
     public Solution(int[] nums) {
-        this.nums = nums;
+        Solution.nums = nums;
         random = new Random();
         copy = nums.clone();
     }
@@ -85,10 +85,10 @@ public class Design {
     public static void main(String[] args) {
         int[] nums = {1, 2, 3};
         Solution obj = new Solution(nums);
-        int[] param_1 = obj.reset();
-        int[] param_2 = obj.shuffle();
-        System.out.println(Arrays.toString(param_1));
-        System.out.println(Arrays.toString(param_2));
+        int[] param1 = obj.reset();
+        int[] param2 = obj.shuffle();
+        System.out.println(Arrays.toString(param1));
+        System.out.println(Arrays.toString(param2));
 
         MinStack minStack = new MinStack();
         minStack.push(-2);

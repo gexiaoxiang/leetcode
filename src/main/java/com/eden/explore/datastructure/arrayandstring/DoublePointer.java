@@ -102,7 +102,9 @@ public class DoublePointer {
      * @Date: 2020/1/7
      **/
     public static int minSubArrayLen(int s, int[] nums) {
-        if (nums == null || nums.length <= 0) return 0;
+        if (nums == null || nums.length <= 0) {
+            return 0;
+        }
         int i = 0;
         int j = 0;
         int sum = nums[i];

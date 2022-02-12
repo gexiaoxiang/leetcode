@@ -20,8 +20,12 @@ public class ArrayAndString {
         List<List<Integer>> result = new ArrayList<>();
         Arrays.sort(nums);
         for (int i = 0; i < nums.length; i++) {
-            if (nums[i] > 0) break;
-            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            if (nums[i] > 0) {
+                break;
+            }
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
             int j = nums.length - 1;
             int target = 0 - nums[i];
             int k = i + 1;
@@ -29,8 +33,12 @@ public class ArrayAndString {
                 if (nums[k] + nums[j] == target) {
                     List<Integer> item = Arrays.asList(nums[i], nums[k], nums[j]);
                     result.add(item);
-                    while (k < j && nums[k] == nums[k + 1]) k++;
-                    while (k < j && nums[j] == nums[j - 1]) j--;
+                    while (k < j && nums[k] == nums[k + 1]) {
+                        k++;
+                    }
+                    while (k < j && nums[j] == nums[j - 1]) {
+                        j--;
+                    }
                     k++;
                     j--;
                 } else if (nums[k] + nums[j] < target) {
@@ -53,13 +61,13 @@ public class ArrayAndString {
      **/
 
     public static void setZeroes(int[][] matrix) {
-        int R = matrix.length;
-        int C = matrix[0].length;
+        int r = matrix.length;
+        int c = matrix[0].length;
         Set<Integer> rows = new HashSet<Integer>();
         Set<Integer> cols = new HashSet<Integer>();
 
-        for (int i = 0; i < R; i++) {
-            for (int j = 0; j < C; j++) {
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
                 if (matrix[i][j] == 0) {
                     rows.add(i);
                     cols.add(j);
@@ -67,8 +75,8 @@ public class ArrayAndString {
             }
         }
 
-        for (int i = 0; i < R; i++) {
-            for (int j = 0; j < C; j++) {
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
                 if (rows.contains(i) || cols.contains(j)) {
                     matrix[i][j] = 0;
                 }
@@ -131,7 +139,9 @@ public class ArrayAndString {
      **/
     public static String longestPalindrome(String string) {
 
-        if (null == string || string.length() < 1) return "";
+        if (null == string || string.length() < 1) {
+            return "";
+        }
         int start = 0, end = 0;
         int num1, num2, len;
         for (int i = 0; i < string.length(); i++) {
@@ -147,12 +157,12 @@ public class ArrayAndString {
     }
 
     public static int getMaxLength(String s, int left, int right) {
-        int L = left, R = right;
-        while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
-            L--;
-            R++;
+        int l = left, r = right;
+        while (l >= 0 && r < s.length() && s.charAt(l) == s.charAt(r)) {
+            l--;
+            r++;
         }
-        return R - L - 1;
+        return r - l - 1;
     }
 
     /**
@@ -164,8 +174,9 @@ public class ArrayAndString {
      **/
 
     public static boolean increasingTriplet(int[] nums) {
-        if (nums.length < 3)
+        if (nums.length < 3) {
             return false;
+        }
         //定义两个指针
         int min = Integer.MAX_VALUE;//第一个数的最小值
         int mid = Integer.MAX_VALUE;//中间数

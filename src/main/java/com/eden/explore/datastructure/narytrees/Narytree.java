@@ -19,13 +19,13 @@ public class Narytree {
         public Node() {
         }
 
-        public Node(int _val) {
-            val = _val;
+        public Node(int val) {
+            val = val;
         }
 
-        public Node(int _val, List<Node> _children) {
-            val = _val;
-            children = _children;
+        public Node(int val, List<Node> children) {
+            val = val;
+            children = children;
         }
     }
 
@@ -68,9 +68,12 @@ public class Narytree {
     }
 
     public void postOrder(List<Integer> res, Node root) {
-        if (root == null) return;
-        for (Node node : root.children)
+        if (root == null) {
+            return;
+        }
+        for (Node node : root.children) {
             postOrder(res, node);
+        }
         res.add(root.val);
 
     }
@@ -110,7 +113,9 @@ public class Narytree {
      * @Date: 2020/4/29
      **/
     public int maxDepth(Node root) {
-        if (root == null) return 0;
+        if (root == null) {
+            return 0;
+        }
         int res = 0;
         Queue<Node> queue = new LinkedList<>();
         queue.add(root);
@@ -121,7 +126,9 @@ public class Narytree {
                 Node tmp = queue.poll();
                 if (tmp.children != null) {
                     List<Node> child = tmp.children;
-                    for (Node ele : child) queue.add(ele);
+                    for (Node ele : child) {
+                        queue.add(ele);
+                    }
                 }
             }
         }

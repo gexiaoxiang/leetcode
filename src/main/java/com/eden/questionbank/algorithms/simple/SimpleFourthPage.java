@@ -18,7 +18,7 @@ public class SimpleFourthPage {
      * @Author gexx
      * @Date 2021/2/8
      **/
-    public static int[] decompressRLElist(int[] nums) {
+    public static int[] decompressrlelist(int[] nums) {
         List<Integer> list = new ArrayList();
         for (int i = 0; i < nums.length - 1; i += 2) {
             for (int i1 = 0; i1 < nums[i]; i1++) {
@@ -119,22 +119,29 @@ public class SimpleFourthPage {
     public int[] arrayRankTransform(int[] arr) {
         int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
         for (int num : arr) {
-            if (num < min) min = num;
-            if (num > max) max = num;
+            if (num < min) {
+                min = num;
+            }
+            if (num > max) {
+                max = num;
+            }
         }
 
         int[] count = new int[max - min + 1];
-        for (int num : arr)
+        for (int num : arr) {
             count[num - min] = 1;
+        }
 
         int[] preSum = new int[count.length + 1];
-        for (int i = 1; i < preSum.length; i++)
+        for (int i = 1; i < preSum.length; i++) {
             preSum[i] = preSum[i - 1] + count[i - 1];
+        }
 
         int[] ans = new int[arr.length];
         int index = 0;
-        for (int num : arr)
+        for (int num : arr) {
             ans[index++] = preSum[num - min] + 1;
+        }
 
         return ans;
 
@@ -147,8 +154,12 @@ public class SimpleFourthPage {
      * @Date 2021/2/9
      **/
     public int removePalindromeSub(String s) {
-        if ("".equals(s)) return 0;
-        if (s.equals(new StringBuilder(s).reverse().toString())) return 1;
+        if ("".equals(s)) {
+            return 0;
+        }
+        if (s.equals(new StringBuilder(s).reverse().toString())) {
+            return 1;
+        }
         return 2;
     }
 
@@ -163,12 +174,16 @@ public class SimpleFourthPage {
         for (int i = 0; i < mat.length; i++) {
             tmp[i][0] = i;
             for (int j = 0; j < mat[0].length; j++) {
-                if (mat[i][j] == 1) tmp[i][1] += 1;
+                if (mat[i][j] == 1) {
+                    tmp[i][1] += 1;
+                }
             }
         }
         Arrays.sort(tmp, (o1, o2) -> o1[1] - o2[1]);
         int[] res = new int[k];
-        for (int i = 0; i < k; i++) res[i] = tmp[i][0];
+        for (int i = 0; i < k; i++) {
+            res[i] = tmp[i][0];
+        }
         return res;
 
     }
@@ -209,8 +224,9 @@ public class SimpleFourthPage {
 
         HashSet<Integer> set = new HashSet<>();
         for (int i : arr) {
-            if (set.contains(2 * i) || (i % 2 == 0 && set.contains(i / 2)))
+            if (set.contains(2 * i) || (i % 2 == 0 && set.contains(i / 2))) {
                 return true;
+            }
             set.add(i);
         }
         return false;
@@ -250,6 +266,7 @@ public class SimpleFourthPage {
             bit[x] = get(x);
         }
         Collections.sort(list, new Comparator<Integer>() {
+            @Override
             public int compare(Integer x, Integer y) {
                 if (bit[x] != bit[y]) {
                     return bit[x] - bit[y];
@@ -470,17 +487,17 @@ public class SimpleFourthPage {
      * @Date: 2021/2/22
      **/
     public String reformat(String s) {
-        StringBuilder letterSB = new StringBuilder();
-        StringBuilder numSB = new StringBuilder();
+        StringBuilder lettersb = new StringBuilder();
+        StringBuilder numsb = new StringBuilder();
         for (char ch : s.toCharArray()) {
             if (Character.isLetter(ch)) {
-                letterSB.append(ch);
+                lettersb.append(ch);
             } else {
-                numSB.append(ch);
+                numsb.append(ch);
             }
         }
-        int letterLength = letterSB.length();
-        int numLength = numSB.length();
+        int letterLength = lettersb.length();
+        int numLength = numsb.length();
         if (Math.abs(letterLength - numLength) > 1) {
             return "";
         }
@@ -489,18 +506,18 @@ public class SimpleFourthPage {
         if (letterLength >= numLength) {
 
             for (int i = 0; i < numLength; i++) {
-                sb.append(letterSB.charAt(i));
-                sb.append(numSB.charAt(i));
+                sb.append(lettersb.charAt(i));
+                sb.append(numsb.charAt(i));
             }
             if (letterLength > numLength) {
-                sb.append(letterSB.charAt(letterLength - 1));
+                sb.append(lettersb.charAt(letterLength - 1));
             }
         } else {
             for (int i = 0; i < letterLength; i++) {
-                sb.append(numSB.charAt(i));
-                sb.append(letterSB.charAt(i));
+                sb.append(numsb.charAt(i));
+                sb.append(lettersb.charAt(i));
             }
-            sb.append(numSB.charAt(numLength - 1));
+            sb.append(numsb.charAt(numLength - 1));
         }
         return sb.toString();
 
@@ -517,8 +534,11 @@ public class SimpleFourthPage {
             cnt1 += s.charAt(i) - '0';            //先统计1的个数
         }                                       //由于左右区域的数至少为1，所以i不能等于len-1
         for (int i = 0; i < s.length() - 1; i++) {  //点i分为左右两个区域
-            if (s.charAt(i) == '0') cnt0++;      //遇到01就统计，动态更新左右区域01个数
-            else cnt1--;
+            if (s.charAt(i) == '0') {
+                cnt0++;      //遇到01就统计，动态更新左右区域01个数
+            } else {
+                cnt1--;
+            }
             res = Math.max(res, cnt0 + cnt1);
         }
         return res;
@@ -1001,8 +1021,9 @@ public class SimpleFourthPage {
         int count = 0;
         for (int i = 0; i < mat.length; i++) {
             for (int j = 0; j < mat[0].length; j++) {
-                if (sumOfrows[i] == 1 && sumOfcols[j] == 1 && mat[i][j] == 1)
+                if (sumOfrows[i] == 1 && sumOfcols[j] == 1 && mat[i][j] == 1) {
                     count++;
+                }
             }
         }
         return count;
@@ -1016,9 +1037,9 @@ public class SimpleFourthPage {
     public int sumOddLengthSubarrays(int[] arr) {
         int len = arr.length, res = 0;
         for (int i = 0; i < len; i++) {
-            int LeftOdd = (i + 1) / 2, LeftEven = i / 2 + 1;
-            int RightOdd = (len - i) / 2, RightEven = (len - 1 - i) / 2 + 1;
-            res += arr[i] * (LeftOdd * RightOdd + LeftEven * RightEven);
+            int leftOdd = (i + 1) / 2, leftEven = i / 2 + 1;
+            int rightOdd = (len - i) / 2, rightEven = (len - 1 - i) / 2 + 1;
+            res += arr[i] * (leftOdd * rightOdd + leftEven * rightEven);
         }
         return res;
 
@@ -1034,22 +1055,35 @@ public class SimpleFourthPage {
         int bc = 0, wc = 0;
         for (int i = 0; i < text.length(); i++) {
             //计算空格数
-            if (text.charAt(i) == ' ') bc++;
+            if (text.charAt(i) == ' ') {
+                bc++;
+            }
             //计算单词数
-            if ((i == 0 || text.charAt(i - 1) == ' ') && text.charAt(i) != ' ') wc++;
+            if ((i == 0 || text.charAt(i - 1) == ' ') && text.charAt(i) != ' ') {
+                wc++;
+            }
         }
         int ec = wc == 1 ? bc : bc / (wc - 1); //计算单词间的空格数
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < text.length(); i++) {
-            if (sb.length() == 0 && text.charAt(i) == ' ') continue;
-            if (text.charAt(i) != ' ') sb.append(text.charAt(i));
-            else if (text.charAt(i - 1) != ' ' && text.charAt(i) == ' ') {
-                for (int j = 0; j < ec; j++) sb.append(' ');
+            if (sb.length() == 0 && text.charAt(i) == ' ') {
+                continue;
+            }
+            if (text.charAt(i) != ' ') {
+                sb.append(text.charAt(i));
+            } else if (text.charAt(i - 1) != ' ' && text.charAt(i) == ' ') {
+                for (int j = 0; j < ec; j++) {
+                    sb.append(' ');
+                }
             }
 
         }
-        while (sb.length() < text.length()) sb.append(' ');
-        if (sb.length() > text.length()) sb.delete(text.length(), sb.length());
+        while (sb.length() < text.length()) {
+            sb.append(' ');
+        }
+        if (sb.length() > text.length()) {
+            sb.delete(text.length(), sb.length());
+        }
         return sb.toString();
 
 
@@ -1700,11 +1734,13 @@ public class SimpleFourthPage {
     }
 
     int recurrence(int num) {
-        if (num <= 1)
+        if (num <= 1) {
             return 1;
-        else
+        } else {
             return num * recurrence(num - 1);
+        }
     }
+   static Pattern p = Pattern.compile("(name:)([a-zA-Z]*)(,age:)([0-9]*)");
 
     public static void main(String[] args) {
         largestAltitude(new int[]{44, 32, -9, 52, 23, -50, 50, 33, -84, 47, -14, 84, 36, -62, 37, 81, -36, -85, -39, 67, -63, 64, -47, 95, 91, -40, 65, 67, 92, -28, 97, 100, 81});
@@ -1722,10 +1758,9 @@ public class SimpleFourthPage {
                 -3, 2, -3, 4, 2});
         findLucky(new int[]{1, 2, 2, 3, 3, 3});
         findTheDistanceValue(new int[]{1, 4, 2, 3}, new int[]{-4, -3, 6, 10, 20, 30}, 3);
-        decompressRLElist(new int[]{1, 2, 3, 4});
+        decompressrlelist(new int[]{1, 2, 3, 4});
 
 
-        Pattern p = Pattern.compile("(name:)([a-zA-Z]*)(,age:)([0-9]*)");
         Matcher m = p.matcher("name:vunv,age:20");
         while (m.find()) {
             System.out.println(m.group(2));

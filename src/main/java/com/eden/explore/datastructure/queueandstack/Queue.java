@@ -16,8 +16,9 @@ public class Queue {
         }
 
         public boolean enQueue(int value) {
-            if (isFull())
+            if (isFull()) {
                 return false;
+            }
             queue[rear] = value;
             rear = (rear + 1) % queue.length;
             count++;
@@ -25,22 +26,25 @@ public class Queue {
         }
 
         public boolean deQueue() {
-            if (isEmpty())
+            if (isEmpty()) {
                 return false;
+            }
             front = (front + 1) % queue.length;
             count--;
             return true;
         }
 
-        public int Front() {
-            if (isEmpty())
+        public int front() {
+            if (isEmpty()) {
                 return -1;
+            }
             return queue[front];
         }
 
-        public int Rear() {
-            if (isEmpty())
+        public int rear() {
+            if (isEmpty()) {
                 return -1;
+            }
             return rear == 0 ? queue[queue.length - 1] : queue[rear - 1];
         }
 

@@ -41,8 +41,9 @@ public class Introduction2String {
                 sum = 1;
             }
         }
-        if (sum == 1)
+        if (sum == 1) {
             result = "1" + result;
+        }
         return result;
     }
 

@@ -63,7 +63,9 @@ public class Linkeds {
      * @Date: 2019/12/18
      **/
     public static ListNode oddEvenList(ListNode head) {
-        if (head == null) return head;
+        if (head == null) {
+            return head;
+        }
         ListNode odd = head, even = head.next, evenhead = even;
         while (odd.next != null && even.next != null) {
             odd.next = odd.next.next;
@@ -83,37 +85,39 @@ public class Linkeds {
      * @Date: 2019/12/18
      **/
     public static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        ListNode A = headA;
-        ListNode B = headB;
+        ListNode a = headA;
+        ListNode b = headB;
         int numa = 0;
         int numb = 0;
-        while (A != null) { //记录A长度
+        while (a != null) { //记录A长度
             numa++;
-            A = A.next;
+            a = a.next;
         }
-        while (B != null) {//记录B 长度
+        while (b != null) {//记录B 长度
             numb++;
-            B = B.next;
+            b = b.next;
         }
-        A = headA;
-        B = headB;
+        a = headA;
+        b = headB;
         if (numa > numb) {
             int n = numa - numb;
             while (n > 0) {
-                A = A.next;
+                a = a.next;
                 n--;
             }
         } else {
             int n = numb - numa;
             while (n > 0) {
-                B = B.next;
+                b = b.next;
                 n--;
             }
         }
-        while (A != null) {
-            if (A == B) return A;
-            A = A.next;
-            B = B.next;
+        while (a != null) {
+            if (a == b) {
+                return a;
+            }
+            a = a.next;
+            b = b.next;
         }
 
         return null;
