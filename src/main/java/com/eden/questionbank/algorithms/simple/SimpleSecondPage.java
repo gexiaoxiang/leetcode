@@ -1515,8 +1515,8 @@ public class SimpleSecondPage {
      **/
     public int rotatedDigits(int n) {
         int ans = 0;
-        for (int n = 1; n <= n; ++n) {
-            if (good(n, false)) {
+        for (int a = 1; a <= n; ++a) {
+            if (good(a, false)) {
                 ans++;
             }
         }

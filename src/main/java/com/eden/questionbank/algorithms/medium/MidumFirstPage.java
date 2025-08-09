@@ -84,7 +84,7 @@ public class MidumFirstPage {
         reverse(nums, i + 1);
     }
 
-    public void swap(int[] nums, int i, int j) {
+    public static void swap(int[] nums, int i, int j) {
         int temp = nums[i];
         nums[i] = nums[j];
         nums[j] = temp;
@@ -346,15 +346,155 @@ public class MidumFirstPage {
         return ugly;
     }
 
-    public static void main(String[] args) {
-        insert(new int[][]{{1, 3}, {6, 9}}, new int[]{2, 5});
-        jump(new int[]{2, 3, 1, 2, 4, 2, 3});
-        intToRoman(66);
-        Scanner scanner = new Scanner(System.in);
-        if (scanner.hasNextLine()) {
-            String next = scanner.nextLine();
-            System.out.println(next);
+
+    public static int nthSuperUglyNumber1(int[] primes) {
+        int prime = primes[0];
+        for (int i = 0; i < primes.length; i++) {
+            prime = prime ^ primes[i];
         }
+        return prime;
     }
-}
+
+
+
+
+    public  static String concatHex36(int n) {
+        String[] chars = new String[]{"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+        int i = n*n*n;
+        StringBuilder sb = new StringBuilder();
+        while(i!=0){
+            sb.append(chars[i%36]);
+            i /= 36;
+        }
+        i = n*n;
+        while(i!=0){
+            sb.append(chars[i%16]);
+            i/=16;
+        }
+        return sb.reverse().toString();
+    }
+
+    private static int pocss(int[] arr, int index, int rest) {
+        if (index == arr.length) {
+            return rest == 0 ? 1 : 0;
+        }
+        int ways = 0;
+        for  (int zhang = 0; arr[index] * zhang <= rest; zhang++) {
+            ways += pocss(arr, index + 1, rest - arr[index] * zhang);
+        }
+        return ways;
+    }
+
+
+    private static int pocssDP(int[] arr, int rest) {
+        int n = arr.length;
+        int[][] dp = new int[n + 1][rest + 1];
+        dp[0][0] = 1; // Base case: 0 elements, sum 0 -> 1 way
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j <= rest; j++) {
+                dp[i][j] = dp[i - 1][j]; // Not using arr[i-1] at all
+                // Try using arr[i-1] k times (1 or more)
+                if (j >= arr[i - 1]) {
+                    dp[i][j] += dp[i][j - arr[i - 1]]; // Using arr[i-1] once (can be repeated)
+                }
+            }
+        }
+
+        return dp[n][rest];
+    }
+    private static int pocess(int[] weight, int[] values, int i, int alreadyWeight, int aavalue, int bag) {
+        if (alreadyWeight > bag) {
+            return 0;
+        }
+
+        if (i == weight.length) {
+            return aavalue;
+        }
+        int no = pocess(weight, values, i + 1, alreadyWeight, aavalue, bag);
+        int has = pocess(weight, values, i + 1, alreadyWeight + weight[i], aavalue + values[i], bag);
+        return Math.max(no, has);
+
+    }
+    public  static  int numberOfChild(int n, int k) {
+        boolean r = true;
+        int i = 0;
+        int j=0;
+        while (j!=k) {
+            if (r) {
+                if (i != n - 1) {
+                    i++;
+                } else {
+                    r = false;
+                }
+            } else {
+                if (i != 0) {
+                    i--;
+                } else {
+                    r = true;
+
+                }
+            }
+
+            j++;
+        }
+        return i;
+    }
+
+    public static int findMiddleIndex(int[] nums) {
+        int middleIndex = 0;
+        int sumL = 0;
+        int sumR = 0;
+        for (int i = 1; i < nums.length; i++) {
+            sumR += nums[i];
+
+        }
+        while (  middleIndex < nums.length) {
+
+            if (middleIndex != 0) {
+                sumR -= nums[middleIndex];
+                sumL += nums[middleIndex - 1];
+            }
+            if(sumL != sumR){
+                return middleIndex;
+            }
+            middleIndex++;
+        }
+
+        return -1;
+    }
+
+    public static String digitSum(String s, int k) {
+
+        while (s.length() > k) {
+            List<String> l = new ArrayList();
+            while (s.length() >0) {
+
+                l.add(s.substring(0,k>s.length()?s.length():k));
+
+                s = s.substring(k>s.length()?s.length():k );
+
+
+            }
+            System.out.println(l);
+            s="";
+            for(String e:l){
+                int sum=0;
+
+                while(e.length()>0){
+                    sum+=Integer.valueOf(e.substring(0,1));
+                    e=e.substring(1,e.length());
+                }
+
+                s+=String.valueOf(sum);
+            }
+        }
+        return s;
+    }
+    public static void main(String[] args) {
+        digitSum("475730385258137",13);
+    }
+
+    }
+
 
